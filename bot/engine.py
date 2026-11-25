@@ -188,22 +188,48 @@ def metrics(d, t, rng):
     return res
 
 
-def score(d, t, rng):
-    """One number per coin: risk-sized log growth per year minus drawdown, penalised for too few trades."""
-    a, b = rng
-    years = max((b - a) * d.bar_hours / 8760, 1e-9)
-    r = t["ret"]
-    if len(r) == 0:
+def _period_score(rl, years):
+    """Risk-sized log growth per year minus drawdown, penalised for too few trades."""
+    if len(rl) == 0:
         return -1.0
-    rl = np.maximum(r * leverage_of(t["sl_pct"]), -0.999)
     logeq = np.concatenate([[0.0], np.cumsum(np.log1p(rl))])
     growth = logeq[-1] / years
     dd = float((np.maximum.accumulate(logeq) - logeq).max())
     s = growth - 0.5 * dd
-    per_year = len(r) / years
+    per_year = len(rl) / years
     if per_year < C.MIN_TRADES_PER_YEAR:
         s -= 0.5 * (1 - per_year / C.MIN_TRADES_PER_YEAR)
     return float(s)
+
+
+def score(d, t, rng):
+    """One number per coin, built to resist luck:
+      1. the biggest winning trades (top DROP_TOP_WINNERS) are removed first
+      2. the period is cut into ~1-year chunks and each chunk is scored on its own
+      3. the coin's score is the average of its WORST chunks, so a strategy has to
+         hold up in every kind of market, not ride one lucky rally."""
+    a, b = rng
+    r = t["ret"]
+    if len(r) == 0:
+        return -1.0
+    rl = np.maximum(r * leverage_of(t["sl_pct"]), -0.999)
+    bars = t["sig_bar"]
+    k = int(np.ceil(len(rl) * C.DROP_TOP_WINNERS))
+    if k and len(rl) >= 10:
+        keep = np.ones(len(rl), bool)
+        keep[np.argsort(rl)[-k:]] = False
+        rl, bars = rl[keep], bars[keep]
+    year_bars = int(8760 / d.bar_hours)
+    edges = list(range(a, b, year_bars)) + [b]
+    if len(edges) > 2 and edges[-1] - edges[-2] < year_bars // 2:
+        edges.pop(-2)                      # merge a short last piece into the previous year
+    chunks = []
+    for lo, hi in zip(edges[:-1], edges[1:]):
+        m = (bars >= lo) & (bars < hi)
+        chunks.append(_period_score(rl[m], (hi - lo) * d.bar_hours / 8760))
+    chunks.sort()
+    worst = chunks[:C.WORST_YEARS] if len(chunks) > C.WORST_YEARS else chunks[:1]
+    return float(np.mean(worst))
 
 
 def fitness(datasets, g, part):
@@ -218,5 +244,5 @@ def fitness(datasets, g, part):
     if not vals:
         return -9.0
     v = np.array(vals)
-    complexity = 0.003 * (len(g["long"]) + len(g["short"]))
+    complexity = C.COMPLEXITY_PENALTY * (len(g["long"]) + len(g["short"]))
     return float(v.mean() - 0.5 * v.std() - complexity)

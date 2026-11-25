@@ -69,6 +69,8 @@ def verdict(m):
         v = ("good", "ربح وتغلّب على اشترِ واحتفظ")
     elif lev > 0:
         v = ("ok", "ربح لكن أقل من اشترِ واحتفظ")
+    elif lev > bh:
+        v = ("soft", "خسارة أقل من السوق")
     else:
         v = ("bad", "خسارة")
     return {"level": v[0], "text": v[1] + (" — عينة صغيرة" if small else "")}
@@ -122,8 +124,9 @@ def plot_progress(states, path):
         ax.plot([x[0] for x in h], [x[2] for x in h], lw=2,
                 label=st["scope"], color={"ALL": BLUE}.get(st["scope"]))
     ax.set_xlabel("Generation")
-    ax.set_ylabel("Champion score (validation)")
-    ax.legend(ncol=6, fontsize=8, loc="lower right")
+    ax.set_ylabel("Champion score\n(weaker of train & validation)")
+    if ax.get_legend_handles_labels()[0]:
+        ax.legend(ncol=6, fontsize=8, loc="lower right")
     fig.tight_layout()
     fig.savefig(path, dpi=110)
     plt.close(fig)
@@ -195,16 +198,16 @@ def write_markdown(out):
          "الأرقام أدناه من **الاختبار المخفي** فقط، مع الرافعة المقترحة (مخاطرة 2% لكل صفقة).", ""]
     for v in out["variants"]:
         L += [f"## فريم {v['variant']}", "",
-              "| الاستراتيجية | العملة | صفقات | نسبة النجاح | الربح | أقصى تراجع | اشترِ واحتفظ | الحكم |",
-              "|---|---|---|---|---|---|---|---|"]
+              "| الاستراتيجية | العملة | صفقات | صفقات/سنة | نسبة النجاح | الربح | أقصى تراجع | اشترِ واحتفظ | الحكم |",
+              "|---|---|---|---|---|---|---|---|---|"]
         for e in v["scopes"]:
             name = "موحّدة لكل العملات" if e["scope"] == "ALL" else e["scope"]
             if "coins" not in e:
-                L.append(f"| {name} | — | | | | | | لسا ما لقى استراتيجية |"); continue
+                L.append(f"| {name} | — | | | | | | | لسا ما لقى استراتيجية |"); continue
             for c in e["coins"]:
                 t = c["test"]
-                icon = {"good": "✅", "ok": "🟡", "bad": "❌"}[c["verdict"]["level"]]
-                L.append(f"| {name} | {c['symbol']} | {t['trades']} | {t['win_rate'] * 100:.0f}% | "
+                icon = {"good": "✅", "ok": "🟡", "soft": "🟠", "bad": "❌"}[c["verdict"]["level"]]
+                L.append(f"| {name} | {c['symbol']} | {t['trades']} | {t['trades_per_year']} | {t['win_rate'] * 100:.0f}% | "
                          f"{pct(t['lev']['total'])} | {t['lev']['max_dd'] * 100:.0f}% | "
                          f"{pct(t['buy_hold']['total'])} | {icon} {c['verdict']['text']} |")
         L += ["", f"![progress]({'docs/' + v['progress']})", ""]

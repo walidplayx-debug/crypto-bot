@@ -13,7 +13,7 @@ We never tell it how to trade. It gets the indicators, invents strategies, tests
 
 1. **Data:** 1-hour candles from Binance (free, no API key). 4-hour candles are built from them.
 2. **Indicators (26):** RSI, MACD, Bollinger, EMA 20/50/200, ATR, ADX, Stochastic, CCI, MFI, OBV, volume, Donchian channels, volatility…
-3. **A strategy:** up to 3 long conditions and up to 3 short conditions, plus a stop-loss and take-profit in ATR multiples, and a maximum trade duration.
+3. **A strategy:** up to 2 long conditions and up to 2 short conditions, plus a stop-loss and take-profit in ATR multiples, and a maximum trade duration.
 4. **Three timeframes:** 1h, 4h, and 1h with a 4h trend filter.
 5. **Two kinds of strategy:**
    - **Universal:** one strategy that has to work on all five coins at once. Harder to find, but the strongest evidence that it isn't luck.
@@ -31,6 +31,13 @@ We never tell it how to trade. It gets the indicators, invents strategies, tests
   - **Hidden test:** from then until today. The bot never sees it; its numbers are for reporting only.
 
 The bot was also run on a completely random price series and found no consistently "profitable" strategy, which confirms it can't see the future.
+
+## Scoring that resists luck
+
+- The biggest 5% of winning trades are ignored when a strategy is scored.
+- The training period is cut into years; each coin is judged on its **2 worst years**, so a strategy must survive bull, bear and sideways markets.
+- At most 2 conditions per direction, with a penalty per condition.
+- A new champion must be better on **both** training and validation, by a clear margin.
 
 ## Suggested leverage
 

@@ -24,7 +24,7 @@
   .scroll{overflow-x:auto}
   .num{direction:ltr;unicode-bidi:embed}
   .pill{display:inline-block;padding:1px 8px;border-radius:999px;font-size:12px;border:1px solid currentColor}
-  .good{color:var(--good)} .ok{color:var(--ok)} .bad{color:var(--bad)}
+  .good{color:var(--good)} .ok{color:var(--ok)} .soft{color:#f18a59} .bad{color:var(--bad)}
   ul{margin:4px 0 8px;padding-inline-start:20px} li{margin:2px 0}
   img{width:100%;border-radius:10px;margin-top:8px;border:1px solid var(--line)}
   details{margin-top:8px} summary{cursor:pointer;color:var(--ink2)}
@@ -60,7 +60,7 @@ function card(e){
   if(!e.coins) return `<div class="card"><h2>${title}</h2><div class="muted">الجيل ${e.generation} · لسا ما لقى استراتيجية ربحت في التدريب والتحقق</div></div>`;
   const rows = e.coins.map(c => {
     const t = c.test;
-    return `<tr><td>${c.symbol.replace("USDT","")}</td><td class="num">${t.trades}</td><td class="num">${(t.win_rate*100).toFixed(0)}%</td>
+    return `<tr><td>${c.symbol.replace("USDT","")}</td><td class="num">${t.trades}</td><td class="num">${t.trades_per_year}</td><td class="num">${(t.win_rate*100).toFixed(0)}%</td>
       <td class="num">${pct(t.lev.total)}</td><td class="num">${(t.lev.max_dd*100).toFixed(0)}%</td>
       <td class="num">${pct(t.buy_hold.total)}</td><td><span class="pill ${c.verdict.level}">${c.verdict.text}</span></td></tr>`;
   }).join("");
@@ -74,7 +74,7 @@ function card(e){
     <h2>${title}</h2>
     <div class="muted">الجيل ${e.generation} · لقاها في الجيل ${e.found_generation} · ${e.converged ? "✅ استقرّ (ما تحسّن من فترة طويلة)" : "🔄 لسا يتحسّن"}</div>
     <div class="scroll"><table>
-      <tr><th>العملة</th><th>صفقات</th><th>نجاح</th><th>ربح برافعة</th><th>أقصى تراجع</th><th>اشترِ واحتفظ</th><th>الحكم</th></tr>${rows}
+      <tr><th>العملة</th><th>صفقات</th><th>بالسنة</th><th>نجاح</th><th>ربح برافعة</th><th>أقصى تراجع</th><th>اشترِ واحتفظ</th><th>الحكم</th></tr>${rows}
     </table></div>
     <b>🟢 شروط الشراء (Long)</b>${list(r.long)}
     <b>🔴 شروط البيع (Short)</b>${list(r.short)}

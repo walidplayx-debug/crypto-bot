@@ -29,18 +29,29 @@ def rand_rule(names):
     return [random.choice(names), random.choice("<>"), random.randint(5, 95)]
 
 
+def normalize(g):
+    """One condition per indicator per side, at most MAX_RULES, never an empty strategy."""
+    for side in ("long", "short"):
+        seen, keep = set(), []
+        for r in g[side]:
+            if r[0] not in seen:
+                seen.add(r[0]); keep.append(r)
+        g[side] = keep[:C.MAX_RULES]
+    return g
+
+
 def rand_genome(names, variant):
-    kind = random.random()
-    nl = random.randint(1, C.MAX_RULES) if kind < 0.8 else 0
-    ns = random.randint(1, C.MAX_RULES) if kind > 0.4 else 0
+    kind = random.random()          # 50% both directions, 25% long only, 25% short only
+    nl = random.randint(1, C.MAX_RULES) if kind < 0.75 else 0
+    ns = random.randint(1, C.MAX_RULES) if kind >= 0.25 else 0
     lo, hi = hold_range(variant)
-    return {
+    return normalize({
         "long": [rand_rule(names) for _ in range(nl)],
         "short": [rand_rule(names) for _ in range(ns)],
         "sl": round(random.uniform(0.5, 5.0), 2),
         "tp": round(random.uniform(0.5, 10.0), 2),
         "hold": random.randint(lo, hi),
-    }
+    })
 
 
 def key(g):
@@ -64,7 +75,7 @@ def crossover(a, b):
     child["hold"] = int(round(child["hold"]))
     if not child["long"] and not child["short"]:
         child["long"] = [list(r) for r in (a["long"] or a["short"])][:1]
-    return child
+    return normalize(child)
 
 
 def mutate(g, names, variant, rate=0.3):
@@ -90,7 +101,11 @@ def mutate(g, names, variant, rate=0.3):
         g["tp"] = round(float(np.clip(g["tp"] * np.exp(random.gauss(0, 0.2)), 0.3, 12)), 2)
     if random.random() < rate:
         g["hold"] = int(np.clip(g["hold"] * np.exp(random.gauss(0, 0.25)), lo, hi))
-    return g
+    if random.random() < rate * 0.1:            # occasionally open the other direction
+        other = "short" if not g["short"] else ("long" if not g["long"] else None)
+        if other:
+            g[other] = [rand_rule(names)]
+    return normalize(g)
 
 
 # ---------------------------------------------------------------- evaluation
@@ -117,7 +132,7 @@ def run_scope(pool, variant, scope, seconds):
     else:
         st = {"variant": variant, "scope": scope, "generation": 0, "population": [],
               "champion": None, "history": [], "since_improve": 0}
-    pop = [g for g in st["population"] if all(r[0] in names for s in ("long", "short") for r in g[s])]
+    pop = [normalize(g) for g in st["population"] if all(r[0] in names for s in ("long", "short") for r in g[s])]
     while len(pop) < C.POPULATION:
         pop.append(rand_genome(names, variant))
     champ = st["champion"]
@@ -135,15 +150,16 @@ def run_scope(pool, variant, scope, seconds):
             for g, v in zip(cand, vfit):
                 seen.add(key(g))
                 tf = fit[pop.index(g)]
-                if v > 0 and (champ is None or v > champ["valid_fitness"]):
+                robust = min(tf, v)   # must be good on BOTH training and validation
+                if v > 0 and (champ is None or robust > champ["robust"] + C.CHAMPION_MARGIN):
                     champ = {"genome": g, "train_fitness": round(tf, 4), "valid_fitness": round(v, 4),
-                             "found_generation": st["generation"]}
+                             "robust": round(robust, 4), "found_generation": st["generation"]}
                     improved = True
         st["since_improve"] = 0 if improved else st["since_improve"] + 1
         st["generation"] += 1
         gens += 1
         st["history"].append([st["generation"], round(float(fit[order[0]]), 4),
-                              champ["valid_fitness"] if champ else None])
+                              champ["robust"] if champ else None])
         # next generation: elites + children + a few random newcomers for diversity
         elite = [pop[i] for i in order[:C.ELITE]]
         nxt = [json.loads(json.dumps(g)) for g in elite]
@@ -179,7 +195,7 @@ def main():
     scopes = args.scopes.split(",")
     budget = args.minutes * 60 - (time.time() - t)
     # the all-coins strategy is 5x more work, so it gets half of the time
-    weights = [len(scopes) - 1 if s == "ALL" else 1 for s in scopes]
+    weights = [len(C.SYMBOLS) if s == "ALL" else 1 for s in scopes]
     ctx = mp.get_context("fork")
     with ctx.Pool(os.cpu_count()) as pool:
         for s, w in zip(scopes, weights):

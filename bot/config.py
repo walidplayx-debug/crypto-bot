@@ -37,5 +37,11 @@ MAX_LEVERAGE = 10
 # Genetic algorithm
 POPULATION = 120
 ELITE = 12
-MAX_RULES = 3
+MAX_RULES = 2                 # fewer conditions = less room to memorise history
 MIN_TRADES_PER_YEAR = 6       # fewer trades than this per coin is penalised
+
+# Anti-luck scoring
+DROP_TOP_WINNERS = 0.05       # ignore the best 5% of winning trades when scoring
+WORST_YEARS = 2               # a coin is judged on the average of its 2 worst years
+COMPLEXITY_PENALTY = 0.01     # per condition
+CHAMPION_MARGIN = 0.01        # a new champion must beat the old one by this much
