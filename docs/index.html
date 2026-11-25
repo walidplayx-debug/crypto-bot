@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crypto Bot · النتائج</title>
+<style>
+  :root{--page:#0b0b0b;--surf:#191919;--line:#303030;--ink:#efefef;--ink2:#9c9c9c;--blue:#338ced;
+        --good:#53c556;--ok:#fbb315;--bad:#eb6263}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--page);color:var(--ink);font:15px/1.6 system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif}
+  header{padding:20px 16px 8px;max-width:980px;margin:auto}
+  h1{margin:0 0 4px;font-size:22px}
+  .muted{color:var(--ink2);font-size:13px}
+  main{max-width:980px;margin:auto;padding:0 12px 40px}
+  .tabs{display:flex;gap:8px;margin:14px 0;flex-wrap:wrap}
+  .tabs button{background:var(--surf);color:var(--ink2);border:1px solid var(--line);border-radius:999px;padding:6px 16px;font:inherit;cursor:pointer}
+  .tabs button.on{color:var(--ink);border-color:var(--blue)}
+  .card{background:var(--surf);border:1px solid var(--line);border-radius:14px;padding:14px;margin:12px 0}
+  .card h2{margin:0 0 2px;font-size:17px}
+  table{width:100%;border-collapse:collapse;font-size:13px;margin:10px 0}
+  th,td{padding:6px 6px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+  th{color:var(--ink2);font-weight:500}
+  .scroll{overflow-x:auto}
+  .num{direction:ltr;unicode-bidi:embed}
+  .pill{display:inline-block;padding:1px 8px;border-radius:999px;font-size:12px;border:1px solid currentColor}
+  .good{color:var(--good)} .ok{color:var(--ok)} .bad{color:var(--bad)}
+  ul{margin:4px 0 8px;padding-inline-start:20px} li{margin:2px 0}
+  img{width:100%;border-radius:10px;margin-top:8px;border:1px solid var(--line)}
+  details{margin-top:8px} summary{cursor:pointer;color:var(--ink2)}
+  .sig{border:1px solid var(--blue);border-radius:10px;padding:8px 10px;margin-top:8px;font-size:13px}
+  .note{background:#1f1a0d;border:1px solid #4a3a10;border-radius:12px;padding:10px 12px;font-size:13px;color:#e9d39a}
+</style>
+</head>
+<body>
+<header>
+  <h1>🤖 بوت استراتيجيات الكريبتو</h1>
+  <div class="muted" id="meta">جاري التحميل…</div>
+</header>
+<main>
+  <div class="note">الأرقام المهمة هي أرقام <b>الاختبار المخفي</b>: فترة ما شافها البوت أبداً وقت التطوير. هذا اختبار على بيانات تاريخية، مو ضمان للمستقبل، وما هو نصيحة مالية.</div>
+  <div class="tabs" id="tabs"></div>
+  <div id="content"></div>
+</main>
+<script>
+const pct = x => (x>=0?"+":"") + (x*100).toFixed(1) + "%";
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const names = {ALL:"استراتيجية موحّدة لكل العملات"};
+let DATA;
+
+function partRow(label, m){
+  return `<tr><td>${label}</td><td class="num">${m.trades}</td><td class="num">${(m.win_rate*100).toFixed(0)}%</td>
+    <td class="num">${pct(m.x1.total)}</td><td class="num">${pct(m.lev.total)}</td>
+    <td class="num">${(m.lev.max_dd*100).toFixed(0)}%</td><td class="num">${pct(m.buy_hold.total)}</td></tr>`;
+}
+const head = `<tr><th></th><th>صفقات</th><th>نجاح</th><th>ربح 1x</th><th>ربح برافعة</th><th>أقصى تراجع</th><th>اشترِ واحتفظ</th></tr>`;
+
+function card(e){
+  const title = names[e.scope] || e.scope;
+  if(!e.coins) return `<div class="card"><h2>${title}</h2><div class="muted">الجيل ${e.generation} · لسا ما لقى استراتيجية ربحت في التدريب والتحقق</div></div>`;
+  const rows = e.coins.map(c => {
+    const t = c.test;
+    return `<tr><td>${c.symbol.replace("USDT","")}</td><td class="num">${t.trades}</td><td class="num">${(t.win_rate*100).toFixed(0)}%</td>
+      <td class="num">${pct(t.lev.total)}</td><td class="num">${(t.lev.max_dd*100).toFixed(0)}%</td>
+      <td class="num">${pct(t.buy_hold.total)}</td><td><span class="pill ${c.verdict.level}">${c.verdict.text}</span></td></tr>`;
+  }).join("");
+  const r = e.rules;
+  const list = a => a.length ? `<ul>${a.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>` : `<div class="muted">— ما يستخدم هذا الاتجاه</div>`;
+  const sigs = e.coins.filter(c=>c.signal_now).map(c=>{const s=c.signal_now;
+    return `<div class="sig">📡 <b>${c.symbol}</b> · ${s.side} · دخول <span class="num">${s.entry}</span> · وقف <span class="num">${s.sl.toPrecision(6)}</span> · هدف <span class="num">${s.tp.toPrecision(6)}</span> · رافعة ${s.leverage}x</div>`}).join("");
+  const parts = e.coins.map(c => `<div class="muted" style="margin-top:8px">${c.symbol}</div>
+    <div class="scroll"><table>${head}${partRow("تدريب",c.train)}${partRow("تحقق",c.valid)}${partRow("مخفي",c.test)}</table></div>`).join("");
+  return `<div class="card">
+    <h2>${title}</h2>
+    <div class="muted">الجيل ${e.generation} · لقاها في الجيل ${e.found_generation} · ${e.converged ? "✅ استقرّ (ما تحسّن من فترة طويلة)" : "🔄 لسا يتحسّن"}</div>
+    <div class="scroll"><table>
+      <tr><th>العملة</th><th>صفقات</th><th>نجاح</th><th>ربح برافعة</th><th>أقصى تراجع</th><th>اشترِ واحتفظ</th><th>الحكم</th></tr>${rows}
+    </table></div>
+    <b>🟢 شروط الشراء (Long)</b>${list(r.long)}
+    <b>🔴 شروط البيع (Short)</b>${list(r.short)}
+    <div class="muted">${esc(r.sl)} · ${esc(r.tp)} · ${esc(r.hold)}</div>
+    ${sigs}
+    <img src="${e.chart}?v=${encodeURIComponent(DATA.updated)}" alt="منحنى رأس المال ${title}" loading="lazy">
+    <details><summary>تفاصيل التدريب والتحقق والمخفي</summary>${parts}</details>
+  </div>`;
+}
+
+function show(i){
+  document.querySelectorAll(".tabs button").forEach((b,j)=>b.classList.toggle("on", i===j));
+  const v = DATA.variants[i];
+  document.getElementById("content").innerHTML =
+    v.scopes.map(card).join("") +
+    `<div class="card"><h2>تطوّر البوت عبر الأجيال</h2><img src="${v.progress}?v=${encodeURIComponent(DATA.updated)}" alt="progress"></div>`;
+}
+
+fetch("data.json?" + Date.now()).then(r=>r.json()).then(d=>{
+  DATA = d;
+  document.getElementById("meta").textContent =
+    `آخر تحديث: ${d.updated} · تدريب حتى ${d.split.train_end} · تحقق حتى ${d.split.valid_end} · بعدها اختبار مخفي`;
+  const labels = {"1h":"ساعة","4h":"4 ساعات","1h+4h":"ساعة + ترند 4 ساعات"};
+  document.getElementById("tabs").innerHTML = d.variants.map((v,i)=>`<button onclick="show(${i})">${labels[v.variant]||v.variant}</button>`).join("");
+  if(d.variants.length) show(0); else document.getElementById("content").innerHTML = `<div class="card">لسا ما فيه نتائج. أول تشغيل شغّال…</div>`;
+}).catch(()=>{document.getElementById("meta").textContent="لسا ما فيه نتائج. أول تشغيل شغّال…";});
+</script>
+</body>
+</html>
