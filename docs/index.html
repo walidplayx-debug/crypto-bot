@@ -72,6 +72,7 @@ function card(e){
     <div class="scroll"><table>${head}${partRow("تدريب",c.train)}${partRow("تحقق",c.valid)}${partRow("مخفي",c.test)}</table></div>`).join("");
   return `<div class="card">
     <h2>${title}</h2>
+    ${e.weak ? `<div class="pill bad" style="margin:4px 0">⚠️ أفضل الموجود لهلأ — لسا مش رابحة بالتدريب والتحقق</div>` : ""}
     <div class="muted">الجيل ${e.generation} · لقاها في الجيل ${e.found_generation} · ${e.converged ? "✅ استقرّ (ما تحسّن من فترة طويلة)" : "🔄 لسا يتحسّن"}</div>
     <div class="scroll"><table>
       <tr><th>العملة</th><th>صفقات</th><th>بالسنة</th><th>نجاح</th><th>ربح برافعة</th><th>أقصى تراجع</th><th>اشترِ واحتفظ</th><th>الحكم</th></tr>${rows}

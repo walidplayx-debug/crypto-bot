@@ -188,17 +188,17 @@ def metrics(d, t, rng):
     return res
 
 
-def _period_score(rl, years):
+def _period_score(rl, years, min_per_year):
     """Risk-sized log growth per year minus drawdown, penalised for too few trades."""
     if len(rl) == 0:
-        return -1.0
+        return -2.0
     logeq = np.concatenate([[0.0], np.cumsum(np.log1p(rl))])
     growth = logeq[-1] / years
     dd = float((np.maximum.accumulate(logeq) - logeq).max())
     s = growth - 0.5 * dd
     per_year = len(rl) / years
-    if per_year < C.MIN_TRADES_PER_YEAR:
-        s -= 0.5 * (1 - per_year / C.MIN_TRADES_PER_YEAR)
+    if per_year < min_per_year:
+        s -= 2.0 * (1 - per_year / min_per_year)   # trading rarely must never look "safe"
     return float(s)
 
 
@@ -211,7 +211,7 @@ def score(d, t, rng):
     a, b = rng
     r = t["ret"]
     if len(r) == 0:
-        return -1.0
+        return -2.0
     rl = np.maximum(r * leverage_of(t["sl_pct"]), -0.999)
     bars = t["sig_bar"]
     k = int(np.ceil(len(rl) * C.DROP_TOP_WINNERS))
@@ -226,7 +226,8 @@ def score(d, t, rng):
     chunks = []
     for lo, hi in zip(edges[:-1], edges[1:]):
         m = (bars >= lo) & (bars < hi)
-        chunks.append(_period_score(rl[m], (hi - lo) * d.bar_hours / 8760))
+        chunks.append(_period_score(rl[m], (hi - lo) * d.bar_hours / 8760,
+                                    C.MIN_TRADES_PER_YEAR[d.bar_hours]))
     chunks.sort()
     worst = chunks[:C.WORST_YEARS] if len(chunks) > C.WORST_YEARS else chunks[:1]
     return float(np.mean(worst))

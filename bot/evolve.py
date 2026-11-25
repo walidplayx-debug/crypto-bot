@@ -22,7 +22,8 @@ _DATA = {}   # variant -> list of datasets (shared with worker processes via for
 # ---------------------------------------------------------------- genomes
 
 def hold_range(variant):
-    return (2, 60) if variant == "4h" else (4, 240)
+    bar = 4 if variant == "4h" else 1
+    return (max(2, 8 // bar), C.MAX_HOLD_HOURS // bar)   # from 8 hours up to MAX_HOLD_HOURS
 
 
 def rand_rule(names):
@@ -143,7 +144,7 @@ def run_scope(pool, variant, scope, seconds):
         fit = pool.map(_eval, [(variant, scope, g, "train") for g in pop])
         order = np.argsort(fit)[::-1]
         # validation check for the best few new ones
-        cand = [pop[i] for i in order[:6] if fit[i] > 0 and key(pop[i]) not in seen]
+        cand = [pop[i] for i in order[:6] if key(pop[i]) not in seen]
         improved = False
         if cand:
             vfit = pool.map(_eval, [(variant, scope, g, "valid") for g in cand])
@@ -151,7 +152,7 @@ def run_scope(pool, variant, scope, seconds):
                 seen.add(key(g))
                 tf = fit[pop.index(g)]
                 robust = min(tf, v)   # must be good on BOTH training and validation
-                if v > 0 and (champ is None or robust > champ["robust"] + C.CHAMPION_MARGIN):
+                if champ is None or robust > champ["robust"] + C.CHAMPION_MARGIN:
                     champ = {"genome": g, "train_fitness": round(tf, 4), "valid_fitness": round(v, 4),
                              "robust": round(robust, 4), "found_generation": st["generation"]}
                     improved = True
