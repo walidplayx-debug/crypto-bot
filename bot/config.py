@@ -49,3 +49,8 @@ DROP_TOP_WINNERS = 0.05       # ignore the best 5% of winning trades when scorin
 WORST_YEARS = 2               # a coin is judged on the average of its 2 worst years
 COMPLEXITY_PENALTY = 0.01     # per condition
 CHAMPION_MARGIN = 0.01        # a new champion must beat the old one by this much
+
+# Independent searches per strategy. If they agree, the pattern is probably real.
+SEEDS = 3
+# A search stops after this many runs (every 6h) without a better champion: 8 = 2 days
+STOP_AFTER_RUNS = 8

@@ -76,6 +76,20 @@ def verdict(m):
     return {"level": v[0], "text": v[1] + (" — عينة صغيرة" if small else "")}
 
 
+def agreement(seeds):
+    """Do the independent searches tell the same story?"""
+    found = [x for x in seeds if "robust" in x]
+    if len(found) < 2:
+        return {"level": "wait", "text": "لسا ما في بحوث كفاية للمقارنة"}
+    common = set.intersection(*(set(x["indicators"]) for x in found))
+    note = f" · مؤشرات مشتركة: {', '.join(label(c) for c in sorted(common))}" if common else ""
+    if all(x["robust"] > 0 for x in found) and all(x["test_avg"] > 0 for x in found):
+        return {"level": "good", "text": f"البحوث متفقة: كلها رابحة حتى بالمخفي{note}"}
+    if all(x["robust"] > 0 for x in found):
+        return {"level": "ok", "text": f"متفقة بالتدريب، بس مختلفة بالمخفي{note}"}
+    return {"level": "bad", "text": f"البحوث ما لقت نمط ثابت{note}"}
+
+
 def equity_points(d, g):
     """Leveraged & 1x equity across train→valid→test, plus buy & hold, sampled for plotting."""
     sig = signals(d, g)
@@ -121,12 +135,14 @@ def plot_progress(states, path):
         h = [x for x in st["history"] if x[2] is not None]
         if not h:
             continue
-        ax.plot([x[0] for x in h], [x[2] for x in h], lw=2,
-                label=st["scope"], color={"ALL": BLUE}.get(st["scope"]))
+        seed = st.get("seed", 1)
+        ax.plot([x[0] for x in h], [x[2] for x in h], lw=2 if seed == 1 else 1,
+                ls="-" if seed == 1 else ":", label=st["scope"] + ("" if seed == 1 else f" #{seed}"),
+                color={"ALL": BLUE}.get(st["scope"]))
     ax.set_xlabel("Generation")
     ax.set_ylabel("Champion score\n(weaker of train & validation)")
     if ax.get_legend_handles_labels()[0]:
-        ax.legend(ncol=6, fontsize=8, loc="lower right")
+        ax.legend(ncol=6, fontsize=7, loc="lower right")
     fig.tight_layout()
     fig.savefig(path, dpi=110)
     plt.close(fig)
@@ -157,15 +173,33 @@ def main():
         states.sort(key=lambda s: (s["scope"] != "ALL", s["scope"]))
         vslug = variant.replace("+", "_")
         plot_progress(states, img / f"progress_{vslug}.png")
-        entries = []
+        groups = {}
         for st in states:
-            ch = st.get("champion")
-            e = {"scope": st["scope"], "generation": st["generation"],
-                 "since_improve": st["since_improve"], "converged": st["since_improve"] >= 400}
-            if not ch:
+            groups.setdefault(st["scope"], []).append(st)
+        entries = []
+        for scope, sts in groups.items():
+            sts.sort(key=lambda x: x.get("seed", 1))
+            ds = list(datasets.values()) if scope == "ALL" else [datasets[scope]]
+            seeds = []
+            for st in sts:
+                ch = st.get("champion")
+                info = {"seed": st.get("seed", 1), "generation": st["generation"],
+                        "done": bool(st.get("done")), "runs_without_improve": st.get("runs_without_improve", 0)}
+                if ch:
+                    tests = [metrics(d, backtest(d, ch["genome"], d.test), d.test)["lev"]["total"] for d in ds]
+                    info.update(robust=ch.get("robust", 0), test_avg=round(float(np.mean(tests)), 4),
+                                indicators=sorted({r[0] for sd in ("long", "short") for r in ch["genome"][sd]}))
+                seeds.append(info)
+            e = {"scope": scope, "seeds": seeds, "agreement": agreement(seeds),
+                 "converged": all(x["done"] for x in seeds) and len(seeds) >= C.SEEDS,
+                 "stop_after": C.STOP_AFTER_RUNS}
+            with_ch = [st for st in sts if st.get("champion")]
+            if not with_ch:
+                e["generation"] = max(st["generation"] for st in sts)
                 entries.append(e); continue
+            st = max(with_ch, key=lambda x: x["champion"].get("robust", -9))
+            ch = st["champion"]
             g = ch["genome"]
-            ds = list(datasets.values()) if st["scope"] == "ALL" else [datasets[st["scope"]]]
             coins = []
             for d in ds:
                 parts = {p: metrics(d, backtest(d, g, getattr(d, p)), getattr(d, p))
@@ -174,11 +208,12 @@ def main():
                 parts["symbol"] = d.symbol
                 parts["signal_now"] = current_signal(d, g)
                 coins.append(parts)
-            fname = f"eq_{vslug}_{st['scope']}.png"
-            plot_equity(ds, g, img / fname, f"{variant} · {st['scope']}")
-            e.update(weak=ch.get("robust", 0) <= 0, genome=g, rules=describe(g, ds[0]), train_fitness=ch["train_fitness"],
-                     valid_fitness=ch["valid_fitness"], found_generation=ch["found_generation"],
-                     coins=coins, chart=f"img/{fname}")
+            fname = f"eq_{vslug}_{scope}.png"
+            plot_equity(ds, g, img / fname, f"{variant} · {scope}")
+            e.update(best_seed=st.get("seed", 1), generation=st["generation"],
+                     weak=ch.get("robust", 0) <= 0, genome=g, rules=describe(g, ds[0]),
+                     train_fitness=ch["train_fitness"], valid_fitness=ch["valid_fitness"],
+                     found_generation=ch["found_generation"], coins=coins, chart=f"img/{fname}")
             entries.append(e)
         out["variants"].append({"variant": variant, "progress": f"img/progress_{vslug}.png", "scopes": entries})
     (C.DOCS_DIR / "data.json").write_text(json.dumps(out, ensure_ascii=False, indent=1))
@@ -202,6 +237,8 @@ def write_markdown(out):
               "|---|---|---|---|---|---|---|---|---|"]
         for e in v["scopes"]:
             name = "موحّدة لكل العملات" if e["scope"] == "ALL" else e["scope"]
+            if e.get("agreement"):
+                name += f" · 🎲 {e['agreement']['text'].split(' · ')[0]}"
             if e.get("weak"):
                 name += " ⚠️ (أفضل الموجود، لسا مش رابحة بالتدريب والتحقق)"
             if "coins" not in e:

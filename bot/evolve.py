@@ -125,14 +125,26 @@ def tournament(pop, fit, k=3):
     return pop[best]
 
 
-def run_scope(pool, variant, scope, seconds):
-    path = C.STATE_DIR / variant / f"{scope}.json"
-    names = _DATA[variant][0].names
+def run_name(scope, seed):
+    return scope if seed == 1 else f"{scope}__s{seed}"
+
+
+def load_state(variant, name):
+    path = C.STATE_DIR / variant / f"{name}.json"
     if path.exists():
-        st = json.loads(path.read_text())
-    else:
-        st = {"variant": variant, "scope": scope, "generation": 0, "population": [],
-              "champion": None, "history": [], "since_improve": 0}
+        return json.loads(path.read_text())
+    scope, _, seed = name.partition("__s")
+    return {"variant": variant, "scope": scope, "seed": int(seed or 1), "generation": 0,
+            "population": [], "champion": None, "history": [], "since_improve": 0}
+
+
+def run_scope(pool, variant, name, seconds):
+    """One independent search. name = scope (seed 1) or scope__s2 / scope__s3."""
+    path = C.STATE_DIR / variant / f"{name}.json"
+    names = _DATA[variant][0].names
+    st = load_state(variant, name)
+    scope = st["scope"]
+    champ_before = key(st["champion"]["genome"]) if st.get("champion") else None
     pop = [normalize(g) for g in st["population"] if all(r[0] in names for s in ("long", "short") for r in g[s])]
     while len(pop) < C.POPULATION:
         pop.append(rand_genome(names, variant))
@@ -176,11 +188,16 @@ def run_scope(pool, variant, scope, seconds):
     st["population"] = pop
     st["champion"] = champ
     st["history"] = st["history"][-3000:]
+    # stopping rule: count whole runs in which the champion did not change
+    changed = champ is not None and key(champ["genome"]) != champ_before
+    st["runs_without_improve"] = 0 if changed else st.get("runs_without_improve", 0) + 1
+    st["done"] = st["runs_without_improve"] >= C.STOP_AFTER_RUNS
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(st))
     cv = champ["valid_fitness"] if champ else None
-    print(f"[{variant} {scope}] +{gens} generations (total {st['generation']}), champion valid={cv}, "
-          f"no improvement for {st['since_improve']} gens", flush=True)
+    print(f"[{variant} {name}] +{gens} generations (total {st['generation']}), champion valid={cv}, "
+          f"runs without a better champion: {st['runs_without_improve']}/{C.STOP_AFTER_RUNS}"
+          + ("  -> DONE" if st["done"] else ""), flush=True)
 
 
 def main():
@@ -193,14 +210,21 @@ def main():
     t = time.time()
     _DATA[args.variant] = [build(s, args.variant) for s in C.SYMBOLS]
     print(f"datasets ready in {time.time() - t:.0f}s", flush=True)
-    scopes = args.scopes.split(",")
+    runs = [run_name(sc, seed) for sc in args.scopes.split(",") for seed in range(1, C.SEEDS + 1)]
+    active = [r for r in runs if not load_state(args.variant, r).get("done")]
+    for r in runs:
+        if r not in active:
+            print(f"[{args.variant} {r}] finished earlier -> skipped", flush=True)
+    if not active:
+        print("every search has finished; nothing to evolve", flush=True)
+        return
     budget = args.minutes * 60 - (time.time() - t)
-    # the all-coins strategy is 5x more work, so it gets half of the time
-    weights = [len(C.SYMBOLS) if s == "ALL" else 1 for s in scopes]
+    # the all-coins strategy is 5x more work, so it gets more of the time
+    weights = [len(C.SYMBOLS) if r.split("__")[0] == "ALL" else 1 for r in active]
     ctx = mp.get_context("fork")
     with ctx.Pool(os.cpu_count()) as pool:
-        for s, w in zip(scopes, weights):
-            run_scope(pool, args.variant, s, budget * w / sum(weights))
+        for r, w in zip(active, weights):
+            run_scope(pool, args.variant, r, budget * w / sum(weights))
 
 
 if __name__ == "__main__":

@@ -55,9 +55,21 @@ function partRow(label, m){
 }
 const head = `<tr><th></th><th>صفقات</th><th>نجاح</th><th>ربح 1x</th><th>ربح برافعة</th><th>أقصى تراجع</th><th>اشترِ واحتفظ</th></tr>`;
 
+function seedBlock(e){
+  if(!e.seeds) return "";
+  const icon = {good:"✅", ok:"🟡", bad:"❌", wait:"⏳"}[e.agreement.level];
+  const rows = e.seeds.map(x => `<tr><td>بحث ${x.seed}${x.seed===e.best_seed?" ⭐":""}</td>
+    <td class="num">${x.robust===undefined?"—":x.robust.toFixed(3)}</td>
+    <td class="num">${x.test_avg===undefined?"—":pct(x.test_avg)}</td>
+    <td>${x.done?"🏁 خلص":`🔄 ${x.runs_without_improve}/${e.stop_after}`}</td></tr>`).join("");
+  return `<details><summary>🎲 3 بحوث مستقلة: ${icon} ${esc(e.agreement.text)}</summary><div class="scroll"><table>
+    <tr><th></th><th>التقييم</th><th>متوسط المخفي</th><th>الحالة</th></tr>${rows}</table></div>
+    <div class="muted">"التقييم" هو الأضعف بين التدريب والتحقق. ⭐ = البحث اللي معروض فوق. البحث بيوقف بعد ${e.stop_after} تشغيلات (يومين) بدون تحسّن.</div></details>`;
+}
+
 function card(e){
   const title = names[e.scope] || e.scope;
-  if(!e.coins) return `<div class="card"><h2>${title}</h2><div class="muted">الجيل ${e.generation} · لسا ما لقى استراتيجية ربحت في التدريب والتحقق</div></div>`;
+  if(!e.coins) return `<div class="card"><h2>${title}</h2><div class="muted">الجيل ${e.generation} · لسا ما لقى استراتيجية</div>${seedBlock(e)}</div>`;
   const rows = e.coins.map(c => {
     const t = c.test;
     return `<tr><td>${c.symbol.replace("USDT","")}</td><td class="num">${t.trades}</td><td class="num">${t.trades_per_year}</td><td class="num">${(t.win_rate*100).toFixed(0)}%</td>
@@ -73,7 +85,8 @@ function card(e){
   return `<div class="card">
     <h2>${title}</h2>
     ${e.weak ? `<div class="pill bad" style="margin:4px 0">⚠️ أفضل الموجود لهلأ — لسا مش رابحة بالتدريب والتحقق</div>` : ""}
-    <div class="muted">الجيل ${e.generation} · لقاها في الجيل ${e.found_generation} · ${e.converged ? "✅ استقرّ (ما تحسّن من فترة طويلة)" : "🔄 لسا يتحسّن"}</div>
+    <div class="muted">الجيل ${e.generation} · لقاها في الجيل ${e.found_generation} · ${e.converged ? "🏁 خلص البحث: هاي أحسن شي لقاه" : "🔄 لسا عم يدوّر"}</div>
+    ${seedBlock(e)}
     <div class="scroll"><table>
       <tr><th>العملة</th><th>صفقات</th><th>بالسنة</th><th>نجاح</th><th>ربح برافعة</th><th>أقصى تراجع</th><th>اشترِ واحتفظ</th><th>الحكم</th></tr>${rows}
     </table></div>

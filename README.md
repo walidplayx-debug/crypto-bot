@@ -39,6 +39,11 @@ The bot was also run on a completely random price series and found no consistent
 - At most 2 conditions per direction, with a penalty per condition.
 - A new champion must be better on **both** training and validation, by a clear margin.
 
+## When does it stop?
+
+- Every strategy is searched **3 times independently**, from different random starts. If all three find similar, profitable strategies, the pattern is probably real; if each finds something different, it was luck.
+- A search stops after **8 runs (2 days)** without a better champion. When every search has stopped, the page shows 🏁.
+
 ## Suggested leverage
 
 Leverage is sized so that hitting the stop loses **only 2%** of the account:
