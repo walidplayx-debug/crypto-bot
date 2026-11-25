@@ -1,0 +1,2996 @@
+{
+ "updated": "2026-11-25 09:14 UTC",
+ "split": {
+  "train_end": "2023-01-01",
+  "valid_end": "2024-07-01"
+ },
+ "variants": [
+  {
+   "variant": "1h",
+   "progress": "img/progress_1h.png",
+   "scopes": [
+    {
+     "scope": "ALL",
+     "generation": 2340,
+     "since_improve": 2328,
+     "converged": true,
+     "genome": {
+      "long": [
+       [
+        "adx",
+        ">",
+        3
+       ],
+       [
+        "adx",
+        ">",
+        78
+       ],
+       [
+        "ema20_50",
+        ">",
+        69
+       ]
+      ],
+      "short": [],
+      "sl": 4.3,
+      "tp": 11.09,
+      "hold": 79
+     },
+     "rules": {
+      "long": [
+       "قوة الترند ADX أعلى من 11.57 (مستوى 3% تاريخياً)",
+       "قوة الترند ADX أعلى من 36.24 (مستوى 78% تاريخياً)",
+       "EMA 20 مقابل EMA 50 أعلى من 0.00566 (مستوى 69% تاريخياً)"
+      ],
+      "short": [],
+      "sl": "وقف الخسارة = 4.3 × ATR",
+      "tp": "الهدف = 11.09 × ATR (العائد/المخاطرة ≈ 2.6)",
+      "hold": "أقصى مدة للصفقة = 79 شمعة (79 ساعة)"
+     },
+     "train_fitness": 0.2277,
+     "valid_fitness": 0.019,
+     "found_generation": 11,
+     "coins": [
+      {
+       "train": {
+        "trades": 206,
+        "years": 5.34,
+        "trades_per_year": 38.6,
+        "x1": {
+         "total": 4.474,
+         "cagr": 0.3751,
+         "max_dd": 0.3416
+        },
+        "lev": {
+         "total": 4.473,
+         "cagr": 0.375,
+         "max_dd": 0.3439
+        },
+        "win_rate": 0.515,
+        "profit_factor": 1.53,
+        "avg_trade": 0.0099,
+        "buy_hold": {
+         "total": 2.8404,
+         "cagr": 0.2867
+        }
+       },
+       "valid": {
+        "trades": 64,
+        "years": 1.5,
+        "trades_per_year": 42.7,
+        "x1": {
+         "total": 1.0302,
+         "cagr": 0.6041,
+         "max_dd": 0.1525
+        },
+        "lev": {
+         "total": 1.0848,
+         "cagr": 0.6327,
+         "max_dd": 0.1456
+        },
+        "win_rate": 0.516,
+        "profit_factor": 1.87,
+        "avg_trade": 0.0123,
+        "buy_hold": {
+         "total": 2.7948,
+         "cagr": 1.435
+        }
+       },
+       "test": {
+        "trades": 79,
+        "years": 2.4,
+        "trades_per_year": 32.9,
+        "x1": {
+         "total": -0.1269,
+         "cagr": -0.0549,
+         "max_dd": 0.2719
+        },
+        "lev": {
+         "total": -0.105,
+         "cagr": -0.0451,
+         "max_dd": 0.2663
+        },
+        "win_rate": 0.43,
+        "profit_factor": 0.93,
+        "avg_trade": -0.0011,
+        "buy_hold": {
+         "total": -0.0643,
+         "cagr": -0.0273
+        }
+       },
+       "verdict": {
+        "level": "bad",
+        "text": "خسارة"
+       },
+       "symbol": "BTCUSDT",
+       "signal_now": null
+      },
+      {
+       "train": {
+        "trades": 206,
+        "years": 5.34,
+        "trades_per_year": 38.6,
+        "x1": {
+         "total": 31.792,
+         "cagr": 0.923,
+         "max_dd": 0.3767
+        },
+        "lev": {
+         "total": 31.792,
+         "cagr": 0.923,
+         "max_dd": 0.3767
+        },
+        "win_rate": 0.544,
+        "profit_factor": 1.94,
+        "avg_trade": 0.0199,
+        "buy_hold": {
+         "total": 2.6151,
+         "cagr": 0.2722
+        }
+       },
+       "valid": {
+        "trades": 59,
+        "years": 1.5,
+        "trades_per_year": 39.4,
+        "x1": {
+         "total": 0.0905,
+         "cagr": 0.0595,
+         "max_dd": 0.216
+        },
+        "lev": {
+         "total": 0.0905,
+         "cagr": 0.0595,
+         "max_dd": 0.216
+        },
+        "win_rate": 0.441,
+        "profit_factor": 1.14,
+        "avg_trade": 0.0024,
+        "buy_hold": {
+         "total": 1.8744,
+         "cagr": 1.023
+        }
+       },
+       "test": {
+        "trades": 81,
+        "years": 2.4,
+        "trades_per_year": 33.7,
+        "x1": {
+         "total": -0.1074,
+         "cagr": -0.0462,
+         "max_dd": 0.3249
+        },
+        "lev": {
+         "total": -0.1074,
+         "cagr": -0.0462,
+         "max_dd": 0.3249
+        },
+        "win_rate": 0.346,
+        "profit_factor": 1.0,
+        "avg_trade": 0.0,
+        "buy_hold": {
+         "total": -0.5227,
+         "cagr": -0.2649
+        }
+       },
+       "verdict": {
+        "level": "bad",
+        "text": "خسارة"
+       },
+       "symbol": "ETHUSDT",
+       "signal_now": null
+      },
+      {
+       "train": {
+        "trades": 96,
+        "years": 2.36,
+        "trades_per_year": 40.6,
+        "x1": {
+         "total": 6.611,
+         "cagr": 1.3602,
+         "max_dd": 0.6004
+        },
+        "lev": {
+         "total": 6.611,
+         "cagr": 1.3602,
+         "max_dd": 0.6004
+        },
+        "win_rate": 0.51,
+        "profit_factor": 1.75,
+        "avg_trade": 0.0298,
+        "buy_hold": {
+         "total": 2.1853,
+         "cagr": 0.6326
+        }
+       },
+       "valid": {
+        "trades": 66,
+        "years": 1.5,
+        "trades_per_year": 44.0,
+        "x1": {
+         "total": 5.1678,
+         "cagr": 2.3673,
+         "max_dd": 0.2205
+        },
+        "lev": {
+         "total": 5.1678,
+         "cagr": 2.3673,
+         "max_dd": 0.2205
+        },
+        "win_rate": 0.561,
+        "profit_factor": 2.81,
+        "avg_trade": 0.0312,
+        "buy_hold": {
+         "total": 13.7051,
+         "cagr": 5.0129
+        }
+       },
+       "test": {
+        "trades": 83,
+        "years": 2.4,
+        "trades_per_year": 34.5,
+        "x1": {
+         "total": -0.3037,
+         "cagr": -0.1398,
+         "max_dd": 0.5443
+        },
+        "lev": {
+         "total": -0.3037,
+         "cagr": -0.1398,
+         "max_dd": 0.5443
+        },
+        "win_rate": 0.422,
+        "profit_factor": 0.89,
+        "avg_trade": -0.0027,
+        "buy_hold": {
+         "total": -0.5375,
+         "cagr": -0.2744
+        }
+       },
+       "verdict": {
+        "level": "bad",
+        "text": "خسارة"
+       },
+       "symbol": "SOLUSDT",
+       "signal_now": null
+      },
+      {
+       "train": {
+        "trades": 206,
+        "years": 5.12,
+        "trades_per_year": 40.3,
+        "x1": {
+         "total": 148.3124,
+         "cagr": 1.6602,
+         "max_dd": 0.332
+        },
+        "lev": {
+         "total": 148.3124,
+         "cagr": 1.6602,
+         "max_dd": 0.332
+        },
+        "win_rate": 0.524,
+        "profit_factor": 2.24,
+        "avg_trade": 0.0305,
+        "buy_hold": {
+         "total": 153.5072,
+         "cagr": 1.678
+        }
+       },
+       "valid": {
+        "trades": 52,
+        "years": 1.5,
+        "trades_per_year": 34.7,
+        "x1": {
+         "total": 0.1349,
+         "cagr": 0.0881,
+         "max_dd": 0.3783
+        },
+        "lev": {
+         "total": 0.1293,
+         "cagr": 0.0846,
+         "max_dd": 0.3814
+        },
+        "win_rate": 0.404,
+        "profit_factor": 1.2,
+        "avg_trade": 0.0039,
+        "buy_hold": {
+         "total": 1.3638,
+         "cagr": 0.7755
+        }
+       },
+       "test": {
+        "trades": 72,
+        "years": 2.4,
+        "trades_per_year": 30.0,
+        "x1": {
+         "total": -0.1934,
+         "cagr": -0.0856,
+         "max_dd": 0.3151
+        },
+        "lev": {
+         "total": -0.1934,
+         "cagr": -0.0855,
+         "max_dd": 0.3112
+        },
+        "win_rate": 0.458,
+        "profit_factor": 0.88,
+        "avg_trade": -0.0022,
+        "buy_hold": {
+         "total": -0.074,
+         "cagr": -0.0315
+        }
+       },
+       "verdict": {
+        "level": "bad",
+        "text": "خسارة"
+       },
+       "symbol": "BNBUSDT",
+       "signal_now": null
+      },
+      {
+       "train": {
+        "trades": 158,
+        "years": 3.46,
+        "trades_per_year": 45.6,
+        "x1": {
+         "total": 27.1697,
+         "cagr": 1.6213,
+         "max_dd": 0.8214
+        },
+        "lev": {
+         "total": 27.1697,
+         "cagr": 1.6213,
+         "max_dd": 0.8214
+        },
+        "win_rate": 0.456,
+        "profit_factor": 1.92,
+        "avg_trade": 0.034,
+        "buy_hold": {
+         "total": 22.4581,
+         "cagr": 1.4864
+        }
+       },
+       "valid": {
+        "trades": 66,
+        "years": 1.5,
+        "trades_per_year": 44.0,
+        "x1": {
+         "total": 0.2757,
+         "cagr": 0.1764,
+         "max_dd": 0.2596
+        },
+        "lev": {
+         "total": 0.2704,
+         "cagr": 0.1732,
+         "max_dd": 0.2596
+        },
+        "win_rate": 0.439,
+        "profit_factor": 1.26,
+        "avg_trade": 0.0072,
+        "buy_hold": {
+         "total": 0.7722,
+         "cagr": 0.465
+        }
+       },
+       "test": {
+        "trades": 96,
+        "years": 2.4,
+        "trades_per_year": 39.9,
+        "x1": {
+         "total": 1.9042,
+         "cagr": 0.5582,
+         "max_dd": 0.3491
+        },
+        "lev": {
+         "total": 1.903,
+         "cagr": 0.558,
+         "max_dd": 0.3491
+        },
+        "win_rate": 0.448,
+        "profit_factor": 1.54,
+        "avg_trade": 0.0147,
+        "buy_hold": {
+         "total": -0.5639,
+         "cagr": -0.292
+        }
+       },
+       "verdict": {
+        "level": "good",
+        "text": "ربح وتغلّب على اشترِ واحتفظ"
+       },
+       "symbol": "DOGEUSDT",
+       "signal_now": null
+      }
+     ],
+     "chart": "img/eq_1h_ALL.png"
+    },
+    {
+     "scope": "BNBUSDT",
+     "generation": 1266,
+     "since_improve": 1252,
+     "converged": true,
+     "genome": {
+      "long": [
+       [
+        "macd_hist",
+        ">",
+        76
+       ],
+       [
+        "stoch_k",
+        "<",
+        86
+       ],
+       [
+        "donch55",
+        ">",
+        78
+       ]
+      ],
+      "short": [],
+      "sl": 6.0,
+      "tp": 7.92,
+      "hold": 161
+     },
+     "rules": {
+      "long": [
+       "هيستوغرام MACD أعلى من 0.178 (مستوى 76% تاريخياً)",
+       "ستوكاستك K أقل من 85.39 (مستوى 86% تاريخياً)",
+       "موقع السعر في قناة 55 أعلى من 0.797 (مستوى 78% تاريخياً)"
+      ],
+      "short": [],
+      "sl": "وقف الخسارة = 6.0 × ATR",
+      "tp": "الهدف = 7.92 × ATR (العائد/المخاطرة ≈ 1.3)",
+      "hold": "أقصى مدة للصفقة = 161 شمعة (161 ساعة)"
+     },
+     "train_fitness": 0.6896,
+     "valid_fitness": 0.6463,
+     "found_generation": 13,
+     "coins": [
+      {
+       "train": {
+        "trades": 273,
+        "years": 5.12,
+        "trades_per_year": 53.4,
+        "x1": {
+         "total": 302.7305,
+         "cagr": 2.0562,
+         "max_dd": 0.5671
+        },
+        "lev": {
+         "total": 302.7305,
+         "cagr": 2.0562,
+         "max_dd": 0.5671
+        },
+        "win_rate": 0.579,
+        "profit_factor": 1.82,
+        "avg_trade": 0.0273,
+        "buy_hold": {
+         "total": 153.5072,
+         "cagr": 1.678
+        }
+       },
+       "valid": {
+        "trades": 57,
+        "years": 1.5,
+        "trades_per_year": 38.0,
+        "x1": {
+         "total": 2.0356,
+         "cagr": 1.0981,
+         "max_dd": 0.1576
+        },
+        "lev": {
+         "total": 2.0356,
+         "cagr": 1.0981,
+         "max_dd": 0.1576
+        },
+        "win_rate": 0.632,
+        "profit_factor": 2.47,
+        "avg_trade": 0.0211,
+        "buy_hold": {
+         "total": 1.3638,
+         "cagr": 0.7755
+        }
+       },
+       "test": {
+        "trades": 91,
+        "years": 2.4,
+        "trades_per_year": 37.9,
+        "x1": {
+         "total": -0.4533,
+         "cagr": -0.2221,
+         "max_dd": 0.5943
+        },
+        "lev": {
+         "total": -0.4532,
+         "cagr": -0.2221,
+         "max_dd": 0.5942
+        },
+        "win_rate": 0.462,
+        "profit_factor": 0.8,
+        "avg_trade": -0.0052,
+        "buy_hold": {
+         "total": -0.074,
+         "cagr": -0.0315
+        }
+       },
+       "verdict": {
+        "level": "bad",
+        "text": "خسارة"
+       },
+       "symbol": "BNBUSDT",
+       "signal_now": null
+      }
+     ],
+     "chart": "img/eq_1h_BNBUSDT.png"
+    },
+    {
+     "scope": "BTCUSDT",
+     "generation": 955,
+     "since_improve": 941,
+     "converged": true,
+     "genome": {
+      "long": [
+       [
+        "rsi7",
+        ">",
+        95
+       ],
+       [
+        "ema50_200",
+        ">",
+        30
+       ],
+       [
+        "dist_ema200",
+        ">",
+        71
+       ]
+      ],
+      "short": [
+       [
+        "atr_pct",
+        "<",
+        52
+       ],
+       [
+        "dist_ema50",
+        "<",
+        13
+       ],
+       [
+        "atr_pct",
+        "<",
+        86
+       ]
+      ],
+      "sl": 2.4,
+      "tp": 8.87,
+      "hold": 156
+     },
+     "rules": {
+      "long": [
+       "RSI 7 أعلى من 78.26 (مستوى 95% تاريخياً)",
+       "EMA 50 مقابل EMA 200 أعلى من -0.014 (مستوى 30% تاريخياً)",
+       "بُعد السعر عن EMA 200 أعلى من 0.0269 (مستوى 71% تاريخياً)"
+      ],
+      "short": [
+       "التذبذب ATR% أقل من 0.00984 (مستوى 52% تاريخياً)",
+       "بُعد السعر عن EMA 50 أقل من -0.0245 (مستوى 13% تاريخياً)",
+       "التذبذب ATR% أقل من 0.0176 (مستوى 86% تاريخياً)"
+      ],
+      "sl": "وقف الخسارة = 2.4 × ATR",
+      "tp": "الهدف = 8.87 × ATR (العائد/المخاطرة ≈ 3.7)",
+      "hold": "أقصى مدة للصفقة = 156 شمعة (156 ساعة)"
+     },
+     "train_fitness": 0.377,
+     "valid_fitness": 0.3249,
+     "found_generation": 13,
+     "coins": [
+      {
+       "train": {
+        "trades": 352,
+        "years": 5.34,
+        "trades_per_year": 65.9,
+        "x1": {
+         "total": 16.1913,
+         "cagr": 0.7039,
+         "max_dd": 0.2869
+        },
+        "lev": {
+         "total": 19.663,
+         "cagr": 0.7636,
+         "max_dd": 0.2915
+        },
+        "win_rate": 0.355,
+        "profit_factor": 1.54,
+        "avg_trade": 0.0096,
+        "buy_hold": {
+         "total": 2.8404,
+         "cagr": 0.2867
+        }
+       },
+       "valid": {
+        "trades": 114,
+        "years": 1.5,
+        "trades_per_year": 76.1,
+        "x1": {
+         "total": 0.7085,
+         "cagr": 0.4296,
+         "max_dd": 0.1569
+        },
+        "lev": {
+         "total": 1.0046,
+         "cagr": 0.5906,
+         "max_dd": 0.2153
+        },
+        "win_rate": 0.368,
+        "profit_factor": 1.42,
+        "avg_trade": 0.0054,
+        "buy_hold": {
+         "total": 2.7948,
+         "cagr": 1.435
+        }
+       },
+       "test": {
+        "trades": 170,
+        "years": 2.4,
+        "trades_per_year": 70.7,
+        "x1": {
+         "total": -0.0932,
+         "cagr": -0.0399,
+         "max_dd": 0.4234
+        },
+        "lev": {
+         "total": -0.0673,
+         "cagr": -0.0286,
+         "max_dd": 0.4711
+        },
+        "win_rate": 0.271,
+        "profit_factor": 1.0,
+        "avg_trade": 0.0,
+        "buy_hold": {
+         "total": -0.0643,
+         "cagr": -0.0273
+        }
+       },
+       "verdict": {
+        "level": "bad",
+        "text": "خسارة"
+       },
+       "symbol": "BTCUSDT",
+       "signal_now": null
+      }
+     ],
+     "chart": "img/eq_1h_BTCUSDT.png"
+    },
+    {
+     "scope": "DOGEUSDT",
+     "generation": 2017,
+     "since_improve": 2017,
+     "converged": true
+    },
+    {
+     "scope": "ETHUSDT",
+     "generation": 704,
+     "since_improve": 687,
+     "converged": true,
+     "genome": {
+      "long": [
+       [
+        "macd_hist",
+        ">",
+        85
+       ],
+       [
+        "donch55",
+        ">",
+        62
+       ],
+       [
+        "ema50_200",
+        ">",
+        35
+       ]
+      ],
+      "short": [],
+      "sl": 4.06,
+      "tp": 9.5,
+      "hold": 70
+     },
+     "rules": {
+      "long": [
+       "هيستوغرام MACD أعلى من 0.286 (مستوى 85% تاريخياً)",
+       "موقع السعر في قناة 55 أعلى من 0.663 (مستوى 62% تاريخياً)",
+       "EMA 50 مقابل EMA 200 أعلى من -0.0124 (مستوى 35% تاريخياً)"
+      ],
+      "short": [],
+      "sl": "وقف الخسارة = 4.06 × ATR",
+      "tp": "الهدف = 9.5 × ATR (العائد/المخاطرة ≈ 2.3)",
+      "hold": "أقصى مدة للصفقة = 70 شمعة (70 ساعة)"
+     },
+     "train_fitness": 0.4937,
+     "valid_fitness": 0.2137,
+     "found_generation": 16,
+     "coins": [
+      {
+       "train": {
+        "trades": 276,
+        "years": 5.34,
+        "trades_per_year": 51.7,
+        "x1": {
+         "total": 72.2989,
+         "cagr": 1.2357,
+         "max_dd": 0.4532
+        },
+        "lev": {
+         "total": 72.2989,
+         "cagr": 1.2357,
+         "max_dd": 0.4532
+        },
+        "win_rate": 0.547,
+        "profit_factor": 1.81,
+        "avg_trade": 0.0185,
+        "buy_hold": {
+         "total": 2.6151,
+         "cagr": 0.2722
+        }
+       },
+       "valid": {
+        "trades": 48,
+        "years": 1.5,
+        "trades_per_year": 32.0,
+        "x1": {
+         "total": 0.524,
+         "cagr": 0.3247,
+         "max_dd": 0.1103
+        },
+        "lev": {
+         "total": 0.524,
+         "cagr": 0.3247,
+         "max_dd": 0.1103
+        },
+        "win_rate": 0.562,
+        "profit_factor": 1.82,
+        "avg_trade": 0.0096,
+        "buy_hold": {
+         "total": 1.8744,
+         "cagr": 1.023
+        }
+       },
+       "test": {
+        "trades": 94,
+        "years": 2.4,
+        "trades_per_year": 39.1,
+        "x1": {
+         "total": 0.0947,
+         "cagr": 0.0384,
+         "max_dd": 0.4145
+        },
+        "lev": {
+         "total": 0.0947,
+         "cagr": 0.0384,
+         "max_dd": 0.4145
+        },
+        "win_rate": 0.426,
+        "profit_factor": 1.11,
+        "avg_trade": 0.0023,
+        "buy_hold": {
+         "total": -0.5227,
+         "cagr": -0.2649
+        }
+       },
+       "verdict": {
+        "level": "good",
+        "text": "ربح وتغلّب على اشترِ واحتفظ"
+       },
+       "symbol": "ETHUSDT",
+       "signal_now": null
+      }
+     ],
+     "chart": "img/eq_1h_ETHUSDT.png"
+    },
+    {
+     "scope": "SOLUSDT",
+     "generation": 1946,
+     "since_improve": 1902,
+     "converged": true,
+     "genome": {
+      "long": [
+       [
+        "bb_width",
+        ">",
+        61
+       ],
+       [
+        "macd",
+        ">",
+        71
+       ]
+      ],
+      "short": [
+       [
+        "dist_ema200",
+        "<",
+        38
+       ],
+       [
+        "dist_ema200",
+        "<",
+        72
+       ],
+       [
+        "bb_width",
+        "<",
+        37
+       ]
+      ],
+      "sl": 4.91,
+      "tp": 6.22,
+      "hold": 100
+     },
+     "rules": {
+      "long": [
+       "عرض بولينجر أعلى من 0.0938 (مستوى 61% تاريخياً)",
+       "MACD أعلى من 0.699 (مستوى 71% تاريخياً)"
+      ],
+      "short": [
+       "بُعد السعر عن EMA 200 أقل من -0.0302 (مستوى 38% تاريخياً)",
+       "بُعد السعر عن EMA 200 أقل من 0.0508 (مستوى 72% تاريخياً)",
+       "عرض بولينجر أقل من 0.0629 (مستوى 37% تاريخياً)"
+      ],
+      "sl": "وقف الخسارة = 4.91 × ATR",
+      "tp": "الهدف = 6.22 × ATR (العائد/المخاطرة ≈ 1.3)",
+      "hold": "أقصى مدة للصفقة = 100 شمعة (100 ساعة)"
+     },
+     "train_fitness": 2.3226,
+     "valid_fitness": 1.09,
+     "found_generation": 43,
+     "coins": [
+      {
+       "train": {
+        "trades": 254,
+        "years": 2.36,
+        "trades_per_year": 107.5,
+        "x1": {
+         "total": 564.7984,
+         "cagr": 13.6106,
+         "max_dd": 0.4975
+        },
+        "lev": {
+         "total": 564.7984,
+         "cagr": 13.6106,
+         "max_dd": 0.4975
+        },
+        "win_rate": 0.626,
+        "profit_factor": 1.95,
+        "avg_trade": 0.0313,
+        "buy_hold": {
+         "total": 2.1853,
+         "cagr": 0.6326
+        }
+       },
+       "valid": {
+        "trades": 145,
+        "years": 1.5,
+        "trades_per_year": 96.8,
+        "x1": {
+         "total": 6.1163,
+         "cagr": 2.7045,
+         "max_dd": 0.3358
+        },
+        "lev": {
+         "total": 6.1163,
+         "cagr": 2.7045,
+         "max_dd": 0.3358
+        },
+        "win_rate": 0.572,
+        "profit_factor": 1.61,
+        "avg_trade": 0.0168,
+        "buy_hold": {
+         "total": 13.7051,
+         "cagr": 5.0129
+        }
+       },
+       "test": {
+        "trades": 202,
+        "years": 2.4,
+        "trades_per_year": 84.0,
+        "x1": {
+         "total": 1.5945,
+         "cagr": 0.4868,
+         "max_dd": 0.4129
+        },
+        "lev": {
+         "total": 1.5945,
+         "cagr": 0.4868,
+         "max_dd": 0.4129
+        },
+        "win_rate": 0.525,
+        "profit_factor": 1.27,
+        "avg_trade": 0.0069,
+        "buy_hold": {
+         "total": -0.5375,
+         "cagr": -0.2744
+        }
+       },
+       "verdict": {
+        "level": "good",
+        "text": "ربح وتغلّب على اشترِ واحتفظ"
+       },
+       "symbol": "SOLUSDT",
+       "signal_now": {
+        "time": "2026-11-25T07:00:00+00:00",
+        "side": "بيع (Short)",
+        "entry": 67.81,
+        "sl": 71.77043512022969,
+        "tp": 62.79291111042186,
+        "leverage": 1.0
+       }
+      }
+     ],
+     "chart": "img/eq_1h_SOLUSDT.png"
+    }
+   ]
+  },
+  {
+   "variant": "4h",
+   "progress": "img/progress_4h.png",
+   "scopes": [
+    {
+     "scope": "ALL",
+     "generation": 4486,
+     "since_improve": 4441,
+     "converged": true,
+     "genome": {
+      "long": [
+       [
+        "di_diff",
+        ">",
+        79
+       ],
+       [
+        "vol_z",
+        ">",
+        83
+       ],
+       [
+        "di_diff",
+        ">",
+        79
+       ]
+      ],
+      "short": [],
+      "sl": 6.0,
+      "tp": 7.18,
+      "hold": 20
+     },
+     "rules": {
+      "long": [
+       "اتجاه DI+ ناقص DI− أعلى من 11.11 (مستوى 79% تاريخياً)",
+       "حجم التداول مقارنة بالمعتاد أعلى من 0.781 (مستوى 83% تاريخياً)",
+       "اتجاه DI+ ناقص DI− أعلى من 11.11 (مستوى 79% تاريخياً)"
+      ],
+      "short": [],
+      "sl": "وقف الخسارة = 6.0 × ATR",
+      "tp": "الهدف = 7.18 × ATR (العائد/المخاطرة ≈ 1.2)",
+      "hold": "أقصى مدة للصفقة = 20 شمعة (80 ساعات)"
+     },
+     "train_fitness": 0.5151,
+     "valid_fitness": 0.1672,
+     "found_generation": 44,
+     "coins": [
+      {
+       "train": {
+        "trades": 187,
+        "years": 5.25,
+        "trades_per_year": 35.6,
+        "x1": {
+         "total": 8.575,
+         "cagr": 0.5375,
+         "max_dd": 0.2559
+        },
+        "lev": {
+         "total": 8.575,
+         "cagr": 0.5375,
+         "max_dd": 0.2559
+        },
+        "win_rate": 0.572,
+        "profit_factor": 1.76,
+        "avg_trade": 0.0143,
+        "buy_hold": {
+         "total": 3.4156,
+         "cagr": 0.3268
+        }
+       },
+       "valid": {
+        "trades": 69,
+        "years": 1.5,
+        "trades_per_year": 46.1,
+        "x1": {
+         "total": 1.5674,
+         "cagr": 0.8764,
+         "max_dd": 0.2126
+        },
+        "lev": {
+         "total": 1.5674,
+         "cagr": 0.8764,
+         "max_dd": 0.2126
+        },
+        "win_rate": 0.623,
+        "profit_factor": 2.35,
+        "avg_trade": 0.0147,
+        "buy_hold": {
+         "total": 2.7948,
+         "cagr": 1.4355
+        }
+       },
+       "test": {
+        "trades": 81,
+        "years": 2.4,
+        "trades_per_year": 33.7,
+        "x1": {
+         "total": -0.002,
+         "cagr": -0.0008,
+         "max_dd": 0.3072
+        },
+        "lev": {
+         "total": -0.002,
+         "cagr": -0.0008,
+         "max_dd": 0.3072
+        },
+        "win_rate": 0.469,
+        "profit_factor": 1.05,
+        "avg_trade": 0.0007,
+        "buy_hold": {
+         "total": -0.0643,
+         "cagr": -0.0273
+        }
+       },
+       "verdict": {
+        "level": "bad",
+        "text": "خسارة"
+       },
+       "symbol": "BTCUSDT",
+       "signal_now": null
+      },
+      {
+       "train": {
+        "trades": 177,
+        "years": 5.25,
+        "trades_per_year": 33.7,
+        "x1": {
+         "total": 43.4282,
+         "cagr": 1.0594,
+         "max_dd": 0.3411
+        },
+        "lev": {
+         "total": 43.4282,
+         "cagr": 1.0594,
+         "max_dd": 0.3411
+        },
+        "win_rate": 0.588,
+        "profit_factor": 2.07,
+        "avg_trade": 0.0257,
+        "buy_hold": {
+         "total": 3.2994,
+         "cagr": 0.3201
+        }
+       },
+       "valid": {
+        "trades": 62,
+        "years": 1.5,
+        "trades_per_year": 41.4,
+        "x1": {
+         "total": 1.0286,
+         "cagr": 0.6034,
+         "max_dd": 0.2506
+        },
+        "lev": {
+         "total": 1.0286,
+         "cagr": 0.6034,
+         "max_dd": 0.2506
+        },
+        "win_rate": 0.532,
+        "profit_factor": 1.83,
+        "avg_trade": 0.0129,
+        "buy_hold": {
+         "total": 1.8744,
+         "cagr": 1.0234
+        }
+       },
+       "test": {
+        "trades": 81,
+        "years": 2.4,
+        "trades_per_year": 33.7,
+        "x1": {
+         "total": -0.0389,
+         "cagr": -0.0164,
+         "max_dd": 0.3573
+        },
+        "lev": {
+         "total": -0.0389,
+         "cagr": -0.0164,
+         "max_dd": 0.3573
+        },
+        "win_rate": 0.494,
+        "profit_factor": 1.06,
+        "avg_trade": 0.0015,
+        "buy_hold": {
+         "total": -0.5227,
+         "cagr": -0.2649
+        }
+       },
+       "verdict": {
+        "level": "bad",
+        "text": "خسارة"
+       },
+       "symbol": "ETHUSDT",
+       "signal_now": null
+      },
+      {
+       "train": {
+        "trades": 79,
+        "years": 2.28,
+        "trades_per_year": 34.6,
+        "x1": {
+         "total": 12.9301,
+         "cagr": 2.1692,
+         "max_dd": 0.4449
+        },
+        "lev": {
+         "total": 12.9301,
+         "cagr": 2.1692,
+         "max_dd": 0.4449
+        },
+        "win_rate": 0.57,
+        "profit_factor": 2.16,
+        "avg_trade": 0.046,
+        "buy_hold": {
+         "total": 2.9298,
+         "cagr": 0.8209
+        }
+       },
+       "valid": {
+        "trades": 61,
+        "years": 1.5,
+        "trades_per_year": 40.7,
+        "x1": {
+         "total": 2.8788,
+         "cagr": 1.4714,
+         "max_dd": 0.3328
+        },
+        "lev": {
+         "total": 2.8788,
+         "cagr": 1.4714,
+         "max_dd": 0.3328
+        },
+        "win_rate": 0.508,
+        "profit_factor": 2.1,
+        "avg_trade": 0.0274,
+        "buy_hold": {
+         "total": 13.7051,
+         "cagr": 5.0154
+        }
+       },
+       "test": {
+        "trades": 81,
+        "years": 2.4,
+        "trades_per_year": 33.7,
+        "x1": {
+         "total": 0.316,
+         "cagr": 0.121,
+         "max_dd": 0.3993
+        },
+        "lev": {
+         "total": 0.316,
+         "cagr": 0.121,
+         "max_dd": 0.3993
+        },
+        "win_rate": 0.531,
+        "profit_factor": 1.24,
+        "avg_trade": 0.0051,
+        "buy_hold": {
+         "total": -0.5375,
+         "cagr": -0.2744
+        }
+       },
+       "verdict": {
+        "level": "good",
+        "text": "ربح وتغلّب على اشترِ واحتفظ"
+       },
+       "symbol": "SOLUSDT",
+       "signal_now": null
+      },
+      {
+       "train": {
+        "trades": 189,
+        "years": 5.03,
+        "trades_per_year": 37.6,
+        "x1": {
+         "total": 86.7922,
+         "cagr": 1.434,
+         "max_dd": 0.4031
+        },
+        "lev": {
+         "total": 86.7922,
+         "cagr": 1.434,
+         "max_dd": 0.4031
+        },
+        "win_rate": 0.54,
+        "profit_factor": 2.22,
+        "avg_trade": 0.0304,
+        "buy_hold": {
+         "total": 94.3542,
+         "cagr": 1.4743
+        }
+       },
+       "valid": {
+        "trades": 58,
+        "years": 1.5,
+        "trades_per_year": 38.7,
+        "x1": {
+         "total": 0.3827,
+         "cagr": 0.2415,
+         "max_dd": 0.343
+        },
+        "lev": {
+         "total": 0.3827,
+         "cagr": 0.2415,
+         "max_dd": 0.343
+        },
+        "win_rate": 0.534,
+        "profit_factor": 1.39,
+        "avg_trade": 0.0073,
+        "buy_hold": {
+         "total": 1.3638,
+         "cagr": 0.7757
+        }
+       },
+       "test": {
+        "trades": 93,
+        "years": 2.4,
+        "trades_per_year": 38.7,
+        "x1": {
+         "total": -0.3392,
+         "cagr": -0.1583,
+         "max_dd": 0.4069
+        },
+        "lev": {
+         "total": -0.3392,
+         "cagr": -0.1583,
+         "max_dd": 0.4069
+        },
+        "win_rate": 0.419,
+        "profit_factor": 0.82,
+        "avg_trade": -0.0035,
+        "buy_hold": {
+         "total": -0.074,
+         "cagr": -0.0315
+        }
+       },
+       "verdict": {
+        "level": "bad",
+        "text": "خسارة"
+       },
+       "symbol": "BNBUSDT",
+       "signal_now": null
+      },
+      {
+       "train": {
+        "trades": 135,
+        "years": 3.38,
+        "trades_per_year": 39.9,
+        "x1": {
+         "total": 146.2597,
+         "cagr": 3.3764,
+         "max_dd": 0.6796
+        },
+        "lev": {
+         "total": 146.2597,
+         "cagr": 3.3764,
+         "max_dd": 0.6796
+        },
+        "win_rate": 0.533,
+        "profit_factor": 2.43,
+        "avg_trade": 0.0525,
+        "buy_hold": {
+         "total": 23.456,
+         "cagr": 1.5737
+        }
+       },
+       "valid": {
+        "trades": 57,
+        "years": 1.5,
+        "trades_per_year": 38.0,
+        "x1": {
+         "total": 0.5335,
+         "cagr": 0.3302,
+         "max_dd": 0.4154
+        },
+        "lev": {
+         "total": 0.5335,
+         "cagr": 0.3302,
+         "max_dd": 0.4154
+        },
+        "win_rate": 0.474,
+        "profit_factor": 1.46,
+        "avg_trade": 0.0121,
+        "buy_hold": {
+         "total": 0.7722,
+         "cagr": 0.4651
+        }
+       },
+       "test": {
+        "trades": 86,
+        "years": 2.4,
+        "trades_per_year": 35.8,
+        "x1": {
+         "total": 1.749,
+         "cagr": 0.5231,
+         "max_dd": 0.5054
+        },
+        "lev": {
+         "total": 1.749,
+         "cagr": 0.5231,
+         "max_dd": 0.5054
+        },
+        "win_rate": 0.488,
+        "profit_factor": 1.53,
+        "avg_trade": 0.0167,
+        "buy_hold": {
+         "total": -0.5639,
+         "cagr": -0.292
+        }
+       },
+       "verdict": {
+        "level": "good",
+        "text": "ربح وتغلّب على اشترِ واحتفظ"
+       },
+       "symbol": "DOGEUSDT",
+       "signal_now": null
+      }
+     ],
+     "chart": "img/eq_4h_ALL.png"
+    },
+    {
+     "scope": "BNBUSDT",
+     "generation": 2129,
+     "since_improve": 2114,
+     "converged": true,
+     "genome": {
+      "long": [
+       [
+        "donch20",
+        ">",
+        73
+       ],
+       [
+        "macd_hist",
+        ">",
+        47
+       ]
+      ],
+      "short": [],
+      "sl": 3.29,
+      "tp": 7.01,
+      "hold": 24
+     },
+     "rules": {
+      "long": [
+       "موقع السعر في قناة 20 أعلى من 0.759 (مستوى 73% تاريخياً)",
+       "هيستوغرام MACD أعلى من -0.0252 (مستوى 47% تاريخياً)"
+      ],
+      "short": [],
+      "sl": "وقف الخسارة = 3.29 × ATR",
+      "tp": "الهدف = 7.01 × ATR (العائد/المخاطرة ≈ 2.1)",
+      "hold": "أقصى مدة للصفقة = 24 شمعة (96 ساعات)"
+     },
+     "train_fitness": 0.9366,
+     "valid_fitness": 0.3421,
+     "found_generation": 14,
+     "coins": [
+      {
+       "train": {
+        "trades": 295,
+        "years": 5.03,
+        "trades_per_year": 58.6,
+        "x1": {
+         "total": 390.932,
+         "cagr": 2.2771,
+         "max_dd": 0.3866
+        },
+        "lev": {
+         "total": 390.932,
+         "cagr": 2.2771,
+         "max_dd": 0.3866
+        },
+        "win_rate": 0.502,
+        "profit_factor": 1.97,
+        "avg_trade": 0.0262,
+        "buy_hold": {
+         "total": 94.3542,
+         "cagr": 1.4743
+        }
+       },
+       "valid": {
+        "trades": 93,
+        "years": 1.5,
+        "trades_per_year": 62.1,
+        "x1": {
+         "total": 1.0299,
+         "cagr": 0.6041,
+         "max_dd": 0.2192
+        },
+        "lev": {
+         "total": 1.0258,
+         "cagr": 0.6019,
+         "max_dd": 0.2183
+        },
+        "win_rate": 0.484,
+        "profit_factor": 1.58,
+        "avg_trade": 0.009,
+        "buy_hold": {
+         "total": 1.3638,
+         "cagr": 0.7757
+        }
+       },
+       "test": {
+        "trades": 145,
+        "years": 2.4,
+        "trades_per_year": 60.3,
+        "x1": {
+         "total": -0.2044,
+         "cagr": -0.0908,
+         "max_dd": 0.4208
+        },
+        "lev": {
+         "total": -0.2016,
+         "cagr": -0.0894,
+         "max_dd": 0.4208
+        },
+        "win_rate": 0.469,
+        "profit_factor": 0.96,
+        "avg_trade": -0.0006,
+        "buy_hold": {
+         "total": -0.074,
+         "cagr": -0.0315
+        }
+       },
+       "verdict": {
+        "level": "bad",
+        "text": "خسارة"
+       },
+       "symbol": "BNBUSDT",
+       "signal_now": null
+      }
+     ],
+     "chart": "img/eq_4h_BNBUSDT.png"
+    },
+    {
+     "scope": "BTCUSDT",
+     "generation": 2501,
+     "since_improve": 2488,
+     "converged": true,
+     "genome": {
+      "long": [
+       [
+        "dist_ema20",
+        ">",
+        77
+       ]
+      ],
+      "short": [],
+      "sl": 2.11,
+      "tp": 9.82,
+      "hold": 23
+     },
+     "rules": {
+      "long": [
+       "بُعد السعر عن EMA 20 أعلى من 0.0205 (مستوى 77% تاريخياً)"
+      ],
+      "short": [],
+      "sl": "وقف الخسارة = 2.11 × ATR",
+      "tp": "الهدف = 9.82 × ATR (العائد/المخاطرة ≈ 4.7)",
+      "hold": "أقصى مدة للصفقة = 23 شمعة (92 ساعات)"
+     },
+     "train_fitness": 0.3265,
+     "valid_fitness": 0.5751,
+     "found_generation": 12,
+     "coins": [
+      {
+       "train": {
+        "trades": 282,
+        "years": 5.25,
+        "trades_per_year": 53.7,
+        "x1": {
+         "total": 16.1922,
+         "cagr": 0.7188,
+         "max_dd": 0.3515
+        },
+        "lev": {
+         "total": 16.595,
+         "cagr": 0.7264,
+         "max_dd": 0.3515
+        },
+        "win_rate": 0.489,
+        "profit_factor": 1.57,
+        "avg_trade": 0.0127,
+        "buy_hold": {
+         "total": 3.4156,
+         "cagr": 0.3268
+        }
+       },
+       "valid": {
+        "trades": 65,
+        "years": 1.5,
+        "trades_per_year": 43.4,
+        "x1": {
+         "total": 1.5235,
+         "cagr": 0.8549,
+         "max_dd": 0.1019
+        },
+        "lev": {
+         "total": 1.579,
+         "cagr": 0.8821,
+         "max_dd": 0.1029
+        },
+        "win_rate": 0.554,
+        "profit_factor": 2.19,
+        "avg_trade": 0.0155,
+        "buy_hold": {
+         "total": 2.7948,
+         "cagr": 1.4355
+        }
+       },
+       "test": {
+        "trades": 98,
+        "years": 2.4,
+        "trades_per_year": 40.8,
+        "x1": {
+         "total": -0.3547,
+         "cagr": -0.1666,
+         "max_dd": 0.475
+        },
+        "lev": {
+         "total": -0.3481,
+         "cagr": -0.163,
+         "max_dd": 0.4696
+        },
+        "win_rate": 0.378,
+        "profit_factor": 0.78,
+        "avg_trade": -0.0038,
+        "buy_hold": {
+         "total": -0.0643,
+         "cagr": -0.0273
+        }
+       },
+       "verdict": {
+        "level": "bad",
+        "text": "خسارة"
+       },
+       "symbol": "BTCUSDT",
+       "signal_now": null
+      }
+     ],
+     "chart": "img/eq_4h_BTCUSDT.png"
+    },
+    {
+     "scope": "DOGEUSDT",
+     "generation": 3703,
+     "since_improve": 3696,
+     "converged": true,
+     "genome": {
+      "long": [
+       [
+        "roc6",
+        ">",
+        69
+       ],
+       [
+        "obv_z",
+        ">",
+        84
+       ],
+       [
+        "rsi14",
+        ">",
+        80
+       ]
+      ],
+      "short": [],
+      "sl": 3.6,
+      "tp": 8.0,
+      "hold": 13
+     },
+     "rules": {
+      "long": [
+       "تغيّر آخر 6 شمعات أعلى من 0.0135 (مستوى 69% تاريخياً)",
+       "OBV مقارنة بالمعتاد أعلى من 1.47 (مستوى 84% تاريخياً)",
+       "RSI 14 أعلى من 57.61 (مستوى 80% تاريخياً)"
+      ],
+      "short": [],
+      "sl": "وقف الخسارة = 3.6 × ATR",
+      "tp": "الهدف = 8.0 × ATR (العائد/المخاطرة ≈ 2.2)",
+      "hold": "أقصى مدة للصفقة = 13 شمعة (52 ساعات)"
+     },
+     "train_fitness": 0.8451,
+     "valid_fitness": 0.0272,
+     "found_generation": 6,
+     "coins": [
+      {
+       "train": {
+        "trades": 154,
+        "years": 3.38,
+        "trades_per_year": 45.5,
+        "x1": {
+         "total": 119.2648,
+         "cagr": 3.122,
+         "max_dd": 0.6752
+        },
+        "lev": {
+         "total": 119.2648,
+         "cagr": 3.122,
+         "max_dd": 0.6752
+        },
+        "win_rate": 0.487,
+        "profit_factor": 2.38,
+        "avg_trade": 0.0452,
+        "buy_hold": {
+         "total": 23.456,
+         "cagr": 1.5737
+        }
+       },
+       "valid": {
+        "trades": 62,
+        "years": 1.5,
+        "trades_per_year": 41.4,
+        "x1": {
+         "total": 0.3974,
+         "cagr": 0.2503,
+         "max_dd": 0.3123
+        },
+        "lev": {
+         "total": 0.3974,
+         "cagr": 0.2503,
+         "max_dd": 0.3123
+        },
+        "win_rate": 0.5,
+        "profit_factor": 1.34,
+        "avg_trade": 0.0084,
+        "buy_hold": {
+         "total": 0.7722,
+         "cagr": 0.4651
+        }
+       },
+       "test": {
+        "trades": 96,
+        "years": 2.4,
+        "trades_per_year": 39.9,
+        "x1": {
+         "total": 1.3847,
+         "cagr": 0.4356,
+         "max_dd": 0.504
+        },
+        "lev": {
+         "total": 1.3847,
+         "cagr": 0.4356,
+         "max_dd": 0.504
+        },
+        "win_rate": 0.427,
+        "profit_factor": 1.48,
+        "avg_trade": 0.013,
+        "buy_hold": {
+         "total": -0.5639,
+         "cagr": -0.292
+        }
+       },
+       "verdict": {
+        "level": "good",
+        "text": "ربح وتغلّب على اشترِ واحتفظ"
+       },
+       "symbol": "DOGEUSDT",
+       "signal_now": null
+      }
+     ],
+     "chart": "img/eq_4h_DOGEUSDT.png"
+    },
+    {
+     "scope": "ETHUSDT",
+     "generation": 2407,
+     "since_improve": 2405,
+     "converged": true,
+     "genome": {
+      "long": [
+       [
+        "bb_pctb",
+        ">",
+        70
+       ],
+       [
+        "bb_pctb",
+        "<",
+        94
+       ]
+      ],
+      "short": [
+       [
+        "rsi7",
+        "<",
+        55
+       ],
+       [
+        "donch55",
+        ">",
+        72
+       ]
+      ],
+      "sl": 2.45,
+      "tp": 9.56,
+      "hold": 31
+     },
+     "rules": {
+      "long": [
+       "موقع السعر داخل بولينجر أعلى من 0.723 (مستوى 70% تاريخياً)",
+       "موقع السعر داخل بولينجر أقل من 1.01 (مستوى 94% تاريخياً)"
+      ],
+      "short": [
+       "RSI 7 أقل من 53.23 (مستوى 55% تاريخياً)",
+       "موقع السعر في قناة 55 أعلى من 0.763 (مستوى 72% تاريخياً)"
+      ],
+      "sl": "وقف الخسارة = 2.45 × ATR",
+      "tp": "الهدف = 9.56 × ATR (العائد/المخاطرة ≈ 3.9)",
+      "hold": "أقصى مدة للصفقة = 31 شمعة (124 ساعات)"
+     },
+     "train_fitness": 0.2285,
+     "valid_fitness": 0.5703,
+     "found_generation": 1,
+     "coins": [
+      {
+       "train": {
+        "trades": 308,
+        "years": 5.25,
+        "trades_per_year": 58.6,
+        "x1": {
+         "total": 16.4717,
+         "cagr": 0.7241,
+         "max_dd": 0.4547
+        },
+        "lev": {
+         "total": 16.4452,
+         "cagr": 0.7236,
+         "max_dd": 0.4555
+        },
+        "win_rate": 0.468,
+        "profit_factor": 1.45,
+        "avg_trade": 0.0137,
+        "buy_hold": {
+         "total": 3.2994,
+         "cagr": 0.3201
+        }
+       },
+       "valid": {
+        "trades": 87,
+        "years": 1.5,
+        "trades_per_year": 58.1,
+        "x1": {
+         "total": 1.8527,
+         "cagr": 1.0131,
+         "max_dd": 0.1933
+        },
+        "lev": {
+         "total": 1.8432,
+         "cagr": 1.0087,
+         "max_dd": 0.2058
+        },
+        "win_rate": 0.494,
+        "profit_factor": 1.87,
+        "avg_trade": 0.0136,
+        "buy_hold": {
+         "total": 1.8744,
+         "cagr": 1.0234
+        }
+       },
+       "test": {
+        "trades": 139,
+        "years": 2.4,
+        "trades_per_year": 57.8,
+        "x1": {
+         "total": -0.5804,
+         "cagr": -0.3032,
+         "max_dd": 0.7035
+        },
+        "lev": {
+         "total": -0.5713,
+         "cagr": -0.297,
+         "max_dd": 0.697
+        },
+        "win_rate": 0.345,
+        "profit_factor": 0.82,
+        "avg_trade": -0.0047,
+        "buy_hold": {
+         "total": -0.5227,
+         "cagr": -0.2649
+        }
+       },
+       "verdict": {
+        "level": "bad",
+        "text": "خسارة"
+       },
+       "symbol": "ETHUSDT",
+       "signal_now": null
+      }
+     ],
+     "chart": "img/eq_4h_ETHUSDT.png"
+    },
+    {
+     "scope": "SOLUSDT",
+     "generation": 4135,
+     "since_improve": 4131,
+     "converged": true,
+     "genome": {
+      "long": [
+       [
+        "dist_ema50",
+        ">",
+        80
+       ]
+      ],
+      "short": [],
+      "sl": 4.3,
+      "tp": 8.28,
+      "hold": 36
+     },
+     "rules": {
+      "long": [
+       "بُعد السعر عن EMA 50 أعلى من 0.0797 (مستوى 80% تاريخياً)"
+      ],
+      "short": [],
+      "sl": "وقف الخسارة = 4.3 × ATR",
+      "tp": "الهدف = 8.28 × ATR (العائد/المخاطرة ≈ 1.9)",
+      "hold": "أقصى مدة للصفقة = 36 شمعة (144 ساعات)"
+     },
+     "train_fitness": 1.2713,
+     "valid_fitness": 1.1877,
+     "found_generation": 3,
+     "coins": [
+      {
+       "train": {
+        "trades": 62,
+        "years": 2.28,
+        "trades_per_year": 27.2,
+        "x1": {
+         "total": 31.8116,
+         "cagr": 3.612,
+         "max_dd": 0.3988
+        },
+        "lev": {
+         "total": 31.8116,
+         "cagr": 3.612,
+         "max_dd": 0.3988
+        },
+        "win_rate": 0.613,
+        "profit_factor": 2.68,
+        "avg_trade": 0.0744,
+        "buy_hold": {
+         "total": 2.9298,
+         "cagr": 0.8209
+        }
+       },
+       "valid": {
+        "trades": 37,
+        "years": 1.5,
+        "trades_per_year": 24.7,
+        "x1": {
+         "total": 6.0377,
+         "cagr": 2.6783,
+         "max_dd": 0.2003
+        },
+        "lev": {
+         "total": 6.0377,
+         "cagr": 2.6783,
+         "max_dd": 0.2003
+        },
+        "win_rate": 0.649,
+        "profit_factor": 3.38,
+        "avg_trade": 0.0627,
+        "buy_hold": {
+         "total": 13.7051,
+         "cagr": 5.0154
+        }
+       },
+       "test": {
+        "trades": 36,
+        "years": 2.4,
+        "trades_per_year": 15.0,
+        "x1": {
+         "total": -0.0986,
+         "cagr": -0.0423,
+         "max_dd": 0.4741
+        },
+        "lev": {
+         "total": -0.0986,
+         "cagr": -0.0423,
+         "max_dd": 0.4741
+        },
+        "win_rate": 0.5,
+        "profit_factor": 1.03,
+        "avg_trade": 0.0013,
+        "buy_hold": {
+         "total": -0.5375,
+         "cagr": -0.2744
+        }
+       },
+       "verdict": {
+        "level": "bad",
+        "text": "خسارة"
+       },
+       "symbol": "SOLUSDT",
+       "signal_now": null
+      }
+     ],
+     "chart": "img/eq_4h_SOLUSDT.png"
+    }
+   ]
+  },
+  {
+   "variant": "1h+4h",
+   "progress": "img/progress_1h_4h.png",
+   "scopes": [
+    {
+     "scope": "ALL",
+     "generation": 1296,
+     "since_improve": 1276,
+     "converged": true,
+     "genome": {
+      "long": [
+       [
+        "vol_regime",
+        ">",
+        41
+       ],
+       [
+        "htf_vol_z",
+        ">",
+        73
+       ],
+       [
+        "htf_dist_ema20",
+        ">",
+        78
+       ]
+      ],
+      "short": [],
+      "sl": 5.43,
+      "tp": 6.84,
+      "hold": 81
+     },
+     "rules": {
+      "long": [
+       "التذبذب مقارنة بالمعتاد أعلى من 0.828 (مستوى 41% تاريخياً)",
+       "حجم التداول مقارنة بالمعتاد (فريم 4 ساعات) أعلى من 0.321 (مستوى 73% تاريخياً)",
+       "بُعد السعر عن EMA 20 (فريم 4 ساعات) أعلى من 0.0216 (مستوى 78% تاريخياً)"
+      ],
+      "short": [],
+      "sl": "وقف الخسارة = 5.43 × ATR",
+      "tp": "الهدف = 6.84 × ATR (العائد/المخاطرة ≈ 1.3)",
+      "hold": "أقصى مدة للصفقة = 81 شمعة (81 ساعة)"
+     },
+     "train_fitness": 0.382,
+     "valid_fitness": 0.0778,
+     "found_generation": 19,
+     "coins": [
+      {
+       "train": {
+        "trades": 250,
+        "years": 5.26,
+        "trades_per_year": 47.5,
+        "x1": {
+         "total": 18.1829,
+         "cagr": 0.7533,
+         "max_dd": 0.26
+        },
+        "lev": {
+         "total": 18.1829,
+         "cagr": 0.7533,
+         "max_dd": 0.26
+        },
+        "win_rate": 0.612,
+        "profit_factor": 1.72,
+        "avg_trade": 0.0138,
+        "buy_hold": {
+         "total": 3.4295,
+         "cagr": 0.327
+        }
+       },
+       "valid": {
+        "trades": 66,
+        "years": 1.5,
+        "trades_per_year": 44.0,
+        "x1": {
+         "total": 1.0177,
+         "cagr": 0.5975,
+         "max_dd": 0.1412
+        },
+        "lev": {
+         "total": 1.0177,
+         "cagr": 0.5975,
+         "max_dd": 0.1412
+        },
+        "win_rate": 0.636,
+        "profit_factor": 2.07,
+        "avg_trade": 0.0113,
+        "buy_hold": {
+         "total": 2.7948,
+         "cagr": 1.435
+        }
+       },
+       "test": {
+        "trades": 90,
+        "years": 2.4,
+        "trades_per_year": 37.4,
+        "x1": {
+         "total": -0.1273,
+         "cagr": -0.0551,
+         "max_dd": 0.3993
+        },
+        "lev": {
+         "total": -0.1273,
+         "cagr": -0.0551,
+         "max_dd": 0.3993
+        },
+        "win_rate": 0.478,
+        "profit_factor": 0.94,
+        "avg_trade": -0.0009,
+        "buy_hold": {
+         "total": -0.0643,
+         "cagr": -0.0273
+        }
+       },
+       "verdict": {
+        "level": "bad",
+        "text": "خسارة"
+       },
+       "symbol": "BTCUSDT",
+       "signal_now": null
+      },
+      {
+       "train": {
+        "trades": 269,
+        "years": 5.26,
+        "trades_per_year": 51.1,
+        "x1": {
+         "total": 12.6551,
+         "cagr": 0.6436,
+         "max_dd": 0.384
+        },
+        "lev": {
+         "total": 12.6551,
+         "cagr": 0.6436,
+         "max_dd": 0.384
+        },
+        "win_rate": 0.55,
+        "profit_factor": 1.48,
+        "avg_trade": 0.0128,
+        "buy_hold": {
+         "total": 3.2722,
+         "cagr": 0.3179
+        }
+       },
+       "valid": {
+        "trades": 58,
+        "years": 1.5,
+        "trades_per_year": 38.7,
+        "x1": {
+         "total": 0.3648,
+         "cagr": 0.2306,
+         "max_dd": 0.1948
+        },
+        "lev": {
+         "total": 0.3648,
+         "cagr": 0.2306,
+         "max_dd": 0.1948
+        },
+        "win_rate": 0.569,
+        "profit_factor": 1.43,
+        "avg_trade": 0.0062,
+        "buy_hold": {
+         "total": 1.8744,
+         "cagr": 1.023
+        }
+       },
+       "test": {
+        "trades": 94,
+        "years": 2.4,
+        "trades_per_year": 39.1,
+        "x1": {
+         "total": -0.1128,
+         "cagr": -0.0486,
+         "max_dd": 0.4556
+        },
+        "lev": {
+         "total": -0.1128,
+         "cagr": -0.0486,
+         "max_dd": 0.4556
+        },
+        "win_rate": 0.468,
+        "profit_factor": 1.0,
+        "avg_trade": 0.0001,
+        "buy_hold": {
+         "total": -0.5227,
+         "cagr": -0.2649
+        }
+       },
+       "verdict": {
+        "level": "bad",
+        "text": "خسارة"
+       },
+       "symbol": "ETHUSDT",
+       "signal_now": null
+      },
+      {
+       "train": {
+        "trades": 121,
+        "years": 2.29,
+        "trades_per_year": 52.9,
+        "x1": {
+         "total": 7.6632,
+         "cagr": 1.5709,
+         "max_dd": 0.5801
+        },
+        "lev": {
+         "total": 7.6632,
+         "cagr": 1.5709,
+         "max_dd": 0.5801
+        },
+        "win_rate": 0.545,
+        "profit_factor": 1.61,
+        "avg_trade": 0.0267,
+        "buy_hold": {
+         "total": 2.8691,
+         "cagr": 0.8071
+        }
+       },
+       "valid": {
+        "trades": 75,
+        "years": 1.5,
+        "trades_per_year": 50.0,
+        "x1": {
+         "total": 2.1745,
+         "cagr": 1.1616,
+         "max_dd": 0.3659
+        },
+        "lev": {
+         "total": 2.1745,
+         "cagr": 1.1616,
+         "max_dd": 0.3659
+        },
+        "win_rate": 0.547,
+        "profit_factor": 1.71,
+        "avg_trade": 0.0189,
+        "buy_hold": {
+         "total": 13.7051,
+         "cagr": 5.0129
+        }
+       },
+       "test": {
+        "trades": 77,
+        "years": 2.4,
+        "trades_per_year": 32.0,
+        "x1": {
+         "total": 0.0748,
+         "cagr": 0.0305,
+         "max_dd": 0.5869
+        },
+        "lev": {
+         "total": 0.0748,
+         "cagr": 0.0305,
+         "max_dd": 0.5869
+        },
+        "win_rate": 0.506,
+        "profit_factor": 1.11,
+        "avg_trade": 0.0029,
+        "buy_hold": {
+         "total": -0.5375,
+         "cagr": -0.2744
+        }
+       },
+       "verdict": {
+        "level": "good",
+        "text": "ربح وتغلّب على اشترِ واحتفظ"
+       },
+       "symbol": "SOLUSDT",
+       "signal_now": null
+      },
+      {
+       "train": {
+        "trades": 253,
+        "years": 5.04,
+        "trades_per_year": 50.2,
+        "x1": {
+         "total": 223.727,
+         "cagr": 1.9284,
+         "max_dd": 0.4929
+        },
+        "lev": {
+         "total": 223.727,
+         "cagr": 1.9284,
+         "max_dd": 0.4929
+        },
+        "win_rate": 0.577,
+        "profit_factor": 2.03,
+        "avg_trade": 0.0259,
+        "buy_hold": {
+         "total": 93.6398,
+         "cagr": 1.4666
+        }
+       },
+       "valid": {
+        "trades": 52,
+        "years": 1.5,
+        "trades_per_year": 34.7,
+        "x1": {
+         "total": 0.1911,
+         "cagr": 0.1238,
+         "max_dd": 0.3451
+        },
+        "lev": {
+         "total": 0.1911,
+         "cagr": 0.1238,
+         "max_dd": 0.3451
+        },
+        "win_rate": 0.481,
+        "profit_factor": 1.23,
+        "avg_trade": 0.0051,
+        "buy_hold": {
+         "total": 1.3638,
+         "cagr": 0.7755
+        }
+       },
+       "test": {
+        "trades": 64,
+        "years": 2.4,
+        "trades_per_year": 26.6,
+        "x1": {
+         "total": -0.007,
+         "cagr": -0.0029,
+         "max_dd": 0.3959
+        },
+        "lev": {
+         "total": -0.007,
+         "cagr": -0.0029,
+         "max_dd": 0.3959
+        },
+        "win_rate": 0.469,
+        "profit_factor": 1.04,
+        "avg_trade": 0.0007,
+        "buy_hold": {
+         "total": -0.074,
+         "cagr": -0.0315
+        }
+       },
+       "verdict": {
+        "level": "bad",
+        "text": "خسارة"
+       },
+       "symbol": "BNBUSDT",
+       "signal_now": null
+      },
+      {
+       "train": {
+        "trades": 189,
+        "years": 3.39,
+        "trades_per_year": 55.8,
+        "x1": {
+         "total": 64.9405,
+         "cagr": 2.4437,
+         "max_dd": 0.7984
+        },
+        "lev": {
+         "total": 64.9405,
+         "cagr": 2.4437,
+         "max_dd": 0.7984
+        },
+        "win_rate": 0.534,
+        "profit_factor": 1.91,
+        "avg_trade": 0.0331,
+        "buy_hold": {
+         "total": 23.3924,
+         "cagr": 1.5676
+        }
+       },
+       "valid": {
+        "trades": 82,
+        "years": 1.5,
+        "trades_per_year": 54.7,
+        "x1": {
+         "total": 0.5103,
+         "cagr": 0.3167,
+         "max_dd": 0.3323
+        },
+        "lev": {
+         "total": 0.5103,
+         "cagr": 0.3167,
+         "max_dd": 0.3323
+        },
+        "win_rate": 0.476,
+        "profit_factor": 1.29,
+        "avg_trade": 0.0084,
+        "buy_hold": {
+         "total": 0.7722,
+         "cagr": 0.465
+        }
+       },
+       "test": {
+        "trades": 141,
+        "years": 2.4,
+        "trades_per_year": 58.7,
+        "x1": {
+         "total": -0.054,
+         "cagr": -0.0228,
+         "max_dd": 0.7043
+        },
+        "lev": {
+         "total": -0.054,
+         "cagr": -0.0228,
+         "max_dd": 0.7043
+        },
+        "win_rate": 0.468,
+        "profit_factor": 1.08,
+        "avg_trade": 0.0026,
+        "buy_hold": {
+         "total": -0.5639,
+         "cagr": -0.292
+        }
+       },
+       "verdict": {
+        "level": "bad",
+        "text": "خسارة"
+       },
+       "symbol": "DOGEUSDT",
+       "signal_now": null
+      }
+     ],
+     "chart": "img/eq_1h_4h_ALL.png"
+    },
+    {
+     "scope": "BNBUSDT",
+     "generation": 739,
+     "since_improve": 728,
+     "converged": true,
+     "genome": {
+      "long": [
+       [
+        "htf_donch20",
+        ">",
+        70
+       ],
+       [
+        "htf_rsi7",
+        ">",
+        45
+       ],
+       [
+        "donch55",
+        "<",
+        86
+       ]
+      ],
+      "short": [],
+      "sl": 5.37,
+      "tp": 8.37,
+      "hold": 92
+     },
+     "rules": {
+      "long": [
+       "موقع السعر في قناة 20 (فريم 4 ساعات) أعلى من 0.737 (مستوى 70% تاريخياً)",
+       "RSI 7 (فريم 4 ساعات) أعلى من 48.90 (مستوى 45% تاريخياً)",
+       "موقع السعر في قناة 55 أقل من 0.86 (مستوى 86% تاريخياً)"
+      ],
+      "short": [],
+      "sl": "وقف الخسارة = 5.37 × ATR",
+      "tp": "الهدف = 8.37 × ATR (العائد/المخاطرة ≈ 1.6)",
+      "hold": "أقصى مدة للصفقة = 92 شمعة (92 ساعة)"
+     },
+     "train_fitness": 1.0015,
+     "valid_fitness": 0.2455,
+     "found_generation": 10,
+     "coins": [
+      {
+       "train": {
+        "trades": 357,
+        "years": 5.04,
+        "trades_per_year": 70.8,
+        "x1": {
+         "total": 637.8137,
+         "cagr": 2.6029,
+         "max_dd": 0.4188
+        },
+        "lev": {
+         "total": 637.9014,
+         "cagr": 2.603,
+         "max_dd": 0.4188
+        },
+        "win_rate": 0.538,
+        "profit_factor": 1.9,
+        "avg_trade": 0.0224,
+        "buy_hold": {
+         "total": 93.6398,
+         "cagr": 1.4666
+        }
+       },
+       "valid": {
+        "trades": 115,
+        "years": 1.5,
+        "trades_per_year": 76.7,
+        "x1": {
+         "total": 0.8442,
+         "cagr": 0.5045,
+         "max_dd": 0.2721
+        },
+        "lev": {
+         "total": 0.8569,
+         "cagr": 0.5114,
+         "max_dd": 0.2717
+        },
+        "win_rate": 0.504,
+        "profit_factor": 1.44,
+        "avg_trade": 0.0062,
+        "buy_hold": {
+         "total": 1.3638,
+         "cagr": 0.7755
+        }
+       },
+       "test": {
+        "trades": 175,
+        "years": 2.4,
+        "trades_per_year": 72.8,
+        "x1": {
+         "total": -0.3379,
+         "cagr": -0.1576,
+         "max_dd": 0.5657
+        },
+        "lev": {
+         "total": -0.3291,
+         "cagr": -0.153,
+         "max_dd": 0.5681
+        },
+        "win_rate": 0.429,
+        "profit_factor": 0.91,
+        "avg_trade": -0.0016,
+        "buy_hold": {
+         "total": -0.074,
+         "cagr": -0.0315
+        }
+       },
+       "verdict": {
+        "level": "bad",
+        "text": "خسارة"
+       },
+       "symbol": "BNBUSDT",
+       "signal_now": null
+      }
+     ],
+     "chart": "img/eq_1h_4h_BNBUSDT.png"
+    },
+    {
+     "scope": "BTCUSDT",
+     "generation": 615,
+     "since_improve": 610,
+     "converged": true,
+     "genome": {
+      "long": [
+       [
+        "htf_di_diff",
+        ">",
+        84
+       ]
+      ],
+      "short": [],
+      "sl": 1.58,
+      "tp": 5.82,
+      "hold": 186
+     },
+     "rules": {
+      "long": [
+       "اتجاه DI+ ناقص DI− (فريم 4 ساعات) أعلى من 14.05 (مستوى 84% تاريخياً)"
+      ],
+      "short": [],
+      "sl": "وقف الخسارة = 1.58 × ATR",
+      "tp": "الهدف = 5.82 × ATR (العائد/المخاطرة ≈ 3.7)",
+      "hold": "أقصى مدة للصفقة = 186 شمعة (186 ساعة)"
+     },
+     "train_fitness": 0.2772,
+     "valid_fitness": 0.6822,
+     "found_generation": 4,
+     "coins": [
+      {
+       "train": {
+        "trades": 401,
+        "years": 5.26,
+        "trades_per_year": 76.2,
+        "x1": {
+         "total": 8.1302,
+         "cagr": 0.5226,
+         "max_dd": 0.246
+        },
+        "lev": {
+         "total": 10.5903,
+         "cagr": 0.5932,
+         "max_dd": 0.3101
+        },
+        "win_rate": 0.322,
+        "profit_factor": 1.47,
+        "avg_trade": 0.0064,
+        "buy_hold": {
+         "total": 3.4295,
+         "cagr": 0.327
+        }
+       },
+       "valid": {
+        "trades": 142,
+        "years": 1.5,
+        "trades_per_year": 94.8,
+        "x1": {
+         "total": 0.9119,
+         "cagr": 0.5411,
+         "max_dd": 0.1837
+        },
+        "lev": {
+         "total": 2.3876,
+         "cagr": 1.2574,
+         "max_dd": 0.2274
+        },
+        "win_rate": 0.352,
+        "profit_factor": 1.52,
+        "avg_trade": 0.005,
+        "buy_hold": {
+         "total": 2.7948,
+         "cagr": 1.435
+        }
+       },
+       "test": {
+        "trades": 204,
+        "years": 2.4,
+        "trades_per_year": 84.9,
+        "x1": {
+         "total": -0.1923,
+         "cagr": -0.085,
+         "max_dd": 0.4197
+        },
+        "lev": {
+         "total": -0.3844,
+         "cagr": -0.1828,
+         "max_dd": 0.6305
+        },
+        "win_rate": 0.24,
+        "profit_factor": 0.92,
+        "avg_trade": -0.0008,
+        "buy_hold": {
+         "total": -0.0643,
+         "cagr": -0.0273
+        }
+       },
+       "verdict": {
+        "level": "bad",
+        "text": "خسارة"
+       },
+       "symbol": "BTCUSDT",
+       "signal_now": null
+      }
+     ],
+     "chart": "img/eq_1h_4h_BTCUSDT.png"
+    },
+    {
+     "scope": "DOGEUSDT",
+     "generation": 1010,
+     "since_improve": 980,
+     "converged": true,
+     "genome": {
+      "long": [
+       [
+        "htf_mfi",
+        ">",
+        86
+       ],
+       [
+        "htf_mfi",
+        ">",
+        22
+       ]
+      ],
+      "short": [
+       [
+        "htf_vol_regime",
+        "<",
+        55
+       ],
+       [
+        "macd",
+        "<",
+        61
+       ],
+       [
+        "htf_vol_regime",
+        "<",
+        39
+       ]
+      ],
+      "sl": 5.38,
+      "tp": 6.26,
+      "hold": 91
+     },
+     "rules": {
+      "long": [
+       "MFI (فريم 4 ساعات) أعلى من 69.95 (مستوى 86% تاريخياً)",
+       "MFI (فريم 4 ساعات) أعلى من 35.61 (مستوى 22% تاريخياً)"
+      ],
+      "short": [
+       "التذبذب مقارنة بالمعتاد (فريم 4 ساعات) أقل من 0.903 (مستوى 55% تاريخياً)",
+       "MACD أقل من 0.124 (مستوى 61% تاريخياً)",
+       "التذبذب مقارنة بالمعتاد (فريم 4 ساعات) أقل من 0.739 (مستوى 39% تاريخياً)"
+      ],
+      "sl": "وقف الخسارة = 5.38 × ATR",
+      "tp": "الهدف = 6.26 × ATR (العائد/المخاطرة ≈ 1.2)",
+      "hold": "أقصى مدة للصفقة = 91 شمعة (91 ساعة)"
+     },
+     "train_fitness": 1.8877,
+     "valid_fitness": 0.3581,
+     "found_generation": 29,
+     "coins": [
+      {
+       "train": {
+        "trades": 368,
+        "years": 3.39,
+        "trades_per_year": 108.6,
+        "x1": {
+         "total": 2892.8232,
+         "cagr": 9.5161,
+         "max_dd": 0.5936
+        },
+        "lev": {
+         "total": 2892.8232,
+         "cagr": 9.5161,
+         "max_dd": 0.5936
+        },
+        "win_rate": 0.587,
+        "profit_factor": 2.05,
+        "avg_trade": 0.0288,
+        "buy_hold": {
+         "total": 23.3924,
+         "cagr": 1.5676
+        }
+       },
+       "valid": {
+        "trades": 157,
+        "years": 1.5,
+        "trades_per_year": 104.8,
+        "x1": {
+         "total": 1.7495,
+         "cagr": 0.9639,
+         "max_dd": 0.4553
+        },
+        "lev": {
+         "total": 1.754,
+         "cagr": 0.9661,
+         "max_dd": 0.4544
+        },
+        "win_rate": 0.529,
+        "profit_factor": 1.42,
+        "avg_trade": 0.0084,
+        "buy_hold": {
+         "total": 0.7722,
+         "cagr": 0.465
+        }
+       },
+       "test": {
+        "trades": 240,
+        "years": 2.4,
+        "trades_per_year": 99.8,
+        "x1": {
+         "total": -0.4584,
+         "cagr": -0.2252,
+         "max_dd": 0.7953
+        },
+        "lev": {
+         "total": -0.4628,
+         "cagr": -0.2278,
+         "max_dd": 0.797
+        },
+        "win_rate": 0.458,
+        "profit_factor": 1.0,
+        "avg_trade": -0.0001,
+        "buy_hold": {
+         "total": -0.5639,
+         "cagr": -0.292
+        }
+       },
+       "verdict": {
+        "level": "bad",
+        "text": "خسارة"
+       },
+       "symbol": "DOGEUSDT",
+       "signal_now": null
+      }
+     ],
+     "chart": "img/eq_1h_4h_DOGEUSDT.png"
+    },
+    {
+     "scope": "ETHUSDT",
+     "generation": 1020,
+     "since_improve": 989,
+     "converged": true,
+     "genome": {
+      "long": [
+       [
+        "ema20_50",
+        ">",
+        32
+       ],
+       [
+        "htf_macd_hist",
+        ">",
+        59
+       ],
+       [
+        "htf_vol_z",
+        ">",
+        89
+       ]
+      ],
+      "short": [],
+      "sl": 5.42,
+      "tp": 10.08,
+      "hold": 138
+     },
+     "rules": {
+      "long": [
+       "EMA 20 مقابل EMA 50 أعلى من -0.00504 (مستوى 32% تاريخياً)",
+       "هيستوغرام MACD (فريم 4 ساعات) أعلى من 0.131 (مستوى 59% تاريخياً)",
+       "حجم التداول مقارنة بالمعتاد (فريم 4 ساعات) أعلى من 1.26 (مستوى 89% تاريخياً)"
+      ],
+      "short": [],
+      "sl": "وقف الخسارة = 5.42 × ATR",
+      "tp": "الهدف = 10.08 × ATR (العائد/المخاطرة ≈ 1.9)",
+      "hold": "أقصى مدة للصفقة = 138 شمعة (138 ساعة)"
+     },
+     "train_fitness": 0.838,
+     "valid_fitness": 0.6832,
+     "found_generation": 30,
+     "coins": [
+      {
+       "train": {
+        "trades": 177,
+        "years": 5.26,
+        "trades_per_year": 33.6,
+        "x1": {
+         "total": 281.2607,
+         "cagr": 1.9231,
+         "max_dd": 0.3632
+        },
+        "lev": {
+         "total": 281.2607,
+         "cagr": 1.9231,
+         "max_dd": 0.3632
+        },
+        "win_rate": 0.599,
+        "profit_factor": 2.6,
+        "avg_trade": 0.0368,
+        "buy_hold": {
+         "total": 3.2722,
+         "cagr": 0.3179
+        }
+       },
+       "valid": {
+        "trades": 65,
+        "years": 1.5,
+        "trades_per_year": 43.4,
+        "x1": {
+         "total": 2.303,
+         "cagr": 1.2196,
+         "max_dd": 0.1896
+        },
+        "lev": {
+         "total": 2.303,
+         "cagr": 1.2196,
+         "max_dd": 0.1896
+        },
+        "win_rate": 0.554,
+        "profit_factor": 2.32,
+        "avg_trade": 0.0201,
+        "buy_hold": {
+         "total": 1.8744,
+         "cagr": 1.023
+        }
+       },
+       "test": {
+        "trades": 89,
+        "years": 2.4,
+        "trades_per_year": 37.0,
+        "x1": {
+         "total": -0.2006,
+         "cagr": -0.089,
+         "max_dd": 0.5474
+        },
+        "lev": {
+         "total": -0.2006,
+         "cagr": -0.089,
+         "max_dd": 0.5474
+        },
+        "win_rate": 0.404,
+        "profit_factor": 0.98,
+        "avg_trade": -0.0005,
+        "buy_hold": {
+         "total": -0.5227,
+         "cagr": -0.2649
+        }
+       },
+       "verdict": {
+        "level": "bad",
+        "text": "خسارة"
+       },
+       "symbol": "ETHUSDT",
+       "signal_now": null
+      }
+     ],
+     "chart": "img/eq_1h_4h_ETHUSDT.png"
+    },
+    {
+     "scope": "SOLUSDT",
+     "generation": 1521,
+     "since_improve": 1091,
+     "converged": true,
+     "genome": {
+      "long": [
+       [
+        "rsi14",
+        "<",
+        55
+       ],
+       [
+        "rsi14",
+        "<",
+        55
+       ],
+       [
+        "htf_macd_hist",
+        ">",
+        63
+       ]
+      ],
+      "short": [
+       [
+        "htf_roc24",
+        "<",
+        76
+       ],
+       [
+        "htf_vol_regime",
+        "<",
+        26
+       ]
+      ],
+      "sl": 3.7,
+      "tp": 6.25,
+      "hold": 227
+     },
+     "rules": {
+      "long": [
+       "RSI 14 أقل من 50.94 (مستوى 55% تاريخياً)",
+       "RSI 14 أقل من 50.94 (مستوى 55% تاريخياً)",
+       "هيستوغرام MACD (فريم 4 ساعات) أعلى من 0.282 (مستوى 63% تاريخياً)"
+      ],
+      "short": [
+       "تغيّر آخر 24 شمعة (فريم 4 ساعات) أقل من 0.0976 (مستوى 76% تاريخياً)",
+       "التذبذب مقارنة بالمعتاد (فريم 4 ساعات) أقل من 0.732 (مستوى 26% تاريخياً)"
+      ],
+      "sl": "وقف الخسارة = 3.7 × ATR",
+      "tp": "الهدف = 6.25 × ATR (العائد/المخاطرة ≈ 1.7)",
+      "hold": "أقصى مدة للصفقة = 227 شمعة (227 ساعة)"
+     },
+     "train_fitness": 3.4022,
+     "valid_fitness": 1.2637,
+     "found_generation": 429,
+     "coins": [
+      {
+       "train": {
+        "trades": 229,
+        "years": 2.29,
+        "trades_per_year": 100.2,
+        "x1": {
+         "total": 4849.6296,
+         "cagr": 39.9225,
+         "max_dd": 0.445
+        },
+        "lev": {
+         "total": 4849.6296,
+         "cagr": 39.9225,
+         "max_dd": 0.445
+        },
+        "win_rate": 0.585,
+        "profit_factor": 2.39,
+        "avg_trade": 0.0442,
+        "buy_hold": {
+         "total": 2.8691,
+         "cagr": 0.8071
+        }
+       },
+       "valid": {
+        "trades": 140,
+        "years": 1.5,
+        "trades_per_year": 93.4,
+        "x1": {
+         "total": 8.2399,
+         "cagr": 3.4098,
+         "max_dd": 0.3407
+        },
+        "lev": {
+         "total": 8.2845,
+         "cagr": 3.424,
+         "max_dd": 0.3407
+        },
+        "win_rate": 0.507,
+        "profit_factor": 1.74,
+        "avg_trade": 0.0189,
+        "buy_hold": {
+         "total": 13.7051,
+         "cagr": 5.0129
+        }
+       },
+       "test": {
+        "trades": 221,
+        "years": 2.4,
+        "trades_per_year": 91.9,
+        "x1": {
+         "total": -0.5038,
+         "cagr": -0.2529,
+         "max_dd": 0.7444
+        },
+        "lev": {
+         "total": -0.4981,
+         "cagr": -0.2493,
+         "max_dd": 0.7452
+        },
+        "win_rate": 0.371,
+        "profit_factor": 0.93,
+        "avg_trade": -0.0017,
+        "buy_hold": {
+         "total": -0.5375,
+         "cagr": -0.2744
+        }
+       },
+       "verdict": {
+        "level": "bad",
+        "text": "خسارة"
+       },
+       "symbol": "SOLUSDT",
+       "signal_now": null
+      }
+     ],
+     "chart": "img/eq_1h_4h_SOLUSDT.png"
+    }
+   ]
+  }
+ ]
+}
