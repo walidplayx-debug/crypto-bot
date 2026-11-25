@@ -1,45 +1,47 @@
 # 🤖 crypto-bot
 
-بوت يتعلم استراتيجيات تداول بنفسه باستخدام **خوارزمية جينية**، على بيانات تاريخية لخمس عملات:
+**English** · [العربية](README.ar.md)
+
+A bot that teaches itself trading strategies with a **genetic algorithm**, on historical data for five coins:
 **BTC · ETH · SOL · BNB · DOGE**.
 
-ما نقول له كيف يتداول. نعطيه المؤشرات، وهو يخترع استراتيجيات ويجربها، يحتفظ بالأفضل، ويخلطها ويعدّلها جيل بعد جيل.
+We never tell it how to trade. It gets the indicators, invents strategies, tests them, keeps the best, then mixes and mutates them generation after generation.
 
-📊 **النتائج:** [`RESULTS.md`](RESULTS.md) وصفحة الويب (GitHub Pages)
+📊 **Results:** [`RESULTS.md`](RESULTS.md) and the [live results page](https://walidplayx-debug.github.io/crypto-bot/) (GitHub Pages)
 
-## كيف يشتغل
+## How it works
 
-1. **البيانات:** شموع ساعة من Binance، مجانية وبدون مفتاح API. شموع 4 ساعات تنبني منها.
-2. **المؤشرات (26):** RSI، MACD، بولينجر، EMA 20/50/200، ATR، ADX، ستوكاستك، CCI، MFI، OBV، الحجم، قنوات دونشيان، التذبذب…
-3. **الاستراتيجية:** حتى 3 شروط للشراء وحتى 3 شروط للبيع، ومعها وقف خسارة وهدف بمضاعفات ATR، وأقصى مدة للصفقة.
-4. **ثلاث فريمات:** ساعة، و4 ساعات، وساعة مع فلتر ترند من 4 ساعات.
-5. **نوعين من الاستراتيجيات:**
-   - **موحّدة:** استراتيجية وحدة لازم تنجح على الخمس عملات مع بعض. هذي أصعب، بس أقوى دليل إنها مو صدفة.
-   - **منفصلة:** استراتيجية خاصة لكل عملة.
+1. **Data:** 1-hour candles from Binance (free, no API key). 4-hour candles are built from them.
+2. **Indicators (26):** RSI, MACD, Bollinger, EMA 20/50/200, ATR, ADX, Stochastic, CCI, MFI, OBV, volume, Donchian channels, volatility…
+3. **A strategy:** up to 3 long conditions and up to 3 short conditions, plus a stop-loss and take-profit in ATR multiples, and a maximum trade duration.
+4. **Three timeframes:** 1h, 4h, and 1h with a 4h trend filter.
+5. **Two kinds of strategy:**
+   - **Universal:** one strategy that has to work on all five coins at once. Harder to find, but the strongest evidence that it isn't luck.
+   - **Per coin:** a separate strategy for each coin.
 
-## بدون غش
+## No cheating
 
-- القرار ينحسب على **إغلاق** الشمعة، والدخول يكون على **افتتاح** الشمعة اللي بعدها.
-- لو الوقف والهدف انضربوا في نفس الشمعة، **نحسبها خسارة**.
-- لو السعر قفز فوق الوقف، ناخذ السعر الأسوأ.
-- رسوم 0.05% وانزلاق سعري 0.03% على الدخول وعلى الخروج، ورسوم تمويل على كل ساعة.
-- **تقسيم البيانات:**
-  - تدريب: حتى 2023-01-01
-  - تحقق: حتى 2024-07-01
-  - **اختبار مخفي:** من بعدها لين اليوم. البوت ما يشوفه أبداً، وأرقامه للعرض فقط.
+- Decisions are made on a candle's **close**; the trade enters at the **next candle's open**.
+- If the stop and the target are both hit inside the same candle, it **counts as a loss**.
+- If price gaps through the stop, the worse price is used.
+- 0.05% fee and 0.03% slippage on both entry and exit, plus a funding cost for every hour held.
+- **Data split:**
+  - Training: until 2023-01-01
+  - Validation: until 2024-07-01
+  - **Hidden test:** from then until today. The bot never sees it; its numbers are for reporting only.
 
-تم اختبار البوت على سعر عشوائي بالكامل، وما لقى أي استراتيجية "رابحة" ثابتة. وهذا يؤكد إنه ما يشوف المستقبل.
+The bot was also run on a completely random price series and found no consistently "profitable" strategy, which confirms it can't see the future.
 
-## الرافعة المقترحة
+## Suggested leverage
 
-الرافعة تنحسب بحيث تخسر **2% فقط** من الحساب لو انضرب الوقف:
-`الرافعة = 2% ÷ مسافة الوقف`، وأقصاها 10x.
+Leverage is sized so that hitting the stop loses **only 2%** of the account:
+`leverage = 2% ÷ stop distance`, capped at 10x.
 
-## التشغيل
+## Running it
 
-- **تلقائي:** كل 6 ساعات عن طريق GitHub Actions. يحمّل البيانات الجديدة، ويكمّل التطوير من آخر نقطة وصلها، ويحدّث النتائج.
-- **يدوي:** من تبويب Actions، اختر `evolve` واضغط **Run workflow**.
-- **محلياً:**
+- **Automatic:** every 6 hours via GitHub Actions. It downloads new data, continues evolving from where it stopped, and updates the results.
+- **Manual:** in the Actions tab, choose `evolve` and press **Run workflow**.
+- **Locally:**
   ```bash
   pip install -r requirements.txt
   python -m bot.fetch
@@ -47,8 +49,8 @@
   python -m bot.report
   ```
 
-## الإعدادات
+## Settings
 
-كل الإعدادات في [`bot/config.py`](bot/config.py): العملات، والرسوم، وتواريخ التقسيم، ونسبة المخاطرة، وحجم الجيل.
+All settings live in [`bot/config.py`](bot/config.py): coins, fees, split dates, risk per trade, population size.
 
-> ⚠️ هذا مشروع تعلّم وتجربة. النتائج على بيانات تاريخية مو ضمان للمستقبل، وما هي نصيحة مالية.
+> ⚠️ This is a learning and experimentation project. Results on historical data are no guarantee of future performance, and nothing here is financial advice.
