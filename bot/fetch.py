@@ -72,7 +72,7 @@ def update(symbol):
     DATA_DIR.mkdir(exist_ok=True)
     df.to_csv(p, index=False, compression="gzip")
     first = pd.to_datetime(df["time"].iloc[0], unit="ms")
-    print(f"{symbol}: {len(df)} candles from {first:%Y-%m-%d} (+{len(new)} downloaded)")
+    print(f"{symbol}: {len(df)} candles from {first:%Y-%m-%d} (+{len(new)} downloaded)", flush=True)
 
 
 def load(symbol, timeframe):
