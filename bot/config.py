@@ -39,10 +39,10 @@ POPULATION = 120
 ELITE = 12
 MAX_RULES = 2                 # fewer conditions = less room to memorise history
 # Minimum trades per coin per year (fewer is penalised hard), by candle size in hours.
-# 180 a year = at least one trade every 2 days per coin -> with 5 coins, several signals a day.
-MIN_TRADES_PER_YEAR = {1: 180, 4: 180}
-# Maximum time a trade may stay open: 48 hours, so trades can come often.
-MAX_HOLD_HOURS = 48
+# 75 a year ≈ one trade every 5 days per coin -> across 5 coins ≈ one signal a day.
+MIN_TRADES_PER_YEAR = {1: 75, 4: 75}
+# Maximum time a trade may stay open: 5 days.
+MAX_HOLD_HOURS = 120
 
 # Anti-luck scoring
 DROP_TOP_WINNERS = 0.05       # ignore the best 5% of winning trades when scoring

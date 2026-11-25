@@ -39,6 +39,10 @@ The bot was also run on a completely random price series and found no consistent
 - At most 2 conditions per direction, with a penalty per condition.
 - A new champion must be better on **both** training and validation, by a clear margin.
 
+## How often does it trade?
+
+At least ~75 trades a year per coin (about one every 5 days). Across the five coins that is roughly **one signal a day**. Trades stay open at most 5 days.
+
 ## When does it stop?
 
 - Every strategy is searched **3 times independently**, from different random starts. If all three find similar, profitable strategies, the pattern is probably real; if each finds something different, it was luck.
