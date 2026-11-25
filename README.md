@@ -24,7 +24,7 @@ We never tell it how to trade. It gets the indicators, invents strategies, tests
 - Decisions are made on a candle's **close**; the trade enters at the **next candle's open**.
 - If the stop and the target are both hit inside the same candle, it **counts as a loss**.
 - If price gaps through the stop, the worse price is used.
-- 0.05% fee and 0.03% slippage on both entry and exit, plus a funding cost for every hour held.
+- Entries are **limit orders**: placed at (or better than) the signal candle's close, filled only if the next candle really trades there, otherwise cancelled. Entries and take-profits pay the 0.02% maker fee; stop-losses and time exits pay the 0.05% taker fee plus 0.03% slippage. A funding cost is charged for every hour held.
 - **Data split:**
   - Training: until 2023-01-01
   - Validation: until 2024-07-01
@@ -47,6 +47,10 @@ At least ~75 trades a year per coin (about one every 5 days). Across the five co
 
 - Every strategy is searched **3 times independently**, from different random starts. If all three find similar, profitable strategies, the pattern is probably real; if each finds something different, it was luck.
 - A search stops after **8 runs (2 days)** without a better champion. When every search has stopped, the page shows 🏁.
+
+## Second strategy: coin rotation 🔄
+
+Instead of "when do I buy?", it asks "which coin is strongest right now?". Every day (or every few days) the coins are ranked by how much they rose over the last N days: buy the strongest, optionally short the weakest, and stay in cash when the market filter is negative. A small grid of 240 settings is tested on training + validation only, and the hidden test is just reported.
 
 ## Suggested leverage
 

@@ -1,7 +1,9 @@
 """Datasets, strategy logic and the backtester.
 
 Honesty rules built into the backtest:
-  * a signal is computed at the CLOSE of bar i and entered at the OPEN of bar i+1
+  * a signal is computed at the CLOSE of bar i; a LIMIT order is placed at
+    close(i) - offset*ATR (long) and only fills if bar i+1 actually trades there;
+    an unfilled order is cancelled after that one bar
   * stop-loss / take-profit come from ATR known at bar i
   * if stop and target are both touched in the same candle, the STOP is assumed
   * if price gaps through the stop, the worse open price is used
@@ -88,14 +90,14 @@ def signals(d, g):
 
 
 def trade_plan(d, g, i, direction):
-    """Entry/SL/TP/leverage for a signal at bar i (entry is next bar's open, estimated by close)."""
-    ref = d.c[i]
+    """Limit entry / SL / TP / leverage for a signal at bar i."""
+    ref = d.c[i] - direction * g.get("entry", 0.0) * d.atr[i]   # limit price
     dist = g["sl"] * d.atr[i]
     sl = ref - direction * dist
     tp = ref + direction * g["tp"] * d.atr[i]
     sl_pct = dist / ref
     lev = float(min(C.MAX_LEVERAGE, max(1.0, C.RISK_PER_TRADE / sl_pct)))
-    return sl, tp, sl_pct, lev
+    return ref, sl, tp, sl_pct, lev
 
 
 def backtest(d, g, rng, sig=None):
@@ -104,7 +106,8 @@ def backtest(d, g, rng, sig=None):
     if sig is None:
         sig = signals(d, g)
     idx = np.flatnonzero(sig[a:b - 1]) + a
-    cost = 2 * (C.FEE + C.SLIPPAGE)
+    taker = C.TAKER_FEE + C.SLIPPAGE
+    off = float(g.get("entry", 0.0))
     hold = int(g["hold"])
     out_i, out_dir, out_ret, out_slp, out_k, out_exit = [], [], [], [], [], []
     free = a
@@ -119,7 +122,14 @@ def backtest(d, g, rng, sig=None):
         if e >= b:
             break
         direc = int(sig[s])
-        entry = o[e]
+        limit = c[s] - direc * off * atr[s]
+        if (direc == 1 and o[e] <= limit) or (direc == -1 and o[e] >= limit):
+            entry, at_open = o[e], True          # opened already beyond our price: filled at open
+        elif (direc == 1 and l[e] <= limit) or (direc == -1 and h[e] >= limit):
+            entry, at_open = limit, False        # touched during the candle: filled at the limit
+        else:
+            free = e                             # never reached: order cancelled
+            continue
         dist = g["sl"] * atr[s]
         sl = entry - direc * dist
         tp = entry + direc * g["tp"] * atr[s]
@@ -129,6 +139,8 @@ def backtest(d, g, rng, sig=None):
             hs, ht = lo <= sl, hi >= tp
         else:
             hs, ht = hi >= sl, lo <= tp
+        if not at_open:
+            ht = ht.copy(); ht[0] = False        # filled mid-candle: we don't know what came after, no target on that candle
         ks = int(np.argmax(hs)) if hs.any() else 10**9
         kt = int(np.argmax(ht)) if ht.any() else 10**9
         if ks <= kt and ks < 10**9:
@@ -143,7 +155,8 @@ def backtest(d, g, rng, sig=None):
         else:
             k, px, reason = end - 1 - e, c[end - 1], "time"
         hours = (k + 1) * d.bar_hours
-        r = direc * (px / entry - 1) - cost - hours * C.FUNDING_PER_HOUR
+        exit_cost = C.MAKER_FEE if reason == "tp" else taker
+        r = direc * (px / entry - 1) - C.MAKER_FEE - exit_cost - hours * C.FUNDING_PER_HOUR
         out_i.append(s); out_dir.append(direc); out_ret.append(r)
         out_slp.append(dist / entry); out_k.append(e + k); out_exit.append(reason)
         free = e + k          # a new signal may come at the close of the exit candle

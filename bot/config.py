@@ -23,8 +23,11 @@ VARIANTS = ["1h", "4h", "1h+4h"]
 TRAIN_END = "2023-01-01"
 VALID_END = "2024-07-01"
 
-# Realistic trading costs (Binance futures taker + slippage), per side
-FEE = 0.0005
+# Realistic Binance futures costs, per side.
+# Entries and take-profits are LIMIT orders (maker fee, no slippage);
+# stop-losses and time exits are MARKET orders (taker fee + slippage).
+MAKER_FEE = 0.0002
+TAKER_FEE = 0.0005
 SLIPPAGE = 0.0003
 # Funding / holding cost per hour held (≈0.01% every 8h)
 FUNDING_PER_HOUR = 0.0001 / 8
@@ -54,3 +57,6 @@ CHAMPION_MARGIN = 0.01        # a new champion must beat the old one by this muc
 SEEDS = 3
 # A search stops after this many runs (every 6h) without a better champion: 8 = 2 days
 STOP_AFTER_RUNS = 8
+
+# Bump when the scoring or the backtest changes: older saved searches are then restarted.
+STATE_VERSION = 3

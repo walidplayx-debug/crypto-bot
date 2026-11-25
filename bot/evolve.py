@@ -52,6 +52,7 @@ def rand_genome(names, variant):
         "sl": round(random.uniform(0.5, 5.0), 2),
         "tp": round(random.uniform(0.5, 10.0), 2),
         "hold": random.randint(lo, hi),
+        "entry": round(random.uniform(0.0, 1.0), 2),   # limit-order offset in ATR
     })
 
 
@@ -69,9 +70,10 @@ def crossover(a, b):
         src = random.choice([a, b])[side]
         k = len(src) if src else 0
         child[side] = [list(r) for r in random.sample(pool, min(k, len(pool)))] if k else []
-    for p in ("sl", "tp", "hold"):
+    for p in ("sl", "tp", "hold", "entry"):
         w = random.random()
-        child[p] = a[p] * w + b[p] * (1 - w)
+        child[p] = a.get(p, 0.0) * w + b.get(p, 0.0) * (1 - w)
+    child["entry"] = round(child["entry"], 2)
     child["sl"], child["tp"] = round(child["sl"], 2), round(child["tp"], 2)
     child["hold"] = int(round(child["hold"]))
     if not child["long"] and not child["short"]:
@@ -102,6 +104,8 @@ def mutate(g, names, variant, rate=0.3):
         g["tp"] = round(float(np.clip(g["tp"] * np.exp(random.gauss(0, 0.2)), 0.3, 12)), 2)
     if random.random() < rate:
         g["hold"] = int(np.clip(g["hold"] * np.exp(random.gauss(0, 0.25)), lo, hi))
+    if random.random() < rate:
+        g["entry"] = round(float(np.clip(g.get("entry", 0.0) + random.gauss(0, 0.15), 0.0, 1.5)), 2)
     if random.random() < rate * 0.1:            # occasionally open the other direction
         other = "short" if not g["short"] else ("long" if not g["long"] else None)
         if other:
@@ -132,9 +136,11 @@ def run_name(scope, seed):
 def load_state(variant, name):
     path = C.STATE_DIR / variant / f"{name}.json"
     if path.exists():
-        return json.loads(path.read_text())
+        st = json.loads(path.read_text())
+        if st.get("version") == C.STATE_VERSION:
+            return st
     scope, _, seed = name.partition("__s")
-    return {"variant": variant, "scope": scope, "seed": int(seed or 1), "generation": 0,
+    return {"version": C.STATE_VERSION, "variant": variant, "scope": scope, "seed": int(seed or 1), "generation": 0,
             "population": [], "champion": None, "history": [], "since_improve": 0}
 
 

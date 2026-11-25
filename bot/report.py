@@ -58,6 +58,7 @@ def describe(g, d):
         "long": side(g["long"]), "short": side(g["short"]),
         "sl": f"وقف الخسارة = {g['sl']} × ATR",
         "tp": f"الهدف = {g['tp']} × ATR (العائد/المخاطرة ≈ {g['tp'] / g['sl']:.1f})",
+        "entry": f"الدخول: أمر ليمت أحسن من سعر الإغلاق بـ {g.get('entry', 0)} × ATR (بيتلغى إذا ما وصله السعر بالشمعة الجاية)",
         "hold": f"أقصى مدة للصفقة = {g['hold']} شمعة ({g['hold'] * d.bar_hours} {unit})",
     }
 
@@ -154,9 +155,9 @@ def current_signal(d, g):
     i = len(d.c) - 1
     if s[i] == 0:
         return None
-    sl, tp, sl_pct, lev = trade_plan(d, g, i, int(s[i]))
+    entry, sl, tp, sl_pct, lev = trade_plan(d, g, i, int(s[i]))
     return {"time": d.index[i].isoformat(), "side": "شراء (Long)" if s[i] == 1 else "بيع (Short)",
-            "entry": float(d.c[i]), "sl": float(sl), "tp": float(tp), "leverage": round(lev, 1)}
+            "entry": float(entry), "sl": float(sl), "tp": float(tp), "leverage": round(lev, 1)}
 
 
 def main():
@@ -216,6 +217,14 @@ def main():
                      found_generation=ch["found_generation"], coins=coins, chart=f"img/{fname}")
             entries.append(e)
         out["variants"].append({"variant": variant, "progress": f"img/progress_{vslug}.png", "scopes": entries})
+    try:
+        from . import rotation
+        res, r, bench = rotation.run()
+        rotation.plot(r, bench, img / "rotation.png")
+        res["chart"] = "img/rotation.png"
+        out["rotation"] = res
+    except Exception as ex:  # rotation must never break the main report
+        print("rotation failed:", ex)
     (C.DOCS_DIR / "data.json").write_text(json.dumps(out, ensure_ascii=False, indent=1))
     write_markdown(out)
     print("report written")
@@ -250,6 +259,18 @@ def write_markdown(out):
                          f"{pct(t['lev']['total'])} | {t['lev']['max_dd'] * 100:.0f}% | "
                          f"{pct(t['buy_hold']['total'])} | {icon} {c['verdict']['text']} |")
         L += ["", f"![progress]({'docs/' + v['progress']})", ""]
+    rot = out.get("rotation")
+    if rot:
+        b = rot["best"]
+        L += ["## 🔄 التناوب بين العملات", "", *[f"- {x}" for x in b["rules"]], "",
+              "| الفترة | الربح | أقصى تراجع | تغييرات/سنة | اشترِ واحتفظ (الخمسة) |", "|---|---|---|---|---|"]
+        for p, n in (("train", "تدريب"), ("valid", "تحقق"), ("test", "**مخفي**")):
+            m = b[p]
+            L.append(f"| {n} | {pct(m['total'])} | {m['max_dd'] * 100:.0f}% | {m['changes_per_year']} | {pct(m['bench'])} |")
+        today = "، ".join(f"{x['side']} {x['symbol']}" for x in rot["today"]) or "كاش"
+        L += ["", f"إشارة اليوم ({rot['today_date']}): **{today}**", "",
+              f"من أفضل 5 إعدادات، {rot['positive_test_in_top5']} رابحة بالمخفي.", "",
+              "![rotation](docs/img/rotation.png)", ""]
     (C.ROOT / "RESULTS.md").write_text("\n".join(L), encoding="utf-8")
 
 

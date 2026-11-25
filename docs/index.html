@@ -79,7 +79,7 @@ function card(e){
   const r = e.rules;
   const list = a => a.length ? `<ul>${a.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>` : `<div class="muted">— ما يستخدم هذا الاتجاه</div>`;
   const sigs = e.coins.filter(c=>c.signal_now).map(c=>{const s=c.signal_now;
-    return `<div class="sig">📡 <b>${c.symbol}</b> · ${s.side} · دخول <span class="num">${s.entry}</span> · وقف <span class="num">${s.sl.toPrecision(6)}</span> · هدف <span class="num">${s.tp.toPrecision(6)}</span> · رافعة ${s.leverage}x</div>`}).join("");
+    return `<div class="sig">📡 <b>${c.symbol}</b> · ${s.side} · دخول ليمت <span class="num">${s.entry.toPrecision(6)}</span> · وقف <span class="num">${s.sl.toPrecision(6)}</span> · هدف <span class="num">${s.tp.toPrecision(6)}</span> · رافعة ${s.leverage}x</div>`}).join("");
   const parts = e.coins.map(c => `<div class="muted" style="margin-top:8px">${c.symbol}</div>
     <div class="scroll"><table>${head}${partRow("تدريب",c.train)}${partRow("تحقق",c.valid)}${partRow("مخفي",c.test)}</table></div>`).join("");
   return `<div class="card">
@@ -92,10 +92,33 @@ function card(e){
     </table></div>
     <b>🟢 شروط الشراء (Long)</b>${list(r.long)}
     <b>🔴 شروط البيع (Short)</b>${list(r.short)}
-    <div class="muted">${esc(r.sl)} · ${esc(r.tp)} · ${esc(r.hold)}</div>
+    <div class="muted">${r.entry ? esc(r.entry) + " · " : ""}${esc(r.sl)} · ${esc(r.tp)} · ${esc(r.hold)}</div>
     ${sigs}
     <img src="${e.chart}?v=${encodeURIComponent(DATA.updated)}" alt="منحنى رأس المال ${title}" loading="lazy">
     <details><summary>تفاصيل التدريب والتحقق والمخفي</summary>${parts}</details>
+  </div>`;
+}
+
+function showRotation(){
+  document.querySelectorAll(".tabs button").forEach(b=>b.classList.toggle("on", b.dataset.rot==="1"));
+  const R = DATA.rotation, b = R.best;
+  const row = (n,m) => `<tr><td>${n}</td><td class="num">${pct(m.total)}</td><td class="num">${(m.max_dd*100).toFixed(0)}%</td><td class="num">${m.changes_per_year}</td><td class="num">${pct(m.bench)}</td></tr>`;
+  const today = R.today.length ? R.today.map(x=>`${x.side} <b>${x.symbol.replace("USDT","")}</b> (${Math.round(x.weight*100)}%)`).join(" · ") : "💤 كاش، ما في صفقة";
+  const lvl = b.test.total > 0 && b.test.total > b.test.bench ? "good" : b.test.total > 0 ? "ok" : b.test.total > b.test.bench ? "soft" : "bad";
+  const txt = {good:"ربح وتغلّب على اشترِ واحتفظ", ok:"ربح لكن أقل من اشترِ واحتفظ", soft:"خسارة أقل من السوق", bad:"خسارة"}[lvl];
+  const top = R.top.map((t,i)=>`<tr><td>${i+1}</td><td>${t.params.lookback} يوم · ${t.params.longs}L${t.params.short?"+1S":""} · كل ${t.params.rebalance}</td><td class="num">${pct(t.test.total)}</td></tr>`).join("");
+  document.getElementById("content").innerHTML = `<div class="card">
+    <h2>🔄 التناوب بين العملات</h2>
+    <div class="muted">بدل "متى أشتري؟"، البوت بيسأل "مين أقوى عملة هلأ؟"</div>
+    <div class="sig">📡 إشارة اليوم (${R.today_date}): ${today}</div>
+    <div style="margin-top:8px"><span class="pill ${lvl}">المخفي: ${txt}</span></div>
+    <ul>${b.rules.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>
+    <div class="scroll"><table><tr><th></th><th>الربح</th><th>أقصى تراجع</th><th>تغييرات/سنة</th><th>اشترِ واحتفظ</th></tr>
+      ${row("تدريب",b.train)}${row("تحقق",b.valid)}${row("مخفي",b.test)}</table></div>
+    <img src="${R.chart}?v=${encodeURIComponent(DATA.updated)}" alt="منحنى التناوب">
+    <details><summary>أفضل 5 إعدادات (${R.positive_test_in_top5} منها رابحة بالمخفي)</summary>
+      <div class="scroll"><table><tr><th>#</th><th>الإعداد</th><th>المخفي</th></tr>${top}</table></div>
+      <div class="muted">إذا الإعدادات القريبة من بعض كلها رابحة، فالنمط على الأغلب حقيقي.</div></details>
   </div>`;
 }
 
@@ -112,7 +135,8 @@ fetch("data.json?" + Date.now()).then(r=>r.json()).then(d=>{
   document.getElementById("meta").textContent =
     `آخر تحديث: ${d.updated} · تدريب حتى ${d.split.train_end} · تحقق حتى ${d.split.valid_end} · بعدها اختبار مخفي`;
   const labels = {"1h":"ساعة","4h":"4 ساعات","1h+4h":"ساعة + ترند 4 ساعات"};
-  document.getElementById("tabs").innerHTML = d.variants.map((v,i)=>`<button onclick="show(${i})">${labels[v.variant]||v.variant}</button>`).join("");
+  document.getElementById("tabs").innerHTML = d.variants.map((v,i)=>`<button onclick="show(${i})">${labels[v.variant]||v.variant}</button>`).join("")
+    + (d.rotation ? `<button data-rot="1" onclick="showRotation()">🔄 التناوب</button>` : "");
   if(d.variants.length) show(0); else document.getElementById("content").innerHTML = `<div class="card">لسا ما فيه نتائج. أول تشغيل شغّال…</div>`;
 }).catch(()=>{document.getElementById("meta").textContent="لسا ما فيه نتائج. أول تشغيل شغّال…";});
 </script>
