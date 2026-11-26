@@ -109,7 +109,7 @@ def backtest(d, g, rng, sig=None):
     taker = C.TAKER_FEE + C.SLIPPAGE
     off = float(g.get("entry", 0.0))
     hold = int(g["hold"])
-    out_i, out_dir, out_ret, out_slp, out_k, out_exit = [], [], [], [], [], []
+    out_i, out_dir, out_ret, out_slp, out_k, out_exit, out_e, out_px = [], [], [], [], [], [], [], []
     free = a
     n = len(idx)
     o, h, l, c, atr = d.o, d.h, d.l, d.c, d.atr
@@ -159,11 +159,13 @@ def backtest(d, g, rng, sig=None):
         r = direc * (px / entry - 1) - C.MAKER_FEE - exit_cost - hours * C.FUNDING_PER_HOUR
         out_i.append(s); out_dir.append(direc); out_ret.append(r)
         out_slp.append(dist / entry); out_k.append(e + k); out_exit.append(reason)
+        out_e.append(e); out_px.append(entry)
         free = e + k          # a new signal may come at the close of the exit candle
     return {
         "sig_bar": np.array(out_i, int), "dir": np.array(out_dir, int),
         "ret": np.array(out_ret, float), "sl_pct": np.array(out_slp, float),
         "exit_bar": np.array(out_k, int), "reason": out_exit,
+        "entry_bar": np.array(out_e, int), "entry_px": np.array(out_px, float),
     }
 
 

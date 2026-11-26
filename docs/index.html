@@ -55,6 +55,20 @@ function partRow(label, m){
 }
 const head = `<tr><th></th><th>صفقات</th><th>نجاح</th><th>ربح 1x</th><th>ربح برافعة</th><th>أقصى تراجع</th><th>اشترِ واحتفظ</th></tr>`;
 
+function lossBlock(e){
+  const a = e.analysis; if(!a) return "";
+  const AR = {trend:"الترند", vol:"التذبذب", side:"الاتجاه", reason:"طريقة الإغلاق", session:"التوقيت UTC", weekend:"الأيام"};
+  const LB = {up:"صاعد", down:"هابط", high:"عالي", normal:"عادي", low:"هادي", long:"شراء", short:"بيع",
+              sl:"الوقف", tp:"الهدف", time:"انتهى الوقت", "True":"نهاية الأسبوع", "False":"أيام الأسبوع"};
+  const tbl = k => Object.entries(a.buckets[k]).map(([b,v]) => `<tr><td>${LB[b]||b}</td><td class="num">${v.n}</td>
+      <td class="num">${(v.win_rate*100).toFixed(0)}%</td><td class="num ${v.avg<0?"bad":"good"}">${(v.avg*100).toFixed(2)}%</td></tr>`).join("");
+  const sec = ["trend","vol","side","reason","session"].map(k => `<tr><th colspan="4">${AR[k]}</th></tr>${tbl(k)}`).join("");
+  return `<details><summary>🔍 ليش بتخسر؟ (تدريب + تحقق فقط)</summary>
+    <ul>${a.insights.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>
+    <div class="scroll"><table><tr><th></th><th>صفقات</th><th>نجاح</th><th>متوسط الصفقة</th></tr>${sec}</table></div>
+    <div class="muted">ما منحلّل الفترة المخفية أبداً، كرمال ما نعدّل البوت عليها ونحرقها.</div></details>`;
+}
+
 function seedBlock(e){
   if(!e.seeds) return "";
   const icon = {good:"✅", ok:"🟡", bad:"❌", wait:"⏳"}[e.agreement.level];
@@ -87,6 +101,7 @@ function card(e){
     ${e.weak ? `<div class="pill bad" style="margin:4px 0">⚠️ أفضل الموجود لهلأ — لسا مش رابحة بالتدريب والتحقق</div>` : ""}
     <div class="muted">الجيل ${e.generation} · لقاها في الجيل ${e.found_generation} · ${e.converged ? "🏁 خلص البحث: هاي أحسن شي لقاه" : "🔄 لسا عم يدوّر"}</div>
     ${seedBlock(e)}
+    ${lossBlock(e)}
     <div class="scroll"><table>
       <tr><th>العملة</th><th>صفقات</th><th>بالسنة</th><th>نجاح</th><th>ربح برافعة</th><th>أقصى تراجع</th><th>اشترِ واحتفظ</th><th>الحكم</th></tr>${rows}
     </table></div>

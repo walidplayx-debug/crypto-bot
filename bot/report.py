@@ -213,6 +213,8 @@ def main():
                 coins.append(parts)
             fname = f"eq_{vslug}_{scope}.png"
             plot_equity(ds, g, img / fname, f"{variant} · {scope}")
+            from .analysis import analyse
+            e["analysis"] = analyse(ds, g)
             e.update(best_seed=st.get("seed", 1), generation=st["generation"],
                      weak=ch.get("robust", 0) <= 0, genome=g, rules=describe(g, ds[0]),
                      train_fitness=ch["train_fitness"], valid_fitness=ch["valid_fitness"],

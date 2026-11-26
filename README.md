@@ -52,6 +52,10 @@ At least ~75 trades a year per coin (about one every 5 days). Across the five co
 
 Instead of "when do I buy?", it asks "which coin is strongest right now?". Every day (or every few days) the coins are ranked by how much they rose over the last N days: buy the strongest, optionally short the weakest, and stay in cash when the market filter is negative. A small grid of 240 settings is tested on training + validation only, and the hidden test is just reported.
 
+## Why does it lose?
+
+For every champion the page shows a loss analysis on **training + validation trades only**: results by trend, volatility, direction, time of day and how trades ended, plus how many stopped-out trades were in profit first. The hidden test is never analysed, so improvements made from it cannot leak the test.
+
 ## Suggested leverage
 
 Leverage is sized so that hitting the stop loses **only 2%** of the account:
