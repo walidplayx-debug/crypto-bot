@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-26 17:57 UTC",
+ "updated": "2026-11-26 18:39 UTC",
  "split": {
   "train_end": "2023-01-01",
   "valid_end": "2024-07-01"
@@ -14,9 +14,9 @@
      "seeds": [
       {
        "seed": 1,
-       "generation": 1203,
+       "generation": 1289,
        "done": false,
-       "hours_without_improve": 9.5,
+       "hours_without_improve": 10.2,
        "robust": -0.8,
        "test_avg": -0.421,
        "indicators": [
@@ -26,9 +26,9 @@
       },
       {
        "seed": 2,
-       "generation": 1142,
+       "generation": 1220,
        "done": false,
-       "hours_without_improve": 9.4,
+       "hours_without_improve": 10.1,
        "robust": -0.2613,
        "test_avg": -0.1406,
        "indicators": [
@@ -38,9 +38,9 @@
       },
       {
        "seed": 3,
-       "generation": 1362,
+       "generation": 1458,
        "done": false,
-       "hours_without_improve": 5.3,
+       "hours_without_improve": 6.0,
        "robust": -0.4352,
        "test_avg": -0.1136,
        "indicators": [
@@ -154,7 +154,7 @@
       "losers_were_up_1R": 0.0
      },
      "best_seed": 2,
-     "generation": 1142,
+     "generation": 1220,
      "weak": true,
      "genome": {
       "long": [
@@ -569,9 +569,9 @@
      "seeds": [
       {
        "seed": 1,
-       "generation": 694,
+       "generation": 742,
        "done": false,
-       "hours_without_improve": 9.1,
+       "hours_without_improve": 9.8,
        "robust": -0.0316,
        "test_avg": -0.1427,
        "indicators": [
@@ -581,9 +581,9 @@
       },
       {
        "seed": 2,
-       "generation": 589,
+       "generation": 632,
        "done": false,
-       "hours_without_improve": 5.0,
+       "hours_without_improve": 5.7,
        "robust": -0.0612,
        "test_avg": -0.6104,
        "indicators": [
@@ -594,9 +594,9 @@
       },
       {
        "seed": 3,
-       "generation": 884,
+       "generation": 947,
        "done": false,
-       "hours_without_improve": 9.0,
+       "hours_without_improve": 9.7,
        "robust": -0.117,
        "test_avg": -0.3904,
        "indicators": [
@@ -710,7 +710,7 @@
       "losers_were_up_1R": 0.0
      },
      "best_seed": 1,
-     "generation": 694,
+     "generation": 742,
      "weak": true,
      "genome": {
       "long": [
@@ -829,9 +829,9 @@
      "seeds": [
       {
        "seed": 1,
-       "generation": 1083,
+       "generation": 1162,
        "done": false,
-       "hours_without_improve": 9.3,
+       "hours_without_improve": 10.0,
        "robust": -0.0191,
        "test_avg": -0.3228,
        "indicators": [
@@ -841,21 +841,20 @@
       },
       {
        "seed": 2,
-       "generation": 1159,
+       "generation": 1255,
        "done": false,
-       "hours_without_improve": 9.3,
-       "robust": -0.001,
-       "test_avg": -0.3388,
+       "hours_without_improve": 0.3,
+       "robust": 0.1135,
+       "test_avg": -0.3559,
        "indicators": [
-        "bb_pctb",
         "ema20_50"
        ]
       },
       {
        "seed": 3,
-       "generation": 1124,
+       "generation": 1206,
        "done": false,
-       "hours_without_improve": 9.2,
+       "hours_without_improve": 9.9,
        "robust": 0.1334,
        "test_avg": -0.1648,
        "indicators": [
@@ -969,7 +968,7 @@
       "losers_were_up_1R": 0.007
      },
      "best_seed": 3,
-     "generation": 1124,
+     "generation": 1206,
      "weak": false,
      "genome": {
       "long": [
@@ -1088,9 +1087,9 @@
      "seeds": [
       {
        "seed": 1,
-       "generation": 621,
+       "generation": 661,
        "done": false,
-       "hours_without_improve": 9.0,
+       "hours_without_improve": 9.7,
        "robust": -0.0732,
        "test_avg": -0.1401,
        "indicators": [
@@ -1102,9 +1101,9 @@
       },
       {
        "seed": 2,
-       "generation": 1616,
+       "generation": 1730,
        "done": false,
-       "hours_without_improve": 9.0,
+       "hours_without_improve": 9.7,
        "robust": -0.5698,
        "test_avg": -0.5832,
        "indicators": [
@@ -1114,9 +1113,9 @@
       },
       {
        "seed": 3,
-       "generation": 1267,
+       "generation": 1359,
        "done": false,
-       "hours_without_improve": 9.0,
+       "hours_without_improve": 9.7,
        "robust": -0.4482,
        "test_avg": -0.4938,
        "indicators": [
@@ -1235,7 +1234,7 @@
       "losers_were_up_1R": 0.0
      },
      "best_seed": 1,
-     "generation": 621,
+     "generation": 661,
      "weak": true,
      "genome": {
       "long": [
@@ -1368,9 +1367,9 @@
      "seeds": [
       {
        "seed": 1,
-       "generation": 1369,
+       "generation": 1471,
        "done": false,
-       "hours_without_improve": 9.2,
+       "hours_without_improve": 9.9,
        "robust": -0.3174,
        "test_avg": -0.1019,
        "indicators": [
@@ -1380,9 +1379,9 @@
       },
       {
        "seed": 2,
-       "generation": 1396,
+       "generation": 1498,
        "done": false,
-       "hours_without_improve": 4.4,
+       "hours_without_improve": 5.2,
        "robust": -0.3228,
        "test_avg": 0.1563,
        "indicators": [
@@ -1392,9 +1391,9 @@
       },
       {
        "seed": 3,
-       "generation": 1149,
+       "generation": 1230,
        "done": false,
-       "hours_without_improve": 9.2,
+       "hours_without_improve": 9.9,
        "robust": -0.5057,
        "test_avg": -0.4963,
        "indicators": [
@@ -1508,7 +1507,7 @@
       "losers_were_up_1R": 0.083
      },
      "best_seed": 1,
-     "generation": 1369,
+     "generation": 1471,
      "weak": true,
      "genome": {
       "long": [
@@ -1627,9 +1626,9 @@
      "seeds": [
       {
        "seed": 1,
-       "generation": 2756,
+       "generation": 2934,
        "done": false,
-       "hours_without_improve": 9.1,
+       "hours_without_improve": 9.8,
        "robust": 0.1496,
        "test_avg": 0.0385,
        "indicators": [
@@ -1639,9 +1638,9 @@
       },
       {
        "seed": 2,
-       "generation": 2480,
+       "generation": 2650,
        "done": false,
-       "hours_without_improve": 9.1,
+       "hours_without_improve": 9.8,
        "robust": 0.121,
        "test_avg": -0.2814,
        "indicators": [
@@ -1651,9 +1650,9 @@
       },
       {
        "seed": 3,
-       "generation": 3372,
+       "generation": 3612,
        "done": false,
-       "hours_without_improve": 9.1,
+       "hours_without_improve": 9.8,
        "robust": 0.2614,
        "test_avg": 0.0061,
        "indicators": [
@@ -1773,7 +1772,7 @@
       "losers_were_up_1R": 0.095
      },
      "best_seed": 3,
-     "generation": 3372,
+     "generation": 3612,
      "weak": false,
      "genome": {
       "long": [
@@ -1906,9 +1905,9 @@
      "seeds": [
       {
        "seed": 1,
-       "generation": 1467,
+       "generation": 1725,
        "done": false,
-       "hours_without_improve": 9.5,
+       "hours_without_improve": 10.2,
        "robust": -0.4259,
        "test_avg": -0.0716,
        "indicators": [
@@ -1918,9 +1917,9 @@
       },
       {
        "seed": 2,
-       "generation": 2208,
+       "generation": 2595,
        "done": false,
-       "hours_without_improve": 5.4,
+       "hours_without_improve": 6.1,
        "robust": -0.3937,
        "test_avg": -0.3332,
        "indicators": [
@@ -1930,9 +1929,9 @@
       },
       {
        "seed": 3,
-       "generation": 1739,
+       "generation": 2022,
        "done": false,
-       "hours_without_improve": 9.3,
+       "hours_without_improve": 10.0,
        "robust": -0.4633,
        "test_avg": -0.0421,
        "indicators": [
@@ -2044,7 +2043,7 @@
       ]
      },
      "best_seed": 2,
-     "generation": 2208,
+     "generation": 2595,
      "weak": true,
      "genome": {
       "long": [
@@ -2459,9 +2458,9 @@
      "seeds": [
       {
        "seed": 1,
-       "generation": 1118,
+       "generation": 1309,
        "done": false,
-       "hours_without_improve": 9.1,
+       "hours_without_improve": 9.8,
        "robust": -0.226,
        "test_avg": -0.1013,
        "indicators": [
@@ -2470,9 +2469,9 @@
       },
       {
        "seed": 2,
-       "generation": 1466,
+       "generation": 1711,
        "done": false,
-       "hours_without_improve": 9.0,
+       "hours_without_improve": 9.8,
        "robust": -0.1483,
        "test_avg": -0.4007,
        "indicators": [
@@ -2481,9 +2480,9 @@
       },
       {
        "seed": 3,
-       "generation": 1499,
+       "generation": 1751,
        "done": false,
-       "hours_without_improve": 9.0,
+       "hours_without_improve": 9.7,
        "robust": -0.2653,
        "test_avg": -0.0017,
        "indicators": [
@@ -2596,7 +2595,7 @@
       "losers_were_up_1R": 0.0
      },
      "best_seed": 2,
-     "generation": 1466,
+     "generation": 1711,
      "weak": true,
      "genome": {
       "long": [
@@ -2709,9 +2708,9 @@
      "seeds": [
       {
        "seed": 1,
-       "generation": 1615,
+       "generation": 1901,
        "done": false,
-       "hours_without_improve": 9.3,
+       "hours_without_improve": 10.0,
        "robust": 0.0119,
        "test_avg": -0.1678,
        "indicators": [
@@ -2720,9 +2719,9 @@
       },
       {
        "seed": 2,
-       "generation": 1165,
+       "generation": 1359,
        "done": false,
-       "hours_without_improve": 5.2,
+       "hours_without_improve": 5.9,
        "robust": -0.11,
        "test_avg": 0.1884,
        "indicators": [
@@ -2732,9 +2731,9 @@
       },
       {
        "seed": 3,
-       "generation": 1184,
+       "generation": 1386,
        "done": false,
-       "hours_without_improve": 5.2,
+       "hours_without_improve": 5.9,
        "robust": -0.1319,
        "test_avg": -0.2463,
        "indicators": [
@@ -2847,7 +2846,7 @@
       ]
      },
      "best_seed": 1,
-     "generation": 1615,
+     "generation": 1901,
      "weak": false,
      "genome": {
       "long": [
@@ -2960,9 +2959,9 @@
      "seeds": [
       {
        "seed": 1,
-       "generation": 1343,
+       "generation": 1563,
        "done": false,
-       "hours_without_improve": 9.0,
+       "hours_without_improve": 9.7,
        "robust": 0.0055,
        "test_avg": -0.2012,
        "indicators": [
@@ -2971,9 +2970,9 @@
       },
       {
        "seed": 2,
-       "generation": 1375,
+       "generation": 1601,
        "done": false,
-       "hours_without_improve": 9.0,
+       "hours_without_improve": 9.7,
        "robust": -0.0868,
        "test_avg": 0.1545,
        "indicators": [
@@ -2982,9 +2981,9 @@
       },
       {
        "seed": 3,
-       "generation": 2069,
+       "generation": 2446,
        "done": false,
-       "hours_without_improve": 9.0,
+       "hours_without_improve": 9.7,
        "robust": 0.0925,
        "test_avg": 0.1695,
        "indicators": [
@@ -3103,7 +3102,7 @@
       "losers_were_up_1R": 0.0
      },
      "best_seed": 3,
-     "generation": 2069,
+     "generation": 2446,
      "weak": false,
      "genome": {
       "long": [
@@ -3231,9 +3230,9 @@
      "seeds": [
       {
        "seed": 1,
-       "generation": 2479,
+       "generation": 2912,
        "done": false,
-       "hours_without_improve": 9.2,
+       "hours_without_improve": 9.9,
        "robust": -0.1718,
        "test_avg": -0.2428,
        "indicators": [
@@ -3242,9 +3241,9 @@
       },
       {
        "seed": 2,
-       "generation": 1204,
+       "generation": 1412,
        "done": false,
-       "hours_without_improve": 9.2,
+       "hours_without_improve": 9.9,
        "robust": -0.216,
        "test_avg": -0.3166,
        "indicators": [
@@ -3253,9 +3252,9 @@
       },
       {
        "seed": 3,
-       "generation": 1174,
+       "generation": 1379,
        "done": false,
-       "hours_without_improve": 9.2,
+       "hours_without_improve": 9.9,
        "robust": -0.2373,
        "test_avg": -0.3061,
        "indicators": [
@@ -3368,7 +3367,7 @@
       "losers_were_up_1R": 0.013
      },
      "best_seed": 1,
-     "generation": 2479,
+     "generation": 2912,
      "weak": true,
      "genome": {
       "long": [
@@ -3488,9 +3487,9 @@
      "seeds": [
       {
        "seed": 1,
-       "generation": 3320,
+       "generation": 3876,
        "done": false,
-       "hours_without_improve": 9.1,
+       "hours_without_improve": 9.8,
        "robust": -0.072,
        "test_avg": -0.4899,
        "indicators": [
@@ -3500,9 +3499,9 @@
       },
       {
        "seed": 2,
-       "generation": 2883,
+       "generation": 3371,
        "done": false,
-       "hours_without_improve": 9.1,
+       "hours_without_improve": 9.8,
        "robust": -0.0639,
        "test_avg": -0.6143,
        "indicators": [
@@ -3512,9 +3511,9 @@
       },
       {
        "seed": 3,
-       "generation": 3003,
+       "generation": 3509,
        "done": false,
-       "hours_without_improve": 9.1,
+       "hours_without_improve": 9.8,
        "robust": 0.0696,
        "test_avg": -0.1072,
        "indicators": [
@@ -3627,7 +3626,7 @@
       ]
      },
      "best_seed": 3,
-     "generation": 3003,
+     "generation": 3509,
      "weak": false,
      "genome": {
       "long": [
@@ -3759,11 +3758,11 @@
      "seeds": [
       {
        "seed": 1,
-       "generation": 863,
+       "generation": 943,
        "done": false,
-       "hours_without_improve": 9.5,
-       "robust": -0.3998,
-       "test_avg": -0.2005,
+       "hours_without_improve": 0.6,
+       "robust": -0.2974,
+       "test_avg": -0.2101,
        "indicators": [
         "htf_bb_width",
         "htf_dist_ema20"
@@ -3771,9 +3770,9 @@
       },
       {
        "seed": 2,
-       "generation": 888,
+       "generation": 961,
        "done": false,
-       "hours_without_improve": 9.4,
+       "hours_without_improve": 10.1,
        "robust": -0.3852,
        "test_avg": -0.2607,
        "indicators": [
@@ -3782,9 +3781,9 @@
       },
       {
        "seed": 3,
-       "generation": 679,
+       "generation": 739,
        "done": false,
-       "hours_without_improve": 3.9,
+       "hours_without_improve": 4.6,
        "robust": -0.4944,
        "test_avg": -0.4313,
        "indicators": [
@@ -3801,197 +3800,202 @@
      "converged": false,
      "stop_after": 48,
      "analysis": {
-      "n": 2919,
-      "win_rate": 0.887,
-      "avg": 0.0025,
+      "n": 4261,
+      "win_rate": 0.815,
+      "avg": 0.0028,
       "buckets": {
        "trend": {
         "down": {
-         "n": 62,
-         "win_rate": 0.839,
-         "avg": -0.0011
+         "n": 88,
+         "win_rate": 0.807,
+         "avg": 0.0048
         },
         "up": {
-         "n": 2857,
-         "win_rate": 0.888,
-         "avg": 0.0025
+         "n": 4173,
+         "win_rate": 0.815,
+         "avg": 0.0028
         }
        },
        "vol": {
         "high": {
-         "n": 1160,
-         "win_rate": 0.894,
-         "avg": 0.0037
-        },
-        "low": {
-         "n": 558,
-         "win_rate": 0.849,
-         "avg": 0.0
+         "n": 1534,
+         "win_rate": 0.814,
+         "avg": 0.0035
         },
         "normal": {
-         "n": 1201,
-         "win_rate": 0.898,
-         "avg": 0.0024
+         "n": 2727,
+         "win_rate": 0.816,
+         "avg": 0.0025
         }
        },
        "side": {
         "long": {
-         "n": 2919,
-         "win_rate": 0.887,
-         "avg": 0.0025
+         "n": 4261,
+         "win_rate": 0.815,
+         "avg": 0.0028
         }
        },
        "session": {
         "00-06": {
-         "n": 625,
-         "win_rate": 0.874,
-         "avg": 0.0024
+         "n": 887,
+         "win_rate": 0.775,
+         "avg": 0.001
         },
         "06-12": {
-         "n": 688,
-         "win_rate": 0.872,
-         "avg": 0.0011
+         "n": 1040,
+         "win_rate": 0.813,
+         "avg": 0.0026
         },
         "12-18": {
-         "n": 834,
-         "win_rate": 0.887,
+         "n": 1250,
+         "win_rate": 0.814,
          "avg": 0.0026
         },
         "18-24": {
-         "n": 772,
-         "win_rate": 0.911,
-         "avg": 0.0036
+         "n": 1084,
+         "win_rate": 0.851,
+         "avg": 0.0049
         }
        },
        "weekend": {
         "False": {
-         "n": 2282,
-         "win_rate": 0.886,
-         "avg": 0.0023
+         "n": 3285,
+         "win_rate": 0.814,
+         "avg": 0.0028
         },
         "True": {
-         "n": 637,
-         "win_rate": 0.89,
-         "avg": 0.0029
+         "n": 976,
+         "win_rate": 0.819,
+         "avg": 0.0031
         }
        },
        "reason": {
         "sl": {
-         "n": 323,
+         "n": 199,
          "win_rate": 0.0,
-         "avg": -0.0535
+         "avg": -0.0639
         },
         "time": {
-         "n": 7,
-         "win_rate": 0.0,
-         "avg": -0.0556
+         "n": 619,
+         "win_rate": 0.05,
+         "avg": -0.0227
         },
         "tp": {
-         "n": 2589,
+         "n": 3443,
          "win_rate": 1.0,
-         "avg": 0.0096
+         "avg": 0.0113
         }
        }
       },
       "insights": [
        "ما في نمط واضح للخسائر: الخسارة موزعة على كل الظروف"
       ],
-      "losers_were_up_1R": 0.003
+      "losers_were_up_1R": 0.0
      },
-     "best_seed": 2,
-     "generation": 888,
+     "best_seed": 1,
+     "generation": 943,
      "weak": true,
      "genome": {
       "long": [
        [
-        "htf_bb_pctb",
+        "htf_dist_ema20",
         ">",
-        93
+        77
+       ],
+       [
+        "htf_bb_width",
+        "<",
+        87
        ]
       ],
       "short": [],
-      "sl": 3.58,
-      "tp": 0.62,
-      "hold": 85,
-      "entry": 0.81
+      "sl": 4.8,
+      "tp": 0.82,
+      "hold": 21,
+      "entry": 0.7,
+      "trend_filter": 0,
+      "vol_filter": 1
      },
      "rules": {
       "long": [
-       "موقع السعر داخل بولينجر (فريم 4 ساعات) أعلى من 0.993 (مستوى 93% تاريخياً)"
+       "بُعد السعر عن EMA 20 (فريم 4 ساعات) أعلى من 0.0205 (مستوى 77% تاريخياً)",
+       "عرض بولينجر (فريم 4 ساعات) أقل من 0.18 (مستوى 87% تاريخياً)"
       ],
       "short": [],
-      "sl": "وقف الخسارة = 3.58 × ATR",
-      "tp": "الهدف = 0.62 × ATR (العائد/المخاطرة ≈ 0.2)",
-      "entry": "الدخول: أمر ليمت أحسن من سعر الإغلاق بـ 0.81 × ATR (بيتلغى إذا ما وصله السعر بالشمعة الجاية)",
-      "filters": [],
-      "hold": "أقصى مدة للصفقة = 85 شمعة (85 ساعة)"
+      "sl": "وقف الخسارة = 4.8 × ATR",
+      "tp": "الهدف = 0.82 × ATR (العائد/المخاطرة ≈ 0.2)",
+      "entry": "الدخول: أمر ليمت أحسن من سعر الإغلاق بـ 0.7 × ATR (بيتلغى إذا ما وصله السعر بالشمعة الجاية)",
+      "filters": [
+       "ما بيتداول لما السوق هادي (تذبذب أقل من المعتاد)"
+      ],
+      "hold": "أقصى مدة للصفقة = 21 شمعة (21 ساعة)"
      },
-     "train_fitness": -0.3552,
-     "valid_fitness": -0.3852,
-     "found_generation": 6,
+     "train_fitness": -0.0457,
+     "valid_fitness": -0.2974,
+     "found_generation": 921,
      "coins": [
       {
        "train": {
-        "trades": 467,
+        "trades": 751,
         "years": 5.26,
-        "trades_per_year": 88.8,
+        "trades_per_year": 142.8,
         "x1": {
-         "total": 0.7301,
-         "cagr": 0.1098,
-         "max_dd": 0.2119
+         "total": 7.8886,
+         "cagr": 0.5148,
+         "max_dd": 0.1281
         },
         "lev": {
-         "total": 0.6883,
-         "cagr": 0.1047,
-         "max_dd": 0.2119
+         "total": 7.8893,
+         "cagr": 0.5148,
+         "max_dd": 0.1281
         },
-        "win_rate": 0.895,
-        "profit_factor": 1.3,
-        "avg_trade": 0.0013,
+        "win_rate": 0.844,
+        "profit_factor": 1.74,
+        "avg_trade": 0.003,
         "buy_hold": {
          "total": 3.4295,
          "cagr": 0.327
         }
        },
        "valid": {
-        "trades": 139,
+        "trades": 195,
         "years": 1.5,
-        "trades_per_year": 92.8,
+        "trades_per_year": 130.1,
         "x1": {
-         "total": 0.0792,
-         "cagr": 0.0522,
-         "max_dd": 0.1726
+         "total": 0.2219,
+         "cagr": 0.1431,
+         "max_dd": 0.1008
         },
         "lev": {
-         "total": 0.051,
-         "cagr": 0.0337,
-         "max_dd": 0.2026
+         "total": 0.2219,
+         "cagr": 0.1431,
+         "max_dd": 0.1008
         },
-        "win_rate": 0.863,
-        "profit_factor": 1.19,
-        "avg_trade": 0.0006,
+        "win_rate": 0.795,
+        "profit_factor": 1.28,
+        "avg_trade": 0.0011,
         "buy_hold": {
          "total": 2.7948,
          "cagr": 1.435
         }
        },
        "test": {
-        "trades": 200,
+        "trades": 247,
         "years": 2.41,
-        "trades_per_year": 83.1,
+        "trades_per_year": 102.6,
         "x1": {
-         "total": -0.3453,
-         "cagr": -0.1613,
-         "max_dd": 0.3737
+         "total": -0.1254,
+         "cagr": -0.0541,
+         "max_dd": 0.239
         },
         "lev": {
-         "total": -0.3671,
-         "cagr": -0.1731,
-         "max_dd": 0.3959
+         "total": -0.1254,
+         "cagr": -0.0541,
+         "max_dd": 0.239
         },
-        "win_rate": 0.805,
-        "profit_factor": 0.58,
-        "avg_trade": -0.002,
+        "win_rate": 0.753,
+        "profit_factor": 0.9,
+        "avg_trade": -0.0005,
         "buy_hold": {
          "total": -0.0358,
          "cagr": -0.015
@@ -4006,66 +4010,66 @@
       },
       {
        "train": {
-        "trades": 512,
+        "trades": 830,
         "years": 5.26,
-        "trades_per_year": 97.3,
+        "trades_per_year": 157.8,
         "x1": {
-         "total": 0.9567,
-         "cagr": 0.1361,
-         "max_dd": 0.2532
+         "total": 9.6951,
+         "cagr": 0.569,
+         "max_dd": 0.2405
         },
         "lev": {
-         "total": 0.9462,
-         "cagr": 0.1349,
-         "max_dd": 0.2532
+         "total": 9.6951,
+         "cagr": 0.569,
+         "max_dd": 0.2405
         },
-        "win_rate": 0.885,
-        "profit_factor": 1.26,
-        "avg_trade": 0.0016,
+        "win_rate": 0.827,
+        "profit_factor": 1.52,
+        "avg_trade": 0.0031,
         "buy_hold": {
          "total": 3.2722,
          "cagr": 0.3179
         }
        },
        "valid": {
-        "trades": 134,
+        "trades": 158,
         "years": 1.5,
-        "trades_per_year": 89.4,
+        "trades_per_year": 105.4,
         "x1": {
-         "total": 0.0846,
-         "cagr": 0.0557,
-         "max_dd": 0.1002
+         "total": -0.0072,
+         "cagr": -0.0048,
+         "max_dd": 0.1627
         },
         "lev": {
-         "total": 0.0693,
-         "cagr": 0.0457,
-         "max_dd": 0.1171
+         "total": -0.0072,
+         "cagr": -0.0048,
+         "max_dd": 0.1627
         },
-        "win_rate": 0.881,
-        "profit_factor": 1.2,
-        "avg_trade": 0.0007,
+        "win_rate": 0.759,
+        "profit_factor": 1.01,
+        "avg_trade": 0.0001,
         "buy_hold": {
          "total": 1.8744,
          "cagr": 1.023
         }
        },
        "test": {
-        "trades": 183,
+        "trades": 255,
         "years": 2.41,
-        "trades_per_year": 76.0,
+        "trades_per_year": 105.9,
         "x1": {
-         "total": -0.342,
-         "cagr": -0.1596,
-         "max_dd": 0.4697
+         "total": -0.4291,
+         "cagr": -0.2077,
+         "max_dd": 0.5634
         },
         "lev": {
-         "total": -0.343,
-         "cagr": -0.1601,
-         "max_dd": 0.4715
+         "total": -0.4291,
+         "cagr": -0.2077,
+         "max_dd": 0.5634
         },
-        "win_rate": 0.809,
-        "profit_factor": 0.67,
-        "avg_trade": -0.0021,
+        "win_rate": 0.737,
+        "profit_factor": 0.75,
+        "avg_trade": -0.002,
         "buy_hold": {
          "total": -0.5079,
          "cagr": -0.2551
@@ -4080,140 +4084,140 @@
       },
       {
        "train": {
-        "trades": 241,
+        "trades": 375,
         "years": 2.29,
-        "trades_per_year": 105.4,
+        "trades_per_year": 164.0,
         "x1": {
-         "total": 1.816,
-         "cagr": 0.5727,
-         "max_dd": 0.3957
+         "total": 10.4009,
+         "cagr": 1.899,
+         "max_dd": 0.2969
         },
         "lev": {
-         "total": 1.816,
-         "cagr": 0.5727,
-         "max_dd": 0.3957
+         "total": 10.4009,
+         "cagr": 1.899,
+         "max_dd": 0.2969
         },
-        "win_rate": 0.892,
-        "profit_factor": 1.55,
-        "avg_trade": 0.0049,
+        "win_rate": 0.835,
+        "profit_factor": 1.81,
+        "avg_trade": 0.007,
         "buy_hold": {
          "total": 2.8691,
          "cagr": 0.8071
         }
        },
        "valid": {
-        "trades": 159,
+        "trades": 230,
         "years": 1.5,
-        "trades_per_year": 106.1,
+        "trades_per_year": 153.5,
         "x1": {
-         "total": 0.6322,
-         "cagr": 0.3867,
-         "max_dd": 0.1741
+         "total": 0.9332,
+         "cagr": 0.5525,
+         "max_dd": 0.2303
         },
         "lev": {
-         "total": 0.6327,
-         "cagr": 0.387,
-         "max_dd": 0.1741
+         "total": 0.9332,
+         "cagr": 0.5525,
+         "max_dd": 0.2303
         },
-        "win_rate": 0.893,
-        "profit_factor": 1.58,
-        "avg_trade": 0.0033,
+        "win_rate": 0.835,
+        "profit_factor": 1.39,
+        "avg_trade": 0.0032,
         "buy_hold": {
          "total": 13.7051,
          "cagr": 5.0129
         }
        },
        "test": {
-        "trades": 200,
+        "trades": 242,
         "years": 2.41,
-        "trades_per_year": 83.1,
+        "trades_per_year": 100.5,
         "x1": {
-         "total": -0.0332,
-         "cagr": -0.0139,
-         "max_dd": 0.2539
+         "total": 0.2333,
+         "cagr": 0.091,
+         "max_dd": 0.2829
         },
         "lev": {
-         "total": -0.0316,
-         "cagr": -0.0133,
-         "max_dd": 0.2539
+         "total": 0.2333,
+         "cagr": 0.091,
+         "max_dd": 0.2829
         },
-        "win_rate": 0.86,
-        "profit_factor": 1.0,
-        "avg_trade": 0.0,
+        "win_rate": 0.806,
+        "profit_factor": 1.16,
+        "avg_trade": 0.0011,
         "buy_hold": {
          "total": -0.5157,
          "cagr": -0.2601
         }
        },
        "verdict": {
-        "level": "soft",
-        "text": "خسارة أقل من السوق"
+        "level": "good",
+        "text": "ربح وتغلّب على اشترِ واحتفظ"
        },
        "symbol": "SOLUSDT",
        "signal_now": null
       },
       {
        "train": {
-        "trades": 568,
+        "trades": 818,
         "years": 5.04,
-        "trades_per_year": 112.7,
+        "trades_per_year": 162.3,
         "x1": {
-         "total": 4.8432,
-         "cagr": 0.4195,
-         "max_dd": 0.2494
+         "total": 8.1963,
+         "cagr": 0.5531,
+         "max_dd": 0.2536
         },
         "lev": {
-         "total": 4.8592,
-         "cagr": 0.4202,
-         "max_dd": 0.2494
+         "total": 8.1963,
+         "cagr": 0.5531,
+         "max_dd": 0.2536
         },
-        "win_rate": 0.907,
-        "profit_factor": 1.6,
-        "avg_trade": 0.0035,
+        "win_rate": 0.822,
+        "profit_factor": 1.46,
+        "avg_trade": 0.0029,
         "buy_hold": {
          "total": 93.6398,
          "cagr": 1.4666
         }
        },
        "valid": {
-        "trades": 158,
+        "trades": 151,
         "years": 1.5,
-        "trades_per_year": 105.4,
+        "trades_per_year": 100.8,
         "x1": {
-         "total": -0.1958,
-         "cagr": -0.1354,
-         "max_dd": 0.2504
+         "total": -0.0815,
+         "cagr": -0.0551,
+         "max_dd": 0.2648
         },
         "lev": {
-         "total": -0.1988,
-         "cagr": -0.1375,
-         "max_dd": 0.2561
+         "total": -0.0815,
+         "cagr": -0.0551,
+         "max_dd": 0.2648
         },
-        "win_rate": 0.842,
-        "profit_factor": 0.76,
-        "avg_trade": -0.0013,
+        "win_rate": 0.768,
+        "profit_factor": 0.94,
+        "avg_trade": -0.0004,
         "buy_hold": {
          "total": 1.3638,
          "cagr": 0.7755
         }
        },
        "test": {
-        "trades": 210,
+        "trades": 198,
         "years": 2.41,
-        "trades_per_year": 87.2,
+        "trades_per_year": 82.2,
         "x1": {
-         "total": -0.2685,
-         "cagr": -0.1218,
-         "max_dd": 0.3595
+         "total": -0.177,
+         "cagr": -0.0777,
+         "max_dd": 0.231
         },
         "lev": {
-         "total": -0.2765,
-         "cagr": -0.1258,
-         "max_dd": 0.3682
+         "total": -0.177,
+         "cagr": -0.0777,
+         "max_dd": 0.231
         },
-        "win_rate": 0.829,
-        "profit_factor": 0.71,
-        "avg_trade": -0.0014,
+        "win_rate": 0.753,
+        "profit_factor": 0.86,
+        "avg_trade": -0.0009,
         "buy_hold": {
          "total": -0.0526,
          "cagr": -0.0222
@@ -4228,74 +4232,74 @@
       },
       {
        "train": {
-        "trades": 375,
+        "trades": 477,
         "years": 3.39,
-        "trades_per_year": 110.7,
+        "trades_per_year": 140.8,
         "x1": {
-         "total": 8.0363,
-         "cagr": 0.9152,
-         "max_dd": 0.4667
+         "total": 2.0854,
+         "cagr": 0.3946,
+         "max_dd": 0.2333
         },
         "lev": {
-         "total": 8.0404,
-         "cagr": 0.9155,
-         "max_dd": 0.4667
+         "total": 2.0854,
+         "cagr": 0.3946,
+         "max_dd": 0.2333
         },
-        "win_rate": 0.896,
-        "profit_factor": 1.83,
-        "avg_trade": 0.0065,
+        "win_rate": 0.778,
+        "profit_factor": 1.35,
+        "avg_trade": 0.0027,
         "buy_hold": {
          "total": 23.3924,
          "cagr": 1.5676
         }
        },
        "valid": {
-        "trades": 166,
+        "trades": 276,
         "years": 1.5,
-        "trades_per_year": 110.8,
+        "trades_per_year": 184.2,
         "x1": {
-         "total": -0.2862,
-         "cagr": -0.2015,
-         "max_dd": 0.3896
+         "total": 0.0035,
+         "cagr": 0.0023,
+         "max_dd": 0.384
         },
         "lev": {
-         "total": -0.2842,
-         "cagr": -0.2,
-         "max_dd": 0.3878
+         "total": 0.0034,
+         "cagr": 0.0023,
+         "max_dd": 0.384
         },
-        "win_rate": 0.837,
-        "profit_factor": 0.81,
-        "avg_trade": -0.0017,
+        "win_rate": 0.779,
+        "profit_factor": 1.03,
+        "avg_trade": 0.0003,
         "buy_hold": {
          "total": 0.7722,
          "cagr": 0.465
         }
        },
        "test": {
-        "trades": 227,
+        "trades": 416,
         "years": 2.41,
-        "trades_per_year": 94.3,
+        "trades_per_year": 172.8,
         "x1": {
-         "total": -0.2825,
-         "cagr": -0.1288,
-         "max_dd": 0.5226
+         "total": -0.5522,
+         "cagr": -0.2837,
+         "max_dd": 0.7277
         },
         "lev": {
-         "total": -0.2852,
-         "cagr": -0.1302,
-         "max_dd": 0.5243
+         "total": -0.5522,
+         "cagr": -0.2837,
+         "max_dd": 0.7277
         },
-        "win_rate": 0.841,
-        "profit_factor": 0.86,
-        "avg_trade": -0.0011,
+        "win_rate": 0.745,
+        "profit_factor": 0.84,
+        "avg_trade": -0.0016,
         "buy_hold": {
          "total": -0.5445,
          "cagr": -0.2787
         }
        },
        "verdict": {
-        "level": "soft",
-        "text": "خسارة أقل من السوق"
+        "level": "bad",
+        "text": "خسارة"
        },
        "symbol": "DOGEUSDT",
        "signal_now": null
@@ -4308,9 +4312,9 @@
      "seeds": [
       {
        "seed": 1,
-       "generation": 1272,
+       "generation": 1378,
        "done": false,
-       "hours_without_improve": 9.1,
+       "hours_without_improve": 9.8,
        "robust": -0.3826,
        "test_avg": -0.0596,
        "indicators": [
@@ -4320,9 +4324,9 @@
       },
       {
        "seed": 2,
-       "generation": 1021,
+       "generation": 1121,
        "done": false,
-       "hours_without_improve": 9.1,
+       "hours_without_improve": 9.8,
        "robust": -0.0277,
        "test_avg": -0.1582,
        "indicators": [
@@ -4334,9 +4338,9 @@
       },
       {
        "seed": 3,
-       "generation": 1117,
+       "generation": 1220,
        "done": false,
-       "hours_without_improve": 9.0,
+       "hours_without_improve": 9.7,
        "robust": -0.1998,
        "test_avg": -0.2158,
        "indicators": [
@@ -4455,7 +4459,7 @@
       "losers_were_up_1R": 0.0
      },
      "best_seed": 2,
-     "generation": 1021,
+     "generation": 1121,
      "weak": true,
      "genome": {
       "long": [
@@ -4588,9 +4592,9 @@
      "seeds": [
       {
        "seed": 1,
-       "generation": 1228,
+       "generation": 1342,
        "done": false,
-       "hours_without_improve": 9.3,
+       "hours_without_improve": 10.0,
        "robust": 0.0364,
        "test_avg": -0.3954,
        "indicators": [
@@ -4600,9 +4604,9 @@
       },
       {
        "seed": 2,
-       "generation": 1046,
+       "generation": 1137,
        "done": false,
-       "hours_without_improve": 2.4,
+       "hours_without_improve": 3.1,
        "robust": 0.167,
        "test_avg": -0.2655,
        "indicators": [
@@ -4612,9 +4616,9 @@
       },
       {
        "seed": 3,
-       "generation": 1046,
+       "generation": 1141,
        "done": false,
-       "hours_without_improve": 9.2,
+       "hours_without_improve": 9.9,
        "robust": 0.1135,
        "test_avg": -0.3146,
        "indicators": [
@@ -4728,7 +4732,7 @@
       "losers_were_up_1R": 0.022
      },
      "best_seed": 2,
-     "generation": 1046,
+     "generation": 1137,
      "weak": false,
      "genome": {
       "long": [
@@ -4847,9 +4851,9 @@
      "seeds": [
       {
        "seed": 1,
-       "generation": 938,
+       "generation": 1023,
        "done": false,
-       "hours_without_improve": 9.0,
+       "hours_without_improve": 9.7,
        "robust": 0.0729,
        "test_avg": 0.1738,
        "indicators": [
@@ -4859,9 +4863,9 @@
       },
       {
        "seed": 2,
-       "generation": 801,
+       "generation": 872,
        "done": false,
-       "hours_without_improve": 5.0,
+       "hours_without_improve": 5.7,
        "robust": -0.1114,
        "test_avg": -0.1638,
        "indicators": [
@@ -4872,9 +4876,9 @@
       },
       {
        "seed": 3,
-       "generation": 1219,
+       "generation": 1330,
        "done": false,
-       "hours_without_improve": 9.0,
+       "hours_without_improve": 9.7,
        "robust": -0.2163,
        "test_avg": -0.4519,
        "indicators": [
@@ -4993,7 +4997,7 @@
       "losers_were_up_1R": 0.0
      },
      "best_seed": 1,
-     "generation": 938,
+     "generation": 1023,
      "weak": false,
      "genome": {
       "long": [
@@ -5114,9 +5118,9 @@
      "seeds": [
       {
        "seed": 1,
-       "generation": 1303,
+       "generation": 1420,
        "done": false,
-       "hours_without_improve": 9.2,
+       "hours_without_improve": 9.9,
        "robust": -0.3049,
        "test_avg": -0.2006,
        "indicators": [
@@ -5126,9 +5130,9 @@
       },
       {
        "seed": 2,
-       "generation": 1367,
+       "generation": 1489,
        "done": false,
-       "hours_without_improve": 9.2,
+       "hours_without_improve": 9.9,
        "robust": -0.1528,
        "test_avg": -0.2815,
        "indicators": [
@@ -5137,9 +5141,9 @@
       },
       {
        "seed": 3,
-       "generation": 775,
+       "generation": 850,
        "done": false,
-       "hours_without_improve": 9.2,
+       "hours_without_improve": 9.9,
        "robust": -0.0409,
        "test_avg": -0.4015,
        "indicators": [
@@ -5253,7 +5257,7 @@
       "losers_were_up_1R": 0.0
      },
      "best_seed": 3,
-     "generation": 775,
+     "generation": 850,
      "weak": true,
      "genome": {
       "long": [
@@ -5372,9 +5376,9 @@
      "seeds": [
       {
        "seed": 1,
-       "generation": 1869,
+       "generation": 2035,
        "done": false,
-       "hours_without_improve": 9.1,
+       "hours_without_improve": 9.8,
        "robust": 0.7876,
        "test_avg": -0.1852,
        "indicators": [
@@ -5384,9 +5388,9 @@
       },
       {
        "seed": 2,
-       "generation": 2414,
+       "generation": 2630,
        "done": false,
-       "hours_without_improve": 9.1,
+       "hours_without_improve": 9.8,
        "robust": 0.8531,
        "test_avg": 0.8735,
        "indicators": [
@@ -5397,9 +5401,9 @@
       },
       {
        "seed": 3,
-       "generation": 2499,
+       "generation": 2726,
        "done": false,
-       "hours_without_improve": 9.1,
+       "hours_without_improve": 9.8,
        "robust": 0.3294,
        "test_avg": -0.0564,
        "indicators": [
@@ -5517,7 +5521,7 @@
       "losers_were_up_1R": 0.0
      },
      "best_seed": 2,
-     "generation": 2414,
+     "generation": 2630,
      "weak": false,
      "genome": {
       "long": [
