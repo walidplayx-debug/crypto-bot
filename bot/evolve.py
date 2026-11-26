@@ -53,6 +53,8 @@ def rand_genome(names, variant):
         "tp": round(random.uniform(0.5, 10.0), 2),
         "hold": random.randint(lo, hi),
         "entry": round(random.uniform(0.0, 1.0), 2),   # limit-order offset in ATR
+        "trend_filter": int(random.random() < 0.5),    # only trade with the EMA 200 trend
+        "vol_filter": int(random.random() < 0.4),      # skip low-volatility markets
     })
 
 
@@ -74,6 +76,8 @@ def crossover(a, b):
         w = random.random()
         child[p] = a.get(p, 0.0) * w + b.get(p, 0.0) * (1 - w)
     child["entry"] = round(child["entry"], 2)
+    for p in ("trend_filter", "vol_filter"):
+        child[p] = random.choice([a, b]).get(p, 0)
     child["sl"], child["tp"] = round(child["sl"], 2), round(child["tp"], 2)
     child["hold"] = int(round(child["hold"]))
     if not child["long"] and not child["short"]:
@@ -106,6 +110,9 @@ def mutate(g, names, variant, rate=0.3):
         g["hold"] = int(np.clip(g["hold"] * np.exp(random.gauss(0, 0.25)), lo, hi))
     if random.random() < rate:
         g["entry"] = round(float(np.clip(g.get("entry", 0.0) + random.gauss(0, 0.15), 0.0, 1.5)), 2)
+    for p in ("trend_filter", "vol_filter"):
+        if random.random() < rate * 0.2:
+            g[p] = 1 - g.get(p, 0)
     if random.random() < rate * 0.1:            # occasionally open the other direction
         other = "short" if not g["short"] else ("long" if not g["long"] else None)
         if other:

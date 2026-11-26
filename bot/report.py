@@ -60,6 +60,8 @@ def describe(g, d):
         "sl": f"وقف الخسارة = {g['sl']} × ATR",
         "tp": f"الهدف = {g['tp']} × ATR (العائد/المخاطرة ≈ {g['tp'] / g['sl']:.1f})",
         "entry": f"الدخول: أمر ليمت أحسن من سعر الإغلاق بـ {g.get('entry', 0)} × ATR (بيتلغى إذا ما وصله السعر بالشمعة الجاية)",
+        "filters": ([f"بس مع الترند الكبير: شراء فوق EMA 200 وبيع تحتها{' (فريم 4 ساعات)' if 'htf_dist_ema200' in d.names else ''}"] if g.get("trend_filter") else [])
+                   + (["ما بيتداول لما السوق هادي (تذبذب أقل من المعتاد)"] if g.get("vol_filter") else []),
         "hold": f"أقصى مدة للصفقة = {g['hold']} شمعة ({g['hold'] * d.bar_hours} {unit})",
     }
 

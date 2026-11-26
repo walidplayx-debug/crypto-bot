@@ -83,6 +83,15 @@ def signals(d, g):
     none = np.zeros(len(d.c), bool)
     ml = side_mask(d, g["long"]); ml = none if ml is None else ml
     ms = side_mask(d, g["short"]); ms = none if ms is None else ms
+    if g.get("trend_filter"):      # trade only WITH the big trend (EMA 200; 4h EMA 200 when available)
+        col = "htf_dist_ema200" if "htf_dist_ema200" in d.names else "dist_ema200"
+        t = d.X[:, d.col(col)]
+        ml = ml & (t > 0)
+        ms = ms & (t < 0)
+    if g.get("vol_filter"):        # skip quiet, low-volatility markets
+        v = d.X[:, d.col("vol_regime")]
+        ml = ml & (v >= 0.8)
+        ms = ms & (v >= 0.8)
     s[ml & ~ms] = 1            # both at once -> conflicting, stay out
     s[ms & ~ml] = -1
     s[~np.isfinite(d.atr)] = 0

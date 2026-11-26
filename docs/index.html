@@ -107,6 +107,7 @@ function card(e){
     </table></div>
     <b>🟢 شروط الشراء (Long)</b>${list(r.long)}
     <b>🔴 شروط البيع (Short)</b>${list(r.short)}
+    ${r.filters && r.filters.length ? `<b>🧭 فلاتر السوق</b>${list(r.filters)}` : ""}
     <div class="muted">${r.entry ? esc(r.entry) + " · " : ""}${esc(r.sl)} · ${esc(r.tp)} · ${esc(r.hold)}</div>
     ${sigs}
     <img src="${e.chart}?v=${encodeURIComponent(DATA.updated)}" alt="منحنى رأس المال ${title}" loading="lazy">

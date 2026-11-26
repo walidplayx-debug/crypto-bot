@@ -13,7 +13,8 @@ We never tell it how to trade. It gets the indicators, invents strategies, tests
 
 1. **Data:** 1-hour candles from Binance (free, no API key). 4-hour candles are built from them.
 2. **Indicators (26):** RSI, MACD, Bollinger, EMA 20/50/200, ATR, ADX, Stochastic, CCI, MFI, OBV, volume, Donchian channels, volatility…
-3. **A strategy:** up to 2 long conditions and up to 2 short conditions, plus a stop-loss and take-profit in ATR multiples, and a maximum trade duration.
+3. **Market filters (learned from the loss analysis):** a strategy may switch on "only trade with the EMA 200 trend" and/or "skip low-volatility markets".
+4. **A strategy:** up to 2 long conditions and up to 2 short conditions, plus a stop-loss and take-profit in ATR multiples, and a maximum trade duration.
 4. **Three timeframes:** 1h, 4h, and 1h with a 4h trend filter.
 5. **Two kinds of strategy:**
    - **Universal:** one strategy that has to work on all five coins at once. Harder to find, but the strongest evidence that it isn't luck.
