@@ -61,10 +61,10 @@ function seedBlock(e){
   const rows = e.seeds.map(x => `<tr><td>بحث ${x.seed}${x.seed===e.best_seed?" ⭐":""}</td>
     <td class="num">${x.robust===undefined?"—":x.robust.toFixed(3)}</td>
     <td class="num">${x.test_avg===undefined?"—":pct(x.test_avg)}</td>
-    <td>${x.done?"🏁 خلص":`🔄 ${x.runs_without_improve}/${e.stop_after}`}</td></tr>`).join("");
+    <td>${x.done?"🏁 خلص":`🔄 ${x.hours_without_improve ?? 0}/${e.stop_after} ساعة`}</td></tr>`).join("");
   return `<details><summary>🎲 3 بحوث مستقلة: ${icon} ${esc(e.agreement.text)}</summary><div class="scroll"><table>
     <tr><th></th><th>التقييم</th><th>متوسط المخفي</th><th>الحالة</th></tr>${rows}</table></div>
-    <div class="muted">"التقييم" هو الأضعف بين التدريب والتحقق. ⭐ = البحث اللي معروض فوق. البحث بيوقف بعد ${e.stop_after} تشغيلات (يومين) بدون تحسّن.</div></details>`;
+    <div class="muted">"التقييم" هو الأضعف بين التدريب والتحقق. ⭐ = البحث اللي معروض فوق. البحث بيوقف بعد ${e.stop_after} ساعة (يومين) بدون تحسّن.</div></details>`;
 }
 
 function card(e){

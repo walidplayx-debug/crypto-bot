@@ -196,13 +196,16 @@ def run_scope(pool, variant, name, seconds):
     st["history"] = st["history"][-3000:]
     # stopping rule: count whole runs in which the champion did not change
     changed = champ is not None and key(champ["genome"]) != champ_before
+    now = time.time()
+    if changed or "last_improve" not in st:
+        st["last_improve"] = now
     st["runs_without_improve"] = 0 if changed else st.get("runs_without_improve", 0) + 1
-    st["done"] = st["runs_without_improve"] >= C.STOP_AFTER_RUNS
+    st["done"] = now - st["last_improve"] >= C.STOP_AFTER_HOURS * 3600
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(st))
     cv = champ["valid_fitness"] if champ else None
     print(f"[{variant} {name}] +{gens} generations (total {st['generation']}), champion valid={cv}, "
-          f"runs without a better champion: {st['runs_without_improve']}/{C.STOP_AFTER_RUNS}"
+          f"hours without a better champion: {(now - st['last_improve']) / 3600:.1f}/{C.STOP_AFTER_HOURS}"
           + ("  -> DONE" if st["done"] else ""), flush=True)
 
 

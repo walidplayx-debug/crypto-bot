@@ -46,7 +46,7 @@ At least ~75 trades a year per coin (about one every 5 days). Across the five co
 ## When does it stop?
 
 - Every strategy is searched **3 times independently**, from different random starts. If all three find similar, profitable strategies, the pattern is probably real; if each finds something different, it was luck.
-- A search stops after **8 runs (2 days)** without a better champion. When every search has stopped, the page shows 🏁.
+- A search stops after **48 hours** without a better champion. When every search has stopped, the page shows 🏁.
 
 ## Second strategy: coin rotation 🔄
 

@@ -1,5 +1,6 @@
 """Builds docs/data.json, docs/img/*.png and RESULTS.md from the saved champions."""
 import json
+import time
 from datetime import datetime, timezone
 
 import matplotlib
@@ -185,7 +186,8 @@ def main():
             for st in sts:
                 ch = st.get("champion")
                 info = {"seed": st.get("seed", 1), "generation": st["generation"],
-                        "done": bool(st.get("done")), "runs_without_improve": st.get("runs_without_improve", 0)}
+                        "done": bool(st.get("done")),
+                        "hours_without_improve": round((time.time() - st.get("last_improve", time.time())) / 3600, 1)}
                 if ch:
                     tests = [metrics(d, backtest(d, ch["genome"], d.test), d.test)["lev"]["total"] for d in ds]
                     info.update(robust=ch.get("robust", 0), test_avg=round(float(np.mean(tests)), 4),
@@ -193,7 +195,7 @@ def main():
                 seeds.append(info)
             e = {"scope": scope, "seeds": seeds, "agreement": agreement(seeds),
                  "converged": all(x["done"] for x in seeds) and len(seeds) >= C.SEEDS,
-                 "stop_after": C.STOP_AFTER_RUNS}
+                 "stop_after": C.STOP_AFTER_HOURS}
             with_ch = [st for st in sts if st.get("champion")]
             if not with_ch:
                 e["generation"] = max(st["generation"] for st in sts)

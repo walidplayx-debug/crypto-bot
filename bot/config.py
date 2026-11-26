@@ -55,8 +55,8 @@ CHAMPION_MARGIN = 0.01        # a new champion must beat the old one by this muc
 
 # Independent searches per strategy. If they agree, the pattern is probably real.
 SEEDS = 3
-# A search stops after this many runs (every 6h) without a better champion: 8 = 2 days
-STOP_AFTER_RUNS = 8
+# A search stops after this many hours without a better champion (2 days)
+STOP_AFTER_HOURS = 48
 
 # Bump when the scoring or the backtest changes: older saved searches are then restarted.
 STATE_VERSION = 3
