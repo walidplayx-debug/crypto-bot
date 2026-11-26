@@ -93,6 +93,46 @@ def simulate(params, o, c):
     return r, changes, W
 
 
+def position_trades(W, o, c):
+    """Every continuous holding of one coin in one direction = one trade.
+    Returns DataFrame: end day (as return index), return after costs."""
+    ret = np.nan_to_num((o.shift(-2) / o.shift(-1) - 1).to_numpy())
+    cost = 2 * (C.TAKER_FEE + C.SLIPPAGE)
+    out = []
+    for j in range(W.shape[1]):
+        sign = np.sign(W[:, j])
+        t = 0
+        while t < len(sign):
+            if sign[t] == 0:
+                t += 1
+                continue
+            u = t
+            while u + 1 < len(sign) and sign[u + 1] == sign[t]:
+                u += 1
+            r = float(np.prod(1 + sign[t] * ret[t:u + 1]) - 1 - cost)
+            out.append((c.index[u] + pd.Timedelta(days=1), r, u - t + 1))
+            t = u + 1
+    df = pd.DataFrame(out, columns=["day", "ret", "days"]).set_index("day").sort_index()
+    return df
+
+
+def trade_stats(tr, which):
+    t0, t1 = pd.Timestamp(C.TRAIN_END, tz="UTC"), pd.Timestamp(C.VALID_END, tz="UTC")
+    if which == "train":
+        x = tr[tr.index < t0]
+    elif which == "valid":
+        x = tr[(tr.index >= t0) & (tr.index < t1)]
+    else:
+        x = tr[tr.index >= t1]
+    if not len(x):
+        return {"trades": 0, "win_rate": 0.0, "avg_win": 0.0, "avg_loss": 0.0, "avg_days": 0.0}
+    w, l = x["ret"][x["ret"] > 0], x["ret"][x["ret"] <= 0]
+    return {"trades": int(len(x)), "win_rate": round(float((x["ret"] > 0).mean()), 3),
+            "avg_win": round(float(w.mean()), 4) if len(w) else 0.0,
+            "avg_loss": round(float(l.mean()), 4) if len(l) else 0.0,
+            "avg_days": round(float(x["days"].mean()), 1)}
+
+
 def _score(r):
     if len(r) < 30:
         return -9.0
@@ -160,9 +200,11 @@ def run():
         out = {"params": dict(zip(["lookback", "longs", "short", "filter", "rebalance"], row["params"])),
                "rules": describe(row["params"]), "robust": round(row["robust"], 4),
                "train_score": round(row["train"], 4), "valid_score": round(row["valid"], 4)}
+        trades = position_trades(row["W"], o, c)
         for p in ("train", "valid", "test"):
             rp = part(row["r"], p)
             out[p] = metrics(rp, row["ch"].reindex(rp.index).fillna(False))
+            out[p].update(trade_stats(trades, p))
             out[p]["bench"] = metrics(part(bench, p), pd.Series(False, index=part(bench, p).index))["total"]
         return out
 

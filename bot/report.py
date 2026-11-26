@@ -269,10 +269,11 @@ def write_markdown(out):
     if rot:
         b = rot["best"]
         L += ["## 🔄 التناوب بين العملات", "", *[f"- {x}" for x in b["rules"]], "",
-              "| الفترة | الربح | أقصى تراجع | تغييرات/سنة | اشترِ واحتفظ (الخمسة) |", "|---|---|---|---|---|"]
+              "| الفترة | الربح | أقصى تراجع | صفقات | نسبة النجاح | متوسط الربح / الخسارة | اشترِ واحتفظ (الخمسة) |", "|---|---|---|---|---|---|---|"]
         for p, n in (("train", "تدريب"), ("valid", "تحقق"), ("test", "**مخفي**")):
             m = b[p]
-            L.append(f"| {n} | {pct(m['total'])} | {m['max_dd'] * 100:.0f}% | {m['changes_per_year']} | {pct(m['bench'])} |")
+            L.append(f"| {n} | {pct(m['total'])} | {m['max_dd'] * 100:.0f}% | {m.get('trades', 0)} | "
+                     f"{m.get('win_rate', 0) * 100:.0f}% | {pct(m.get('avg_win', 0))} / {pct(m.get('avg_loss', 0))} | {pct(m['bench'])} |")
         today = "، ".join(f"{x['side']} {x['symbol']}" for x in rot["today"]) or "كاش"
         L += ["", f"إشارة اليوم ({rot['today_date']}): **{today}**", "",
               f"من أفضل 5 إعدادات، {rot['positive_test_in_top5']} رابحة بالمخفي.", "",
