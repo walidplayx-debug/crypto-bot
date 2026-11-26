@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-25 22:24 UTC",
+ "updated": "2026-11-26 09:00 UTC",
  "split": {
   "train_end": "2023-01-01",
   "valid_end": "2024-07-01"
@@ -14,35 +14,35 @@
      "seeds": [
       {
        "seed": 1,
-       "generation": 367,
+       "generation": 159,
        "done": false,
-       "runs_without_improve": 0,
-       "robust": -0.6624,
-       "test_avg": -0.257,
+       "hours_without_improve": 0.6,
+       "robust": -0.8,
+       "test_avg": -0.421,
        "indicators": [
         "atr_pct",
-        "rsi7"
+        "donch20"
        ]
       },
       {
        "seed": 2,
-       "generation": 318,
+       "generation": 157,
        "done": false,
-       "runs_without_improve": 1,
-       "robust": -0.4145,
-       "test_avg": -0.2326,
+       "hours_without_improve": 0.5,
+       "robust": -0.2613,
+       "test_avg": -0.1414,
        "indicators": [
-        "dist_ema200",
-        "obv_z"
+        "di_diff",
+        "macd_hist"
        ]
       },
       {
        "seed": 3,
-       "generation": 300,
+       "generation": 199,
        "done": false,
-       "runs_without_improve": 1,
-       "robust": -1.2855,
-       "test_avg": 0.1648,
+       "hours_without_improve": 0.3,
+       "robust": -0.5421,
+       "test_avg": -0.2012,
        "indicators": [
         "atr_pct",
         "rsi7"
@@ -54,108 +54,109 @@
       "text": "البحوث ما لقت نمط ثابت"
      },
      "converged": false,
-     "stop_after": 8,
+     "stop_after": 48,
      "best_seed": 2,
-     "generation": 318,
+     "generation": 157,
      "weak": true,
      "genome": {
       "long": [
        [
-        "dist_ema200",
+        "macd_hist",
         ">",
-        59
+        81
        ],
        [
-        "obv_z",
+        "di_diff",
         ">",
-        97
+        75
        ]
       ],
       "short": [],
-      "sl": 5.62,
-      "tp": 1.5,
-      "hold": 17
+      "sl": 4.2,
+      "tp": 1.26,
+      "hold": 13,
+      "entry": 0.7
      },
      "rules": {
       "long": [
-       "بُعد السعر عن EMA 200 أعلى من 0.011 (مستوى 59% تاريخياً)",
-       "OBV مقارنة بالمعتاد أعلى من 2.52 (مستوى 97% تاريخياً)"
+       "هيستوغرام MACD أعلى من 0.171 (مستوى 81% تاريخياً)",
+       "اتجاه DI+ ناقص DI− أعلى من 8.35 (مستوى 75% تاريخياً)"
       ],
       "short": [],
-      "sl": "وقف الخسارة = 5.62 × ATR",
-      "tp": "الهدف = 1.5 × ATR (العائد/المخاطرة ≈ 0.3)",
-      "entry": "الدخول: أمر ليمت أحسن من سعر الإغلاق بـ 0 × ATR (بيتلغى إذا ما وصله السعر بالشمعة الجاية)",
-      "hold": "أقصى مدة للصفقة = 17 شمعة (17 ساعة)"
+      "sl": "وقف الخسارة = 4.2 × ATR",
+      "tp": "الهدف = 1.26 × ATR (العائد/المخاطرة ≈ 0.3)",
+      "entry": "الدخول: أمر ليمت أحسن من سعر الإغلاق بـ 0.7 × ATR (بيتلغى إذا ما وصله السعر بالشمعة الجاية)",
+      "hold": "أقصى مدة للصفقة = 13 شمعة (13 ساعة)"
      },
-     "train_fitness": -0.4145,
-     "valid_fitness": -0.3163,
-     "found_generation": 48,
+     "train_fitness": -0.0348,
+     "valid_fitness": -0.2613,
+     "found_generation": 35,
      "coins": [
       {
        "train": {
-        "trades": 477,
+        "trades": 765,
         "years": 5.34,
-        "trades_per_year": 89.4,
+        "trades_per_year": 143.3,
         "x1": {
-         "total": 1.5073,
-         "cagr": 0.1879,
-         "max_dd": 0.1829
+         "total": 14.2502,
+         "cagr": 0.666,
+         "max_dd": 0.2893
         },
         "lev": {
-         "total": 1.5102,
-         "cagr": 0.1882,
-         "max_dd": 0.1822
+         "total": 14.2873,
+         "cagr": 0.6668,
+         "max_dd": 0.2893
         },
-        "win_rate": 0.677,
-        "profit_factor": 1.29,
-        "avg_trade": 0.0022,
+        "win_rate": 0.718,
+        "profit_factor": 1.56,
+        "avg_trade": 0.0038,
         "buy_hold": {
          "total": 2.8404,
          "cagr": 0.2867
         }
        },
        "valid": {
-        "trades": 170,
+        "trades": 174,
         "years": 1.5,
-        "trades_per_year": 113.4,
+        "trades_per_year": 116.1,
         "x1": {
-         "total": 0.0949,
-         "cagr": 0.0624,
-         "max_dd": 0.1682
+         "total": -0.0502,
+         "cagr": -0.0338,
+         "max_dd": 0.1783
         },
         "lev": {
-         "total": 0.0986,
-         "cagr": 0.0647,
-         "max_dd": 0.1674
+         "total": -0.0557,
+         "cagr": -0.0375,
+         "max_dd": 0.1825
         },
-        "win_rate": 0.665,
-        "profit_factor": 1.11,
-        "avg_trade": 0.0006,
+        "win_rate": 0.609,
+        "profit_factor": 0.97,
+        "avg_trade": -0.0002,
         "buy_hold": {
          "total": 2.7948,
          "cagr": 1.435
         }
        },
        "test": {
-        "trades": 240,
+        "trades": 223,
         "years": 2.41,
-        "trades_per_year": 99.8,
+        "trades_per_year": 92.7,
         "x1": {
-         "total": -0.2247,
-         "cagr": -0.1004,
-         "max_dd": 0.3306
+         "total": -0.037,
+         "cagr": -0.0155,
+         "max_dd": 0.1486
         },
         "lev": {
-         "total": -0.2278,
-         "cagr": -0.1019,
-         "max_dd": 0.3343
+         "total": -0.0361,
+         "cagr": -0.0152,
+         "max_dd": 0.1486
         },
-        "win_rate": 0.608,
-        "profit_factor": 0.84,
-        "avg_trade": -0.001,
+        "win_rate": 0.641,
+        "profit_factor": 0.99,
+        "avg_trade": -0.0001,
         "buy_hold": {
-         "total": -0.0399,
-         "cagr": -0.0168
+         "total": -0.0358,
+         "cagr": -0.0151
         }
        },
        "verdict": {
@@ -167,69 +168,69 @@
       },
       {
        "train": {
-        "trades": 499,
+        "trades": 776,
         "years": 5.34,
-        "trades_per_year": 93.5,
+        "trades_per_year": 145.4,
         "x1": {
-         "total": 1.897,
-         "cagr": 0.2205,
-         "max_dd": 0.3181
+         "total": 57.4938,
+         "cagr": 1.1432,
+         "max_dd": 0.237
         },
         "lev": {
-         "total": 1.897,
-         "cagr": 0.2205,
-         "max_dd": 0.3181
+         "total": 57.4938,
+         "cagr": 1.1432,
+         "max_dd": 0.237
         },
-        "win_rate": 0.691,
-        "profit_factor": 1.26,
-        "avg_trade": 0.0026,
+        "win_rate": 0.727,
+        "profit_factor": 1.74,
+        "avg_trade": 0.0056,
         "buy_hold": {
          "total": 2.6151,
          "cagr": 0.2722
         }
        },
        "valid": {
-        "trades": 135,
+        "trades": 119,
         "years": 1.5,
-        "trades_per_year": 90.1,
+        "trades_per_year": 79.4,
         "x1": {
-         "total": -0.0129,
-         "cagr": -0.0086,
-         "max_dd": 0.1605
+         "total": 0.0217,
+         "cagr": 0.0144,
+         "max_dd": 0.1515
         },
         "lev": {
-         "total": -0.0129,
-         "cagr": -0.0086,
-         "max_dd": 0.1605
+         "total": 0.0217,
+         "cagr": 0.0144,
+         "max_dd": 0.1515
         },
-        "win_rate": 0.637,
-        "profit_factor": 1.01,
-        "avg_trade": 0.0001,
+        "win_rate": 0.58,
+        "profit_factor": 1.05,
+        "avg_trade": 0.0003,
         "buy_hold": {
          "total": 1.8744,
          "cagr": 1.023
         }
        },
        "test": {
-        "trades": 238,
+        "trades": 206,
         "years": 2.41,
-        "trades_per_year": 99.0,
+        "trades_per_year": 85.6,
         "x1": {
-         "total": -0.2364,
-         "cagr": -0.1061,
-         "max_dd": 0.2963
+         "total": -0.3849,
+         "cagr": -0.1829,
+         "max_dd": 0.4589
         },
         "lev": {
-         "total": -0.2372,
-         "cagr": -0.1065,
-         "max_dd": 0.2971
+         "total": -0.3849,
+         "cagr": -0.1829,
+         "max_dd": 0.4589
         },
-        "win_rate": 0.601,
-        "profit_factor": 0.89,
-        "avg_trade": -0.0009,
+        "win_rate": 0.568,
+        "profit_factor": 0.76,
+        "avg_trade": -0.0022,
         "buy_hold": {
          "total": -0.5085,
-         "cagr": -0.2557
+         "cagr": -0.2556
         }
        },
        "verdict": {
@@ -241,69 +242,69 @@
       },
       {
        "train": {
-        "trades": 217,
+        "trades": 457,
         "years": 2.36,
-        "trades_per_year": 91.8,
+        "trades_per_year": 193.4,
         "x1": {
-         "total": 3.9469,
-         "cagr": 0.9669,
-         "max_dd": 0.2813
+         "total": 21.9944,
+         "cagr": 2.768,
+         "max_dd": 0.3881
         },
         "lev": {
-         "total": 3.9469,
-         "cagr": 0.9669,
-         "max_dd": 0.2813
+         "total": 21.9944,
+         "cagr": 2.768,
+         "max_dd": 0.3881
         },
-        "win_rate": 0.7,
-        "profit_factor": 1.59,
-        "avg_trade": 0.0084,
+        "win_rate": 0.696,
+        "profit_factor": 1.57,
+        "avg_trade": 0.0078,
         "buy_hold": {
          "total": 2.1853,
          "cagr": 0.6326
         }
        },
        "valid": {
-        "trades": 160,
+        "trades": 175,
         "years": 1.5,
-        "trades_per_year": 106.8,
+        "trades_per_year": 116.8,
         "x1": {
-         "total": 1.9698,
-         "cagr": 1.0676,
-         "max_dd": 0.2157
+         "total": 2.2774,
+         "cagr": 1.2081,
+         "max_dd": 0.1373
         },
         "lev": {
-         "total": 1.9698,
-         "cagr": 1.0676,
-         "max_dd": 0.2157
+         "total": 2.2774,
+         "cagr": 1.2081,
+         "max_dd": 0.1373
         },
-        "win_rate": 0.738,
-        "profit_factor": 1.75,
-        "avg_trade": 0.0074,
+        "win_rate": 0.72,
+        "profit_factor": 1.9,
+        "avg_trade": 0.0072,
         "buy_hold": {
          "total": 13.7051,
          "cagr": 5.0129
         }
        },
        "test": {
-        "trades": 207,
+        "trades": 160,
         "years": 2.41,
-        "trades_per_year": 86.1,
+        "trades_per_year": 66.5,
         "x1": {
-         "total": -0.1797,
-         "cagr": -0.0791,
-         "max_dd": 0.3974
+         "total": -0.0994,
+         "cagr": -0.0426,
+         "max_dd": 0.3465
         },
         "lev": {
-         "total": -0.1797,
-         "cagr": -0.0791,
-         "max_dd": 0.3974
+         "total": -0.0994,
+         "cagr": -0.0426,
+         "max_dd": 0.3465
         },
-        "win_rate": 0.589,
-        "profit_factor": 0.94,
-        "avg_trade": -0.0006,
+        "win_rate": 0.625,
+        "profit_factor": 0.97,
+        "avg_trade": -0.0003,
         "buy_hold": {
-         "total": -0.5183,
-         "cagr": -0.2619
+         "total": -0.5168,
+         "cagr": -0.2609
         }
        },
        "verdict": {
@@ -315,143 +316,143 @@
       },
       {
        "train": {
-        "trades": 488,
+        "trades": 907,
         "years": 5.12,
-        "trades_per_year": 95.4,
+        "trades_per_year": 177.3,
         "x1": {
-         "total": 10.9132,
-         "cagr": 0.6229,
-         "max_dd": 0.1934
+         "total": 272.61,
+         "cagr": 1.9945,
+         "max_dd": 0.2764
         },
         "lev": {
-         "total": 10.9132,
-         "cagr": 0.6229,
-         "max_dd": 0.1934
+         "total": 272.61,
+         "cagr": 1.9945,
+         "max_dd": 0.2764
         },
-        "win_rate": 0.691,
-        "profit_factor": 1.62,
-        "avg_trade": 0.0056,
+        "win_rate": 0.71,
+        "profit_factor": 1.81,
+        "avg_trade": 0.0067,
         "buy_hold": {
          "total": 153.5072,
          "cagr": 1.678
         }
        },
        "valid": {
-        "trades": 142,
+        "trades": 130,
         "years": 1.5,
-        "trades_per_year": 94.8,
+        "trades_per_year": 86.8,
         "x1": {
-         "total": 0.1552,
-         "cagr": 0.101,
-         "max_dd": 0.2205
+         "total": 0.0219,
+         "cagr": 0.0146,
+         "max_dd": 0.1336
         },
         "lev": {
-         "total": 0.1554,
-         "cagr": 0.1012,
-         "max_dd": 0.2205
+         "total": 0.0227,
+         "cagr": 0.0151,
+         "max_dd": 0.1336
         },
-        "win_rate": 0.704,
-        "profit_factor": 1.17,
-        "avg_trade": 0.0012,
+        "win_rate": 0.662,
+        "profit_factor": 1.05,
+        "avg_trade": 0.0003,
         "buy_hold": {
          "total": 1.3638,
          "cagr": 0.7755
         }
        },
        "test": {
-        "trades": 213,
+        "trades": 167,
         "years": 2.41,
-        "trades_per_year": 88.6,
+        "trades_per_year": 69.4,
         "x1": {
-         "total": -0.139,
-         "cagr": -0.0603,
-         "max_dd": 0.331
+         "total": -0.0312,
+         "cagr": -0.0131,
+         "max_dd": 0.2643
         },
         "lev": {
-         "total": -0.1387,
-         "cagr": -0.0602,
-         "max_dd": 0.331
+         "total": -0.0303,
+         "cagr": -0.0127,
+         "max_dd": 0.2643
         },
-        "win_rate": 0.624,
-        "profit_factor": 0.93,
-        "avg_trade": -0.0005,
+        "win_rate": 0.605,
+        "profit_factor": 0.99,
+        "avg_trade": -0.0,
         "buy_hold": {
-         "total": -0.0481,
+         "total": -0.0482,
          "cagr": -0.0203
         }
        },
        "verdict": {
-        "level": "bad",
-        "text": "خسارة"
+        "level": "soft",
+        "text": "خسارة أقل من السوق"
        },
        "symbol": "BNBUSDT",
        "signal_now": null
       },
       {
        "train": {
-        "trades": 373,
+        "trades": 568,
         "years": 3.46,
-        "trades_per_year": 107.7,
+        "trades_per_year": 164.0,
         "x1": {
-         "total": 18.2745,
-         "cagr": 1.3493,
-         "max_dd": 0.5693
+         "total": 34.9625,
+         "cagr": 1.8127,
+         "max_dd": 0.4541
         },
         "lev": {
-         "total": 18.2745,
-         "cagr": 1.3493,
-         "max_dd": 0.5693
+         "total": 34.9625,
+         "cagr": 1.8127,
+         "max_dd": 0.4541
         },
-        "win_rate": 0.678,
+        "win_rate": 0.639,
         "profit_factor": 1.65,
-        "avg_trade": 0.0092,
+        "avg_trade": 0.0074,
         "buy_hold": {
          "total": 22.4581,
          "cagr": 1.4864
         }
        },
        "valid": {
-        "trades": 167,
+        "trades": 234,
         "years": 1.5,
-        "trades_per_year": 111.4,
+        "trades_per_year": 156.2,
         "x1": {
-         "total": 0.5605,
-         "cagr": 0.3458,
-         "max_dd": 0.2802
+         "total": 0.3313,
+         "cagr": 0.2104,
+         "max_dd": 0.2047
         },
         "lev": {
-         "total": 0.5605,
-         "cagr": 0.3458,
-         "max_dd": 0.2802
+         "total": 0.3313,
+         "cagr": 0.2104,
+         "max_dd": 0.2047
         },
-        "win_rate": 0.671,
-        "profit_factor": 1.33,
-        "avg_trade": 0.0031,
+        "win_rate": 0.637,
+        "profit_factor": 1.17,
+        "avg_trade": 0.0016,
         "buy_hold": {
          "total": 0.7722,
          "cagr": 0.465
         }
        },
        "test": {
-        "trades": 224,
+        "trades": 369,
         "years": 2.41,
-        "trades_per_year": 93.1,
+        "trades_per_year": 153.3,
         "x1": {
-         "total": -0.3798,
-         "cagr": -0.1802,
-         "max_dd": 0.5714
+         "total": -0.1563,
+         "cagr": -0.0682,
+         "max_dd": 0.6356
         },
         "lev": {
-         "total": -0.3798,
-         "cagr": -0.1802,
-         "max_dd": 0.5714
+         "total": -0.1563,
+         "cagr": -0.0682,
+         "max_dd": 0.6356
         },
-        "win_rate": 0.625,
-        "profit_factor": 0.88,
-        "avg_trade": -0.0016,
+        "win_rate": 0.618,
+        "profit_factor": 0.99,
+        "avg_trade": -0.0001,
         "buy_hold": {
-         "total": -0.5502,
-         "cagr": -0.2826
+         "total": -0.5461,
+         "cagr": -0.2798
         }
        },
        "verdict": {
@@ -469,38 +470,38 @@
      "seeds": [
       {
        "seed": 1,
-       "generation": 319,
+       "generation": 102,
        "done": false,
-       "runs_without_improve": 1,
-       "robust": -0.7874,
-       "test_avg": -0.242,
+       "hours_without_improve": 0.1,
+       "robust": -0.0316,
+       "test_avg": -0.1427,
        "indicators": [
-        "bb_width",
-        "di_diff"
+        "donch20",
+        "roc1"
        ]
       },
       {
        "seed": 2,
-       "generation": 340,
+       "generation": 79,
        "done": false,
-       "runs_without_improve": 1,
-       "robust": -0.4532,
-       "test_avg": -0.3882,
+       "hours_without_improve": 0.1,
+       "robust": -0.1372,
+       "test_avg": -0.5194,
        "indicators": [
-        "di_diff"
+        "donch20",
+        "stoch_k"
        ]
       },
       {
        "seed": 3,
-       "generation": 185,
+       "generation": 118,
        "done": false,
-       "runs_without_improve": 1,
-       "robust": -0.4261,
-       "test_avg": -0.3044,
+       "hours_without_improve": 0.1,
+       "robust": -0.117,
+       "test_avg": -0.3875,
        "indicators": [
-        "obv_z",
-        "roc24",
-        "rsi14"
+        "bb_width",
+        "mfi"
        ]
       }
      ],
@@ -509,121 +510,108 @@
       "text": "البحوث ما لقت نمط ثابت"
      },
      "converged": false,
-     "stop_after": 8,
-     "best_seed": 3,
-     "generation": 185,
+     "stop_after": 48,
+     "best_seed": 1,
+     "generation": 102,
      "weak": true,
      "genome": {
       "long": [
        [
-        "roc24",
+        "roc1",
         "<",
-        65
+        29
        ],
        [
-        "obv_z",
+        "donch20",
         ">",
-        97
+        42
        ]
       ],
-      "short": [
-       [
-        "roc24",
-        ">",
-        47
-       ],
-       [
-        "rsi14",
-        "<",
-        27
-       ]
-      ],
-      "sl": 2.89,
-      "tp": 1.24,
-      "hold": 89
+      "short": [],
+      "sl": 4.57,
+      "tp": 0.86,
+      "hold": 93,
+      "entry": 0.92
      },
      "rules": {
       "long": [
-       "تغيّر آخر 24 شمعة أقل من 0.0152 (مستوى 65% تاريخياً)",
-       "OBV مقارنة بالمعتاد أعلى من 2.55 (مستوى 97% تاريخياً)"
+       "تغيّر آخر شمعة أقل من -0.00343 (مستوى 29% تاريخياً)",
+       "موقع السعر في قناة 20 أعلى من 0.461 (مستوى 42% تاريخياً)"
       ],
-      "short": [
-       "تغيّر آخر 24 شمعة أعلى من -0.00107 (مستوى 47% تاريخياً)",
-       "RSI 14 أقل من 43.92 (مستوى 27% تاريخياً)"
-      ],
-      "sl": "وقف الخسارة = 2.89 × ATR",
-      "tp": "الهدف = 1.24 × ATR (العائد/المخاطرة ≈ 0.4)",
-      "entry": "الدخول: أمر ليمت أحسن من سعر الإغلاق بـ 0 × ATR (بيتلغى إذا ما وصله السعر بالشمعة الجاية)",
-      "hold": "أقصى مدة للصفقة = 89 شمعة (89 ساعة)"
+      "short": [],
+      "sl": "وقف الخسارة = 4.57 × ATR",
+      "tp": "الهدف = 0.86 × ATR (العائد/المخاطرة ≈ 0.2)",
+      "entry": "الدخول: أمر ليمت أحسن من سعر الإغلاق بـ 0.92 × ATR (بيتلغى إذا ما وصله السعر بالشمعة الجاية)",
+      "hold": "أقصى مدة للصفقة = 93 شمعة (93 ساعة)"
      },
-     "train_fitness": -0.4261,
-     "valid_fitness": -0.3816,
-     "found_generation": 24,
+     "train_fitness": 0.2167,
+     "valid_fitness": -0.0316,
+     "found_generation": 71,
      "coins": [
       {
        "train": {
-        "trades": 432,
+        "trades": 613,
         "years": 5.12,
-        "trades_per_year": 84.4,
+        "trades_per_year": 119.8,
         "x1": {
-         "total": 3.5084,
-         "cagr": 0.3422,
-         "max_dd": 0.3306
+         "total": 82.9067,
+         "cagr": 1.3768,
+         "max_dd": 0.3096
         },
         "lev": {
-         "total": 3.4978,
-         "cagr": 0.3416,
-         "max_dd": 0.3288
+         "total": 82.9067,
+         "cagr": 1.3768,
+         "max_dd": 0.3096
         },
-        "win_rate": 0.762,
-        "profit_factor": 1.43,
-        "avg_trade": 0.0039,
+        "win_rate": 0.891,
+        "profit_factor": 2.12,
+        "avg_trade": 0.0077,
         "buy_hold": {
          "total": 153.5072,
          "cagr": 1.678
         }
        },
        "valid": {
-        "trades": 189,
+        "trades": 116,
         "years": 1.5,
-        "trades_per_year": 126.1,
+        "trades_per_year": 77.4,
         "x1": {
-         "total": 0.1728,
-         "cagr": 0.1122,
-         "max_dd": 0.1573
+         "total": 0.25,
+         "cagr": 0.1605,
+         "max_dd": 0.0898
         },
         "lev": {
-         "total": 0.1144,
-         "cagr": 0.0749,
-         "max_dd": 0.202
+         "total": 0.2504,
+         "cagr": 0.1608,
+         "max_dd": 0.0898
         },
-        "win_rate": 0.741,
-        "profit_factor": 1.19,
-        "avg_trade": 0.0009,
+        "win_rate": 0.879,
+        "profit_factor": 1.4,
+        "avg_trade": 0.0021,
         "buy_hold": {
          "total": 1.3638,
          "cagr": 0.7755
         }
        },
        "test": {
-        "trades": 275,
+        "trades": 198,
         "years": 2.41,
-        "trades_per_year": 114.3,
+        "trades_per_year": 82.3,
         "x1": {
-         "total": -0.2054,
-         "cagr": -0.0912,
-         "max_dd": 0.3986
+         "total": -0.1439,
+         "cagr": -0.0625,
+         "max_dd": 0.2469
         },
         "lev": {
-         "total": -0.3044,
-         "cagr": -0.1401,
-         "max_dd": 0.4762
+         "total": -0.1427,
+         "cagr": -0.062,
+         "max_dd": 0.2461
         },
-        "win_rate": 0.691,
-        "profit_factor": 0.89,
-        "avg_trade": -0.0007,
+        "win_rate": 0.833,
+        "profit_factor": 0.9,
+        "avg_trade": -0.0006,
         "buy_hold": {
-         "total": -0.0481,
+         "total": -0.0482,
          "cagr": -0.0203
         }
        },
@@ -642,37 +630,38 @@
      "seeds": [
       {
        "seed": 1,
-       "generation": 234,
+       "generation": 157,
        "done": false,
-       "runs_without_improve": 1,
-       "robust": -0.2088,
-       "test_avg": -0.2274,
+       "hours_without_improve": 0.3,
+       "robust": -0.0191,
+       "test_avg": -0.3228,
        "indicators": [
-        "rsi14"
+        "mfi",
+        "obv_z"
        ]
       },
       {
        "seed": 2,
-       "generation": 337,
+       "generation": 154,
        "done": false,
-       "runs_without_improve": 1,
-       "robust": -0.1708,
-       "test_avg": -0.1167,
+       "hours_without_improve": 0.3,
+       "robust": -0.001,
+       "test_avg": -0.3388,
        "indicators": [
-        "rsi14",
-        "rsi7"
+        "bb_pctb",
+        "ema20_50"
        ]
       },
       {
        "seed": 3,
-       "generation": 247,
+       "generation": 146,
        "done": false,
-       "runs_without_improve": 0,
-       "robust": -0.0937,
-       "test_avg": -0.2197,
+       "hours_without_improve": 0.3,
+       "robust": 0.1334,
+       "test_avg": -0.1648,
        "indicators": [
-        "di_diff",
-        "dist_ema50"
+        "dist_ema20",
+        "mfi"
        ]
       }
      ],
@@ -681,108 +670,109 @@
       "text": "البحوث ما لقت نمط ثابت"
      },
      "converged": false,
-     "stop_after": 8,
+     "stop_after": 48,
      "best_seed": 3,
-     "generation": 247,
-     "weak": true,
+     "generation": 146,
+     "weak": false,
      "genome": {
       "long": [
        [
-        "di_diff",
+        "mfi",
         ">",
-        81
+        88
        ],
        [
-        "dist_ema50",
+        "dist_ema20",
         ">",
-        92
+        91
        ]
       ],
       "short": [],
-      "sl": 2.66,
-      "tp": 1.43,
-      "hold": 69
+      "sl": 2.85,
+      "tp": 1.26,
+      "hold": 71,
+      "entry": 0.52
      },
      "rules": {
       "long": [
-       "اتجاه DI+ ناقص DI− أعلى من 11.38 (مستوى 81% تاريخياً)",
-       "بُعد السعر عن EMA 50 أعلى من 0.0357 (مستوى 92% تاريخياً)"
+       "MFI أعلى من 70.93 (مستوى 88% تاريخياً)",
+       "بُعد السعر عن EMA 20 أعلى من 0.0197 (مستوى 91% تاريخياً)"
       ],
       "short": [],
-      "sl": "وقف الخسارة = 2.66 × ATR",
-      "tp": "الهدف = 1.43 × ATR (العائد/المخاطرة ≈ 0.5)",
-      "entry": "الدخول: أمر ليمت أحسن من سعر الإغلاق بـ 0 × ATR (بيتلغى إذا ما وصله السعر بالشمعة الجاية)",
-      "hold": "أقصى مدة للصفقة = 69 شمعة (69 ساعة)"
+      "sl": "وقف الخسارة = 2.85 × ATR",
+      "tp": "الهدف = 1.26 × ATR (العائد/المخاطرة ≈ 0.4)",
+      "entry": "الدخول: أمر ليمت أحسن من سعر الإغلاق بـ 0.52 × ATR (بيتلغى إذا ما وصله السعر بالشمعة الجاية)",
+      "hold": "أقصى مدة للصفقة = 71 شمعة (71 ساعة)"
      },
-     "train_fitness": -0.0937,
-     "valid_fitness": -0.0657,
-     "found_generation": 141,
+     "train_fitness": 0.1791,
+     "valid_fitness": 0.1334,
+     "found_generation": 76,
      "coins": [
       {
        "train": {
-        "trades": 684,
+        "trades": 609,
         "years": 5.34,
-        "trades_per_year": 128.1,
+        "trades_per_year": 114.1,
         "x1": {
-         "total": 11.1524,
-         "cagr": 0.5966,
-         "max_dd": 0.2324
+         "total": 24.9497,
+         "cagr": 0.8405,
+         "max_dd": 0.155
         },
         "lev": {
-         "total": 11.1307,
-         "cagr": 0.5961,
-         "max_dd": 0.2348
+         "total": 25.2113,
+         "cagr": 0.844,
+         "max_dd": 0.155
         },
-        "win_rate": 0.73,
-        "profit_factor": 1.39,
-        "avg_trade": 0.004,
+        "win_rate": 0.806,
+        "profit_factor": 1.74,
+        "avg_trade": 0.0057,
         "buy_hold": {
          "total": 2.8404,
          "cagr": 0.2867
         }
        },
        "valid": {
-        "trades": 116,
+        "trades": 125,
         "years": 1.5,
-        "trades_per_year": 77.4,
+        "trades_per_year": 83.4,
         "x1": {
-         "total": 0.373,
-         "cagr": 0.2356,
-         "max_dd": 0.1007
+         "total": 0.5523,
+         "cagr": 0.3411,
+         "max_dd": 0.0793
         },
         "lev": {
-         "total": 0.3873,
-         "cagr": 0.2441,
-         "max_dd": 0.1004
+         "total": 0.5523,
+         "cagr": 0.3411,
+         "max_dd": 0.0892
         },
-        "win_rate": 0.741,
-        "profit_factor": 1.43,
-        "avg_trade": 0.0029,
+        "win_rate": 0.808,
+        "profit_factor": 1.73,
+        "avg_trade": 0.0036,
         "buy_hold": {
          "total": 2.7948,
          "cagr": 1.435
         }
        },
        "test": {
-        "trades": 92,
+        "trades": 130,
         "years": 2.41,
-        "trades_per_year": 38.3,
+        "trades_per_year": 54.0,
         "x1": {
-         "total": -0.2271,
-         "cagr": -0.1016,
-         "max_dd": 0.3082
+         "total": -0.163,
+         "cagr": -0.0713,
+         "max_dd": 0.2795
         },
         "lev": {
-         "total": -0.2197,
-         "cagr": -0.098,
-         "max_dd": 0.3034
+         "total": -0.1648,
+         "cagr": -0.0721,
+         "max_dd": 0.282
         },
-        "win_rate": 0.62,
-        "profit_factor": 0.74,
-        "avg_trade": -0.0026,
+        "win_rate": 0.708,
+        "profit_factor": 0.86,
+        "avg_trade": -0.0012,
         "buy_hold": {
-         "total": -0.0399,
-         "cagr": -0.0168
+         "total": -0.0358,
+         "cagr": -0.0151
         }
        },
        "verdict": {
@@ -800,153 +790,170 @@
      "seeds": [
       {
        "seed": 1,
-       "generation": 497,
+       "generation": 107,
        "done": false,
-       "runs_without_improve": 1,
-       "robust": -1.0721,
-       "test_avg": 0.1082,
+       "hours_without_improve": 0.1,
+       "robust": -0.0732,
+       "test_avg": -0.1401,
        "indicators": [
+        "atr_pct",
+        "ema50_200",
+        "roc1",
         "vol_regime"
        ]
       },
       {
        "seed": 2,
-       "generation": 337,
+       "generation": 220,
        "done": false,
-       "runs_without_improve": 1,
-       "robust": -0.2013,
-       "test_avg": 0.1789,
+       "hours_without_improve": 0.0,
+       "robust": -0.5698,
+       "test_avg": -0.5857,
        "indicators": [
-        "dist_ema200",
-        "vol_regime"
+        "atr_pct",
+        "bb_width"
        ]
       },
       {
        "seed": 3,
-       "generation": 363,
+       "generation": 161,
        "done": false,
-       "runs_without_improve": 1,
-       "robust": -0.6584,
-       "test_avg": 0.1074,
+       "hours_without_improve": 0.0,
+       "robust": -0.4482,
+       "test_avg": -0.4938,
        "indicators": [
         "atr_pct",
-        "donch55",
-        "mfi"
+        "donch55"
        ]
       }
      ],
      "agreement": {
       "level": "bad",
-      "text": "البحوث ما لقت نمط ثابت"
+      "text": "البحوث ما لقت نمط ثابت · مؤشرات مشتركة: التذبذب ATR%"
      },
      "converged": false,
-     "stop_after": 8,
-     "best_seed": 2,
-     "generation": 337,
+     "stop_after": 48,
+     "best_seed": 1,
+     "generation": 107,
      "weak": true,
      "genome": {
-      "long": [],
+      "long": [
+       [
+        "roc1",
+        "<",
+        17
+       ],
+       [
+        "ema50_200",
+        ">",
+        82
+       ]
+      ],
       "short": [
        [
         "vol_regime",
         "<",
-        9
+        18
        ],
        [
-        "dist_ema200",
+        "atr_pct",
         "<",
-        78
+        28
        ]
       ],
-      "sl": 2.91,
-      "tp": 1.23,
-      "hold": 87
+      "sl": 4.2,
+      "tp": 1.04,
+      "hold": 73,
+      "entry": 0.94
      },
      "rules": {
-      "long": [],
-      "short": [
-       "التذبذب مقارنة بالمعتاد أقل من 0.505 (مستوى 9% تاريخياً)",
-       "بُعد السعر عن EMA 200 أقل من 0.0319 (مستوى 78% تاريخياً)"
+      "long": [
+       "تغيّر آخر شمعة أقل من -0.00691 (مستوى 17% تاريخياً)",
+       "EMA 50 مقابل EMA 200 أعلى من 0.0287 (مستوى 82% تاريخياً)"
       ],
-      "sl": "وقف الخسارة = 2.91 × ATR",
-      "tp": "الهدف = 1.23 × ATR (العائد/المخاطرة ≈ 0.4)",
-      "entry": "الدخول: أمر ليمت أحسن من سعر الإغلاق بـ 0 × ATR (بيتلغى إذا ما وصله السعر بالشمعة الجاية)",
-      "hold": "أقصى مدة للصفقة = 87 شمعة (87 ساعة)"
+      "short": [
+       "التذبذب مقارنة بالمعتاد أقل من 0.604 (مستوى 18% تاريخياً)",
+       "التذبذب ATR% أقل من 0.00992 (مستوى 28% تاريخياً)"
+      ],
+      "sl": "وقف الخسارة = 4.2 × ATR",
+      "tp": "الهدف = 1.04 × ATR (العائد/المخاطرة ≈ 0.2)",
+      "entry": "الدخول: أمر ليمت أحسن من سعر الإغلاق بـ 0.94 × ATR (بيتلغى إذا ما وصله السعر بالشمعة الجاية)",
+      "hold": "أقصى مدة للصفقة = 73 شمعة (73 ساعة)"
      },
-     "train_fitness": -0.1187,
-     "valid_fitness": -0.2013,
-     "found_generation": 31,
+     "train_fitness": -0.054,
+     "valid_fitness": -0.0732,
+     "found_generation": 17,
      "coins": [
       {
        "train": {
-        "trades": 294,
+        "trades": 337,
         "years": 3.46,
-        "trades_per_year": 84.9,
+        "trades_per_year": 97.3,
         "x1": {
-         "total": 1.749,
-         "cagr": 0.339,
-         "max_dd": 0.1832
+         "total": 24.1483,
+         "cagr": 1.5368,
+         "max_dd": 0.3244
         },
         "lev": {
-         "total": 1.7635,
-         "cagr": 0.341,
-         "max_dd": 0.1832
+         "total": 24.2703,
+         "cagr": 1.5403,
+         "max_dd": 0.3244
         },
-        "win_rate": 0.762,
-        "profit_factor": 1.43,
-        "avg_trade": 0.0038,
+        "win_rate": 0.852,
+        "profit_factor": 2.13,
+        "avg_trade": 0.011,
         "buy_hold": {
          "total": 22.4581,
          "cagr": 1.4864
         }
        },
        "valid": {
-        "trades": 125,
+        "trades": 175,
         "years": 1.5,
-        "trades_per_year": 83.4,
+        "trades_per_year": 116.8,
         "x1": {
-         "total": 0.0769,
-         "cagr": 0.0507,
-         "max_dd": 0.1189
+         "total": 0.7013,
+         "cagr": 0.4256,
+         "max_dd": 0.2039
         },
         "lev": {
-         "total": 0.1313,
-         "cagr": 0.0858,
-         "max_dd": 0.1187
+         "total": 0.7254,
+         "cagr": 0.4391,
+         "max_dd": 0.2039
         },
-        "win_rate": 0.776,
-        "profit_factor": 1.12,
-        "avg_trade": 0.0007,
+        "win_rate": 0.834,
+        "profit_factor": 1.48,
+        "avg_trade": 0.0034,
         "buy_hold": {
          "total": 0.7722,
          "cagr": 0.465
         }
        },
        "test": {
-        "trades": 173,
+        "trades": 229,
         "years": 2.41,
-        "trades_per_year": 71.9,
+        "trades_per_year": 95.2,
         "x1": {
-         "total": 0.1746,
-         "cagr": 0.0692,
-         "max_dd": 0.1922
+         "total": -0.1368,
+         "cagr": -0.0593,
+         "max_dd": 0.546
         },
         "lev": {
-         "total": 0.1789,
-         "cagr": 0.0708,
-         "max_dd": 0.2018
+         "total": -0.1401,
+         "cagr": -0.0608,
+         "max_dd": 0.5477
         },
-        "win_rate": 0.751,
-        "profit_factor": 1.17,
-        "avg_trade": 0.0011,
+        "win_rate": 0.769,
+        "profit_factor": 0.97,
+        "avg_trade": -0.0003,
         "buy_hold": {
-         "total": -0.5502,
-         "cagr": -0.2826
+         "total": -0.5461,
+         "cagr": -0.2798
         }
        },
        "verdict": {
-        "level": "good",
-        "text": "ربح وتغلّب على اشترِ واحتفظ"
+        "level": "soft",
+        "text": "خسارة أقل من السوق"
        },
        "symbol": "DOGEUSDT",
        "signal_now": null
@@ -959,39 +966,38 @@
      "seeds": [
       {
        "seed": 1,
-       "generation": 278,
+       "generation": 167,
        "done": false,
-       "runs_without_improve": 1,
-       "robust": -0.7389,
-       "test_avg": -0.2548,
+       "hours_without_improve": 0.3,
+       "robust": -0.3174,
+       "test_avg": -0.1019,
        "indicators": [
-        "bb_pctb",
-        "donch55"
+        "di_diff",
+        "macd_hist"
        ]
       },
       {
        "seed": 2,
-       "generation": 118,
+       "generation": 175,
        "done": false,
-       "runs_without_improve": 1,
-       "robust": -0.2755,
-       "test_avg": -0.2179,
+       "hours_without_improve": 0.2,
+       "robust": -0.4288,
+       "test_avg": -0.4387,
        "indicators": [
-        "macd",
-        "stoch_d"
+        "di_diff",
+        "macd_hist"
        ]
       },
       {
        "seed": 3,
-       "generation": 328,
+       "generation": 155,
        "done": false,
-       "runs_without_improve": 1,
-       "robust": -0.4226,
-       "test_avg": -0.6225,
+       "hours_without_improve": 0.2,
+       "robust": -0.5057,
+       "test_avg": -0.4963,
        "indicators": [
-        "bb_width",
-        "di_diff",
-        "vol_regime"
+        "obv_z",
+        "roc6"
        ]
       }
      ],
@@ -1000,108 +1006,109 @@
       "text": "البحوث ما لقت نمط ثابت"
      },
      "converged": false,
-     "stop_after": 8,
-     "best_seed": 2,
-     "generation": 118,
+     "stop_after": 48,
+     "best_seed": 1,
+     "generation": 167,
      "weak": true,
      "genome": {
-      "long": [],
-      "short": [
+      "long": [
        [
-        "stoch_d",
+        "di_diff",
         ">",
-        60
+        77
        ],
        [
-        "macd",
-        "<",
-        26
+        "macd_hist",
+        ">",
+        78
        ]
       ],
+      "short": [],
       "sl": 3.15,
-      "tp": 0.3,
-      "hold": 64
+      "tp": 4.22,
+      "hold": 65,
+      "entry": 0.69
      },
      "rules": {
-      "long": [],
-      "short": [
-       "ستوكاستك D أعلى من 62.11 (مستوى 60% تاريخياً)",
-       "MACD أقل من -0.458 (مستوى 26% تاريخياً)"
+      "long": [
+       "اتجاه DI+ ناقص DI− أعلى من 9.34 (مستوى 77% تاريخياً)",
+       "هيستوغرام MACD أعلى من 0.197 (مستوى 78% تاريخياً)"
       ],
+      "short": [],
       "sl": "وقف الخسارة = 3.15 × ATR",
-      "tp": "الهدف = 0.3 × ATR (العائد/المخاطرة ≈ 0.1)",
-      "entry": "الدخول: أمر ليمت أحسن من سعر الإغلاق بـ 0 × ATR (بيتلغى إذا ما وصله السعر بالشمعة الجاية)",
-      "hold": "أقصى مدة للصفقة = 64 شمعة (64 ساعة)"
+      "tp": "الهدف = 4.22 × ATR (العائد/المخاطرة ≈ 1.3)",
+      "entry": "الدخول: أمر ليمت أحسن من سعر الإغلاق بـ 0.69 × ATR (بيتلغى إذا ما وصله السعر بالشمعة الجاية)",
+      "hold": "أقصى مدة للصفقة = 65 شمعة (65 ساعة)"
      },
-     "train_fitness": -0.2557,
-     "valid_fitness": -0.2755,
-     "found_generation": 45,
+     "train_fitness": 0.1865,
+     "valid_fitness": -0.3174,
+     "found_generation": 121,
      "coins": [
       {
        "train": {
-        "trades": 837,
+        "trades": 537,
         "years": 5.34,
-        "trades_per_year": 156.8,
+        "trades_per_year": 100.6,
         "x1": {
-         "total": 4.8903,
-         "cagr": 0.3941,
-         "max_dd": 0.1914
+         "total": 349.3597,
+         "cagr": 1.9972,
+         "max_dd": 0.3033
         },
         "lev": {
-         "total": 4.8969,
-         "cagr": 0.3944,
-         "max_dd": 0.1914
+         "total": 355.0631,
+         "cagr": 2.0062,
+         "max_dd": 0.3033
         },
-        "win_rate": 0.944,
-        "profit_factor": 1.67,
-        "avg_trade": 0.0023,
+        "win_rate": 0.561,
+        "profit_factor": 1.69,
+        "avg_trade": 0.0124,
         "buy_hold": {
          "total": 2.6151,
          "cagr": 0.2722
         }
        },
        "valid": {
-        "trades": 111,
+        "trades": 121,
         "years": 1.5,
-        "trades_per_year": 74.1,
+        "trades_per_year": 80.7,
         "x1": {
-         "total": -0.0349,
-         "cagr": -0.0234,
-         "max_dd": 0.0941
+         "total": 0.1745,
+         "cagr": 0.1133,
+         "max_dd": 0.2425
         },
         "lev": {
-         "total": -0.0332,
-         "cagr": -0.0223,
-         "max_dd": 0.0929
+         "total": 0.1634,
+         "cagr": 0.1063,
+         "max_dd": 0.2604
         },
-        "win_rate": 0.919,
-        "profit_factor": 0.9,
-        "avg_trade": -0.0003,
+        "win_rate": 0.479,
+        "profit_factor": 1.14,
+        "avg_trade": 0.0018,
         "buy_hold": {
          "total": 1.8744,
          "cagr": 1.023
         }
        },
        "test": {
-        "trades": 277,
+        "trades": 192,
         "years": 2.41,
-        "trades_per_year": 115.2,
+        "trades_per_year": 79.8,
         "x1": {
-         "total": -0.2159,
-         "cagr": -0.0962,
-         "max_dd": 0.2375
+         "total": -0.0943,
+         "cagr": -0.0403,
+         "max_dd": 0.4301
         },
         "lev": {
-         "total": -0.2179,
-         "cagr": -0.0971,
-         "max_dd": 0.2394
+         "total": -0.1019,
+         "cagr": -0.0437,
+         "max_dd": 0.4283
         },
-        "win_rate": 0.91,
-        "profit_factor": 0.81,
-        "avg_trade": -0.0008,
+        "win_rate": 0.469,
+        "profit_factor": 1.01,
+        "avg_trade": 0.0001,
         "buy_hold": {
          "total": -0.5085,
-         "cagr": -0.2557
+         "cagr": -0.2556
         }
        },
        "verdict": {
@@ -1119,162 +1126,163 @@
      "seeds": [
       {
        "seed": 1,
-       "generation": 718,
+       "generation": 379,
        "done": false,
-       "runs_without_improve": 1,
-       "robust": 0.3642,
-       "test_avg": -0.521,
+       "hours_without_improve": 0.2,
+       "robust": 0.1496,
+       "test_avg": 0.0385,
        "indicators": [
-        "atr_pct",
-        "dist_ema50",
-        "vol_regime"
+        "di_diff",
+        "stoch_k"
        ]
       },
       {
        "seed": 2,
-       "generation": 599,
+       "generation": 361,
        "done": false,
-       "runs_without_improve": 1,
-       "robust": -0.0205,
-       "test_avg": -0.1362,
+       "hours_without_improve": 0.2,
+       "robust": 0.121,
+       "test_avg": -0.2797,
        "indicators": [
-        "ema20_50",
-        "vol_regime"
+        "atr_pct",
+        "obv_z"
        ]
       },
       {
        "seed": 3,
-       "generation": 543,
+       "generation": 438,
        "done": false,
-       "runs_without_improve": 1,
-       "robust": -0.9475,
-       "test_avg": -0.178,
+       "hours_without_improve": 0.1,
+       "robust": 0.2614,
+       "test_avg": 0.0086,
        "indicators": [
-        "cci",
-        "vol_regime"
+        "dist_ema20",
+        "roc24",
+        "stoch_k"
        ]
       }
      ],
      "agreement": {
-      "level": "bad",
-      "text": "البحوث ما لقت نمط ثابت · مؤشرات مشتركة: التذبذب مقارنة بالمعتاد"
+      "level": "ok",
+      "text": "متفقة بالتدريب، بس مختلفة بالمخفي"
      },
      "converged": false,
-     "stop_after": 8,
-     "best_seed": 1,
-     "generation": 718,
+     "stop_after": 48,
+     "best_seed": 3,
+     "generation": 438,
      "weak": false,
      "genome": {
       "long": [
        [
-        "vol_regime",
+        "dist_ema20",
         ">",
-        88
-       ],
-       [
-        "dist_ema50",
-        ">",
-        67
+        86
        ]
       ],
       "short": [
        [
-        "atr_pct",
+        "roc24",
+        ">",
+        22
+       ],
+       [
+        "stoch_k",
         "<",
-        10
+        27
        ]
       ],
-      "sl": 5.24,
-      "tp": 3.94,
-      "hold": 95
+      "sl": 4.09,
+      "tp": 8.06,
+      "hold": 95,
+      "entry": 0.78
      },
      "rules": {
       "long": [
-       "التذبذب مقارنة بالمعتاد أعلى من 1.46 (مستوى 88% تاريخياً)",
-       "بُعد السعر عن EMA 50 أعلى من 0.0161 (مستوى 67% تاريخياً)"
+       "بُعد السعر عن EMA 20 أعلى من 0.0293 (مستوى 86% تاريخياً)"
       ],
       "short": [
-       "التذبذب ATR% أقل من 0.0116 (مستوى 10% تاريخياً)"
+       "تغيّر آخر 24 شمعة أعلى من -0.0449 (مستوى 22% تاريخياً)",
+       "ستوكاستك K أقل من 27.10 (مستوى 27% تاريخياً)"
       ],
-      "sl": "وقف الخسارة = 5.24 × ATR",
-      "tp": "الهدف = 3.94 × ATR (العائد/المخاطرة ≈ 0.8)",
-      "entry": "الدخول: أمر ليمت أحسن من سعر الإغلاق بـ 0 × ATR (بيتلغى إذا ما وصله السعر بالشمعة الجاية)",
+      "sl": "وقف الخسارة = 4.09 × ATR",
+      "tp": "الهدف = 8.06 × ATR (العائد/المخاطرة ≈ 2.0)",
+      "entry": "الدخول: أمر ليمت أحسن من سعر الإغلاق بـ 0.78 × ATR (بيتلغى إذا ما وصله السعر بالشمعة الجاية)",
       "hold": "أقصى مدة للصفقة = 95 شمعة (95 ساعة)"
      },
-     "train_fitness": 1.015,
-     "valid_fitness": 0.3642,
-     "found_generation": 63,
+     "train_fitness": 0.8189,
+     "valid_fitness": 0.2614,
+     "found_generation": 38,
      "coins": [
       {
        "train": {
-        "trades": 173,
+        "trades": 256,
         "years": 2.36,
-        "trades_per_year": 73.2,
+        "trades_per_year": 108.3,
         "x1": {
-         "total": 280.0635,
-         "cagr": 9.8669,
-         "max_dd": 0.281
+         "total": 492.1547,
+         "cagr": 12.7854,
+         "max_dd": 0.4629
         },
         "lev": {
-         "total": 280.0635,
-         "cagr": 9.8669,
-         "max_dd": 0.281
+         "total": 492.1547,
+         "cagr": 12.7854,
+         "max_dd": 0.4629
         },
-        "win_rate": 0.734,
-        "profit_factor": 2.91,
-        "avg_trade": 0.0365,
+        "win_rate": 0.559,
+        "profit_factor": 1.93,
+        "avg_trade": 0.0307,
         "buy_hold": {
          "total": 2.1853,
          "cagr": 0.6326
         }
        },
        "valid": {
-        "trades": 189,
+        "trades": 169,
         "years": 1.5,
-        "trades_per_year": 126.1,
+        "trades_per_year": 112.8,
         "x1": {
-         "total": 8.1514,
-         "cagr": 3.3815,
-         "max_dd": 0.2217
+         "total": 10.3502,
+         "cagr": 4.0586,
+         "max_dd": 0.246
         },
         "lev": {
-         "total": 8.1514,
-         "cagr": 3.3815,
-         "max_dd": 0.2217
+         "total": 10.3567,
+         "cagr": 4.0605,
+         "max_dd": 0.246
         },
-        "win_rate": 0.635,
-        "profit_factor": 1.71,
-        "avg_trade": 0.0133,
+        "win_rate": 0.527,
+        "profit_factor": 1.73,
+        "avg_trade": 0.0171,
         "buy_hold": {
          "total": 13.7051,
          "cagr": 5.0129
         }
        },
        "test": {
-        "trades": 386,
+        "trades": 256,
         "years": 2.41,
-        "trades_per_year": 160.5,
+        "trades_per_year": 106.4,
         "x1": {
-         "total": -0.521,
-         "cagr": -0.2637,
-         "max_dd": 0.8194
+         "total": 0.0103,
+         "cagr": 0.0043,
+         "max_dd": 0.5776
         },
         "lev": {
-         "total": -0.521,
-         "cagr": -0.2637,
-         "max_dd": 0.8194
+         "total": 0.0086,
+         "cagr": 0.0036,
+         "max_dd": 0.5776
         },
-        "win_rate": 0.56,
-        "profit_factor": 0.97,
-        "avg_trade": -0.0007,
+        "win_rate": 0.43,
+        "profit_factor": 1.07,
+        "avg_trade": 0.0016,
         "buy_hold": {
-         "total": -0.5183,
-         "cagr": -0.2619
+         "total": -0.5168,
+         "cagr": -0.2609
         }
        },
        "verdict": {
-        "level": "bad",
-        "text": "خسارة"
+        "level": "good",
+        "text": "ربح وتغلّب على اشترِ واحتفظ"
        },
        "symbol": "SOLUSDT",
        "signal_now": null
@@ -1293,38 +1301,36 @@
      "seeds": [
       {
        "seed": 1,
-       "generation": 607,
+       "generation": 242,
        "done": false,
-       "runs_without_improve": 1,
-       "robust": -0.5887,
-       "test_avg": 0.0651,
+       "hours_without_improve": 0.6,
+       "robust": -0.4259,
+       "test_avg": -0.0716,
        "indicators": [
-        "ema20_50",
-        "rsi14"
+        "di_diff",
+        "dist_ema20"
        ]
       },
       {
        "seed": 2,
-       "generation": 689,
+       "generation": 349,
        "done": false,
-       "runs_without_improve": 1,
-       "robust": -0.4658,
-       "test_avg": 0.0774,
+       "hours_without_improve": 0.5,
+       "robust": -0.4051,
+       "test_avg": -0.3319,
        "indicators": [
-        "mfi",
-        "vol_z"
+        "rsi7"
        ]
       },
       {
        "seed": 3,
-       "generation": 538,
+       "generation": 326,
        "done": false,
-       "runs_without_improve": 1,
-       "robust": -0.251,
-       "test_avg": -0.1279,
+       "hours_without_improve": 0.3,
+       "robust": -0.4633,
+       "test_avg": -0.0421,
        "indicators": [
-        "cci",
-        "ema20_50"
+        "cci"
        ]
       }
      ],
@@ -1333,108 +1339,103 @@
       "text": "البحوث ما لقت نمط ثابت"
      },
      "converged": false,
-     "stop_after": 8,
-     "best_seed": 3,
-     "generation": 538,
+     "stop_after": 48,
+     "best_seed": 2,
+     "generation": 349,
      "weak": true,
      "genome": {
       "long": [
        [
-        "cci",
+        "rsi7",
         ">",
-        94
-       ],
-       [
-        "ema20_50",
-        ">",
-        21
+        87
        ]
       ],
       "short": [],
-      "sl": 3.49,
-      "tp": 0.56,
-      "hold": 3
+      "sl": 6.0,
+      "tp": 1.63,
+      "hold": 4,
+      "entry": 0.48
      },
      "rules": {
       "long": [
-       "CCI أعلى من 178.04 (مستوى 94% تاريخياً)",
-       "EMA 20 مقابل EMA 50 أعلى من -0.0186 (مستوى 21% تاريخياً)"
+       "RSI 7 أعلى من 71.90 (مستوى 87% تاريخياً)"
       ],
       "short": [],
-      "sl": "وقف الخسارة = 3.49 × ATR",
-      "tp": "الهدف = 0.56 × ATR (العائد/المخاطرة ≈ 0.2)",
-      "entry": "الدخول: أمر ليمت أحسن من سعر الإغلاق بـ 0 × ATR (بيتلغى إذا ما وصله السعر بالشمعة الجاية)",
-      "hold": "أقصى مدة للصفقة = 3 شمعة (12 ساعات)"
+      "sl": "وقف الخسارة = 6.0 × ATR",
+      "tp": "الهدف = 1.63 × ATR (العائد/المخاطرة ≈ 0.3)",
+      "entry": "الدخول: أمر ليمت أحسن من سعر الإغلاق بـ 0.48 × ATR (بيتلغى إذا ما وصله السعر بالشمعة الجاية)",
+      "hold": "أقصى مدة للصفقة = 4 شمعة (16 ساعات)"
      },
-     "train_fitness": -0.2146,
-     "valid_fitness": -0.251,
-     "found_generation": 299,
+     "train_fitness": -0.4051,
+     "valid_fitness": -0.3874,
+     "found_generation": 64,
      "coins": [
       {
        "train": {
-        "trades": 426,
+        "trades": 469,
         "years": 5.25,
-        "trades_per_year": 81.1,
+        "trades_per_year": 89.3,
         "x1": {
-         "total": 1.0035,
-         "cagr": 0.1415,
-         "max_dd": 0.1465
+         "total": 0.7349,
+         "cagr": 0.1106,
+         "max_dd": 0.4006
         },
         "lev": {
-         "total": 1.0027,
-         "cagr": 0.1414,
-         "max_dd": 0.1465
+         "total": 0.7349,
+         "cagr": 0.1106,
+         "max_dd": 0.4006
         },
-        "win_rate": 0.716,
-        "profit_factor": 1.34,
-        "avg_trade": 0.0018,
+        "win_rate": 0.563,
+        "profit_factor": 1.17,
+        "avg_trade": 0.0016,
         "buy_hold": {
          "total": 3.4156,
          "cagr": 0.3268
         }
        },
        "valid": {
-        "trades": 160,
+        "trades": 134,
         "years": 1.5,
-        "trades_per_year": 106.8,
+        "trades_per_year": 89.4,
         "x1": {
-         "total": 0.3492,
-         "cagr": 0.2213,
-         "max_dd": 0.0713
+         "total": 0.191,
+         "cagr": 0.1237,
+         "max_dd": 0.1776
         },
         "lev": {
-         "total": 0.349,
-         "cagr": 0.2212,
-         "max_dd": 0.0725
+         "total": 0.191,
+         "cagr": 0.1237,
+         "max_dd": 0.1776
         },
-        "win_rate": 0.75,
-        "profit_factor": 1.67,
-        "avg_trade": 0.0019,
+        "win_rate": 0.522,
+        "profit_factor": 1.27,
+        "avg_trade": 0.0014,
         "buy_hold": {
          "total": 2.7948,
          "cagr": 1.4355
         }
        },
        "test": {
-        "trades": 204,
+        "trades": 195,
         "years": 2.41,
-        "trades_per_year": 84.8,
+        "trades_per_year": 81.0,
         "x1": {
-         "total": -0.1026,
-         "cagr": -0.044,
-         "max_dd": 0.2408
+         "total": -0.2542,
+         "cagr": -0.1148,
+         "max_dd": 0.3244
         },
         "lev": {
-         "total": -0.1021,
-         "cagr": -0.0438,
-         "max_dd": 0.2408
+         "total": -0.2542,
+         "cagr": -0.1148,
+         "max_dd": 0.3244
         },
-        "win_rate": 0.642,
-        "profit_factor": 0.89,
-        "avg_trade": -0.0005,
+        "win_rate": 0.513,
+        "profit_factor": 0.8,
+        "avg_trade": -0.0014,
         "buy_hold": {
-         "total": -0.0461,
-         "cagr": -0.0194
+         "total": -0.0358,
+         "cagr": -0.0151
         }
        },
        "verdict": {
@@ -1446,69 +1447,69 @@
       },
       {
        "train": {
-        "trades": 433,
+        "trades": 476,
         "years": 5.25,
-        "trades_per_year": 82.5,
+        "trades_per_year": 90.6,
         "x1": {
-         "total": 2.4797,
-         "cagr": 0.268,
-         "max_dd": 0.2523
+         "total": 6.6938,
+         "cagr": 0.4748,
+         "max_dd": 0.2531
         },
         "lev": {
-         "total": 2.4797,
-         "cagr": 0.268,
-         "max_dd": 0.2523
+         "total": 6.6938,
+         "cagr": 0.4748,
+         "max_dd": 0.2531
         },
-        "win_rate": 0.751,
-        "profit_factor": 1.49,
-        "avg_trade": 0.0031,
+        "win_rate": 0.55,
+        "profit_factor": 1.44,
+        "avg_trade": 0.005,
         "buy_hold": {
          "total": 3.2994,
          "cagr": 0.3201
         }
        },
        "valid": {
-        "trades": 149,
+        "trades": 137,
         "years": 1.5,
-        "trades_per_year": 99.5,
+        "trades_per_year": 91.4,
         "x1": {
-         "total": -0.0089,
-         "cagr": -0.006,
-         "max_dd": 0.213
+         "total": -0.1168,
+         "cagr": -0.0796,
+         "max_dd": 0.2581
         },
         "lev": {
-         "total": -0.0113,
-         "cagr": -0.0076,
-         "max_dd": 0.2149
+         "total": -0.1168,
+         "cagr": -0.0796,
+         "max_dd": 0.2581
         },
-        "win_rate": 0.691,
-        "profit_factor": 1.01,
-        "avg_trade": 0.0001,
+        "win_rate": 0.467,
+        "profit_factor": 0.92,
+        "avg_trade": -0.0007,
         "buy_hold": {
          "total": 1.8744,
          "cagr": 1.0234
         }
        },
        "test": {
-        "trades": 213,
+        "trades": 198,
         "years": 2.41,
-        "trades_per_year": 88.6,
+        "trades_per_year": 82.3,
         "x1": {
-         "total": -0.1408,
-         "cagr": -0.0611,
-         "max_dd": 0.2271
+         "total": -0.3704,
+         "cagr": -0.1749,
+         "max_dd": 0.4866
         },
         "lev": {
-         "total": -0.1408,
-         "cagr": -0.0611,
-         "max_dd": 0.2271
+         "total": -0.3704,
+         "cagr": -0.1749,
+         "max_dd": 0.4866
         },
-        "win_rate": 0.634,
-        "profit_factor": 0.9,
-        "avg_trade": -0.0006,
+        "win_rate": 0.465,
+        "profit_factor": 0.79,
+        "avg_trade": -0.0021,
         "buy_hold": {
-         "total": -0.5101,
-         "cagr": -0.2567
+         "total": -0.5085,
+         "cagr": -0.2556
         }
        },
        "verdict": {
@@ -1520,69 +1521,69 @@
       },
       {
        "train": {
-        "trades": 195,
+        "trades": 233,
         "years": 2.28,
-        "trades_per_year": 85.4,
+        "trades_per_year": 102.0,
         "x1": {
-         "total": 0.0043,
-         "cagr": 0.0019,
-         "max_dd": 0.3693
+         "total": 2.1911,
+         "cagr": 0.6622,
+         "max_dd": 0.4638
         },
         "lev": {
-         "total": 0.0043,
-         "cagr": 0.0019,
-         "max_dd": 0.3693
+         "total": 2.1911,
+         "cagr": 0.6622,
+         "max_dd": 0.4638
         },
-        "win_rate": 0.682,
-        "profit_factor": 1.06,
-        "avg_trade": 0.0009,
+        "win_rate": 0.515,
+        "profit_factor": 1.36,
+        "avg_trade": 0.0065,
         "buy_hold": {
          "total": 2.9298,
          "cagr": 0.8209
         }
        },
        "valid": {
-        "trades": 163,
+        "trades": 164,
         "years": 1.5,
-        "trades_per_year": 108.8,
+        "trades_per_year": 109.5,
         "x1": {
-         "total": 1.082,
-         "cagr": 0.6315,
-         "max_dd": 0.1694
+         "total": 1.2541,
+         "cagr": 0.7203,
+         "max_dd": 0.2286
         },
         "lev": {
-         "total": 1.082,
-         "cagr": 0.6315,
-         "max_dd": 0.1694
+         "total": 1.2541,
+         "cagr": 0.7203,
+         "max_dd": 0.2286
         },
-        "win_rate": 0.742,
-        "profit_factor": 1.69,
-        "avg_trade": 0.0048,
+        "win_rate": 0.591,
+        "profit_factor": 1.46,
+        "avg_trade": 0.0058,
         "buy_hold": {
          "total": 13.7051,
          "cagr": 5.0154
         }
        },
        "test": {
-        "trades": 198,
+        "trades": 242,
         "years": 2.41,
-        "trades_per_year": 82.3,
+        "trades_per_year": 100.6,
         "x1": {
-         "total": -0.1597,
-         "cagr": -0.0698,
-         "max_dd": 0.3511
+         "total": -0.4901,
+         "cagr": -0.2442,
+         "max_dd": 0.6075
         },
         "lev": {
-         "total": -0.1597,
-         "cagr": -0.0698,
-         "max_dd": 0.3511
+         "total": -0.4901,
+         "cagr": -0.2442,
+         "max_dd": 0.6075
         },
-        "win_rate": 0.652,
-        "profit_factor": 0.92,
-        "avg_trade": -0.0006,
+        "win_rate": 0.463,
+        "profit_factor": 0.81,
+        "avg_trade": -0.0023,
         "buy_hold": {
-         "total": -0.5204,
-         "cagr": -0.2632
+         "total": -0.5168,
+         "cagr": -0.2609
         }
        },
        "verdict": {
@@ -1594,69 +1595,69 @@
       },
       {
        "train": {
-        "trades": 435,
+        "trades": 483,
         "years": 5.03,
-        "trades_per_year": 86.5,
+        "trades_per_year": 96.0,
         "x1": {
-         "total": 9.6365,
-         "cagr": 0.6,
-         "max_dd": 0.1507
+         "total": 41.4134,
+         "cagr": 1.1063,
+         "max_dd": 0.2191
         },
         "lev": {
-         "total": 9.6365,
-         "cagr": 0.6,
-         "max_dd": 0.1507
+         "total": 41.4134,
+         "cagr": 1.1063,
+         "max_dd": 0.2191
         },
-        "win_rate": 0.726,
-        "profit_factor": 2.0,
-        "avg_trade": 0.0057,
+        "win_rate": 0.559,
+        "profit_factor": 1.91,
+        "avg_trade": 0.0085,
         "buy_hold": {
          "total": 94.3542,
          "cagr": 1.4743
         }
        },
        "valid": {
-        "trades": 142,
+        "trades": 131,
         "years": 1.5,
-        "trades_per_year": 94.8,
+        "trades_per_year": 87.4,
         "x1": {
-         "total": 0.0707,
-         "cagr": 0.0466,
-         "max_dd": 0.1041
+         "total": 0.0371,
+         "cagr": 0.0246,
+         "max_dd": 0.228
         },
         "lev": {
-         "total": 0.0707,
-         "cagr": 0.0466,
-         "max_dd": 0.1041
+         "total": 0.0371,
+         "cagr": 0.0246,
+         "max_dd": 0.228
         },
-        "win_rate": 0.676,
-        "profit_factor": 1.12,
-        "avg_trade": 0.0006,
+        "win_rate": 0.534,
+        "profit_factor": 1.07,
+        "avg_trade": 0.0005,
         "buy_hold": {
          "total": 1.3638,
          "cagr": 0.7757
         }
        },
        "test": {
-        "trades": 203,
+        "trades": 208,
         "years": 2.41,
-        "trades_per_year": 84.4,
+        "trades_per_year": 86.4,
         "x1": {
-         "total": -0.3504,
-         "cagr": -0.1642,
-         "max_dd": 0.3764
+         "total": -0.4856,
+         "cagr": -0.2414,
+         "max_dd": 0.4856
         },
         "lev": {
-         "total": -0.3504,
-         "cagr": -0.1642,
-         "max_dd": 0.3764
+         "total": -0.4856,
+         "cagr": -0.2414,
+         "max_dd": 0.4856
         },
-        "win_rate": 0.611,
-        "profit_factor": 0.67,
-        "avg_trade": -0.002,
+        "win_rate": 0.413,
+        "profit_factor": 0.65,
+        "avg_trade": -0.003,
         "buy_hold": {
-         "total": -0.0518,
-         "cagr": -0.0219
+         "total": -0.0482,
+         "cagr": -0.0203
         }
        },
        "verdict": {
@@ -1668,74 +1669,74 @@
       },
       {
        "train": {
-        "trades": 303,
+        "trades": 338,
         "years": 3.38,
-        "trades_per_year": 89.6,
+        "trades_per_year": 99.9,
         "x1": {
-         "total": 1.1499,
-         "cagr": 0.254,
-         "max_dd": 0.4151
+         "total": 9.9084,
+         "cagr": 1.0271,
+         "max_dd": 0.4148
         },
         "lev": {
-         "total": 1.1499,
-         "cagr": 0.254,
-         "max_dd": 0.4151
+         "total": 9.9084,
+         "cagr": 1.0271,
+         "max_dd": 0.4148
         },
-        "win_rate": 0.723,
-        "profit_factor": 1.32,
-        "avg_trade": 0.0032,
+        "win_rate": 0.544,
+        "profit_factor": 1.56,
+        "avg_trade": 0.0085,
         "buy_hold": {
          "total": 23.456,
          "cagr": 1.5737
         }
        },
        "valid": {
-        "trades": 120,
+        "trades": 170,
         "years": 1.5,
-        "trades_per_year": 80.1,
+        "trades_per_year": 113.5,
         "x1": {
-         "total": 0.0421,
-         "cagr": 0.0279,
-         "max_dd": 0.2294
+         "total": 0.5679,
+         "cagr": 0.3501,
+         "max_dd": 0.3279
         },
         "lev": {
-         "total": 0.0421,
-         "cagr": 0.0279,
-         "max_dd": 0.2294
+         "total": 0.5679,
+         "cagr": 0.3501,
+         "max_dd": 0.3279
         },
-        "win_rate": 0.633,
-        "profit_factor": 1.07,
-        "avg_trade": 0.0006,
+        "win_rate": 0.518,
+        "profit_factor": 1.3,
+        "avg_trade": 0.0034,
         "buy_hold": {
          "total": 0.7722,
          "cagr": 0.4651
         }
        },
        "test": {
-        "trades": 172,
+        "trades": 240,
         "years": 2.41,
-        "trades_per_year": 71.5,
+        "trades_per_year": 99.7,
         "x1": {
-         "total": 0.1134,
-         "cagr": 0.0457,
-         "max_dd": 0.3614
+         "total": -0.0593,
+         "cagr": -0.0251,
+         "max_dd": 0.5176
         },
         "lev": {
-         "total": 0.1134,
-         "cagr": 0.0457,
-         "max_dd": 0.3614
+         "total": -0.0593,
+         "cagr": -0.0251,
+         "max_dd": 0.5176
         },
-        "win_rate": 0.698,
-        "profit_factor": 1.11,
-        "avg_trade": 0.0009,
+        "win_rate": 0.479,
+        "profit_factor": 1.03,
+        "avg_trade": 0.0004,
         "buy_hold": {
-         "total": -0.5519,
-         "cagr": -0.2838
+         "total": -0.5461,
+         "cagr": -0.2798
         }
        },
        "verdict": {
-        "level": "good",
-        "text": "ربح وتغلّب على اشترِ واحتفظ"
+        "level": "soft",
+        "text": "خسارة أقل من السوق"
        },
        "symbol": "DOGEUSDT",
        "signal_now": null
@@ -1748,38 +1749,34 @@
      "seeds": [
       {
        "seed": 1,
-       "generation": 832,
+       "generation": 179,
        "done": false,
-       "runs_without_improve": 1,
-       "robust": -0.6669,
-       "test_avg": -0.2109,
+       "hours_without_improve": 0.1,
+       "robust": -0.226,
+       "test_avg": -0.1013,
        "indicators": [
-        "bb_pctb",
-        "cci",
-        "vol_regime",
-        "vol_z"
+        "roc6"
        ]
       },
       {
        "seed": 2,
-       "generation": 617,
+       "generation": 235,
        "done": false,
-       "runs_without_improve": 1,
-       "robust": -0.6027,
-       "test_avg": -0.3727,
+       "hours_without_improve": 0.1,
+       "robust": -0.1483,
+       "test_avg": -0.4007,
        "indicators": [
-        "cci"
+        "donch20"
        ]
       },
       {
        "seed": 3,
-       "generation": 634,
+       "generation": 242,
        "done": false,
-       "runs_without_improve": 1,
-       "robust": -0.3415,
-       "test_avg": 0.2047,
+       "hours_without_improve": 0.1,
+       "robust": -0.2653,
+       "test_avg": -0.0017,
        "indicators": [
-        "bb_width",
         "donch20"
        ]
       }
@@ -1789,113 +1786,108 @@
       "text": "البحوث ما لقت نمط ثابت"
      },
      "converged": false,
-     "stop_after": 8,
-     "best_seed": 3,
-     "generation": 634,
+     "stop_after": 48,
+     "best_seed": 2,
+     "generation": 235,
      "weak": true,
      "genome": {
       "long": [
        [
         "donch20",
         ">",
-        72
-       ],
-       [
-        "bb_width",
-        "<",
-        78
+        74
        ]
       ],
       "short": [],
-      "sl": 3.19,
-      "tp": 2.21,
-      "hold": 12
+      "sl": 2.88,
+      "tp": 5.42,
+      "hold": 4,
+      "entry": 0.79
      },
      "rules": {
       "long": [
-       "موقع السعر في قناة 20 أعلى من 0.751 (مستوى 72% تاريخياً)",
-       "عرض بولينجر أقل من 0.172 (مستوى 78% تاريخياً)"
+       "موقع السعر في قناة 20 أعلى من 0.77 (مستوى 74% تاريخياً)"
       ],
       "short": [],
-      "sl": "وقف الخسارة = 3.19 × ATR",
-      "tp": "الهدف = 2.21 × ATR (العائد/المخاطرة ≈ 0.7)",
-      "entry": "الدخول: أمر ليمت أحسن من سعر الإغلاق بـ 0 × ATR (بيتلغى إذا ما وصله السعر بالشمعة الجاية)",
-      "hold": "أقصى مدة للصفقة = 12 شمعة (48 ساعات)"
+      "sl": "وقف الخسارة = 2.88 × ATR",
+      "tp": "الهدف = 5.42 × ATR (العائد/المخاطرة ≈ 1.9)",
+      "entry": "الدخول: أمر ليمت أحسن من سعر الإغلاق بـ 0.79 × ATR (بيتلغى إذا ما وصله السعر بالشمعة الجاية)",
+      "hold": "أقصى مدة للصفقة = 4 شمعة (16 ساعات)"
      },
-     "train_fitness": -0.3415,
-     "valid_fitness": -0.3136,
-     "found_generation": 26,
+     "train_fitness": -0.0151,
+     "valid_fitness": -0.1483,
+     "found_generation": 19,
      "coins": [
       {
        "train": {
-        "trades": 474,
+        "trades": 498,
         "years": 5.03,
-        "trades_per_year": 94.2,
+        "trades_per_year": 99.0,
         "x1": {
-         "total": 45.7328,
-         "cagr": 1.1473,
-         "max_dd": 0.4908
+         "total": 109.7334,
+         "cagr": 1.549,
+         "max_dd": 0.2392
         },
         "lev": {
-         "total": 45.7328,
-         "cagr": 1.1473,
-         "max_dd": 0.4908
+         "total": 109.7334,
+         "cagr": 1.549,
+         "max_dd": 0.2392
         },
-        "win_rate": 0.586,
-        "profit_factor": 1.6,
-        "avg_trade": 0.0093,
+        "win_rate": 0.58,
+        "profit_factor": 2.07,
+        "avg_trade": 0.0107,
         "buy_hold": {
          "total": 94.3542,
          "cagr": 1.4743
         }
        },
        "valid": {
-        "trades": 159,
+        "trades": 130,
         "years": 1.5,
-        "trades_per_year": 106.1,
+        "trades_per_year": 86.8,
         "x1": {
-         "total": 0.6676,
-         "cagr": 0.4068,
-         "max_dd": 0.2854
+         "total": 0.5072,
+         "cagr": 0.315,
+         "max_dd": 0.1752
         },
         "lev": {
-         "total": 0.6627,
-         "cagr": 0.4041,
-         "max_dd": 0.2875
+         "total": 0.5043,
+         "cagr": 0.3133,
+         "max_dd": 0.1752
         },
-        "win_rate": 0.528,
-        "profit_factor": 1.35,
-        "avg_trade": 0.0036,
+        "win_rate": 0.531,
+        "profit_factor": 1.51,
+        "avg_trade": 0.0035,
         "buy_hold": {
          "total": 1.3638,
          "cagr": 0.7757
         }
        },
        "test": {
-        "trades": 268,
+        "trades": 203,
         "years": 2.41,
-        "trades_per_year": 111.4,
+        "trades_per_year": 84.4,
         "x1": {
-         "total": 0.2026,
-         "cagr": 0.0797,
-         "max_dd": 0.3402
+         "total": -0.4024,
+         "cagr": -0.1926,
+         "max_dd": 0.4091
         },
         "lev": {
-         "total": 0.2047,
-         "cagr": 0.0805,
-         "max_dd": 0.3402
+         "total": -0.4007,
+         "cagr": -0.1917,
+         "max_dd": 0.4075
         },
-        "win_rate": 0.515,
-        "profit_factor": 1.1,
-        "avg_trade": 0.0011,
+        "win_rate": 0.404,
+        "profit_factor": 0.73,
+        "avg_trade": -0.0023,
         "buy_hold": {
-         "total": -0.0518,
-         "cagr": -0.0219
+         "total": -0.0482,
+         "cagr": -0.0203
         }
        },
        "verdict": {
-        "level": "good",
-        "text": "ربح وتغلّب على اشترِ واحتفظ"
+        "level": "bad",
+        "text": "خسارة"
        },
        "symbol": "BNBUSDT",
        "signal_now": null
@@ -1908,156 +1900,141 @@
      "seeds": [
       {
        "seed": 1,
-       "generation": 646,
+       "generation": 259,
        "done": false,
-       "runs_without_improve": 0,
-       "robust": -0.0271,
-       "test_avg": -0.2958,
+       "hours_without_improve": 0.3,
+       "robust": 0.0119,
+       "test_avg": -0.1678,
        "indicators": [
-        "atr_pct",
-        "di_diff"
+        "cci"
        ]
       },
       {
        "seed": 2,
-       "generation": 711,
+       "generation": 212,
        "done": false,
-       "runs_without_improve": 0,
-       "robust": 0.0449,
-       "test_avg": -0.2746,
+       "hours_without_improve": 0.3,
+       "robust": -0.1416,
+       "test_avg": 0.0732,
        "indicators": [
-        "di_diff",
-        "dist_ema20",
-        "vol_z"
+        "di_diff"
        ]
       },
       {
        "seed": 3,
-       "generation": 730,
+       "generation": 198,
        "done": false,
-       "runs_without_improve": 1,
-       "robust": -0.2208,
-       "test_avg": -0.0941,
+       "hours_without_improve": 0.3,
+       "robust": -0.2043,
+       "test_avg": -0.1691,
        "indicators": [
-        "di_diff"
+        "ema20_50",
+        "rsi14"
        ]
       }
      ],
      "agreement": {
       "level": "bad",
-      "text": "البحوث ما لقت نمط ثابت · مؤشرات مشتركة: اتجاه DI+ ناقص DI−"
+      "text": "البحوث ما لقت نمط ثابت"
      },
      "converged": false,
-     "stop_after": 8,
-     "best_seed": 2,
-     "generation": 711,
+     "stop_after": 48,
+     "best_seed": 1,
+     "generation": 259,
      "weak": false,
      "genome": {
       "long": [
        [
-        "di_diff",
+        "cci",
         ">",
-        83
-       ],
-       [
-        "vol_z",
-        ">",
-        35
+        93
        ]
       ],
-      "short": [
-       [
-        "dist_ema20",
-        ">",
-        99
-       ]
-      ],
-      "sl": 2.35,
-      "tp": 1.17,
-      "hold": 12
+      "short": [],
+      "sl": 2.94,
+      "tp": 2.23,
+      "hold": 2,
+      "entry": 0.2
      },
      "rules": {
       "long": [
-       "اتجاه DI+ ناقص DI− أعلى من 13.35 (مستوى 83% تاريخياً)",
-       "حجم التداول مقارنة بالمعتاد أعلى من -0.519 (مستوى 35% تاريخياً)"
+       "CCI أعلى من 170.06 (مستوى 93% تاريخياً)"
       ],
-      "short": [
-       "بُعد السعر عن EMA 20 أعلى من 0.0961 (مستوى 99% تاريخياً)"
-      ],
-      "sl": "وقف الخسارة = 2.35 × ATR",
-      "tp": "الهدف = 1.17 × ATR (العائد/المخاطرة ≈ 0.5)",
-      "entry": "الدخول: أمر ليمت أحسن من سعر الإغلاق بـ 0 × ATR (بيتلغى إذا ما وصله السعر بالشمعة الجاية)",
-      "hold": "أقصى مدة للصفقة = 12 شمعة (48 ساعات)"
+      "short": [],
+      "sl": "وقف الخسارة = 2.94 × ATR",
+      "tp": "الهدف = 2.23 × ATR (العائد/المخاطرة ≈ 0.8)",
+      "entry": "الدخول: أمر ليمت أحسن من سعر الإغلاق بـ 0.2 × ATR (بيتلغى إذا ما وصله السعر بالشمعة الجاية)",
+      "hold": "أقصى مدة للصفقة = 2 شمعة (8 ساعات)"
      },
-     "train_fitness": 0.0449,
-     "valid_fitness": 0.1386,
-     "found_generation": 622,
+     "train_fitness": 0.0119,
+     "valid_fitness": 0.0304,
+     "found_generation": 61,
      "coins": [
       {
        "train": {
-        "trades": 474,
+        "trades": 440,
         "years": 5.25,
-        "trades_per_year": 90.3,
+        "trades_per_year": 83.8,
         "x1": {
-         "total": 11.5523,
-         "cagr": 0.6189,
-         "max_dd": 0.1944
+         "total": 6.9994,
+         "cagr": 0.4858,
+         "max_dd": 0.1283
         },
         "lev": {
-         "total": 11.5984,
-         "cagr": 0.62,
-         "max_dd": 0.1978
+         "total": 6.9979,
+         "cagr": 0.4857,
+         "max_dd": 0.1283
         },
-        "win_rate": 0.69,
-        "profit_factor": 1.59,
-        "avg_trade": 0.0058,
+        "win_rate": 0.609,
+        "profit_factor": 1.99,
+        "avg_trade": 0.005,
         "buy_hold": {
          "total": 3.4156,
          "cagr": 0.3268
         }
        },
        "valid": {
-        "trades": 190,
+        "trades": 116,
         "years": 1.5,
-        "trades_per_year": 126.8,
+        "trades_per_year": 77.4,
         "x1": {
-         "total": 1.105,
-         "cagr": 0.6435,
-         "max_dd": 0.1855
+         "total": 0.5431,
+         "cagr": 0.3358,
+         "max_dd": 0.0831
         },
         "lev": {
-         "total": 1.1709,
-         "cagr": 0.6776,
-         "max_dd": 0.1844
+         "total": 0.5455,
+         "cagr": 0.3372,
+         "max_dd": 0.0831
         },
-        "win_rate": 0.711,
-        "profit_factor": 1.63,
-        "avg_trade": 0.0041,
+        "win_rate": 0.552,
+        "profit_factor": 2.2,
+        "avg_trade": 0.0038,
         "buy_hold": {
          "total": 2.7948,
          "cagr": 1.4355
         }
        },
        "test": {
-        "trades": 222,
+        "trades": 180,
         "years": 2.41,
-        "trades_per_year": 92.3,
+        "trades_per_year": 74.8,
         "x1": {
-         "total": -0.2799,
-         "cagr": -0.1276,
-         "max_dd": 0.4032
+         "total": -0.1714,
+         "cagr": -0.0752,
+         "max_dd": 0.2096
         },
         "lev": {
-         "total": -0.2746,
-         "cagr": -0.1249,
-         "max_dd": 0.4005
+         "total": -0.1678,
+         "cagr": -0.0735,
+         "max_dd": 0.2073
         },
-        "win_rate": 0.626,
-        "profit_factor": 0.86,
-        "avg_trade": -0.0013,
+        "win_rate": 0.444,
+        "profit_factor": 0.82,
+        "avg_trade": -0.001,
         "buy_hold": {
-         "total": -0.0461,
-         "cagr": -0.0194
+         "total": -0.0358,
+         "cagr": -0.0151
         }
        },
        "verdict": {
@@ -2075,39 +2052,35 @@
      "seeds": [
       {
        "seed": 1,
-       "generation": 815,
+       "generation": 246,
        "done": false,
-       "runs_without_improve": 1,
-       "robust": -0.6409,
-       "test_avg": 0.4486,
+       "hours_without_improve": 0.1,
+       "robust": 0.0055,
+       "test_avg": -0.2012,
        "indicators": [
-        "bb_width",
-        "cci"
+        "obv_z"
        ]
       },
       {
        "seed": 2,
-       "generation": 1116,
+       "generation": 226,
        "done": false,
-       "runs_without_improve": 1,
-       "robust": -0.5082,
-       "test_avg": 9.2819,
+       "hours_without_improve": 0.0,
+       "robust": -0.0868,
+       "test_avg": 0.1545,
        "indicators": [
-        "atr_pct",
-        "cci",
-        "rsi14",
-        "vol_regime"
+        "mfi"
        ]
       },
       {
        "seed": 3,
-       "generation": 1025,
+       "generation": 329,
        "done": false,
-       "runs_without_improve": 1,
-       "robust": -0.4059,
-       "test_avg": -0.0703,
+       "hours_without_improve": 0.0,
+       "robust": 0.0925,
+       "test_avg": 0.1541,
        "indicators": [
-        "bb_width",
+        "mfi",
         "vol_regime"
        ]
       }
@@ -2117,116 +2090,126 @@
       "text": "البحوث ما لقت نمط ثابت"
      },
      "converged": false,
-     "stop_after": 8,
+     "stop_after": 48,
      "best_seed": 3,
-     "generation": 1025,
-     "weak": true,
+     "generation": 329,
+     "weak": false,
      "genome": {
-      "long": [],
-      "short": [
+      "long": [
        [
         "vol_regime",
-        "<",
-        35
-       ],
-       [
-        "bb_width",
-        "<",
-        56
+        ">",
+        61
        ]
       ],
-      "sl": 1.99,
-      "tp": 3.29,
-      "hold": 12
+      "short": [
+       [
+        "mfi",
+        ">",
+        98
+       ]
+      ],
+      "sl": 3.81,
+      "tp": 0.82,
+      "hold": 13,
+      "entry": 0.77
      },
      "rules": {
-      "long": [],
-      "short": [
-       "التذبذب مقارنة بالمعتاد أقل من 0.704 (مستوى 35% تاريخياً)",
-       "عرض بولينجر أقل من 0.106 (مستوى 56% تاريخياً)"
+      "long": [
+       "التذبذب مقارنة بالمعتاد أعلى من 0.969 (مستوى 61% تاريخياً)"
       ],
-      "sl": "وقف الخسارة = 1.99 × ATR",
-      "tp": "الهدف = 3.29 × ATR (العائد/المخاطرة ≈ 1.7)",
-      "entry": "الدخول: أمر ليمت أحسن من سعر الإغلاق بـ 0 × ATR (بيتلغى إذا ما وصله السعر بالشمعة الجاية)",
-      "hold": "أقصى مدة للصفقة = 12 شمعة (48 ساعات)"
+      "short": [
+       "MFI أعلى من 85.42 (مستوى 98% تاريخياً)"
+      ],
+      "sl": "وقف الخسارة = 3.81 × ATR",
+      "tp": "الهدف = 0.82 × ATR (العائد/المخاطرة ≈ 0.2)",
+      "entry": "الدخول: أمر ليمت أحسن من سعر الإغلاق بـ 0.77 × ATR (بيتلغى إذا ما وصله السعر بالشمعة الجاية)",
+      "hold": "أقصى مدة للصفقة = 13 شمعة (52 ساعات)"
      },
-     "train_fitness": -0.2174,
-     "valid_fitness": -0.4059,
-     "found_generation": 39,
+     "train_fitness": 0.3574,
+     "valid_fitness": 0.0925,
+     "found_generation": 52,
      "coins": [
       {
        "train": {
-        "trades": 260,
+        "trades": 298,
         "years": 3.38,
-        "trades_per_year": 76.9,
+        "trades_per_year": 88.1,
         "x1": {
-         "total": 4.6301,
-         "cagr": 0.667,
-         "max_dd": 0.2786
+         "total": 74.2434,
+         "cagr": 2.5883,
+         "max_dd": 0.3833
         },
         "lev": {
-         "total": 4.6097,
-         "cagr": 0.6652,
-         "max_dd": 0.2786
+         "total": 74.2434,
+         "cagr": 2.5883,
+         "max_dd": 0.3833
         },
-        "win_rate": 0.55,
-        "profit_factor": 1.52,
-        "avg_trade": 0.0077,
+        "win_rate": 0.805,
+        "profit_factor": 2.09,
+        "avg_trade": 0.0167,
         "buy_hold": {
          "total": 23.456,
          "cagr": 1.5737
         }
        },
        "valid": {
-        "trades": 115,
+        "trades": 143,
         "years": 1.5,
-        "trades_per_year": 76.8,
+        "trades_per_year": 95.4,
         "x1": {
-         "total": 0.3229,
-         "cagr": 0.2054,
-         "max_dd": 0.2113
+         "total": 1.306,
+         "cagr": 0.7466,
+         "max_dd": 0.266
         },
         "lev": {
-         "total": 0.339,
-         "cagr": 0.2151,
-         "max_dd": 0.2064
+         "total": 1.306,
+         "cagr": 0.7466,
+         "max_dd": 0.266
         },
-        "win_rate": 0.504,
-        "profit_factor": 1.23,
-        "avg_trade": 0.0031,
+        "win_rate": 0.741,
+        "profit_factor": 1.56,
+        "avg_trade": 0.0066,
         "buy_hold": {
          "total": 0.7722,
          "cagr": 0.4651
         }
        },
        "test": {
-        "trades": 129,
+        "trades": 226,
         "years": 2.41,
-        "trades_per_year": 53.6,
+        "trades_per_year": 93.9,
         "x1": {
-         "total": -0.0642,
-         "cagr": -0.0272,
-         "max_dd": 0.3733
+         "total": 0.1541,
+         "cagr": 0.0614,
+         "max_dd": 0.3855
         },
         "lev": {
-         "total": -0.0703,
-         "cagr": -0.0298,
-         "max_dd": 0.3733
+         "total": 0.1541,
+         "cagr": 0.0614,
+         "max_dd": 0.3855
         },
-        "win_rate": 0.457,
-        "profit_factor": 1.03,
-        "avg_trade": 0.0006,
+        "win_rate": 0.708,
+        "profit_factor": 1.1,
+        "avg_trade": 0.0016,
         "buy_hold": {
-         "total": -0.5519,
-         "cagr": -0.2838
+         "total": -0.5461,
+         "cagr": -0.2798
         }
        },
        "verdict": {
-        "level": "soft",
-        "text": "خسارة أقل من السوق"
+        "level": "good",
+        "text": "ربح وتغلّب على اشترِ واحتفظ"
        },
        "symbol": "DOGEUSDT",
-       "signal_now": null
+       "signal_now": {
+        "time": "2026-11-26T04:00:00+00:00",
+        "side": "شراء (Long)",
+        "entry": 0.055425626504156514,
+        "sl": 0.050109570635112746,
+        "tp": 0.05656976451271711,
+        "leverage": 1.0
+       }
       }
      ],
      "chart": "img/eq_4h_DOGEUSDT.png"
@@ -2236,38 +2219,35 @@
      "seeds": [
       {
        "seed": 1,
-       "generation": 630,
+       "generation": 390,
        "done": false,
-       "runs_without_improve": 1,
-       "robust": -0.4023,
-       "test_avg": -0.0273,
+       "hours_without_improve": 0.3,
+       "robust": -0.1718,
+       "test_avg": -0.2439,
        "indicators": [
-        "di_diff"
+        "obv_z"
        ]
       },
       {
        "seed": 2,
-       "generation": 814,
+       "generation": 194,
        "done": false,
-       "runs_without_improve": 1,
-       "robust": -0.3995,
-       "test_avg": -0.4626,
+       "hours_without_improve": 0.2,
+       "robust": -0.216,
+       "test_avg": -0.3166,
        "indicators": [
-        "rsi7"
+        "dist_ema20"
        ]
       },
       {
        "seed": 3,
-       "generation": 580,
+       "generation": 199,
        "done": false,
-       "runs_without_improve": 1,
-       "robust": -0.2623,
-       "test_avg": -0.2703,
+       "hours_without_improve": 0.2,
+       "robust": -0.2373,
+       "test_avg": -0.3061,
        "indicators": [
-        "adx",
-        "bb_pctb",
-        "obv_z",
-        "roc1"
+        "rsi14"
        ]
       }
      ],
@@ -2276,122 +2256,103 @@
       "text": "البحوث ما لقت نمط ثابت"
      },
      "converged": false,
-     "stop_after": 8,
-     "best_seed": 3,
-     "generation": 580,
+     "stop_after": 48,
+     "best_seed": 1,
+     "generation": 390,
      "weak": true,
      "genome": {
       "long": [
        [
-        "roc1",
-        ">",
-        90
-       ],
-       [
-        "bb_pctb",
-        ">",
-        88
-       ]
-      ],
-      "short": [
-       [
         "obv_z",
-        "<",
-        20
-       ],
-       [
-        "adx",
-        "<",
-        28
+        ">",
+        63
        ]
       ],
-      "sl": 3.81,
-      "tp": 2.88,
-      "hold": 4
+      "short": [],
+      "sl": 3.45,
+      "tp": 7.05,
+      "hold": 13,
+      "entry": 0.24
      },
      "rules": {
       "long": [
-       "تغيّر آخر شمعة أعلى من 0.0215 (مستوى 90% تاريخياً)",
-       "موقع السعر داخل بولينجر أعلى من 0.91 (مستوى 88% تاريخياً)"
+       "OBV مقارنة بالمعتاد أعلى من 0.638 (مستوى 63% تاريخياً)"
       ],
-      "short": [
-       "OBV مقارنة بالمعتاد أقل من -1.21 (مستوى 20% تاريخياً)",
-       "قوة الترند ADX أقل من 19.80 (مستوى 28% تاريخياً)"
-      ],
-      "sl": "وقف الخسارة = 3.81 × ATR",
-      "tp": "الهدف = 2.88 × ATR (العائد/المخاطرة ≈ 0.8)",
-      "entry": "الدخول: أمر ليمت أحسن من سعر الإغلاق بـ 0 × ATR (بيتلغى إذا ما وصله السعر بالشمعة الجاية)",
-      "hold": "أقصى مدة للصفقة = 4 شمعة (16 ساعات)"
+      "short": [],
+      "sl": "وقف الخسارة = 3.45 × ATR",
+      "tp": "الهدف = 7.05 × ATR (العائد/المخاطرة ≈ 2.0)",
+      "entry": "الدخول: أمر ليمت أحسن من سعر الإغلاق بـ 0.24 × ATR (بيتلغى إذا ما وصله السعر بالشمعة الجاية)",
+      "hold": "أقصى مدة للصفقة = 13 شمعة (52 ساعات)"
      },
-     "train_fitness": -0.2478,
-     "valid_fitness": -0.2623,
-     "found_generation": 27,
+     "train_fitness": -0.1559,
+     "valid_fitness": -0.1718,
+     "found_generation": 37,
      "coins": [
       {
        "train": {
-        "trades": 509,
+        "trades": 467,
         "years": 5.25,
-        "trades_per_year": 96.9,
+        "trades_per_year": 88.9,
         "x1": {
-         "total": 25.5931,
-         "cagr": 0.8677,
-         "max_dd": 0.2064
+         "total": 66.6903,
+         "cagr": 1.2313,
+         "max_dd": 0.5258
         },
         "lev": {
-         "total": 25.5931,
-         "cagr": 0.8677,
-         "max_dd": 0.2064
+         "total": 66.6903,
+         "cagr": 1.2313,
+         "max_dd": 0.5258
         },
         "win_rate": 0.548,
-        "profit_factor": 1.7,
-        "avg_trade": 0.0072,
+        "profit_factor": 1.55,
+        "avg_trade": 0.0114,
         "buy_hold": {
          "total": 3.2994,
          "cagr": 0.3201
         }
        },
        "valid": {
-        "trades": 133,
+        "trades": 114,
         "years": 1.5,
-        "trades_per_year": 88.8,
+        "trades_per_year": 76.1,
         "x1": {
-         "total": 0.4735,
-         "cagr": 0.2953,
-         "max_dd": 0.1616
+         "total": 1.0288,
+         "cagr": 0.6035,
+         "max_dd": 0.1925
         },
         "lev": {
-         "total": 0.4765,
-         "cagr": 0.297,
-         "max_dd": 0.16
+         "total": 1.0273,
+         "cagr": 0.6027,
+         "max_dd": 0.1931
         },
-        "win_rate": 0.504,
-        "profit_factor": 1.43,
-        "avg_trade": 0.0032,
+        "win_rate": 0.544,
+        "profit_factor": 1.57,
+        "avg_trade": 0.0071,
         "buy_hold": {
          "total": 1.8744,
          "cagr": 1.0234
         }
        },
        "test": {
-        "trades": 188,
+        "trades": 187,
         "years": 2.41,
-        "trades_per_year": 78.2,
+        "trades_per_year": 77.7,
         "x1": {
-         "total": -0.2703,
-         "cagr": -0.1228,
-         "max_dd": 0.3132
+         "total": -0.2439,
+         "cagr": -0.1097,
+         "max_dd": 0.5579
         },
         "lev": {
-         "total": -0.2703,
-         "cagr": -0.1228,
-         "max_dd": 0.3132
+         "total": -0.2439,
+         "cagr": -0.1097,
+         "max_dd": 0.5579
         },
-        "win_rate": 0.463,
-        "profit_factor": 0.89,
-        "avg_trade": -0.0013,
+        "win_rate": 0.449,
+        "profit_factor": 0.97,
+        "avg_trade": -0.0005,
         "buy_hold": {
-         "total": -0.5101,
-         "cagr": -0.2567
+         "total": -0.5085,
+         "cagr": -0.2556
         }
        },
        "verdict": {
@@ -2399,7 +2360,14 @@
         "text": "خسارة أقل من السوق"
        },
        "symbol": "ETHUSDT",
-       "signal_now": null
+       "signal_now": {
+        "time": "2026-11-26T04:00:00+00:00",
+        "side": "شراء (Long)",
+        "entry": 1680.3521955008912,
+        "sl": 1545.1150058262017,
+        "tp": 1956.7064526622132,
+        "leverage": 1.0
+       }
       }
      ],
      "chart": "img/eq_4h_ETHUSDT.png"
@@ -2409,42 +2377,38 @@
      "seeds": [
       {
        "seed": 1,
-       "generation": 1729,
+       "generation": 521,
        "done": false,
-       "runs_without_improve": 1,
-       "robust": 0.9649,
-       "test_avg": -0.5976,
+       "hours_without_improve": 0.2,
+       "robust": -0.072,
+       "test_avg": -0.4899,
        "indicators": [
-        "atr_pct",
-        "donch55",
-        "macd",
-        "vol_regime"
+        "cci",
+        "stoch_d"
        ]
       },
       {
        "seed": 2,
-       "generation": 1246,
+       "generation": 449,
        "done": false,
-       "runs_without_improve": 1,
-       "robust": 0.488,
-       "test_avg": -0.3957,
+       "hours_without_improve": 0.2,
+       "robust": -0.0639,
+       "test_avg": -0.6143,
        "indicators": [
         "donch55",
-        "stoch_k",
         "vol_regime"
        ]
       },
       {
        "seed": 3,
-       "generation": 1669,
+       "generation": 484,
        "done": false,
-       "runs_without_improve": 1,
-       "robust": -0.0269,
-       "test_avg": -0.3536,
+       "hours_without_improve": 0.1,
+       "robust": 0.0696,
+       "test_avg": -0.1211,
        "indicators": [
-        "roc1",
-        "rsi14",
-        "vol_z"
+        "rsi7",
+        "vol_regime"
        ]
       }
      ],
@@ -2453,130 +2417,124 @@
       "text": "البحوث ما لقت نمط ثابت"
      },
      "converged": false,
-     "stop_after": 8,
-     "best_seed": 1,
-     "generation": 1729,
+     "stop_after": 48,
+     "best_seed": 3,
+     "generation": 484,
      "weak": false,
      "genome": {
       "long": [
        [
-        "donch55",
-        ">",
-        65
-       ],
-       [
-        "macd",
-        ">",
-        54
-       ]
-      ],
-      "short": [
-       [
         "vol_regime",
-        "<",
-        26
+        ">",
+        33
        ],
        [
-        "atr_pct",
-        "<",
-        55
+        "rsi7",
+        ">",
+        62
        ]
       ],
-      "sl": 4.0,
-      "tp": 2.82,
-      "hold": 22
+      "short": [],
+      "sl": 4.09,
+      "tp": 8.12,
+      "hold": 7,
+      "entry": 0.57
      },
      "rules": {
       "long": [
-       "موقع السعر في قناة 55 أعلى من 0.655 (مستوى 65% تاريخياً)",
-       "MACD أعلى من 0.142 (مستوى 54% تاريخياً)"
+       "التذبذب مقارنة بالمعتاد أعلى من 0.777 (مستوى 33% تاريخياً)",
+       "RSI 7 أعلى من 54.71 (مستوى 62% تاريخياً)"
       ],
-      "short": [
-       "التذبذب مقارنة بالمعتاد أقل من 0.732 (مستوى 26% تاريخياً)",
-       "التذبذب ATR% أقل من 0.042 (مستوى 55% تاريخياً)"
-      ],
-      "sl": "وقف الخسارة = 4.0 × ATR",
-      "tp": "الهدف = 2.82 × ATR (العائد/المخاطرة ≈ 0.7)",
-      "entry": "الدخول: أمر ليمت أحسن من سعر الإغلاق بـ 0 × ATR (بيتلغى إذا ما وصله السعر بالشمعة الجاية)",
-      "hold": "أقصى مدة للصفقة = 22 شمعة (88 ساعات)"
+      "short": [],
+      "sl": "وقف الخسارة = 4.09 × ATR",
+      "tp": "الهدف = 8.12 × ATR (العائد/المخاطرة ≈ 2.0)",
+      "entry": "الدخول: أمر ليمت أحسن من سعر الإغلاق بـ 0.57 × ATR (بيتلغى إذا ما وصله السعر بالشمعة الجاية)",
+      "hold": "أقصى مدة للصفقة = 7 شمعة (28 ساعات)"
      },
-     "train_fitness": 1.2257,
-     "valid_fitness": 0.9649,
-     "found_generation": 27,
+     "train_fitness": 0.1513,
+     "valid_fitness": 0.0696,
+     "found_generation": 31,
      "coins": [
       {
        "train": {
-        "trades": 213,
+        "trades": 236,
         "years": 2.28,
-        "trades_per_year": 93.3,
+        "trades_per_year": 103.3,
         "x1": {
-         "total": 490.8208,
-         "cagr": 14.093,
-         "max_dd": 0.4414
+         "total": 53.854,
+         "cagr": 4.7759,
+         "max_dd": 0.4252
         },
         "lev": {
-         "total": 490.8208,
-         "cagr": 14.093,
-         "max_dd": 0.4414
+         "total": 53.854,
+         "cagr": 4.7759,
+         "max_dd": 0.4252
         },
-        "win_rate": 0.667,
-        "profit_factor": 2.28,
-        "avg_trade": 0.0343,
+        "win_rate": 0.547,
+        "profit_factor": 2.0,
+        "avg_trade": 0.0212,
         "buy_hold": {
          "total": 2.9298,
          "cagr": 0.8209
         }
        },
        "valid": {
-        "trades": 154,
+        "trades": 148,
         "years": 1.5,
-        "trades_per_year": 102.8,
+        "trades_per_year": 98.8,
         "x1": {
-         "total": 14.934,
-         "cagr": 5.3464,
-         "max_dd": 0.2891
+         "total": 5.1241,
+         "cagr": 2.3522,
+         "max_dd": 0.4233
         },
         "lev": {
-         "total": 14.934,
-         "cagr": 5.3464,
-         "max_dd": 0.2891
+         "total": 5.1241,
+         "cagr": 2.3522,
+         "max_dd": 0.4233
         },
-        "win_rate": 0.63,
-        "profit_factor": 1.95,
-        "avg_trade": 0.0207,
+        "win_rate": 0.581,
+        "profit_factor": 1.94,
+        "avg_trade": 0.0141,
         "buy_hold": {
          "total": 13.7051,
          "cagr": 5.0154
         }
        },
        "test": {
-        "trades": 185,
+        "trades": 235,
         "years": 2.41,
-        "trades_per_year": 76.9,
+        "trades_per_year": 97.7,
         "x1": {
-         "total": -0.5976,
-         "cagr": -0.3151,
-         "max_dd": 0.7841
+         "total": -0.1211,
+         "cagr": -0.0522,
+         "max_dd": 0.6486
         },
         "lev": {
-         "total": -0.5976,
-         "cagr": -0.3151,
-         "max_dd": 0.7841
+         "total": -0.1211,
+         "cagr": -0.0522,
+         "max_dd": 0.6486
         },
-        "win_rate": 0.486,
-        "profit_factor": 0.89,
-        "avg_trade": -0.003,
+        "win_rate": 0.455,
+        "profit_factor": 1.02,
+        "avg_trade": 0.0003,
         "buy_hold": {
-         "total": -0.5204,
-         "cagr": -0.2632
+         "total": -0.5168,
+         "cagr": -0.2609
         }
        },
        "verdict": {
-        "level": "bad",
-        "text": "خسارة"
+        "level": "soft",
+        "text": "خسارة أقل من السوق"
        },
        "symbol": "SOLUSDT",
-       "signal_now": null
+       "signal_now": {
+        "time": "2026-11-26T04:00:00+00:00",
+        "side": "شراء (Long)",
+        "entry": 69.80423749917522,
+        "sl": 62.372187273958744,
+        "tp": 84.55931031794239,
+        "leverage": 1.0
+       }
       }
      ],
      "chart": "img/eq_4h_SOLUSDT.png"
@@ -2592,37 +2550,38 @@
      "seeds": [
       {
        "seed": 1,
-       "generation": 298,
+       "generation": 98,
        "done": false,
-       "runs_without_improve": 1,
-       "robust": -0.8988,
-       "test_avg": -0.2549,
+       "hours_without_improve": 0.6,
+       "robust": -0.3998,
+       "test_avg": -0.2032,
        "indicators": [
-        "donch20",
-        "htf_bb_width"
+        "htf_bb_width",
+        "htf_dist_ema20"
        ]
       },
       {
        "seed": 2,
-       "generation": 298,
+       "generation": 104,
        "done": false,
-       "runs_without_improve": 1,
-       "robust": -0.4694,
-       "test_avg": -0.201,
+       "hours_without_improve": 0.5,
+       "robust": -0.3852,
+       "test_avg": -0.2607,
        "indicators": [
         "htf_bb_pctb"
        ]
       },
       {
        "seed": 3,
-       "generation": 321,
+       "generation": 79,
        "done": false,
-       "runs_without_improve": 0,
-       "robust": -1.0315,
-       "test_avg": -0.2136,
+       "hours_without_improve": 0.3,
+       "robust": -0.5807,
+       "test_avg": -0.466,
        "indicators": [
-        "donch55",
-        "htf_bb_width"
+        "htf_bb_width",
+        "htf_ema50_200",
+        "mfi"
        ]
       }
      ],
@@ -2631,102 +2590,103 @@
       "text": "البحوث ما لقت نمط ثابت"
      },
      "converged": false,
-     "stop_after": 8,
+     "stop_after": 48,
      "best_seed": 2,
-     "generation": 298,
+     "generation": 104,
      "weak": true,
      "genome": {
       "long": [
        [
         "htf_bb_pctb",
         ">",
-        96
+        93
        ]
       ],
       "short": [],
-      "sl": 6.0,
-      "tp": 0.92,
-      "hold": 17
+      "sl": 3.58,
+      "tp": 0.62,
+      "hold": 85,
+      "entry": 0.81
      },
      "rules": {
       "long": [
-       "موقع السعر داخل بولينجر (فريم 4 ساعات) أعلى من 1.06 (مستوى 96% تاريخياً)"
+       "موقع السعر داخل بولينجر (فريم 4 ساعات) أعلى من 0.993 (مستوى 93% تاريخياً)"
       ],
       "short": [],
-      "sl": "وقف الخسارة = 6.0 × ATR",
-      "tp": "الهدف = 0.92 × ATR (العائد/المخاطرة ≈ 0.2)",
-      "entry": "الدخول: أمر ليمت أحسن من سعر الإغلاق بـ 0 × ATR (بيتلغى إذا ما وصله السعر بالشمعة الجاية)",
-      "hold": "أقصى مدة للصفقة = 17 شمعة (17 ساعة)"
+      "sl": "وقف الخسارة = 3.58 × ATR",
+      "tp": "الهدف = 0.62 × ATR (العائد/المخاطرة ≈ 0.2)",
+      "entry": "الدخول: أمر ليمت أحسن من سعر الإغلاق بـ 0.81 × ATR (بيتلغى إذا ما وصله السعر بالشمعة الجاية)",
+      "hold": "أقصى مدة للصفقة = 85 شمعة (85 ساعة)"
      },
-     "train_fitness": -0.4017,
-     "valid_fitness": -0.4694,
-     "found_generation": 31,
+     "train_fitness": -0.3552,
+     "valid_fitness": -0.3852,
+     "found_generation": 6,
      "coins": [
       {
        "train": {
-        "trades": 527,
+        "trades": 467,
         "years": 5.26,
-        "trades_per_year": 100.2,
+        "trades_per_year": 88.8,
         "x1": {
-         "total": 1.4142,
-         "cagr": 0.1824,
-         "max_dd": 0.2024
+         "total": 0.7301,
+         "cagr": 0.1098,
+         "max_dd": 0.2119
         },
         "lev": {
-         "total": 1.4005,
-         "cagr": 0.1811,
-         "max_dd": 0.2024
+         "total": 0.6883,
+         "cagr": 0.1047,
+         "max_dd": 0.2119
         },
-        "win_rate": 0.801,
-        "profit_factor": 1.34,
-        "avg_trade": 0.0019,
+        "win_rate": 0.895,
+        "profit_factor": 1.3,
+        "avg_trade": 0.0013,
         "buy_hold": {
          "total": 3.4295,
          "cagr": 0.327
         }
        },
        "valid": {
-        "trades": 212,
+        "trades": 139,
         "years": 1.5,
-        "trades_per_year": 141.5,
+        "trades_per_year": 92.8,
         "x1": {
-         "total": 0.5061,
-         "cagr": 0.3143,
-         "max_dd": 0.1199
+         "total": 0.0792,
+         "cagr": 0.0522,
+         "max_dd": 0.1726
         },
         "lev": {
-         "total": 0.5089,
-         "cagr": 0.3159,
-         "max_dd": 0.1219
+         "total": 0.051,
+         "cagr": 0.0337,
+         "max_dd": 0.2026
         },
-        "win_rate": 0.816,
-        "profit_factor": 1.66,
-        "avg_trade": 0.002,
+        "win_rate": 0.863,
+        "profit_factor": 1.19,
+        "avg_trade": 0.0006,
         "buy_hold": {
          "total": 2.7948,
          "cagr": 1.435
         }
        },
        "test": {
-        "trades": 232,
+        "trades": 200,
         "years": 2.41,
-        "trades_per_year": 96.5,
+        "trades_per_year": 83.1,
         "x1": {
-         "total": -0.1736,
-         "cagr": -0.0762,
-         "max_dd": 0.3072
+         "total": -0.3453,
+         "cagr": -0.1614,
+         "max_dd": 0.3737
         },
         "lev": {
-         "total": -0.172,
-         "cagr": -0.0755,
-         "max_dd": 0.3059
+         "total": -0.3671,
+         "cagr": -0.1731,
+         "max_dd": 0.3959
         },
-        "win_rate": 0.741,
-        "profit_factor": 0.85,
-        "avg_trade": -0.0007,
+        "win_rate": 0.805,
+        "profit_factor": 0.58,
+        "avg_trade": -0.002,
         "buy_hold": {
-         "total": -0.0399,
-         "cagr": -0.0168
+         "total": -0.0358,
+         "cagr": -0.0151
         }
        },
        "verdict": {
@@ -2738,69 +2698,69 @@
       },
       {
        "train": {
-        "trades": 553,
+        "trades": 512,
         "years": 5.26,
-        "trades_per_year": 105.1,
+        "trades_per_year": 97.3,
         "x1": {
-         "total": 3.4422,
-         "cagr": 0.3277,
-         "max_dd": 0.2792
+         "total": 0.9567,
+         "cagr": 0.1361,
+         "max_dd": 0.2532
         },
         "lev": {
-         "total": 3.4422,
-         "cagr": 0.3277,
-         "max_dd": 0.2792
+         "total": 0.9462,
+         "cagr": 0.1349,
+         "max_dd": 0.2532
         },
-        "win_rate": 0.814,
-        "profit_factor": 1.46,
-        "avg_trade": 0.003,
+        "win_rate": 0.885,
+        "profit_factor": 1.26,
+        "avg_trade": 0.0016,
         "buy_hold": {
          "total": 3.2722,
          "cagr": 0.3179
         }
        },
        "valid": {
-        "trades": 182,
+        "trades": 134,
         "years": 1.5,
-        "trades_per_year": 121.5,
+        "trades_per_year": 89.4,
         "x1": {
-         "total": 0.1761,
-         "cagr": 0.1143,
-         "max_dd": 0.1666
+         "total": 0.0846,
+         "cagr": 0.0557,
+         "max_dd": 0.1002
         },
         "lev": {
-         "total": 0.1618,
-         "cagr": 0.1053,
-         "max_dd": 0.1767
+         "total": 0.0693,
+         "cagr": 0.0457,
+         "max_dd": 0.1171
         },
-        "win_rate": 0.769,
-        "profit_factor": 1.22,
-        "avg_trade": 0.001,
+        "win_rate": 0.881,
+        "profit_factor": 1.2,
+        "avg_trade": 0.0007,
         "buy_hold": {
          "total": 1.8744,
          "cagr": 1.023
         }
        },
        "test": {
-        "trades": 245,
+        "trades": 183,
         "years": 2.41,
-        "trades_per_year": 101.9,
+        "trades_per_year": 76.0,
         "x1": {
-         "total": -0.2706,
-         "cagr": -0.1229,
-         "max_dd": 0.3641
+         "total": -0.342,
+         "cagr": -0.1597,
+         "max_dd": 0.4697
         },
         "lev": {
-         "total": -0.2706,
-         "cagr": -0.1229,
-         "max_dd": 0.3641
+         "total": -0.343,
+         "cagr": -0.1602,
+         "max_dd": 0.4715
         },
-        "win_rate": 0.727,
-        "profit_factor": 0.84,
-        "avg_trade": -0.0011,
+        "win_rate": 0.809,
+        "profit_factor": 0.67,
+        "avg_trade": -0.0021,
         "buy_hold": {
          "total": -0.5085,
-         "cagr": -0.2557
+         "cagr": -0.2556
         }
        },
        "verdict": {
@@ -2812,69 +2772,69 @@
       },
       {
        "train": {
-        "trades": 258,
+        "trades": 241,
         "years": 2.29,
-        "trades_per_year": 112.8,
+        "trades_per_year": 105.4,
         "x1": {
-         "total": 1.1182,
-         "cagr": 0.3885,
-         "max_dd": 0.4851
+         "total": 1.816,
+         "cagr": 0.5727,
+         "max_dd": 0.3957
         },
         "lev": {
-         "total": 1.1182,
-         "cagr": 0.3885,
-         "max_dd": 0.4851
+         "total": 1.816,
+         "cagr": 0.5727,
+         "max_dd": 0.3957
         },
-        "win_rate": 0.783,
-        "profit_factor": 1.3,
-        "avg_trade": 0.0037,
+        "win_rate": 0.892,
+        "profit_factor": 1.55,
+        "avg_trade": 0.0049,
         "buy_hold": {
          "total": 2.8691,
          "cagr": 0.8071
         }
        },
        "valid": {
-        "trades": 188,
+        "trades": 159,
         "years": 1.5,
-        "trades_per_year": 125.5,
+        "trades_per_year": 106.1,
         "x1": {
-         "total": 1.635,
-         "cagr": 0.909,
-         "max_dd": 0.1318
+         "total": 0.6322,
+         "cagr": 0.3867,
+         "max_dd": 0.1741
         },
         "lev": {
-         "total": 1.635,
-         "cagr": 0.909,
-         "max_dd": 0.1318
+         "total": 0.6327,
+         "cagr": 0.387,
+         "max_dd": 0.1741
         },
-        "win_rate": 0.835,
-        "profit_factor": 1.81,
-        "avg_trade": 0.0055,
+        "win_rate": 0.893,
+        "profit_factor": 1.58,
+        "avg_trade": 0.0033,
         "buy_hold": {
          "total": 13.7051,
          "cagr": 5.0129
         }
        },
        "test": {
-        "trades": 231,
+        "trades": 200,
         "years": 2.41,
-        "trades_per_year": 96.0,
+        "trades_per_year": 83.1,
         "x1": {
-         "total": -0.1827,
-         "cagr": -0.0804,
-         "max_dd": 0.4342
+         "total": -0.0332,
+         "cagr": -0.0139,
+         "max_dd": 0.2539
         },
         "lev": {
-         "total": -0.1827,
-         "cagr": -0.0804,
-         "max_dd": 0.4342
+         "total": -0.0316,
+         "cagr": -0.0133,
+         "max_dd": 0.2539
         },
-        "win_rate": 0.758,
-        "profit_factor": 0.94,
-        "avg_trade": -0.0005,
+        "win_rate": 0.86,
+        "profit_factor": 1.0,
+        "avg_trade": 0.0,
         "buy_hold": {
-         "total": -0.5183,
-         "cagr": -0.2619
+         "total": -0.5168,
+         "cagr": -0.2609
         }
        },
        "verdict": {
@@ -2886,68 +2846,68 @@
       },
       {
        "train": {
-        "trades": 529,
+        "trades": 568,
         "years": 5.04,
-        "trades_per_year": 105.0,
+        "trades_per_year": 112.7,
         "x1": {
-         "total": 10.8937,
-         "cagr": 0.6344,
-         "max_dd": 0.2558
+         "total": 4.8432,
+         "cagr": 0.4195,
+         "max_dd": 0.2494
         },
         "lev": {
-         "total": 10.8946,
-         "cagr": 0.6345,
-         "max_dd": 0.2558
+         "total": 4.8592,
+         "cagr": 0.4202,
+         "max_dd": 0.2494
         },
-        "win_rate": 0.781,
-        "profit_factor": 1.69,
-        "avg_trade": 0.0051,
+        "win_rate": 0.907,
+        "profit_factor": 1.6,
+        "avg_trade": 0.0035,
         "buy_hold": {
          "total": 93.6398,
          "cagr": 1.4666
         }
        },
        "valid": {
-        "trades": 163,
+        "trades": 158,
         "years": 1.5,
-        "trades_per_year": 108.8,
+        "trades_per_year": 105.4,
         "x1": {
-         "total": -0.0863,
-         "cagr": -0.0584,
-         "max_dd": 0.2961
+         "total": -0.1958,
+         "cagr": -0.1354,
+         "max_dd": 0.2504
         },
         "lev": {
-         "total": -0.0867,
-         "cagr": -0.0587,
-         "max_dd": 0.2965
+         "total": -0.1988,
+         "cagr": -0.1375,
+         "max_dd": 0.2561
         },
-        "win_rate": 0.748,
-        "profit_factor": 0.92,
-        "avg_trade": -0.0004,
+        "win_rate": 0.842,
+        "profit_factor": 0.76,
+        "avg_trade": -0.0013,
         "buy_hold": {
          "total": 1.3638,
          "cagr": 0.7755
         }
        },
        "test": {
-        "trades": 247,
+        "trades": 210,
         "years": 2.41,
-        "trades_per_year": 102.7,
+        "trades_per_year": 87.3,
         "x1": {
-         "total": -0.4053,
-         "cagr": -0.1943,
-         "max_dd": 0.467
+         "total": -0.2685,
+         "cagr": -0.1218,
+         "max_dd": 0.3595
         },
         "lev": {
-         "total": -0.4038,
-         "cagr": -0.1935,
-         "max_dd": 0.4656
+         "total": -0.2765,
+         "cagr": -0.1259,
+         "max_dd": 0.3682
         },
-        "win_rate": 0.688,
-        "profit_factor": 0.69,
-        "avg_trade": -0.002,
+        "win_rate": 0.829,
+        "profit_factor": 0.71,
+        "avg_trade": -0.0014,
         "buy_hold": {
-         "total": -0.0481,
+         "total": -0.0482,
          "cagr": -0.0203
         }
        },
@@ -2960,74 +2920,74 @@
       },
       {
        "train": {
-        "trades": 391,
+        "trades": 375,
         "years": 3.39,
-        "trades_per_year": 115.4,
+        "trades_per_year": 110.7,
         "x1": {
-         "total": 30.215,
-         "cagr": 1.7615,
-         "max_dd": 0.449
+         "total": 8.0363,
+         "cagr": 0.9152,
+         "max_dd": 0.4667
         },
         "lev": {
-         "total": 30.215,
-         "cagr": 1.7615,
-         "max_dd": 0.449
+         "total": 8.0404,
+         "cagr": 0.9155,
+         "max_dd": 0.4667
         },
-        "win_rate": 0.793,
-        "profit_factor": 1.98,
-        "avg_trade": 0.0097,
+        "win_rate": 0.896,
+        "profit_factor": 1.83,
+        "avg_trade": 0.0065,
         "buy_hold": {
          "total": 23.3924,
          "cagr": 1.5676
         }
        },
        "valid": {
-        "trades": 149,
+        "trades": 166,
         "years": 1.5,
-        "trades_per_year": 99.4,
+        "trades_per_year": 110.8,
         "x1": {
-         "total": -0.2261,
-         "cagr": -0.1572,
-         "max_dd": 0.366
+         "total": -0.2862,
+         "cagr": -0.2015,
+         "max_dd": 0.3896
         },
         "lev": {
-         "total": -0.2261,
-         "cagr": -0.1572,
-         "max_dd": 0.366
+         "total": -0.2842,
+         "cagr": -0.2,
+         "max_dd": 0.3878
         },
-        "win_rate": 0.725,
-        "profit_factor": 0.88,
-        "avg_trade": -0.0012,
+        "win_rate": 0.837,
+        "profit_factor": 0.81,
+        "avg_trade": -0.0017,
         "buy_hold": {
          "total": 0.7722,
          "cagr": 0.465
         }
        },
        "test": {
-        "trades": 208,
+        "trades": 227,
         "years": 2.41,
-        "trades_per_year": 86.5,
+        "trades_per_year": 94.3,
         "x1": {
-         "total": 0.0243,
-         "cagr": 0.01,
-         "max_dd": 0.3864
+         "total": -0.2825,
+         "cagr": -0.1289,
+         "max_dd": 0.5226
         },
         "lev": {
-         "total": 0.0243,
-         "cagr": 0.01,
-         "max_dd": 0.3864
+         "total": -0.2852,
+         "cagr": -0.1302,
+         "max_dd": 0.5243
         },
-        "win_rate": 0.736,
-        "profit_factor": 1.05,
-        "avg_trade": 0.0005,
+        "win_rate": 0.841,
+        "profit_factor": 0.86,
+        "avg_trade": -0.0011,
         "buy_hold": {
-         "total": -0.5502,
-         "cagr": -0.2826
+         "total": -0.5461,
+         "cagr": -0.2798
         }
        },
        "verdict": {
-        "level": "good",
-        "text": "ربح وتغلّب على اشترِ واحتفظ"
+        "level": "soft",
+        "text": "خسارة أقل من السوق"
        },
        "symbol": "DOGEUSDT",
        "signal_now": null
@@ -3040,38 +3000,40 @@
      "seeds": [
       {
        "seed": 1,
-       "generation": 260,
+       "generation": 147,
        "done": false,
-       "runs_without_improve": 0,
-       "robust": -0.2635,
-       "test_avg": -0.2176,
+       "hours_without_improve": 0.1,
+       "robust": -0.3826,
+       "test_avg": -0.0596,
        "indicators": [
-        "dist_ema20",
-        "htf_atr_pct"
+        "htf_dist_ema20",
+        "htf_dist_ema50"
        ]
       },
       {
        "seed": 2,
-       "generation": 167,
+       "generation": 110,
        "done": false,
-       "runs_without_improve": 0,
-       "robust": -0.2013,
-       "test_avg": -0.159,
+       "hours_without_improve": 0.1,
+       "robust": -0.0277,
+       "test_avg": -0.1582,
        "indicators": [
-        "cci",
-        "htf_stoch_d"
+        "di_diff",
+        "ema50_200",
+        "htf_adx",
+        "htf_macd_hist"
        ]
       },
       {
        "seed": 3,
-       "generation": 324,
+       "generation": 123,
        "done": false,
-       "runs_without_improve": 1,
-       "robust": -0.5387,
-       "test_avg": -0.3164,
+       "hours_without_improve": 0.1,
+       "robust": -0.1998,
+       "test_avg": -0.2121,
        "indicators": [
-        "htf_cci",
-        "rsi7"
+        "htf_bb_pctb",
+        "macd_hist"
        ]
       }
      ],
@@ -3080,107 +3042,122 @@
       "text": "البحوث ما لقت نمط ثابت"
      },
      "converged": false,
-     "stop_after": 8,
+     "stop_after": 48,
      "best_seed": 2,
-     "generation": 167,
+     "generation": 110,
      "weak": true,
      "genome": {
-      "long": [],
-      "short": [
+      "long": [
        [
-        "htf_stoch_d",
-        "<",
-        50
-       ],
-       [
-        "cci",
+        "di_diff",
         ">",
         95
+       ],
+       [
+        "ema50_200",
+        "<",
+        83
        ]
       ],
-      "sl": 2.21,
-      "tp": 0.55,
-      "hold": 41
+      "short": [
+       [
+        "htf_adx",
+        "<",
+        29
+       ],
+       [
+        "htf_macd_hist",
+        "<",
+        30
+       ]
+      ],
+      "sl": 3.87,
+      "tp": 1.72,
+      "hold": 49,
+      "entry": 0.75
      },
      "rules": {
-      "long": [],
-      "short": [
-       "ستوكاستك D (فريم 4 ساعات) أقل من 54.53 (مستوى 50% تاريخياً)",
-       "CCI أعلى من 180.29 (مستوى 95% تاريخياً)"
+      "long": [
+       "اتجاه DI+ ناقص DI− أعلى من 21.95 (مستوى 95% تاريخياً)",
+       "EMA 50 مقابل EMA 200 أقل من 0.0437 (مستوى 83% تاريخياً)"
       ],
-      "sl": "وقف الخسارة = 2.21 × ATR",
-      "tp": "الهدف = 0.55 × ATR (العائد/المخاطرة ≈ 0.2)",
-      "entry": "الدخول: أمر ليمت أحسن من سعر الإغلاق بـ 0 × ATR (بيتلغى إذا ما وصله السعر بالشمعة الجاية)",
-      "hold": "أقصى مدة للصفقة = 41 شمعة (41 ساعة)"
+      "short": [
+       "قوة الترند ADX (فريم 4 ساعات) أقل من 18.92 (مستوى 29% تاريخياً)",
+       "هيستوغرام MACD (فريم 4 ساعات) أقل من -0.255 (مستوى 30% تاريخياً)"
+      ],
+      "sl": "وقف الخسارة = 3.87 × ATR",
+      "tp": "الهدف = 1.72 × ATR (العائد/المخاطرة ≈ 0.4)",
+      "entry": "الدخول: أمر ليمت أحسن من سعر الإغلاق بـ 0.75 × ATR (بيتلغى إذا ما وصله السعر بالشمعة الجاية)",
+      "hold": "أقصى مدة للصفقة = 49 شمعة (49 ساعة)"
      },
-     "train_fitness": -0.2013,
-     "valid_fitness": -0.1198,
-     "found_generation": 89,
+     "train_fitness": 0.1415,
+     "valid_fitness": -0.0277,
+     "found_generation": 66,
      "coins": [
       {
        "train": {
-        "trades": 463,
+        "trades": 525,
         "years": 5.04,
-        "trades_per_year": 91.9,
+        "trades_per_year": 104.2,
         "x1": {
-         "total": 0.5477,
-         "cagr": 0.0905,
-         "max_dd": 0.1696
+         "total": 76.6309,
+         "cagr": 1.3715,
+         "max_dd": 0.1849
         },
         "lev": {
-         "total": 0.512,
-         "cagr": 0.0855,
-         "max_dd": 0.1928
+         "total": 76.9927,
+         "cagr": 1.3737,
+         "max_dd": 0.1808
         },
-        "win_rate": 0.829,
-        "profit_factor": 1.21,
-        "avg_trade": 0.0011,
+        "win_rate": 0.768,
+        "profit_factor": 1.9,
+        "avg_trade": 0.0089,
         "buy_hold": {
          "total": 93.6398,
          "cagr": 1.4666
         }
        },
        "valid": {
-        "trades": 137,
+        "trades": 164,
         "years": 1.5,
-        "trades_per_year": 91.4,
+        "trades_per_year": 109.4,
         "x1": {
-         "total": 0.2139,
-         "cagr": 0.1381,
-         "max_dd": 0.0391
+         "total": 0.4822,
+         "cagr": 0.3003,
+         "max_dd": 0.1464
         },
         "lev": {
-         "total": 0.2169,
-         "cagr": 0.14,
-         "max_dd": 0.0604
+         "total": 0.4833,
+         "cagr": 0.301,
+         "max_dd": 0.1562
         },
-        "win_rate": 0.883,
-        "profit_factor": 1.87,
-        "avg_trade": 0.0014,
+        "win_rate": 0.732,
+        "profit_factor": 1.38,
+        "avg_trade": 0.0026,
         "buy_hold": {
          "total": 1.3638,
          "cagr": 0.7755
         }
        },
        "test": {
-        "trades": 196,
+        "trades": 277,
         "years": 2.41,
-        "trades_per_year": 81.5,
+        "trades_per_year": 115.1,
         "x1": {
-         "total": -0.0878,
-         "cagr": -0.0375,
-         "max_dd": 0.1121
+         "total": -0.1651,
+         "cagr": -0.0722,
+         "max_dd": 0.3175
         },
         "lev": {
-         "total": -0.159,
-         "cagr": -0.0695,
-         "max_dd": 0.1896
+         "total": -0.1582,
+         "cagr": -0.0691,
+         "max_dd": 0.3217
         },
-        "win_rate": 0.796,
-        "profit_factor": 0.86,
-        "avg_trade": -0.0004,
+        "win_rate": 0.671,
+        "profit_factor": 0.95,
+        "avg_trade": -0.0005,
         "buy_hold": {
-         "total": -0.0481,
+         "total": -0.0482,
          "cagr": -0.0203
         }
        },
@@ -3189,14 +3166,7 @@
         "text": "خسارة"
        },
        "symbol": "BNBUSDT",
-       "signal_now": {
-        "time": "2026-11-25T20:00:00+00:00",
-        "side": "بيع (Short)",
-        "entry": 554.32,
-        "sl": 567.1280429913596,
-        "tp": 551.1324779885757,
-        "leverage": 1.0
-       }
+       "signal_now": null
       }
      ],
      "chart": "img/eq_1h_4h_BNBUSDT.png"
@@ -3206,156 +3176,149 @@
      "seeds": [
       {
        "seed": 1,
-       "generation": 351,
+       "generation": 124,
        "done": false,
-       "runs_without_improve": 1,
-       "robust": -0.0209,
-       "test_avg": -0.1564,
+       "hours_without_improve": 0.3,
+       "robust": 0.0364,
+       "test_avg": -0.3954,
        "indicators": [
-        "ema20_50",
         "htf_di_diff",
-        "htf_macd_hist"
+        "htf_dist_ema20"
        ]
       },
       {
        "seed": 2,
-       "generation": 273,
+       "generation": 115,
        "done": false,
-       "runs_without_improve": 1,
-       "robust": -0.2799,
-       "test_avg": -0.2443,
+       "hours_without_improve": 0.3,
+       "robust": 0.1359,
+       "test_avg": -0.2912,
        "indicators": [
-        "ema20_50"
+        "dist_ema50",
+        "mfi"
        ]
       },
       {
        "seed": 3,
-       "generation": 365,
+       "generation": 112,
        "done": false,
-       "runs_without_improve": 1,
-       "robust": -0.0651,
-       "test_avg": -0.4565,
+       "hours_without_improve": 0.3,
+       "robust": 0.1135,
+       "test_avg": -0.3146,
        "indicators": [
-        "htf_atr_pct",
-        "htf_rsi14"
+        "htf_rsi14",
+        "macd"
        ]
       }
      ],
      "agreement": {
-      "level": "bad",
-      "text": "البحوث ما لقت نمط ثابت"
+      "level": "ok",
+      "text": "متفقة بالتدريب، بس مختلفة بالمخفي"
      },
      "converged": false,
-     "stop_after": 8,
-     "best_seed": 1,
-     "generation": 351,
-     "weak": true,
+     "stop_after": 48,
+     "best_seed": 2,
+     "generation": 115,
+     "weak": false,
      "genome": {
       "long": [
        [
-        "htf_di_diff",
+        "dist_ema50",
         ">",
-        80
+        89
        ],
        [
-        "htf_macd_hist",
+        "mfi",
         ">",
-        60
+        87
        ]
       ],
-      "short": [
-       [
-        "ema20_50",
-        ">",
-        98
-       ]
-      ],
-      "sl": 3.99,
-      "tp": 2.22,
-      "hold": 83
+      "short": [],
+      "sl": 2.76,
+      "tp": 1.24,
+      "hold": 45,
+      "entry": 0.47
      },
      "rules": {
       "long": [
-       "اتجاه DI+ ناقص DI− (فريم 4 ساعات) أعلى من 11.63 (مستوى 80% تاريخياً)",
-       "هيستوغرام MACD (فريم 4 ساعات) أعلى من 0.104 (مستوى 60% تاريخياً)"
+       "بُعد السعر عن EMA 50 أعلى من 0.0295 (مستوى 89% تاريخياً)",
+       "MFI أعلى من 70.08 (مستوى 87% تاريخياً)"
       ],
-      "short": [
-       "EMA 20 مقابل EMA 50 أعلى من 0.0325 (مستوى 98% تاريخياً)"
-      ],
-      "sl": "وقف الخسارة = 3.99 × ATR",
-      "tp": "الهدف = 2.22 × ATR (العائد/المخاطرة ≈ 0.6)",
-      "entry": "الدخول: أمر ليمت أحسن من سعر الإغلاق بـ 0 × ATR (بيتلغى إذا ما وصله السعر بالشمعة الجاية)",
-      "hold": "أقصى مدة للصفقة = 83 شمعة (83 ساعة)"
+      "short": [],
+      "sl": "وقف الخسارة = 2.76 × ATR",
+      "tp": "الهدف = 1.24 × ATR (العائد/المخاطرة ≈ 0.4)",
+      "entry": "الدخول: أمر ليمت أحسن من سعر الإغلاق بـ 0.47 × ATR (بيتلغى إذا ما وصله السعر بالشمعة الجاية)",
+      "hold": "أقصى مدة للصفقة = 45 شمعة (45 ساعة)"
      },
-     "train_fitness": -0.0009,
-     "valid_fitness": -0.0209,
-     "found_generation": 89,
+     "train_fitness": 0.1359,
+     "valid_fitness": 0.1435,
+     "found_generation": 64,
      "coins": [
       {
        "train": {
-        "trades": 503,
+        "trades": 620,
         "years": 5.26,
-        "trades_per_year": 95.6,
+        "trades_per_year": 117.9,
         "x1": {
-         "total": 24.9304,
-         "cagr": 0.8567,
-         "max_dd": 0.2813
+         "total": 17.5217,
+         "cagr": 0.7417,
+         "max_dd": 0.149
         },
         "lev": {
-         "total": 24.9145,
-         "cagr": 0.8565,
-         "max_dd": 0.2813
+         "total": 17.5856,
+         "cagr": 0.7428,
+         "max_dd": 0.1482
         },
-        "win_rate": 0.722,
+        "win_rate": 0.787,
         "profit_factor": 1.65,
-        "avg_trade": 0.007,
+        "avg_trade": 0.005,
         "buy_hold": {
          "total": 3.4295,
          "cagr": 0.327
         }
        },
        "valid": {
-        "trades": 162,
+        "trades": 117,
         "years": 1.5,
-        "trades_per_year": 108.1,
+        "trades_per_year": 78.1,
         "x1": {
-         "total": 0.775,
-         "cagr": 0.4665,
-         "max_dd": 0.1774
+         "total": 0.5549,
+         "cagr": 0.3426,
+         "max_dd": 0.0778
         },
         "lev": {
-         "total": 0.8087,
-         "cagr": 0.485,
-         "max_dd": 0.1829
+         "total": 0.581,
+         "cagr": 0.3575,
+         "max_dd": 0.0778
         },
-        "win_rate": 0.71,
-        "profit_factor": 1.49,
-        "avg_trade": 0.0038,
+        "win_rate": 0.812,
+        "profit_factor": 1.82,
+        "avg_trade": 0.0039,
         "buy_hold": {
          "total": 2.7948,
          "cagr": 1.435
         }
        },
        "test": {
-        "trades": 209,
+        "trades": 121,
         "years": 2.41,
-        "trades_per_year": 86.9,
+        "trades_per_year": 50.3,
         "x1": {
-         "total": -0.17,
-         "cagr": -0.0746,
-         "max_dd": 0.3636
+         "total": -0.2797,
+         "cagr": -0.1274,
+         "max_dd": 0.3595
         },
         "lev": {
-         "total": -0.1564,
-         "cagr": -0.0683,
-         "max_dd": 0.3542
+         "total": -0.2912,
+         "cagr": -0.1333,
+         "max_dd": 0.3692
         },
-        "win_rate": 0.646,
-        "profit_factor": 0.93,
-        "avg_trade": -0.0007,
+        "win_rate": 0.636,
+        "profit_factor": 0.71,
+        "avg_trade": -0.0026,
         "buy_hold": {
-         "total": -0.0399,
-         "cagr": -0.0168
+         "total": -0.0358,
+         "cagr": -0.0151
         }
        },
        "verdict": {
@@ -3373,38 +3336,37 @@
      "seeds": [
       {
        "seed": 1,
-       "generation": 556,
+       "generation": 103,
        "done": false,
-       "runs_without_improve": 1,
-       "robust": -0.1796,
-       "test_avg": -0.0557,
+       "hours_without_improve": 0.1,
+       "robust": 0.0729,
+       "test_avg": 0.1738,
        "indicators": [
-        "bb_width",
-        "htf_vol_regime"
+        "htf_cci",
+        "roc1"
        ]
       },
       {
        "seed": 2,
-       "generation": 581,
+       "generation": 101,
        "done": false,
-       "runs_without_improve": 1,
-       "robust": -0.8102,
-       "test_avg": -0.1127,
+       "hours_without_improve": 0.0,
+       "robust": -0.1956,
+       "test_avg": -0.4266,
        "indicators": [
-        "htf_cci"
+        "donch20"
        ]
       },
       {
        "seed": 3,
-       "generation": 549,
+       "generation": 137,
        "done": false,
-       "runs_without_improve": 1,
-       "robust": -0.2313,
-       "test_avg": 2.0858,
+       "hours_without_improve": 0.0,
+       "robust": -0.2163,
+       "test_avg": -0.4519,
        "indicators": [
-        "adx",
-        "htf_bb_width",
-        "htf_mfi"
+        "atr_pct",
+        "htf_vol_regime"
        ]
       }
      ],
@@ -3413,113 +3375,116 @@
       "text": "البحوث ما لقت نمط ثابت"
      },
      "converged": false,
-     "stop_after": 8,
+     "stop_after": 48,
      "best_seed": 1,
-     "generation": 556,
-     "weak": true,
+     "generation": 103,
+     "weak": false,
      "genome": {
-      "long": [],
-      "short": [
+      "long": [
        [
-        "bb_width",
+        "roc1",
         "<",
-        32
-       ],
-       [
-        "htf_vol_regime",
-        "<",
-        46
+        17
        ]
       ],
-      "sl": 4.39,
-      "tp": 2.11,
-      "hold": 69
+      "short": [
+       [
+        "htf_cci",
+        "<",
+        6
+       ]
+      ],
+      "sl": 3.81,
+      "tp": 1.2,
+      "hold": 52,
+      "entry": 0.96
      },
      "rules": {
-      "long": [],
-      "short": [
-       "عرض بولينجر أقل من 0.0303 (مستوى 32% تاريخياً)",
-       "التذبذب مقارنة بالمعتاد (فريم 4 ساعات) أقل من 0.809 (مستوى 46% تاريخياً)"
+      "long": [
+       "تغيّر آخر شمعة أقل من -0.00695 (مستوى 17% تاريخياً)"
       ],
-      "sl": "وقف الخسارة = 4.39 × ATR",
-      "tp": "الهدف = 2.11 × ATR (العائد/المخاطرة ≈ 0.5)",
-      "entry": "الدخول: أمر ليمت أحسن من سعر الإغلاق بـ 0 × ATR (بيتلغى إذا ما وصله السعر بالشمعة الجاية)",
-      "hold": "أقصى مدة للصفقة = 69 شمعة (69 ساعة)"
+      "short": [
+       "CCI (فريم 4 ساعات) أقل من -171.12 (مستوى 6% تاريخياً)"
+      ],
+      "sl": "وقف الخسارة = 3.81 × ATR",
+      "tp": "الهدف = 1.2 × ATR (العائد/المخاطرة ≈ 0.3)",
+      "entry": "الدخول: أمر ليمت أحسن من سعر الإغلاق بـ 0.96 × ATR (بيتلغى إذا ما وصله السعر بالشمعة الجاية)",
+      "hold": "أقصى مدة للصفقة = 52 شمعة (52 ساعة)"
      },
-     "train_fitness": -0.1566,
-     "valid_fitness": -0.1796,
-     "found_generation": 21,
+     "train_fitness": 0.6402,
+     "valid_fitness": 0.0729,
+     "found_generation": 70,
      "coins": [
       {
        "train": {
-        "trades": 332,
+        "trades": 627,
         "years": 3.39,
-        "trades_per_year": 98.0,
+        "trades_per_year": 185.1,
         "x1": {
-         "total": 1.1663,
-         "cagr": 0.2563,
-         "max_dd": 0.2177
+         "total": 909.0343,
+         "cagr": 6.4737,
+         "max_dd": 0.3572
         },
         "lev": {
-         "total": 1.1628,
-         "cagr": 0.2557,
-         "max_dd": 0.2177
+         "total": 909.3911,
+         "cagr": 6.4746,
+         "max_dd": 0.3572
         },
-        "win_rate": 0.705,
-        "profit_factor": 1.25,
-        "avg_trade": 0.0027,
+        "win_rate": 0.815,
+        "profit_factor": 2.06,
+        "avg_trade": 0.0122,
         "buy_hold": {
          "total": 23.3924,
          "cagr": 1.5676
         }
        },
        "valid": {
-        "trades": 204,
+        "trades": 236,
         "years": 1.5,
-        "trades_per_year": 136.1,
+        "trades_per_year": 157.5,
         "x1": {
-         "total": 0.6405,
-         "cagr": 0.3914,
-         "max_dd": 0.2216
+         "total": 1.8042,
+         "cagr": 0.9899,
+         "max_dd": 0.2923
         },
         "lev": {
-         "total": 0.6532,
-         "cagr": 0.3986,
-         "max_dd": 0.2216
+         "total": 1.8092,
+         "cagr": 0.9923,
+         "max_dd": 0.2923
         },
-        "win_rate": 0.73,
-        "profit_factor": 1.31,
-        "avg_trade": 0.0027,
+        "win_rate": 0.805,
+        "profit_factor": 1.51,
+        "avg_trade": 0.0049,
         "buy_hold": {
          "total": 0.7722,
          "cagr": 0.465
         }
        },
        "test": {
-        "trades": 223,
+        "trades": 412,
         "years": 2.41,
-        "trades_per_year": 92.7,
+        "trades_per_year": 171.2,
         "x1": {
-         "total": -0.0528,
-         "cagr": -0.0223,
-         "max_dd": 0.3778
+         "total": 0.1727,
+         "cagr": 0.0685,
+         "max_dd": 0.5328
         },
         "lev": {
-         "total": -0.0557,
-         "cagr": -0.0235,
-         "max_dd": 0.3778
+         "total": 0.1738,
+         "cagr": 0.0688,
+         "max_dd": 0.5324
         },
-        "win_rate": 0.686,
-        "profit_factor": 1.01,
-        "avg_trade": 0.0001,
+        "win_rate": 0.738,
+        "profit_factor": 1.07,
+        "avg_trade": 0.0009,
         "buy_hold": {
-         "total": -0.5502,
-         "cagr": -0.2826
+         "total": -0.5461,
+         "cagr": -0.2798
         }
        },
        "verdict": {
-        "level": "soft",
-        "text": "خسارة أقل من السوق"
+        "level": "good",
+        "text": "ربح وتغلّب على اشترِ واحتفظ"
        },
        "symbol": "DOGEUSDT",
        "signal_now": null
@@ -3532,39 +3497,37 @@
      "seeds": [
       {
        "seed": 1,
-       "generation": 292,
+       "generation": 134,
        "done": false,
-       "runs_without_improve": 1,
-       "robust": -0.1705,
-       "test_avg": -0.0685,
+       "hours_without_improve": 0.3,
+       "robust": -0.3049,
+       "test_avg": -0.2006,
        "indicators": [
-        "htf_cci",
-        "htf_di_diff"
+        "htf_obv_z",
+        "macd_hist"
        ]
       },
       {
        "seed": 2,
-       "generation": 311,
+       "generation": 140,
        "done": false,
-       "runs_without_improve": 1,
-       "robust": -0.2539,
-       "test_avg": -0.5921,
+       "hours_without_improve": 0.2,
+       "robust": -0.1528,
+       "test_avg": -0.2815,
        "indicators": [
-        "ema20_50",
-        "htf_bb_width"
+        "htf_di_diff"
        ]
       },
       {
        "seed": 3,
-       "generation": 442,
+       "generation": 77,
        "done": false,
-       "runs_without_improve": 1,
-       "robust": -0.4797,
-       "test_avg": -0.1758,
+       "hours_without_improve": 0.2,
+       "robust": -0.0409,
+       "test_avg": -0.4015,
        "indicators": [
-        "di_diff",
-        "htf_roc1",
-        "htf_rsi7"
+        "htf_donch20",
+        "macd_hist"
        ]
       }
      ],
@@ -3573,108 +3536,109 @@
       "text": "البحوث ما لقت نمط ثابت"
      },
      "converged": false,
-     "stop_after": 8,
-     "best_seed": 1,
-     "generation": 292,
+     "stop_after": 48,
+     "best_seed": 3,
+     "generation": 77,
      "weak": true,
      "genome": {
       "long": [
        [
-        "htf_cci",
+        "htf_donch20",
         ">",
-        90
+        55
        ],
        [
-        "htf_di_diff",
+        "macd_hist",
         ">",
         79
        ]
       ],
       "short": [],
-      "sl": 3.77,
-      "tp": 1.35,
-      "hold": 56
+      "sl": 3.15,
+      "tp": 1.25,
+      "hold": 12,
+      "entry": 0.66
      },
      "rules": {
       "long": [
-       "CCI (فريم 4 ساعات) أعلى من 147.86 (مستوى 90% تاريخياً)",
-       "اتجاه DI+ ناقص DI− (فريم 4 ساعات) أعلى من 10.64 (مستوى 79% تاريخياً)"
+       "موقع السعر في قناة 20 (فريم 4 ساعات) أعلى من 0.597 (مستوى 55% تاريخياً)",
+       "هيستوغرام MACD أعلى من 0.207 (مستوى 79% تاريخياً)"
       ],
       "short": [],
-      "sl": "وقف الخسارة = 3.77 × ATR",
-      "tp": "الهدف = 1.35 × ATR (العائد/المخاطرة ≈ 0.4)",
-      "entry": "الدخول: أمر ليمت أحسن من سعر الإغلاق بـ 0 × ATR (بيتلغى إذا ما وصله السعر بالشمعة الجاية)",
-      "hold": "أقصى مدة للصفقة = 56 شمعة (56 ساعة)"
+      "sl": "وقف الخسارة = 3.15 × ATR",
+      "tp": "الهدف = 1.25 × ATR (العائد/المخاطرة ≈ 0.4)",
+      "entry": "الدخول: أمر ليمت أحسن من سعر الإغلاق بـ 0.66 × ATR (بيتلغى إذا ما وصله السعر بالشمعة الجاية)",
+      "hold": "أقصى مدة للصفقة = 12 شمعة (12 ساعة)"
      },
-     "train_fitness": -0.058,
-     "valid_fitness": -0.1705,
-     "found_generation": 39,
+     "train_fitness": 0.3419,
+     "valid_fitness": -0.0409,
+     "found_generation": 74,
      "coins": [
       {
        "train": {
-        "trades": 623,
+        "trades": 806,
         "years": 5.26,
-        "trades_per_year": 118.4,
+        "trades_per_year": 153.2,
         "x1": {
-         "total": 13.8969,
-         "cagr": 0.6711,
-         "max_dd": 0.2027
+         "total": 85.947,
+         "cagr": 1.3368,
+         "max_dd": 0.1868
         },
         "lev": {
-         "total": 13.8529,
-         "cagr": 0.6701,
-         "max_dd": 0.2027
+         "total": 86.6943,
+         "cagr": 1.3406,
+         "max_dd": 0.1868
         },
-        "win_rate": 0.787,
-        "profit_factor": 1.48,
-        "avg_trade": 0.0048,
+        "win_rate": 0.732,
+        "profit_factor": 1.86,
+        "avg_trade": 0.0058,
         "buy_hold": {
          "total": 3.2722,
          "cagr": 0.3179
         }
        },
        "valid": {
-        "trades": 187,
+        "trades": 135,
         "years": 1.5,
-        "trades_per_year": 124.8,
+        "trades_per_year": 90.1,
         "x1": {
-         "total": 0.4173,
-         "cagr": 0.262,
-         "max_dd": 0.2161
+         "total": 0.2109,
+         "cagr": 0.1362,
+         "max_dd": 0.1014
         },
         "lev": {
-         "total": 0.4209,
-         "cagr": 0.2642,
-         "max_dd": 0.2161
+         "total": 0.2071,
+         "cagr": 0.1338,
+         "max_dd": 0.1014
         },
-        "win_rate": 0.765,
-        "profit_factor": 1.32,
-        "avg_trade": 0.002,
+        "win_rate": 0.637,
+        "profit_factor": 1.29,
+        "avg_trade": 0.0015,
         "buy_hold": {
          "total": 1.8744,
          "cagr": 1.023
         }
        },
        "test": {
-        "trades": 258,
+        "trades": 227,
         "years": 2.41,
-        "trades_per_year": 107.3,
+        "trades_per_year": 94.3,
         "x1": {
-         "total": -0.0707,
-         "cagr": -0.03,
-         "max_dd": 0.333
+         "total": -0.4013,
+         "cagr": -0.192,
+         "max_dd": 0.4442
         },
         "lev": {
-         "total": -0.0685,
-         "cagr": -0.0291,
-         "max_dd": 0.333
+         "total": -0.4015,
+         "cagr": -0.1921,
+         "max_dd": 0.4451
         },
-        "win_rate": 0.733,
-        "profit_factor": 1.0,
-        "avg_trade": -0.0,
+        "win_rate": 0.573,
+        "profit_factor": 0.75,
+        "avg_trade": -0.0021,
         "buy_hold": {
          "total": -0.5085,
-         "cagr": -0.2557
+         "cagr": -0.2556
         }
        },
        "verdict": {
@@ -3692,42 +3656,38 @@
      "seeds": [
       {
        "seed": 1,
-       "generation": 886,
+       "generation": 203,
        "done": false,
-       "runs_without_improve": 1,
-       "robust": 0.1164,
-       "test_avg": 0.7399,
+       "hours_without_improve": 0.2,
+       "robust": 0.7876,
+       "test_avg": -0.1832,
        "indicators": [
-        "htf_atr_pct",
-        "htf_donch55",
-        "htf_obv_z"
+        "atr_pct",
+        "htf_donch55"
        ]
       },
       {
        "seed": 2,
-       "generation": 934,
+       "generation": 261,
        "done": false,
-       "runs_without_improve": 1,
-       "robust": 0.6411,
-       "test_avg": -0.3227,
+       "hours_without_improve": 0.2,
+       "robust": 0.8531,
+       "test_avg": 0.8781,
        "indicators": [
-        "atr_pct",
-        "htf_bb_pctb",
-        "htf_vol_z"
+        "di_diff",
+        "ema50_200",
+        "htf_atr_pct"
        ]
       },
       {
        "seed": 3,
-       "generation": 757,
+       "generation": 252,
        "done": false,
-       "runs_without_improve": 0,
-       "robust": 0.6944,
-       "test_avg": 0.686,
+       "hours_without_improve": 0.1,
+       "robust": 0.3294,
+       "test_avg": -0.0564,
        "indicators": [
-        "bb_width",
-        "htf_macd",
-        "htf_mfi",
-        "vol_regime"
+        "roc6"
        ]
       }
      ],
@@ -3736,122 +3696,117 @@
       "text": "متفقة بالتدريب، بس مختلفة بالمخفي"
      },
      "converged": false,
-     "stop_after": 8,
-     "best_seed": 3,
-     "generation": 757,
+     "stop_after": 48,
+     "best_seed": 2,
+     "generation": 261,
      "weak": false,
      "genome": {
       "long": [
        [
-        "vol_regime",
+        "di_diff",
         ">",
-        79
-       ],
-       [
-        "htf_mfi",
-        ">",
-        26
+        77
        ]
       ],
       "short": [
        [
-        "bb_width",
+        "ema50_200",
         "<",
-        25
+        42
        ],
        [
-        "htf_macd",
+        "htf_atr_pct",
         "<",
-        38
+        29
        ]
       ],
-      "sl": 5.35,
-      "tp": 2.58,
-      "hold": 93
+      "sl": 5.43,
+      "tp": 4.3,
+      "hold": 50,
+      "entry": 0.71
      },
      "rules": {
       "long": [
-       "التذبذب مقارنة بالمعتاد أعلى من 1.24 (مستوى 79% تاريخياً)",
-       "MFI (فريم 4 ساعات) أعلى من 38.29 (مستوى 26% تاريخياً)"
+       "اتجاه DI+ ناقص DI− أعلى من 9.74 (مستوى 77% تاريخياً)"
       ],
       "short": [
-       "عرض بولينجر أقل من 0.0504 (مستوى 25% تاريخياً)",
-       "MACD (فريم 4 ساعات) أقل من -0.976 (مستوى 38% تاريخياً)"
+       "EMA 50 مقابل EMA 200 أقل من -0.0161 (مستوى 42% تاريخياً)",
+       "التذبذب ATR% (فريم 4 ساعات) أقل من 0.0341 (مستوى 29% تاريخياً)"
       ],
-      "sl": "وقف الخسارة = 5.35 × ATR",
-      "tp": "الهدف = 2.58 × ATR (العائد/المخاطرة ≈ 0.5)",
-      "entry": "الدخول: أمر ليمت أحسن من سعر الإغلاق بـ 0 × ATR (بيتلغى إذا ما وصله السعر بالشمعة الجاية)",
-      "hold": "أقصى مدة للصفقة = 93 شمعة (93 ساعة)"
+      "sl": "وقف الخسارة = 5.43 × ATR",
+      "tp": "الهدف = 4.3 × ATR (العائد/المخاطرة ≈ 0.8)",
+      "entry": "الدخول: أمر ليمت أحسن من سعر الإغلاق بـ 0.71 × ATR (بيتلغى إذا ما وصله السعر بالشمعة الجاية)",
+      "hold": "أقصى مدة للصفقة = 50 شمعة (50 ساعة)"
      },
-     "train_fitness": 1.8099,
-     "valid_fitness": 0.6944,
-     "found_generation": 712,
+     "train_fitness": 1.1525,
+     "valid_fitness": 0.8531,
+     "found_generation": 55,
      "coins": [
       {
        "train": {
-        "trades": 329,
+        "trades": 360,
         "years": 2.29,
-        "trades_per_year": 143.9,
+        "trades_per_year": 157.4,
         "x1": {
-         "total": 1941.8969,
-         "cagr": 26.4273,
-         "max_dd": 0.3623
+         "total": 440.78,
+         "cagr": 13.3504,
+         "max_dd": 0.4812
         },
         "lev": {
-         "total": 1941.8969,
-         "cagr": 26.4273,
-         "max_dd": 0.3623
+         "total": 440.78,
+         "cagr": 13.3504,
+         "max_dd": 0.4812
         },
-        "win_rate": 0.784,
-        "profit_factor": 2.34,
-        "avg_trade": 0.0259,
+        "win_rate": 0.625,
+        "profit_factor": 1.87,
+        "avg_trade": 0.0201,
         "buy_hold": {
          "total": 2.8691,
          "cagr": 0.8071
         }
        },
        "valid": {
-        "trades": 229,
+        "trades": 265,
         "years": 1.5,
-        "trades_per_year": 152.8,
+        "trades_per_year": 176.8,
         "x1": {
-         "total": 12.111,
-         "cagr": 4.5697,
-         "max_dd": 0.2813
+         "total": 21.4394,
+         "cagr": 6.972,
+         "max_dd": 0.3228
         },
         "lev": {
-         "total": 12.111,
-         "cagr": 4.5697,
-         "max_dd": 0.2813
+         "total": 21.4394,
+         "cagr": 6.972,
+         "max_dd": 0.3228
         },
-        "win_rate": 0.725,
-        "profit_factor": 1.71,
-        "avg_trade": 0.0128,
+        "win_rate": 0.592,
+        "profit_factor": 1.77,
+        "avg_trade": 0.0133,
         "buy_hold": {
          "total": 13.7051,
          "cagr": 5.0129
         }
        },
        "test": {
-        "trades": 333,
+        "trades": 406,
         "years": 2.41,
-        "trades_per_year": 138.5,
+        "trades_per_year": 168.7,
         "x1": {
-         "total": 0.686,
-         "cagr": 0.2426,
-         "max_dd": 0.459
+         "total": 0.8769,
+         "cagr": 0.2991,
+         "max_dd": 0.5043
         },
         "lev": {
-         "total": 0.686,
-         "cagr": 0.2426,
-         "max_dd": 0.459
+         "total": 0.8781,
+         "cagr": 0.2994,
+         "max_dd": 0.504
         },
-        "win_rate": 0.673,
+        "win_rate": 0.52,
         "profit_factor": 1.14,
-        "avg_trade": 0.0028,
+        "avg_trade": 0.0026,
         "buy_hold": {
-         "total": -0.5183,
-         "cagr": -0.2619
+         "total": -0.5168,
+         "cagr": -0.2609
         }
        },
        "verdict": {
@@ -3903,13 +3858,13 @@
     "bench": 3.1534
    },
    "test": {
-    "total": 1.3342,
-    "cagr": 0.4236,
+    "total": 1.409,
+    "cagr": 0.4418,
     "max_dd": 0.4017,
-    "days": 876,
-    "changes_per_year": 60.4,
+    "days": 877,
+    "changes_per_year": 60.3,
     "in_market": 1.0,
-    "bench": -0.2839
+    "bench": -0.2992
    }
   },
   "top": [
@@ -3948,13 +3903,13 @@
      "bench": 3.1534
     },
     "test": {
-     "total": 1.3342,
-     "cagr": 0.4236,
+     "total": 1.409,
+     "cagr": 0.4418,
      "max_dd": 0.4017,
-     "days": 876,
-     "changes_per_year": 60.4,
+     "days": 877,
+     "changes_per_year": 60.3,
      "in_market": 1.0,
-     "bench": -0.2839
+     "bench": -0.2992
     }
    },
    {
@@ -3992,13 +3947,13 @@
      "bench": 3.1534
     },
     "test": {
-     "total": 1.4801,
-     "cagr": 0.46,
+     "total": 1.5596,
+     "cagr": 0.4787,
      "max_dd": 0.4714,
-     "days": 876,
-     "changes_per_year": 98.3,
+     "days": 877,
+     "changes_per_year": 98.2,
      "in_market": 1.0,
-     "bench": -0.2839
+     "bench": -0.2992
     }
    },
    {
@@ -4037,13 +3992,13 @@
      "bench": 3.1534
     },
     "test": {
-     "total": 0.5018,
-     "cagr": 0.1846,
+     "total": 0.5499,
+     "cagr": 0.2001,
      "max_dd": 0.4435,
-     "days": 876,
+     "days": 877,
      "changes_per_year": 55.4,
      "in_market": 1.0,
-     "bench": -0.2839
+     "bench": -0.2992
     }
    },
    {
@@ -4081,13 +4036,13 @@
      "bench": 3.1534
     },
     "test": {
-     "total": 1.7452,
-     "cagr": 0.5231,
+     "total": 1.8332,
+     "cagr": 0.5425,
      "max_dd": 0.4582,
-     "days": 876,
-     "changes_per_year": 52.5,
+     "days": 877,
+     "changes_per_year": 52.4,
      "in_market": 1.0,
-     "bench": -0.2839
+     "bench": -0.2992
     }
    },
    {
@@ -4126,13 +4081,13 @@
      "bench": 3.1534
     },
     "test": {
-     "total": -0.0847,
-     "cagr": -0.0362,
+     "total": -0.0554,
+     "cagr": -0.0234,
      "max_dd": 0.6679,
-     "days": 876,
-     "changes_per_year": 100.0,
+     "days": 877,
+     "changes_per_year": 99.9,
      "in_market": 1.0,
-     "bench": -0.2839
+     "bench": -0.2992
     }
    }
   ],
@@ -4143,7 +4098,7 @@
     "weight": 1.0
    }
   ],
-  "today_date": "2026-11-24",
+  "today_date": "2026-11-25",
   "positive_test_in_top5": 4,
   "chart": "img/rotation.png"
  }
