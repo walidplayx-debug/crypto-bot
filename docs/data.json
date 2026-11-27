@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-27 05:54 UTC",
+ "updated": "2026-11-27 06:36 UTC",
  "split": {
   "train_end": "2023-01-01",
   "valid_end": "2024-07-01"
@@ -14,9 +14,9 @@
      "seeds": [
       {
        "seed": 1,
-       "generation": 3093,
+       "generation": 3217,
        "done": false,
-       "hours_without_improve": 21.5,
+       "hours_without_improve": 22.2,
        "robust": -0.8,
        "test_avg": -0.421,
        "indicators": [
@@ -26,9 +26,9 @@
       },
       {
        "seed": 2,
-       "generation": 2854,
+       "generation": 2965,
        "done": false,
-       "hours_without_improve": 21.3,
+       "hours_without_improve": 22.0,
        "robust": -0.2613,
        "test_avg": -0.1402,
        "indicators": [
@@ -38,9 +38,9 @@
       },
       {
        "seed": 3,
-       "generation": 3458,
+       "generation": 3595,
        "done": false,
-       "hours_without_improve": 17.2,
+       "hours_without_improve": 17.9,
        "robust": -0.4352,
        "test_avg": -0.113,
        "indicators": [
@@ -154,7 +154,7 @@
       "losers_were_up_1R": 0.0
      },
      "best_seed": 2,
-     "generation": 2854,
+     "generation": 2965,
      "weak": true,
      "genome": {
       "long": [
@@ -569,9 +569,9 @@
      "seeds": [
       {
        "seed": 1,
-       "generation": 1730,
+       "generation": 1797,
        "done": false,
-       "hours_without_improve": 21.0,
+       "hours_without_improve": 21.7,
        "robust": -0.0316,
        "test_avg": -0.1427,
        "indicators": [
@@ -581,9 +581,9 @@
       },
       {
        "seed": 2,
-       "generation": 1526,
+       "generation": 1588,
        "done": false,
-       "hours_without_improve": 17.0,
+       "hours_without_improve": 17.7,
        "robust": -0.0612,
        "test_avg": -0.614,
        "indicators": [
@@ -594,9 +594,9 @@
       },
       {
        "seed": 3,
-       "generation": 2250,
+       "generation": 2338,
        "done": false,
-       "hours_without_improve": 21.0,
+       "hours_without_improve": 21.7,
        "robust": -0.117,
        "test_avg": -0.3818,
        "indicators": [
@@ -710,7 +710,7 @@
       "losers_were_up_1R": 0.0
      },
      "best_seed": 1,
-     "generation": 1730,
+     "generation": 1797,
      "weak": true,
      "genome": {
       "long": [
@@ -829,9 +829,9 @@
      "seeds": [
       {
        "seed": 1,
-       "generation": 2751,
+       "generation": 2860,
        "done": false,
-       "hours_without_improve": 21.2,
+       "hours_without_improve": 21.9,
        "robust": -0.0191,
        "test_avg": -0.3228,
        "indicators": [
@@ -841,9 +841,9 @@
       },
       {
        "seed": 2,
-       "generation": 3191,
+       "generation": 3322,
        "done": false,
-       "hours_without_improve": 8.7,
+       "hours_without_improve": 9.4,
        "robust": 0.2487,
        "test_avg": -0.3688,
        "indicators": [
@@ -853,9 +853,9 @@
       },
       {
        "seed": 3,
-       "generation": 2913,
+       "generation": 3030,
        "done": false,
-       "hours_without_improve": 21.2,
+       "hours_without_improve": 21.9,
        "robust": 0.1334,
        "test_avg": -0.1648,
        "indicators": [
@@ -964,7 +964,7 @@
       "losers_were_up_1R": 0.006
      },
      "best_seed": 2,
-     "generation": 3191,
+     "generation": 3322,
      "weak": false,
      "genome": {
       "long": [
@@ -1087,9 +1087,9 @@
      "seeds": [
       {
        "seed": 1,
-       "generation": 1505,
+       "generation": 1562,
        "done": false,
-       "hours_without_improve": 20.9,
+       "hours_without_improve": 21.6,
        "robust": -0.0732,
        "test_avg": -0.149,
        "indicators": [
@@ -1101,9 +1101,9 @@
       },
       {
        "seed": 2,
-       "generation": 4081,
+       "generation": 4240,
        "done": false,
-       "hours_without_improve": 20.9,
+       "hours_without_improve": 21.6,
        "robust": -0.5698,
        "test_avg": -0.5832,
        "indicators": [
@@ -1113,9 +1113,9 @@
       },
       {
        "seed": 3,
-       "generation": 3261,
+       "generation": 3389,
        "done": false,
-       "hours_without_improve": 20.9,
+       "hours_without_improve": 21.6,
        "robust": -0.4482,
        "test_avg": -0.4938,
        "indicators": [
@@ -1234,7 +1234,7 @@
       "losers_were_up_1R": 0.0
      },
      "best_seed": 1,
-     "generation": 1505,
+     "generation": 1562,
      "weak": true,
      "genome": {
       "long": [
@@ -1374,9 +1374,9 @@
      "seeds": [
       {
        "seed": 1,
-       "generation": 3567,
+       "generation": 3709,
        "done": false,
-       "hours_without_improve": 21.1,
+       "hours_without_improve": 21.8,
        "robust": -0.3174,
        "test_avg": -0.1019,
        "indicators": [
@@ -1386,9 +1386,9 @@
       },
       {
        "seed": 2,
-       "generation": 3596,
+       "generation": 3739,
        "done": false,
-       "hours_without_improve": 16.4,
+       "hours_without_improve": 17.1,
        "robust": -0.3228,
        "test_avg": 0.1563,
        "indicators": [
@@ -1398,9 +1398,9 @@
       },
       {
        "seed": 3,
-       "generation": 2906,
+       "generation": 3021,
        "done": false,
-       "hours_without_improve": 21.1,
+       "hours_without_improve": 21.8,
        "robust": -0.5057,
        "test_avg": -0.4963,
        "indicators": [
@@ -1514,7 +1514,7 @@
       "losers_were_up_1R": 0.083
      },
      "best_seed": 1,
-     "generation": 3567,
+     "generation": 3709,
      "weak": true,
      "genome": {
       "long": [
@@ -1633,9 +1633,9 @@
      "seeds": [
       {
        "seed": 1,
-       "generation": 6630,
+       "generation": 6884,
        "done": false,
-       "hours_without_improve": 21.1,
+       "hours_without_improve": 21.8,
        "robust": 0.1496,
        "test_avg": 0.0385,
        "indicators": [
@@ -1645,9 +1645,9 @@
       },
       {
        "seed": 2,
-       "generation": 6317,
+       "generation": 6573,
        "done": false,
-       "hours_without_improve": 21.1,
+       "hours_without_improve": 21.8,
        "robust": 0.121,
        "test_avg": -0.2994,
        "indicators": [
@@ -1657,9 +1657,9 @@
       },
       {
        "seed": 3,
-       "generation": 8558,
+       "generation": 8901,
        "done": false,
-       "hours_without_improve": 21.0,
+       "hours_without_improve": 21.7,
        "robust": 0.2614,
        "test_avg": -0.0172,
        "indicators": [
@@ -1779,7 +1779,7 @@
       "losers_were_up_1R": 0.095
      },
      "best_seed": 3,
-     "generation": 8558,
+     "generation": 8901,
      "weak": false,
      "genome": {
       "long": [
@@ -1912,9 +1912,9 @@
      "seeds": [
       {
        "seed": 1,
-       "generation": 4590,
+       "generation": 4863,
        "done": false,
-       "hours_without_improve": 21.5,
+       "hours_without_improve": 22.2,
        "robust": -0.4259,
        "test_avg": -0.0716,
        "indicators": [
@@ -1924,9 +1924,9 @@
       },
       {
        "seed": 2,
-       "generation": 6771,
+       "generation": 7157,
        "done": false,
-       "hours_without_improve": 17.3,
+       "hours_without_improve": 18.0,
        "robust": -0.3937,
        "test_avg": -0.3332,
        "indicators": [
@@ -1936,9 +1936,9 @@
       },
       {
        "seed": 3,
-       "generation": 5042,
+       "generation": 5321,
        "done": false,
-       "hours_without_improve": 21.2,
+       "hours_without_improve": 21.9,
        "robust": -0.4633,
        "test_avg": -0.0421,
        "indicators": [
@@ -2050,7 +2050,7 @@
       ]
      },
      "best_seed": 2,
-     "generation": 6771,
+     "generation": 7157,
      "weak": true,
      "genome": {
       "long": [
@@ -2465,9 +2465,9 @@
      "seeds": [
       {
        "seed": 1,
-       "generation": 3378,
+       "generation": 3568,
        "done": false,
-       "hours_without_improve": 21.0,
+       "hours_without_improve": 21.7,
        "robust": -0.226,
        "test_avg": -0.1013,
        "indicators": [
@@ -2476,9 +2476,9 @@
       },
       {
        "seed": 2,
-       "generation": 4444,
+       "generation": 4696,
        "done": false,
-       "hours_without_improve": 21.0,
+       "hours_without_improve": 21.7,
        "robust": -0.1483,
        "test_avg": -0.4007,
        "indicators": [
@@ -2487,9 +2487,9 @@
       },
       {
        "seed": 3,
-       "generation": 4547,
+       "generation": 4803,
        "done": false,
-       "hours_without_improve": 21.0,
+       "hours_without_improve": 21.7,
        "robust": -0.2653,
        "test_avg": -0.0017,
        "indicators": [
@@ -2602,7 +2602,7 @@
       "losers_were_up_1R": 0.0
      },
      "best_seed": 2,
-     "generation": 4444,
+     "generation": 4696,
      "weak": true,
      "genome": {
       "long": [
@@ -2722,9 +2722,9 @@
      "seeds": [
       {
        "seed": 1,
-       "generation": 4951,
+       "generation": 5230,
        "done": false,
-       "hours_without_improve": 21.2,
+       "hours_without_improve": 21.9,
        "robust": 0.0119,
        "test_avg": -0.1678,
        "indicators": [
@@ -2733,9 +2733,9 @@
       },
       {
        "seed": 2,
-       "generation": 3454,
+       "generation": 3649,
        "done": false,
-       "hours_without_improve": 17.2,
+       "hours_without_improve": 17.9,
        "robust": -0.11,
        "test_avg": 0.1884,
        "indicators": [
@@ -2745,9 +2745,9 @@
       },
       {
        "seed": 3,
-       "generation": 3601,
+       "generation": 3805,
        "done": false,
-       "hours_without_improve": 17.1,
+       "hours_without_improve": 17.8,
        "robust": -0.1319,
        "test_avg": -0.2463,
        "indicators": [
@@ -2860,7 +2860,7 @@
       ]
      },
      "best_seed": 1,
-     "generation": 4951,
+     "generation": 5230,
      "weak": false,
      "genome": {
       "long": [
@@ -2973,9 +2973,9 @@
      "seeds": [
       {
        "seed": 1,
-       "generation": 4004,
+       "generation": 4227,
        "done": false,
-       "hours_without_improve": 20.9,
+       "hours_without_improve": 21.6,
        "robust": 0.0055,
        "test_avg": -0.2012,
        "indicators": [
@@ -2984,9 +2984,9 @@
       },
       {
        "seed": 2,
-       "generation": 4104,
+       "generation": 4331,
        "done": false,
-       "hours_without_improve": 20.9,
+       "hours_without_improve": 21.6,
        "robust": -0.0868,
        "test_avg": 0.1545,
        "indicators": [
@@ -2995,9 +2995,9 @@
       },
       {
        "seed": 3,
-       "generation": 6781,
+       "generation": 7180,
        "done": false,
-       "hours_without_improve": 20.9,
+       "hours_without_improve": 21.6,
        "robust": 0.0925,
        "test_avg": 0.1761,
        "indicators": [
@@ -3116,7 +3116,7 @@
       "losers_were_up_1R": 0.0
      },
      "best_seed": 3,
-     "generation": 6781,
+     "generation": 7180,
      "weak": false,
      "genome": {
       "long": [
@@ -3244,9 +3244,9 @@
      "seeds": [
       {
        "seed": 1,
-       "generation": 7496,
+       "generation": 7912,
        "done": false,
-       "hours_without_improve": 21.1,
+       "hours_without_improve": 21.8,
        "robust": -0.1718,
        "test_avg": -0.2267,
        "indicators": [
@@ -3255,9 +3255,9 @@
       },
       {
        "seed": 2,
-       "generation": 3689,
+       "generation": 3898,
        "done": false,
-       "hours_without_improve": 21.1,
+       "hours_without_improve": 21.8,
        "robust": -0.216,
        "test_avg": -0.3166,
        "indicators": [
@@ -3266,9 +3266,9 @@
       },
       {
        "seed": 3,
-       "generation": 3578,
+       "generation": 3778,
        "done": false,
-       "hours_without_improve": 21.1,
+       "hours_without_improve": 21.8,
        "robust": -0.2373,
        "test_avg": -0.3061,
        "indicators": [
@@ -3381,7 +3381,7 @@
       "losers_were_up_1R": 0.013
      },
      "best_seed": 1,
-     "generation": 7496,
+     "generation": 7912,
      "weak": true,
      "genome": {
       "long": [
@@ -3501,9 +3501,9 @@
      "seeds": [
       {
        "seed": 1,
-       "generation": 10066,
+       "generation": 10631,
        "done": false,
-       "hours_without_improve": 21.1,
+       "hours_without_improve": 21.8,
        "robust": -0.072,
        "test_avg": -0.4899,
        "indicators": [
@@ -3513,9 +3513,9 @@
       },
       {
        "seed": 2,
-       "generation": 8811,
+       "generation": 9308,
        "done": false,
-       "hours_without_improve": 21.1,
+       "hours_without_improve": 21.8,
        "robust": -0.0639,
        "test_avg": -0.6143,
        "indicators": [
@@ -3525,9 +3525,9 @@
       },
       {
        "seed": 3,
-       "generation": 9120,
+       "generation": 9629,
        "done": false,
-       "hours_without_improve": 21.0,
+       "hours_without_improve": 21.7,
        "robust": 0.0696,
        "test_avg": -0.0861,
        "indicators": [
@@ -3640,7 +3640,7 @@
       ]
      },
      "best_seed": 3,
-     "generation": 9120,
+     "generation": 9629,
      "weak": false,
      "genome": {
       "long": [
@@ -3772,9 +3772,9 @@
      "seeds": [
       {
        "seed": 1,
-       "generation": 2584,
+       "generation": 2693,
        "done": false,
-       "hours_without_improve": 9.7,
+       "hours_without_improve": 10.4,
        "robust": -0.1667,
        "test_avg": -0.1543,
        "indicators": [
@@ -3784,9 +3784,9 @@
       },
       {
        "seed": 2,
-       "generation": 2605,
+       "generation": 2732,
        "done": false,
-       "hours_without_improve": 5.4,
+       "hours_without_improve": 6.1,
        "robust": -0.2488,
        "test_avg": -0.2545,
        "indicators": [
@@ -3795,9 +3795,9 @@
       },
       {
        "seed": 3,
-       "generation": 1880,
+       "generation": 1955,
        "done": false,
-       "hours_without_improve": 15.8,
+       "hours_without_improve": 16.5,
        "robust": -0.4944,
        "test_avg": -0.4313,
        "indicators": [
@@ -3907,7 +3907,7 @@
       "losers_were_up_1R": 0.008
      },
      "best_seed": 1,
-     "generation": 2584,
+     "generation": 2693,
      "weak": true,
      "genome": {
       "long": [
@@ -4326,9 +4326,9 @@
      "seeds": [
       {
        "seed": 1,
-       "generation": 3407,
+       "generation": 3542,
        "done": false,
-       "hours_without_improve": 21.0,
+       "hours_without_improve": 21.7,
        "robust": -0.3826,
        "test_avg": -0.0596,
        "indicators": [
@@ -4338,9 +4338,9 @@
       },
       {
        "seed": 2,
-       "generation": 3082,
+       "generation": 3214,
        "done": false,
-       "hours_without_improve": 21.0,
+       "hours_without_improve": 21.7,
        "robust": -0.0277,
        "test_avg": -0.1582,
        "indicators": [
@@ -4352,9 +4352,9 @@
       },
       {
        "seed": 3,
-       "generation": 3190,
+       "generation": 3322,
        "done": false,
-       "hours_without_improve": 21.0,
+       "hours_without_improve": 21.7,
        "robust": -0.1998,
        "test_avg": -0.2103,
        "indicators": [
@@ -4473,7 +4473,7 @@
       "losers_were_up_1R": 0.0
      },
      "best_seed": 2,
-     "generation": 3082,
+     "generation": 3214,
      "weak": true,
      "genome": {
       "long": [
@@ -4606,9 +4606,9 @@
      "seeds": [
       {
        "seed": 1,
-       "generation": 3040,
+       "generation": 3153,
        "done": false,
-       "hours_without_improve": 10.9,
+       "hours_without_improve": 11.6,
        "robust": 0.1288,
        "test_avg": -0.1989,
        "indicators": [
@@ -4618,9 +4618,9 @@
       },
       {
        "seed": 2,
-       "generation": 2898,
+       "generation": 3013,
        "done": false,
-       "hours_without_improve": 14.3,
+       "hours_without_improve": 15.0,
        "robust": 0.167,
        "test_avg": -0.2655,
        "indicators": [
@@ -4630,9 +4630,9 @@
       },
       {
        "seed": 3,
-       "generation": 2953,
+       "generation": 3072,
        "done": false,
-       "hours_without_improve": 21.2,
+       "hours_without_improve": 21.9,
        "robust": 0.1135,
        "test_avg": -0.3146,
        "indicators": [
@@ -4746,7 +4746,7 @@
       "losers_were_up_1R": 0.022
      },
      "best_seed": 2,
-     "generation": 2898,
+     "generation": 3013,
      "weak": false,
      "genome": {
       "long": [
@@ -4865,9 +4865,9 @@
      "seeds": [
       {
        "seed": 1,
-       "generation": 2643,
+       "generation": 2751,
        "done": false,
-       "hours_without_improve": 20.9,
+       "hours_without_improve": 21.6,
        "robust": 0.0729,
        "test_avg": 0.1738,
        "indicators": [
@@ -4877,9 +4877,9 @@
       },
       {
        "seed": 2,
-       "generation": 2229,
+       "generation": 2319,
        "done": false,
-       "hours_without_improve": 16.9,
+       "hours_without_improve": 17.6,
        "robust": -0.1114,
        "test_avg": -0.1638,
        "indicators": [
@@ -4890,9 +4890,9 @@
       },
       {
        "seed": 3,
-       "generation": 3488,
+       "generation": 3632,
        "done": false,
-       "hours_without_improve": 20.9,
+       "hours_without_improve": 21.6,
        "robust": -0.2163,
        "test_avg": -0.4519,
        "indicators": [
@@ -5011,7 +5011,7 @@
       "losers_were_up_1R": 0.0
      },
      "best_seed": 1,
-     "generation": 2643,
+     "generation": 2751,
      "weak": false,
      "genome": {
       "long": [
@@ -5132,9 +5132,9 @@
      "seeds": [
       {
        "seed": 1,
-       "generation": 3640,
+       "generation": 3786,
        "done": false,
-       "hours_without_improve": 21.1,
+       "hours_without_improve": 21.8,
        "robust": -0.3049,
        "test_avg": -0.2006,
        "indicators": [
@@ -5144,9 +5144,9 @@
       },
       {
        "seed": 2,
-       "generation": 4006,
+       "generation": 4179,
        "done": false,
-       "hours_without_improve": 21.1,
+       "hours_without_improve": 21.8,
        "robust": -0.1528,
        "test_avg": -0.2815,
        "indicators": [
@@ -5155,9 +5155,9 @@
       },
       {
        "seed": 3,
-       "generation": 2277,
+       "generation": 2374,
        "done": false,
-       "hours_without_improve": 21.1,
+       "hours_without_improve": 21.8,
        "robust": -0.0409,
        "test_avg": -0.4015,
        "indicators": [
@@ -5271,7 +5271,7 @@
       "losers_were_up_1R": 0.0
      },
      "best_seed": 3,
-     "generation": 2277,
+     "generation": 2374,
      "weak": true,
      "genome": {
       "long": [
@@ -5390,9 +5390,9 @@
      "seeds": [
       {
        "seed": 1,
-       "generation": 5164,
+       "generation": 5371,
        "done": false,
-       "hours_without_improve": 21.1,
+       "hours_without_improve": 21.8,
        "robust": 0.7876,
        "test_avg": -0.2071,
        "indicators": [
@@ -5402,9 +5402,9 @@
       },
       {
        "seed": 2,
-       "generation": 6644,
+       "generation": 6908,
        "done": false,
-       "hours_without_improve": 21.1,
+       "hours_without_improve": 21.8,
        "robust": 0.8531,
        "test_avg": 0.8653,
        "indicators": [
@@ -5415,9 +5415,9 @@
       },
       {
        "seed": 3,
-       "generation": 7068,
+       "generation": 7358,
        "done": false,
-       "hours_without_improve": 21.0,
+       "hours_without_improve": 21.7,
        "robust": 0.3294,
        "test_avg": -0.0564,
        "indicators": [
@@ -5535,7 +5535,7 @@
       "losers_were_up_1R": 0.0
      },
      "best_seed": 2,
-     "generation": 6644,
+     "generation": 6908,
      "weak": false,
      "genome": {
       "long": [
