@@ -1,11 +1,15 @@
 {
+ "version": 2,
  "start": "2026-11-27",
  "params": [
   14,
   3,
   2,
   "breadth",
-  3
+  7,
+  "equal",
+  "top10",
+  0
  ],
  "symbols": [
   "BTCUSDT",
@@ -32,10 +36,10 @@
    "date": "2026-11-27",
    "positions": [
     {
-     "symbol": "AVAXUSDT",
+     "symbol": "ETHUSDT",
      "side": "short",
      "weight": 0.5,
-     "price": 6.614
+     "price": 1662.48
     },
     {
      "symbol": "UNIUSDT",
@@ -46,7 +50,7 @@
    ],
    "key": [
     [
-     "AVAXUSDT",
+     "ETHUSDT",
      "short",
      0.5
     ],
