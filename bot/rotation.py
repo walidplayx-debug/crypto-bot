@@ -195,6 +195,10 @@ def run():
         rows.append({"params": params, "train": ts, "valid": vs, "robust": min(ts, vs), "r": r, "ch": ch, "W": W})
     rows.sort(key=lambda x: x["robust"], reverse=True)
     best = rows[0]
+    live_path = C.DOCS_DIR / "live.json"
+    if live_path.exists():   # once live, always show the frozen live settings
+        frozen = tuple(json.loads(live_path.read_text())["params"])
+        best = next((x for x in rows if x["params"] == frozen), best)
     ew = (o.shift(-2) / o.shift(-1) - 1)
     bench = pd.Series(ew.mean(axis=1).to_numpy(), index=c.index + pd.Timedelta(days=1)).fillna(0)
 
@@ -255,8 +259,16 @@ def live_update(best_params, o, c):
 
 
 def plot(r, bench, path):
+    import matplotlib
+    matplotlib.use("Agg")
     import matplotlib.pyplot as plt
-    from .report import BLUE, INK2
+    SURF, INK, INK2, GRID, AXIS, BLUE = "#191919", "#efefef", "#9c9c9c", "#303030", "#474747", "#338ced"
+    plt.rcParams.update({
+        "figure.facecolor": SURF, "axes.facecolor": SURF, "savefig.facecolor": SURF,
+        "axes.edgecolor": AXIS, "axes.labelcolor": INK2, "xtick.color": INK2, "ytick.color": INK2,
+        "text.color": INK, "axes.grid": True, "grid.color": GRID, "grid.linewidth": 0.6,
+        "axes.spines.top": False, "axes.spines.right": False, "font.size": 9,
+        "legend.frameon": False, "legend.labelcolor": INK2})
     start = part(r, "train").index[0]
     r, bench = r[r.index >= start].iloc[:-2], bench[bench.index >= start].iloc[:-2]
     fig, ax = plt.subplots(figsize=(8, 3.2))

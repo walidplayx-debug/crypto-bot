@@ -3,181 +3,92 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Crypto Bot · النتائج</title>
+<title>📡 إشارات التناوب</title>
 <style>
   :root{--page:#0b0b0b;--surf:#191919;--line:#303030;--ink:#efefef;--ink2:#9c9c9c;--blue:#338ced;
-        --good:#53c556;--ok:#fbb315;--bad:#eb6263}
+        --good:#53c556;--bad:#eb6263}
   *{box-sizing:border-box}
   body{margin:0;background:var(--page);color:var(--ink);font:15px/1.6 system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif}
-  header{padding:20px 16px 8px;max-width:980px;margin:auto}
-  h1{margin:0 0 4px;font-size:22px}
+  main{max-width:720px;margin:auto;padding:18px 12px 40px}
+  h1{margin:0 0 2px;font-size:22px}
+  h2{margin:0 0 6px;font-size:17px}
   .muted{color:var(--ink2);font-size:13px}
-  main{max-width:980px;margin:auto;padding:0 12px 40px}
-  .tabs{display:flex;gap:8px;margin:14px 0;flex-wrap:wrap}
-  .tabs button{background:var(--surf);color:var(--ink2);border:1px solid var(--line);border-radius:999px;padding:6px 16px;font:inherit;cursor:pointer}
-  .tabs button.on{color:var(--ink);border-color:var(--blue)}
   .card{background:var(--surf);border:1px solid var(--line);border-radius:14px;padding:14px;margin:12px 0}
-  .card h2{margin:0 0 2px;font-size:17px}
-  table{width:100%;border-collapse:collapse;font-size:13px;margin:10px 0}
-  th,td{padding:6px 6px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
-  th{color:var(--ink2);font-weight:500}
+  .hero{border-color:var(--blue)}
+  table{width:100%;border-collapse:collapse;font-size:14px;margin:8px 0}
+  th,td{padding:7px 6px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+  th{color:var(--ink2);font-weight:500;font-size:13px}
   .scroll{overflow-x:auto}
   .num{direction:ltr;unicode-bidi:embed}
-  .pill{display:inline-block;padding:1px 8px;border-radius:999px;font-size:12px;border:1px solid currentColor}
-  .good{color:var(--good)} .ok{color:var(--ok)} .soft{color:#f18a59} .bad{color:var(--bad)}
-  ul{margin:4px 0 8px;padding-inline-start:20px} li{margin:2px 0}
+  .big{font-size:26px;font-weight:700}
+  .good{color:var(--good)} .bad{color:var(--bad)}
+  .row{display:flex;gap:10px;flex-wrap:wrap}
+  .stat{flex:1;min-width:140px;background:#111;border:1px solid var(--line);border-radius:12px;padding:10px}
+  ul{margin:6px 0;padding-inline-start:20px} li{margin:3px 0}
   img{width:100%;border-radius:10px;margin-top:8px;border:1px solid var(--line)}
-  details{margin-top:8px} summary{cursor:pointer;color:var(--ink2)}
-  .sig{border:1px solid var(--blue);border-radius:10px;padding:8px 10px;margin-top:8px;font-size:13px}
   .note{background:#1f1a0d;border:1px solid #4a3a10;border-radius:12px;padding:10px 12px;font-size:13px;color:#e9d39a}
 </style>
 </head>
 <body>
-<header>
-  <h1>🤖 بوت استراتيجيات الكريبتو</h1>
-  <div class="muted" id="meta">جاري التحميل…</div>
-</header>
 <main>
-  <div class="note">الأرقام المهمة هي أرقام <b>الاختبار المخفي</b>: فترة ما شافها البوت أبداً وقت التطوير. هذا اختبار على بيانات تاريخية، مو ضمان للمستقبل، وما هو نصيحة مالية.</div>
-  <div id="live"></div>
-  <div class="tabs" id="tabs"></div>
-  <div id="content"></div>
+  <h1>📡 إشارات التناوب</h1>
+  <div class="muted" id="meta">جاري التحميل…</div>
+  <div id="app"></div>
+  <div class="note">إشارات تجريبية لاختبار حي على الورق. الأرقام التاريخية مش ضمان للمستقبل، وما في شي هون نصيحة مالية.</div>
 </main>
 <script>
 const pct = x => (x>=0?"+":"") + (x*100).toFixed(1) + "%";
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const names = {ALL:"استراتيجية موحّدة لكل العملات"};
-let DATA;
+const coin = s => s.replace("USDT","");
+const side = x => x.side==="long" ? "🟢 شراء" : "🔴 بيع";
 
-function partRow(label, m){
-  return `<tr><td>${label}</td><td class="num">${m.trades}</td><td class="num">${(m.win_rate*100).toFixed(0)}%</td>
-    <td class="num">${pct(m.x1.total)}</td><td class="num">${pct(m.lev.total)}</td>
-    <td class="num">${(m.lev.max_dd*100).toFixed(0)}%</td><td class="num">${pct(m.buy_hold.total)}</td></tr>`;
-}
-const head = `<tr><th></th><th>صفقات</th><th>نجاح</th><th>ربح 1x</th><th>ربح برافعة</th><th>أقصى تراجع</th><th>اشترِ واحتفظ</th></tr>`;
-
-function lossBlock(e){
-  const a = e.analysis; if(!a) return "";
-  const AR = {trend:"الترند", vol:"التذبذب", side:"الاتجاه", reason:"طريقة الإغلاق", session:"التوقيت UTC", weekend:"الأيام"};
-  const LB = {up:"صاعد", down:"هابط", high:"عالي", normal:"عادي", low:"هادي", long:"شراء", short:"بيع",
-              sl:"الوقف", tp:"الهدف", time:"انتهى الوقت", "True":"نهاية الأسبوع", "False":"أيام الأسبوع"};
-  const tbl = k => Object.entries(a.buckets[k]).map(([b,v]) => `<tr><td>${LB[b]||b}</td><td class="num">${v.n}</td>
-      <td class="num">${(v.win_rate*100).toFixed(0)}%</td><td class="num ${v.avg<0?"bad":"good"}">${(v.avg*100).toFixed(2)}%</td></tr>`).join("");
-  const sec = ["trend","vol","side","reason","session"].map(k => `<tr><th colspan="4">${AR[k]}</th></tr>${tbl(k)}`).join("");
-  return `<details><summary>🔍 ليش بتخسر؟ (تدريب + تحقق فقط)</summary>
-    <ul>${a.insights.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>
-    <div class="scroll"><table><tr><th></th><th>صفقات</th><th>نجاح</th><th>متوسط الصفقة</th></tr>${sec}</table></div>
-    <div class="muted">ما منحلّل الفترة المخفية أبداً، كرمال ما نعدّل البوت عليها ونحرقها.</div></details>`;
-}
-
-function seedBlock(e){
-  if(!e.seeds) return "";
-  const icon = {good:"✅", ok:"🟡", bad:"❌", wait:"⏳"}[e.agreement.level];
-  const rows = e.seeds.map(x => `<tr><td>بحث ${x.seed}${x.seed===e.best_seed?" ⭐":""}</td>
-    <td class="num">${x.robust===undefined?"—":x.robust.toFixed(3)}</td>
-    <td class="num">${x.test_avg===undefined?"—":pct(x.test_avg)}</td>
-    <td>${x.done?"🏁 خلص":`🔄 ${x.hours_without_improve ?? 0}/${e.stop_after} ساعة`}</td></tr>`).join("");
-  return `<details><summary>🎲 3 بحوث مستقلة: ${icon} ${esc(e.agreement.text)}</summary><div class="scroll"><table>
-    <tr><th></th><th>التقييم</th><th>متوسط المخفي</th><th>الحالة</th></tr>${rows}</table></div>
-    <div class="muted">"التقييم" هو الأضعف بين التدريب والتحقق. ⭐ = البحث اللي معروض فوق. البحث بيوقف بعد ${e.stop_after} ساعة (يومين) بدون تحسّن.</div></details>`;
-}
-
-function card(e){
-  const title = names[e.scope] || e.scope;
-  if(!e.coins) return `<div class="card"><h2>${title}</h2><div class="muted">الجيل ${e.generation} · لسا ما لقى استراتيجية</div>${seedBlock(e)}</div>`;
-  const rows = e.coins.map(c => {
-    const t = c.test;
-    return `<tr><td>${c.symbol.replace("USDT","")}</td><td class="num">${t.trades}</td><td class="num">${t.trades_per_year}</td><td class="num">${(t.win_rate*100).toFixed(0)}%</td>
-      <td class="num">${pct(t.lev.total)}</td><td class="num">${(t.lev.max_dd*100).toFixed(0)}%</td>
-      <td class="num">${pct(t.buy_hold.total)}</td><td><span class="pill ${c.verdict.level}">${c.verdict.text}</span></td></tr>`;
-  }).join("");
-  const r = e.rules;
-  const list = a => a.length ? `<ul>${a.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>` : `<div class="muted">— ما يستخدم هذا الاتجاه</div>`;
-  const sigs = e.coins.filter(c=>c.signal_now).map(c=>{const s=c.signal_now;
-    return `<div class="sig">📡 <b>${c.symbol}</b> · ${s.side} · دخول ليمت <span class="num">${s.entry.toPrecision(6)}</span> · وقف <span class="num">${s.sl.toPrecision(6)}</span> · هدف <span class="num">${s.tp.toPrecision(6)}</span> · رافعة ${s.leverage}x</div>`}).join("");
-  const parts = e.coins.map(c => `<div class="muted" style="margin-top:8px">${c.symbol}</div>
-    <div class="scroll"><table>${head}${partRow("تدريب",c.train)}${partRow("تحقق",c.valid)}${partRow("مخفي",c.test)}</table></div>`).join("");
-  return `<div class="card">
-    <h2>${title}</h2>
-    ${e.weak ? `<div class="pill bad" style="margin:4px 0">⚠️ أفضل الموجود لهلأ — لسا مش رابحة بالتدريب والتحقق</div>` : ""}
-    <div class="muted">الجيل ${e.generation} · لقاها في الجيل ${e.found_generation} · ${e.converged ? "🏁 خلص البحث: هاي أحسن شي لقاه" : "🔄 لسا عم يدوّر"}</div>
-    ${seedBlock(e)}
-    ${lossBlock(e)}
-    <div class="scroll"><table>
-      <tr><th>العملة</th><th>صفقات</th><th>بالسنة</th><th>نجاح</th><th>ربح برافعة</th><th>أقصى تراجع</th><th>اشترِ واحتفظ</th><th>الحكم</th></tr>${rows}
-    </table></div>
-    <b>🟢 شروط الشراء (Long)</b>${list(r.long)}
-    <b>🔴 شروط البيع (Short)</b>${list(r.short)}
-    ${r.filters && r.filters.length ? `<b>🧭 فلاتر السوق</b>${list(r.filters)}` : ""}
-    <div class="muted">${r.entry ? esc(r.entry) + " · " : ""}${esc(r.sl)} · ${esc(r.tp)} · ${esc(r.hold)}</div>
-    ${sigs}
-    <img src="${e.chart}?v=${encodeURIComponent(DATA.updated)}" alt="منحنى رأس المال ${title}" loading="lazy">
-    <details><summary>تفاصيل التدريب والتحقق والمخفي</summary>${parts}</details>
-  </div>`;
-}
-
-function liveCard(L){
-  if(!L) return "";
-  const side = x => x.side==="long" ? "🟢 شراء" : "🔴 بيع";
+function render(d){
+  const R = d.rotation, L = R.live, b = R.best, p = L.perf;
   const pos = L.positions.length
-    ? L.positions.map(x=>`<tr><td>${side(x)}</td><td><b>${x.symbol.replace("USDT","")}</b></td><td class="num">${Math.round(x.weight*100)}%</td><td class="num">${x.price}</td></tr>`).join("")
+    ? L.positions.map(x=>`<tr><td>${side(x)}</td><td><b>${coin(x.symbol)}</b></td><td class="num">${Math.round(x.weight*100)}%</td><td class="num">${x.price}</td></tr>`).join("")
     : `<tr><td colspan="4">💤 كاش، ما في صفقات مفتوحة</td></tr>`;
-  const log = L.log.map(e=>`<tr><td class="num">${e.date}</td><td>${e.positions.length ? e.positions.map(x=>`${x.side==="long"?"🟢":"🔴"} ${x.symbol.replace("USDT","")}`).join(" · ") : "💤 كاش"}</td></tr>`).join("");
-  const p = L.perf;
-  return `<div class="card" style="border-color:var(--blue)">
-    <h2>📡 الإشارة الحية · التناوب</h2>
-    <div class="muted">محسوبة على إغلاق ${L.as_of} · المراجعة الجاية: <b>${L.next_signal}</b> (بعد إغلاق اليوم اللي قبله، 00:00 UTC)</div>
+  const log = L.log.map(e=>`<tr><td class="num">${e.date}</td><td>${e.positions.length ? e.positions.map(x=>`${x.side==="long"?"🟢":"🔴"} ${coin(x.symbol)}`).join(" · ") : "💤 كاش"}</td></tr>`).join("");
+  const row = (n,m) => `<tr><td>${n}</td><td class="num ${m.total>=0?"good":"bad"}">${pct(m.total)}</td><td class="num">${(m.max_dd*100).toFixed(0)}%</td>
+      <td class="num">${m.trades ?? "—"}</td><td class="num">${m.win_rate===undefined?"—":Math.round(m.win_rate*100)}</td><td class="num">${pct(m.bench)}</td></tr>`;
+  document.getElementById("app").innerHTML = `
+  <div class="card hero">
+    <h2>الإشارة الحالية</h2>
+    <div class="muted">محسوبة على إغلاق ${L.as_of} (UTC)</div>
     <div class="scroll"><table><tr><th></th><th>العملة</th><th>الحجم</th><th>السعر وقت الإشارة</th></tr>${pos}</table></div>
-    <div class="muted">بدون رافعة · بدون وقف خسارة · الخروج بيصير لما يتغيّر الترتيب</div>
-    <div class="sig">🧪 الاختبار الحي من ${L.start}: ${p.days ? `<b class="num">${pct(p.total)}</b> خلال ${p.days} يوم · أقصى تراجع ${(p.max_dd*100).toFixed(0)}%` : "لسا بلّش، أول نتيجة بعد يومين"}</div>
-    <details><summary>سجل الإشارات</summary><div class="scroll"><table><tr><th>التاريخ</th><th>المراكز</th></tr>${log}</table></div></details>
-  </div>`;
-}
+    <div class="row">
+      <div class="stat"><div class="muted">المراجعة الجاية</div><div class="big num">${L.next_signal}</div><div class="muted">بعد 00:00 UTC</div></div>
+      <div class="stat"><div class="muted">🧪 الاختبار الحي من ${L.start}</div>
+        <div class="big num ${p.total>=0?"good":"bad"}">${p.days ? pct(p.total) : "—"}</div>
+        <div class="muted">${p.days ? `${p.days} يوم · أقصى تراجع ${(p.max_dd*100).toFixed(0)}%` : "أول نتيجة بعد يومين"}</div></div>
+    </div>
+    <div class="muted" style="margin-top:8px">بدون رافعة · بدون وقف خسارة · الخروج بيصير لما يتغيّر الترتيب بالمراجعة</div>
+  </div>
 
-function showRotation(){
-  document.querySelectorAll(".tabs button").forEach(b=>b.classList.toggle("on", b.dataset.rot==="1"));
-  const R = DATA.rotation, b = R.best;
-  const row = (n,m) => `<tr><td>${n}</td><td class="num">${pct(m.total)}</td><td class="num">${(m.max_dd*100).toFixed(0)}%</td>
-    <td class="num">${m.trades ?? "—"}</td><td class="num">${m.win_rate===undefined?"—":(m.win_rate*100).toFixed(0)+"%"}</td>
-    <td class="num">${m.avg_win===undefined?"—":pct(m.avg_win)+" / "+pct(m.avg_loss)}</td><td class="num">${pct(m.bench)}</td></tr>`;
-  const today = R.today.length ? R.today.map(x=>`${x.side} <b>${x.symbol.replace("USDT","")}</b> (${Math.round(x.weight*100)}%)`).join(" · ") : "💤 كاش، ما في صفقة";
-  const lvl = b.test.total > 0 && b.test.total > b.test.bench ? "good" : b.test.total > 0 ? "ok" : b.test.total > b.test.bench ? "soft" : "bad";
-  const txt = {good:"ربح وتغلّب على اشترِ واحتفظ", ok:"ربح لكن أقل من اشترِ واحتفظ", soft:"خسارة أقل من السوق", bad:"خسارة"}[lvl];
-  const top = R.top.map((t,i)=>`<tr><td>${i+1}</td><td>${t.params.lookback} يوم · ${t.params.longs}L${t.params.short?"+1S":""} · كل ${t.params.rebalance}</td><td class="num">${pct(t.test.total)}</td></tr>`).join("");
-  document.getElementById("content").innerHTML = `<div class="card">
-    <h2>🔄 التناوب بين العملات</h2>
-    <div class="muted">بدل "متى أشتري؟"، البوت بيسأل "مين أقوى عملة هلأ؟"</div>
-    <div class="sig">📡 إشارة اليوم (${R.today_date}): ${today}</div>
-    <div style="margin-top:8px"><span class="pill ${lvl}">المخفي: ${txt}</span></div>
-    <ul>${b.rules.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>
-    <div class="scroll"><table><tr><th></th><th>الربح</th><th>أقصى تراجع</th><th>صفقات</th><th>نجاح</th><th>ربح / خسارة (الوسيط)</th><th>اشترِ واحتفظ</th></tr>
-      ${row("تدريب",b.train)}${row("تحقق",b.valid)}${row("مخفي",b.test)}</table></div>
-    <img src="${R.chart}?v=${encodeURIComponent(DATA.updated)}" alt="منحنى التناوب">
-    <details><summary>أفضل 5 إعدادات (${R.positive_test_in_top5} منها رابحة بالمخفي)</summary>
-      <div class="scroll"><table><tr><th>#</th><th>الإعداد</th><th>المخفي</th></tr>${top}</table></div>
-      <div class="muted">إذا الإعدادات القريبة من بعض كلها رابحة، فالنمط على الأغلب حقيقي.</div></details>
-  </div>`;
-}
+  <div class="card">
+    <h2>📜 سجل الإشارات</h2>
+    <div class="scroll"><table><tr><th>التاريخ</th><th>المراكز</th></tr>${log || `<tr><td colspan="2">لسا ما في إشارات</td></tr>`}</table></div>
+  </div>
 
-function show(i){
-  document.querySelectorAll(".tabs button").forEach((b,j)=>b.classList.toggle("on", i===j));
-  const v = DATA.variants[i];
-  document.getElementById("content").innerHTML =
-    v.scopes.map(card).join("") +
-    `<div class="card"><h2>تطوّر البوت عبر الأجيال</h2><img src="${v.progress}?v=${encodeURIComponent(DATA.updated)}" alt="progress"></div>`;
+  <div class="card">
+    <h2>⚙️ كيف بتشتغل</h2>
+    <ul>${L.rules.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>
+    <div class="muted">الفكرة: العملة اللي عم تطلع بتكمّل طلوع فترة، واللي عم تنزل بتكمّل نزول (الزخم).</div>
+  </div>
+
+  <div class="card">
+    <h2>📊 الباكتست</h2>
+    <div class="scroll"><table><tr><th></th><th>الربح</th><th>أقصى تراجع</th><th>صفقات</th><th>رابحة من 100</th><th>اشترِ واحتفظ</th></tr>
+      ${row("تدريب", b.train)}${row("تحقق", b.valid)}${row("مخفي", b.test)}</table></div>
+    <div class="muted">تدريب حتى ${d.split.train_end} · تحقق حتى ${d.split.valid_end} · المخفي بعدها، والبوت ما شافه وقت اختيار الإعدادات</div>
+    <img src="${d.chart}?v=${encodeURIComponent(d.updated)}" alt="منحنى رأس المال">
+  </div>`;
 }
 
 fetch("data.json?" + Date.now()).then(r=>r.json()).then(d=>{
-  DATA = d;
-  document.getElementById("meta").textContent =
-    `آخر تحديث: ${d.updated} · تدريب حتى ${d.split.train_end} · تحقق حتى ${d.split.valid_end} · بعدها اختبار مخفي`;
-  const labels = {"1h":"ساعة","4h":"4 ساعات","1h+4h":"ساعة + ترند 4 ساعات"};
-  document.getElementById("tabs").innerHTML = d.variants.map((v,i)=>`<button onclick="show(${i})">${labels[v.variant]||v.variant}</button>`).join("")
-    + (d.rotation ? `<button data-rot="1" onclick="showRotation()">🔄 التناوب</button>` : "");
-  document.getElementById("live").innerHTML = liveCard(d.rotation && d.rotation.live);
-  if(d.variants.length) show(0); else document.getElementById("content").innerHTML = `<div class="card">لسا ما فيه نتائج. أول تشغيل شغّال…</div>`;
-  setTimeout(()=>location.reload(), 10*60*1000);   // refresh every 10 minutes
-}).catch(()=>{document.getElementById("meta").textContent="لسا ما فيه نتائج. أول تشغيل شغّال…";});
+  document.getElementById("meta").textContent = `آخر تحديث: ${d.updated}`;
+  render(d);
+  setTimeout(()=>location.reload(), 10*60*1000);
+}).catch(()=>{ document.getElementById("meta").textContent = "لسا ما في بيانات، أول تحديث شغّال…"; });
 </script>
 </body>
 </html>

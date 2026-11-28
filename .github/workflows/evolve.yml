@@ -1,8 +1,8 @@
-name: evolve
+name: signals
 
 on:
   schedule:
-    - cron: "17 * * * *"       # every hour (backup: GitHub often delays or skips these)
+    - cron: "7 * * * *"        # backup: every hour (GitHub often delays these)
   workflow_dispatch:            # "Run workflow" button
 
 permissions:
@@ -17,12 +17,12 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  data:
+  update:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
-        with: { ref: main }   # always the newest state, even if this run waited in the queue
+        with: { ref: main }
       - uses: actions/setup-python@v5
         with: { python-version: "3.12", cache: pip }
       - run: pip install -r requirements.txt
@@ -33,79 +33,35 @@ jobs:
           restore-keys: data-
       - name: Download / update candles
         run: python -m bot.fetch
-      - uses: actions/upload-artifact@v4
-        with: { name: data, path: data, retention-days: 2 }
-
-  evolve:
-    needs: data
-    runs-on: ubuntu-latest
-    timeout-minutes: 60
-    strategy:
-      fail-fast: false
-      matrix:
-        variant: ["1h", "4h", "1h+4h"]
-    steps:
-      - uses: actions/checkout@v4
-        with: { ref: main }   # always the newest state, even if this run waited in the queue
-      - uses: actions/setup-python@v5
-        with: { python-version: "3.12", cache: pip }
-      - run: pip install -r requirements.txt
-      - uses: actions/download-artifact@v4
-        with: { name: data, path: data }
-      - name: Evolve strategies
-        run: python -m bot.evolve --variant "${{ matrix.variant }}" --minutes 40
-      - uses: actions/upload-artifact@v4
-        with: { name: "state-${{ matrix.variant }}", path: "state/${{ matrix.variant }}", retention-days: 2 }
-
-  report:
-    needs: [data, evolve]
-    if: always() && needs.data.result == 'success'
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
-    steps:
-      - uses: actions/checkout@v4
-        with: { ref: main }   # always the newest state, even if this run waited in the queue
-      - uses: actions/setup-python@v5
-        with: { python-version: "3.12", cache: pip }
-      - run: pip install -r requirements.txt
-      - uses: actions/download-artifact@v4
-        with: { name: data, path: data }
-      - uses: actions/download-artifact@v4
-        continue-on-error: true
-        with: { name: "state-1h", path: "state/1h" }
-      - uses: actions/download-artifact@v4
-        continue-on-error: true
-        with: { name: "state-4h", path: "state/4h" }
-      - uses: actions/download-artifact@v4
-        continue-on-error: true
-        with: { name: "state-1h+4h", path: "state/1h+4h" }
-      - name: Build report
-        run: python -m bot.report
+      - name: Compute the signal
+        run: python -m bot.signals
       - name: Write run summary
         run: cat RESULTS.md >> "$GITHUB_STEP_SUMMARY"
-      - name: Commit results
+      - name: Commit
         run: |
           git config user.name "crypto-bot"
           git config user.email "crypto-bot@users.noreply.github.com"
-          git add state docs RESULTS.md
+          git add docs RESULTS.md
           git diff --cached --quiet && exit 0
-          git commit -m "results: $(date -u '+%Y-%m-%d %H:%M') UTC"
+          git commit -m "signal: $(date -u '+%Y-%m-%d %H:%M') UTC"
           git pull --rebase
           git push
 
-  # Start the next run as soon as this one ends, so the bot keeps working even when
-  # GitHub's schedule is late. Stops by itself once every search has finished (🏁).
+  # Wait until 7 minutes past the next hour, then start the next run.
+  # This keeps the signal fresh every hour even when GitHub's schedule is late.
   next:
-    needs: [report]
+    needs: [update]
     if: always()
     runs-on: ubuntu-latest
+    timeout-minutes: 75
     steps:
-      - uses: actions/checkout@v4
-        with: { ref: main }
-      - name: Queue the next run while searches are still active
+      - name: Wait for the next hour
+        run: |
+          now=$(date +%s)
+          wait=$(( (3600 - now % 3600 + 420) % 3600 ))
+          [ "$wait" -lt 300 ] && wait=$(( wait + 3600 ))
+          echo "sleeping $wait s"; sleep "$wait"
+      - name: Queue the next run
         env:
           GH_TOKEN: ${{ github.token }}
-        run: |
-          active=$(python3 -c "import json; d=json.load(open('docs/data.json')); print(sum(1 for v in d.get('variants', []) for e in v['scopes'] if not e.get('converged')))" 2>/dev/null || echo 1)
-          echo "active searches: $active"
-          if [ "$active" != "0" ]; then gh workflow run evolve.yml --ref main; fi
+        run: gh workflow run evolve.yml --ref main --repo "${{ github.repository }}"

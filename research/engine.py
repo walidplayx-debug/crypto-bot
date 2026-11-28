@@ -15,9 +15,9 @@ from dataclasses import dataclass
 import numpy as np
 import pandas as pd
 
-from . import config as C
-from .fetch import load
-from .indicators import add_higher_tf, features
+from bot import config as C
+from bot.fetch import load
+from research.indicators import add_higher_tf, features
 
 PCTS = np.arange(101) / 100.0
 

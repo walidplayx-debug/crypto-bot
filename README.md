@@ -1,85 +1,41 @@
-# 🤖 crypto-bot
+# 📡 crypto-bot
 
 **English** · [العربية](README.ar.md)
 
-A bot that teaches itself trading strategies with a **genetic algorithm**, on historical data for five coins:
-**BTC · ETH · SOL · BNB · DOGE**.
+A signal bot for five coins (**BTC · ETH · SOL · BNB · DOGE**) that runs a **coin-rotation (momentum)** strategy and publishes its live signal on a web page, updated every hour.
 
-We never tell it how to trade. It gets the indicators, invents strategies, tests them, keeps the best, then mixes and mutates them generation after generation.
+📊 **Live signal:** https://walidplayx-debug.github.io/crypto-bot/ · summary in [`RESULTS.md`](RESULTS.md)
 
-📊 **Results:** [`RESULTS.md`](RESULTS.md) and the [live results page](https://walidplayx-debug.github.io/crypto-bot/) (GitHub Pages)
+## The strategy
 
-## How it works
+Every few days the coins are ranked by how much they rose over the last N days:
 
-1. **Data:** 1-hour candles from Binance (free, no API key). 4-hour candles are built from them.
-2. **Indicators (26):** RSI, MACD, Bollinger, EMA 20/50/200, ATR, ADX, Stochastic, CCI, MFI, OBV, volume, Donchian channels, volatility…
-3. **Market filters (learned from the loss analysis):** a strategy may switch on "only trade with the EMA 200 trend" and/or "skip low-volatility markets".
-4. **A strategy:** up to 2 long conditions and up to 2 short conditions, plus a stop-loss and take-profit in ATR multiples, and a maximum trade duration.
-4. **Three timeframes:** 1h, 4h, and 1h with a 4h trend filter.
-5. **Two kinds of strategy:**
-   - **Universal:** one strategy that has to work on all five coins at once. Harder to find, but the strongest evidence that it isn't luck.
-   - **Per coin:** a separate strategy for each coin.
+- **buy the strongest** (only if their momentum is positive),
+- **short the weakest** (only if its momentum is negative),
+- hold until the next review; no leverage, no stop-loss.
+
+The idea: coins that are rising tend to keep rising for a while, and falling coins keep falling (momentum).
+
+The settings were chosen from 240 combinations using **training (until 2023-01-01) and validation (until 2024-07-01) data only**. The hidden test after that was never used for any decision. On the go-live day the settings are **frozen** in [`docs/live.json`](docs/live.json), and the live result only counts days after that day: a true paper-trading test.
 
 ## No cheating
 
-- Decisions are made on a candle's **close**; the trade enters at the **next candle's open**.
-- If the stop and the target are both hit inside the same candle, it **counts as a loss**.
-- If price gaps through the stop, the worse price is used.
-- Entries are **limit orders**: placed at (or better than) the signal candle's close, filled only if the next candle really trades there, otherwise cancelled. Entries and take-profits pay the 0.02% maker fee; stop-losses and time exits pay the 0.05% taker fee plus 0.03% slippage. A funding cost is charged for every hour held.
-- **Data split:**
-  - Training: until 2023-01-01
-  - Validation: until 2024-07-01
-  - **Hidden test:** from then until today. The bot never sees it; its numbers are for reporting only.
+- Positions are decided on a day's **close** and held from the **next day's open**.
+- Every change of position pays the 0.05% taker fee plus 0.03% slippage, and a funding cost is charged for every hour held.
+- The strategy was also run on completely random prices and found nothing profitable, which confirms it can't see the future.
 
-The bot was also run on a completely random price series and found no consistently "profitable" strategy, which confirms it can't see the future.
+## How it runs
 
-## Scoring that resists luck
+GitHub Actions ([`.github/workflows/evolve.yml`](.github/workflows/evolve.yml)) runs every hour: it downloads new candles from Binance (free, no API key), computes the signal, and updates the page. Each run starts the next one, because GitHub's own schedule is often hours late.
 
-- The biggest 5% of winning trades are ignored when a strategy is scored.
-- The training period is cut into years; each coin is judged on its **2 worst years**, so a strategy must survive bull, bear and sideways markets.
-- At most 2 conditions per direction, with a penalty per condition.
-- A new champion must be better on **both** training and validation, by a clear margin.
+```bash
+pip install -r requirements.txt
+python -m bot.fetch     # download / update candles
+python -m bot.signals   # compute the signal, write docs/ and RESULTS.md
+```
 
-## How often does it trade?
+## Research history
 
-At least ~75 trades a year per coin (about one every 5 days). Across the five coins that is roughly **one signal a day**. Trades stay open at most 5 days.
+Before the rotation strategy, a **genetic algorithm** searched indicator-rule strategies (26 indicators, 3 timeframes, limit orders, worst-year scoring, 3 independent searches per strategy, loss analysis). After about 80 runs it found nothing that held up on the hidden test, so it was stopped. Its code is kept in [`research/`](research/) (`python -m research.evolve`, `python -m research.report`; note that the report overwrites `docs/data.json`).
 
-## When does it stop?
-
-- Every strategy is searched **3 times independently**, from different random starts. If all three find similar, profitable strategies, the pattern is probably real; if each finds something different, it was luck.
-- A search stops after **48 hours** without a better champion. When every search has stopped, the page shows 🏁.
-
-## Second strategy: coin rotation 🔄
-
-Instead of "when do I buy?", it asks "which coin is strongest right now?". Every day (or every few days) the coins are ranked by how much they rose over the last N days: buy the strongest, optionally short the weakest, and stay in cash when the market filter is negative. A small grid of 240 settings is tested on training + validation only, and the hidden test is just reported.
-
-## Why does it lose?
-
-For every champion the page shows a loss analysis on **training + validation trades only**: results by trend, volatility, direction, time of day and how trades ended, plus how many stopped-out trades were in profit first. The hidden test is never analysed, so improvements made from it cannot leak the test.
-
-## Live signal 📡
-
-The top of the results page shows the rotation strategy's current positions, the date of the next review and a log of every change. Its settings are frozen on the go-live day ([`docs/live.json`](docs/live.json)), and the live performance only counts days after that day: a true paper-trading test.
-
-## Suggested leverage
-
-Leverage is sized so that hitting the stop loses **only 2%** of the account:
-`leverage = 2% ÷ stop distance`, capped at 10x.
-
-## Running it
-
-- **Automatic:** every 6 hours via GitHub Actions. It downloads new data, continues evolving from where it stopped, and updates the results.
-- **Manual:** in the Actions tab, choose `evolve` and press **Run workflow**.
-- **Locally:**
-  ```bash
-  pip install -r requirements.txt
-  python -m bot.fetch
-  python -m bot.evolve --variant 4h --minutes 10
-  python -m bot.report
-  ```
-
-## Settings
-
-All settings live in [`bot/config.py`](bot/config.py): coins, fees, split dates, risk per trade, population size.
-
-> ⚠️ This is a learning and experimentation project. Results on historical data are no guarantee of future performance, and nothing here is financial advice.
+> ⚠️ This is a learning and experimentation project. Results on historical data and paper trading are no guarantee of future performance, and nothing here is financial advice.

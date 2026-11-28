@@ -13,8 +13,8 @@ import time
 
 import numpy as np
 
-from . import config as C
-from .engine import build, fitness
+from bot import config as C
+from research.engine import build, fitness
 
 _DATA = {}   # variant -> list of datasets (shared with worker processes via fork)
 

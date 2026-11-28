@@ -5,7 +5,7 @@ so changes made after reading this analysis cannot leak the test into the bot.
 """
 import numpy as np
 
-from .engine import backtest, leverage_of
+from research.engine import backtest, leverage_of
 
 MIN_N = 15   # a bucket needs this many trades before we say anything about it
 

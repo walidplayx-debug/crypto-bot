@@ -8,8 +8,8 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
 import numpy as np  # noqa: E402
 
-from . import config as C  # noqa: E402
-from .engine import backtest, build, leverage_of, metrics, signals, trade_plan  # noqa: E402
+from bot import config as C  # noqa: E402
+from research.engine import backtest, build, leverage_of, metrics, signals, trade_plan  # noqa: E402
 
 # ---- chart style (dark surface, thin marks, recessive grid)
 SURF, INK, INK2, GRID, AXIS = "#191919", "#efefef", "#9c9c9c", "#303030", "#474747"
@@ -215,7 +215,7 @@ def main():
                 coins.append(parts)
             fname = f"eq_{vslug}_{scope}.png"
             plot_equity(ds, g, img / fname, f"{variant} · {scope}")
-            from .analysis import analyse
+            from research.analysis import analyse
             e["analysis"] = analyse(ds, g)
             e.update(best_seed=st.get("seed", 1), generation=st["generation"],
                      weak=ch.get("robust", 0) <= 0, genome=g, rules=describe(g, ds[0]),
