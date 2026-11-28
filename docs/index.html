@@ -73,7 +73,18 @@ function render(d){
     <h2>⚙️ كيف بتشتغل</h2>
     <ul>${L.rules.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>
     <div class="muted">الفكرة: العملة اللي عم تطلع بتكمّل طلوع فترة، واللي عم تنزل بتكمّل نزول (الزخم).</div>
+    ${R.coins ? `<div class="muted" style="margin-top:6px">العملات (${R.coins.length}): ${R.coins.map(coin).join(" · ")}</div>` : ""}
   </div>
+
+  ${R.compare ? `<div class="card">
+    <h2>🔧 شو عمل كل تحسين</h2>
+    <div class="muted">الاختيار صار على "التقييم" (تدريب + تحقق) بس. عمود المخفي للمعلومة.</div>
+    <div class="scroll"><table><tr><th></th><th>التقييم</th><th>ربح المخفي</th><th>أقصى تراجع</th></tr>
+      ${R.compare.map(x=>`<tr><td>${x.chosen?"✅ ":""}${esc(x.name)}</td><td class="num">${x.robust.toFixed(3)}</td>
+        <td class="num ${x.test_total>=0?"good":"bad"}">${pct(x.test_total)}</td><td class="num">${(x.test_dd*100).toFixed(0)}%</td></tr>`).join("")}
+    </table></div>
+    <div class="muted">✅ = اللي انختار · الإعدادات انختارت من ${R.n_settings} تركيبة</div>
+  </div>` : ""}
 
   <div class="card">
     <h2>📊 الباكتست</h2>

@@ -44,6 +44,11 @@ def main():
         m = b[k]
         lines.append(f"| {n} | {pct(m['total'])} | {m['max_dd'] * 100:.0f}% | {m.get('trades', 0)} | "
                      f"{m.get('win_rate', 0) * 100:.0f} | {pct(m['bench'])} |")
+    if res.get("compare"):
+        lines += ["", "## شو عمل كل تحسين", "", "الاختيار صار على التقييم (تدريب + تحقق) بس.", "",
+                  "| | التقييم | ربح المخفي | أقصى تراجع |", "|---|---|---|---|"]
+        lines += [f"| {'✅ ' if x['chosen'] else ''}{x['name']} | {x['robust']:.3f} | {pct(x['test_total'])} | {x['test_dd'] * 100:.0f}% |"
+                  for x in res["compare"]]
     lines += ["", "![equity](docs/img/rotation.png)", "",
               "> ⚠️ اختبار على بيانات تاريخية وحيّة على الورق. مش ضمان للمستقبل، وما هو نصيحة مالية."]
     (C.ROOT / "RESULTS.md").write_text("\n".join(lines), encoding="utf-8")

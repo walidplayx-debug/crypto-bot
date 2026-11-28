@@ -16,7 +16,9 @@ Every few days the coins are ranked by how much they rose over the last N days:
 
 The idea: coins that are rising tend to keep rising for a while, and falling coins keep falling (momentum).
 
-The settings were chosen from 540 combinations using **training (until 2023-01-01) and validation (until 2024-07-01) data only**. The hidden test after that was never used for any decision. On the go-live day the settings are **frozen** in [`docs/live.json`](docs/live.json), and the live result only counts days after that day: a true paper-trading test.
+Three optional improvements are part of the search: **volatility sizing** (calmer coins get bigger weights), a **volume universe** (only the 10 coins with the most trading volume over the last 30 days, which also reduces survivorship bias), and an **emergency stop** (close a position that is down 15% or 25%, kept only if it clearly helps). The page shows what each one did.
+
+The settings were chosen from 2,160 combinations using **training (until 2023-01-01) and validation (until 2024-07-01) data only**. The hidden test after that was never used for any decision. On the go-live day the settings are **frozen** in [`docs/live.json`](docs/live.json), and the live result only counts days after that day: a true paper-trading test.
 
 ## No cheating
 

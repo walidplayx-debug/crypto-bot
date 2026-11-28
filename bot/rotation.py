@@ -25,13 +25,18 @@ LONGS = [1, 2, 3]
 SHORTS = [0, 1, 2]
 FILTERS = ["none", "btc_ema50", "btc_ema200", "breadth"]
 REBALANCE = [1, 3, 7]
+SIZING = ["equal", "invvol"]     # equal weights, or calmer coins get bigger weights
+UNIVERSE = ["all", "top10"]      # all coins, or only the 10 with the most trading volume at that time
+STOPS = [0.15, 0.25]             # emergency stops tried on the winner (kept only if they help)
+KEYS = ["lookback", "longs", "short", "filter", "rebalance", "sizing", "universe", "stop"]
+LIVE_VERSION = 2
 FILTER_AR = {"none": "بدون فلتر", "btc_ema50": "BTC فوق EMA 50 يوم",
              "btc_ema200": "BTC فوق EMA 200 يوم", "breadth": "متوسط زخم السوق إيجابي"}
 
 
 def daily_panel():
     """Daily candles (00:00 UTC) for every rotation coin that has data."""
-    opens, closes = {}, {}
+    opens, closes, vols = {}, {}, {}
     for s in C.ROTATION_SYMBOLS:
         p = path_for(s, "1d")
         if not p.exists():
@@ -42,51 +47,91 @@ def daily_panel():
         idx = pd.to_datetime(df["time"], unit="ms", utc=True)
         opens[s] = pd.Series(df["open"].to_numpy(float), index=idx)
         closes[s] = pd.Series(df["close"].to_numpy(float), index=idx)
+        vols[s] = pd.Series((df["volume"] * df["close"]).to_numpy(float), index=idx)   # in USDT
     o = pd.DataFrame(opens).sort_index()
     c = pd.DataFrame(closes).sort_index()
-    return o, c
+    dv = pd.DataFrame(vols).sort_index().reindex(c.index)
+    return o, c, dv
 
 
-def weights_for(params, c):
-    L, k, short, filt, R = params
-    mom = c / c.shift(L) - 1
-    listed = c.notna().cumsum() >= 30                      # at least 30 days of history
-    mom = mom.where(listed)
-    btc = c["BTCUSDT"]
-    ok = pd.Series(True, index=c.index)
-    if filt == "btc_ema50":
-        ok = btc > btc.ewm(span=50, adjust=False, min_periods=50).mean()
-    elif filt == "btc_ema200":
-        ok = btc > btc.ewm(span=200, adjust=False, min_periods=200).mean()
-    elif filt == "breadth":
-        ok = mom.mean(axis=1) > 0
-    W = np.zeros(c.shape)
-    M = mom.to_numpy()
-    okv = ok.to_numpy()
-    prev = np.zeros(c.shape[1])
+def prepare(o, c, dv):
+    """Things every setting needs, computed once. All use data up to each day's close only."""
+    listed = (c.notna().cumsum() >= 30).to_numpy()
+    vol = c.pct_change().rolling(30, min_periods=20).std().to_numpy()
+    dv30 = dv.rolling(30, min_periods=20).mean().to_numpy()
+    rank = np.full(c.shape, np.inf)                       # 0 = most traded coin that day
     for t in range(len(c)):
-        if t % R:
-            W[t] = prev
-            continue
-        row = M[t]
-        avail = np.flatnonzero(np.isfinite(row))
-        w = np.zeros(c.shape[1])
-        if len(avail) >= 3:
-            order = avail[np.argsort(row[avail])]          # weakest ... strongest
-            longs = [i for i in order[::-1][:k] if row[i] > 0] if okv[t] else []
-            shorts = [i for i in order[:short] if row[i] < 0 and i not in longs]
-            n = len(longs) + len(shorts)
-            for i in longs:
-                w[i] = 1 / n
-            for i in shorts:
-                w[i] = -1 / n
+        ok = np.flatnonzero(np.isfinite(dv30[t]) & listed[t])
+        rank[t, ok[np.argsort(-dv30[t, ok])]] = np.arange(len(ok))
+    btc = c["BTCUSDT"]
+    return {"o": o, "c": c, "C": c.to_numpy(), "O": o.to_numpy(), "listed": listed, "vol": vol, "rank": rank,
+            "ema50": (btc > btc.ewm(span=50, adjust=False, min_periods=50).mean()).to_numpy(),
+            "ema200": (btc > btc.ewm(span=200, adjust=False, min_periods=200).mean()).to_numpy(),
+            "mom": {}}
+
+
+def weights_for(params, P):
+    L, k, short, filt, R, sizing, univ, stop = params
+    c = P["c"]
+    if L not in P["mom"]:
+        P["mom"][L] = np.where(P["listed"], (c / c.shift(L) - 1).to_numpy(), np.nan)
+    M = P["mom"][L]
+    T, N = M.shape
+    if filt == "btc_ema50":
+        okv = P["ema50"]
+    elif filt == "btc_ema200":
+        okv = P["ema200"]
+    elif filt == "breadth":
+        okv = pd.DataFrame(M).mean(axis=1).to_numpy() > 0
+    else:
+        okv = np.ones(T, bool)
+    W = np.zeros((T, N))
+    prev = np.zeros(N)
+    entry = np.full(N, np.nan)
+    Cl, Op, vol, rank = P["C"], P["O"], P["vol"], P["rank"]
+    for t in range(T):
+        if t % R == 0:
+            row = M[t]
+            ok = np.isfinite(row)
+            if univ == "top10":
+                ok &= rank[t] < 10
+            avail = np.flatnonzero(ok)
+            w = np.zeros(N)
+            if len(avail) >= 3:
+                order = avail[np.argsort(row[avail])]          # weakest ... strongest
+                longs = [i for i in order[::-1][:k] if row[i] > 0] if okv[t] else []
+                shorts = [i for i in order[:short] if row[i] < 0 and i not in longs]
+                picks = longs + shorts
+                if picks:
+                    if sizing == "invvol":
+                        iv = np.array([1 / vol[t, i] if np.isfinite(vol[t, i]) and vol[t, i] > 0 else np.nan for i in picks])
+                        iv = np.where(np.isfinite(iv), iv, np.nanmean(iv) if np.isfinite(iv).any() else 1.0)
+                        sz = iv / iv.sum()
+                    else:
+                        sz = np.full(len(picks), 1 / len(picks))
+                    for i, z in zip(picks, sz):
+                        w[i] = z if i in longs else -z
+        else:
+            w = prev.copy()
+        if stop:   # emergency stop: close a position that is down `stop` since entry (checked on the close)
+            held = (w != 0) & (np.sign(w) == np.sign(prev)) & np.isfinite(entry)
+            if held.any():
+                pnl = np.sign(w[held]) * (Cl[t, held] / entry[held] - 1)
+                idx = np.flatnonzero(held)[pnl <= -stop]
+                w[idx] = 0
+        new = (w != 0) & (np.sign(w) != np.sign(prev))
+        if new.any():
+            nxt = Op[t + 1] if t + 1 < T else Cl[t]
+            entry[new] = nxt[new]
+        entry[w == 0] = np.nan
         W[t] = prev = w
     return W
 
 
-def simulate(params, o, c):
+def simulate(params, P):
     """Daily portfolio returns, indexed by the day the return is earned."""
-    W = weights_for(params, c)
+    o, c = P["o"], P["c"]
+    W = weights_for(params, P)
     ret = (o.shift(-2) / o.shift(-1) - 1).to_numpy()       # open(t+1) -> open(t+2)
     ret = np.nan_to_num(ret)
     gross = (W * ret).sum(axis=1)
@@ -178,7 +223,7 @@ def metrics(r, changes):
 
 
 def describe(params):
-    L, k, short, filt, R = params
+    L, k, short, filt, R, sizing, univ, stop = params
     every = "كل يوم" if R == 1 else f"كل {R} أيام"
     n_ar = {1: "عملة", 2: "عملتين", 3: "3 عملات"}
     txt = [f"{every}: رتّب العملات حسب صعودها آخر {L} يوم",
@@ -187,29 +232,39 @@ def describe(params):
         txt.append(f"وبيع (Short) أضعف {n_ar[short]} (بس إذا زخمها سلبي)")
     if filt != "none":
         txt.append(f"الشراء بس إذا {FILTER_AR[filt]}، وإلا كاش")
+    txt.append("من بين أكبر 10 عملات حسب حجم التداول آخر 30 يوم" if univ == "top10" else "من بين كل العملات بالقائمة")
+    txt.append("حجم الصفقة حسب التذبذب: العملة الأهدى بتاخد حجم أكبر" if sizing == "invvol" else "كل الصفقات بنفس الحجم")
+    if stop:
+        txt.append(f"وقف طوارئ: إذا صفقة خسرت {int(stop * 100)}% بتسكّر بدون ما تستنى المراجعة")
     return txt
 
 
+def _row(params, P):
+    r, ch, W = simulate(params, P)
+    ts, vs = train_score(r), _score(part(r, "valid"))
+    return {"params": params, "train": ts, "valid": vs, "robust": min(ts, vs), "r": r, "ch": ch, "W": W}
+
+
 def run():
-    o, c = daily_panel()
-    rows = []
-    for params in itertools.product(LOOKBACKS, LONGS, SHORTS, FILTERS, REBALANCE):
-        r, ch, W = simulate(params, o, c)
-        ts, vs = train_score(r), _score(part(r, "valid"))
-        rows.append({"params": params, "train": ts, "valid": vs, "robust": min(ts, vs), "r": r, "ch": ch, "W": W})
+    o, c, dv = daily_panel()
+    P = prepare(o, c, dv)
+    rows = [_row(p_ + (0,), P) for p_ in itertools.product(LOOKBACKS, LONGS, SHORTS, FILTERS, REBALANCE, SIZING, UNIVERSE)]
     rows.sort(key=lambda x: x["robust"], reverse=True)
     best = rows[0]
-    live_path = C.DOCS_DIR / "live.json"
-    if live_path.exists():   # once live, always show the frozen live settings
-        lv = json.loads(live_path.read_text())
-        if lv.get("symbols") == list(c.columns):
-            frozen = tuple(lv["params"])
-            best = next((x for x in rows if x["params"] == frozen), best)
+    # emergency stop: tried on the winner, kept only if it clearly helps on training + validation
+    for sp in STOPS:
+        cand = _row(best["params"][:7] + (sp,), P)
+        if cand["robust"] > best["robust"] + 0.01:
+            best = cand
+    lv = live_state(c)
+    if lv:                    # once live, always show the frozen live settings
+        frozen = tuple(lv["params"])
+        best = next((x for x in rows if x["params"] == frozen), None) or _row(frozen, P)
     ew = (o.shift(-2) / o.shift(-1) - 1)
     bench = pd.Series(ew.mean(axis=1).to_numpy(), index=c.index + pd.Timedelta(days=1)).fillna(0)
 
     def block(row):
-        out = {"params": dict(zip(["lookback", "longs", "short", "filter", "rebalance"], row["params"])),
+        out = {"params": dict(zip(KEYS, row["params"])),
                "rules": describe(row["params"]), "robust": round(row["robust"], 4),
                "train_score": round(row["train"], 4), "valid_score": round(row["valid"], 4)}
         trades = position_trades(row["W"], o, c)
@@ -220,27 +275,52 @@ def run():
             out[p]["bench"] = metrics(part(bench, p), pd.Series(False, index=part(bench, p).index))["total"]
         return out
 
-    W = best["W"][-1]
-    today = [{"symbol": s, "side": "شراء (Long)" if w > 0 else "بيع (Short)", "weight": round(abs(float(w)), 2)}
-             for s, w in zip(c.columns, W) if abs(w) > 1e-9]
-    res = {"best": block(best), "top": [block(x) for x in rows[:5]],
-           "today": today, "today_date": str(c.index[-1].date()),
+    # what each improvement does for the chosen momentum settings (picked on train + validation only)
+    base = best["params"][:5]
+    variants = [("الأساس: حجم متساوي، كل العملات، بدون وقف", base + ("equal", "all", 0)),
+                ("+ حجم حسب التذبذب", base + ("invvol", "all", 0)),
+                ("+ أكبر 10 حسب حجم التداول", base + ("equal", "top10", 0)),
+                ("الاتنين مع بعض", base + ("invvol", "top10", 0)),
+                ("+ وقف طوارئ 15%", best["params"][:7] + (0.15,)),
+                ("+ وقف طوارئ 25%", best["params"][:7] + (0.25,))]
+    compare = []
+    for name, prm in variants:
+        x = next((y for y in rows if y["params"] == prm), None) or _row(prm, P)
+        tp = part(x["r"], "test")
+        eq = (1 + tp).cumprod()
+        compare.append({"name": name, "chosen": prm == best["params"], "robust": round(x["robust"], 4),
+                        "test_total": round(float(eq.iloc[-1] - 1), 4) if len(eq) else 0.0,
+                        "test_dd": round(float(1 - (eq / eq.cummax()).min()), 4) if len(eq) else 0.0})
+
+    res = {"best": block(best), "top": [block(x) for x in rows[:5]], "compare": compare,
+           "n_settings": len(rows), "coins": list(c.columns),
            "positive_test_in_top5": sum(1 for x in rows[:5] if part(x["r"], "test").add(1).prod() > 1)}
-    res["live"] = live_update(best["params"], o, c)
+    res["live"] = live_update(best["params"], P)
     return res, best["r"], bench
 
 
-def live_update(best_params, o, c):
+def live_state(c):
+    path = C.DOCS_DIR / "live.json"
+    if not path.exists():
+        return None
+    st = json.loads(path.read_text())
+    if st.get("symbols") != list(c.columns) or st.get("version") != LIVE_VERSION:
+        return None           # new coin list or new strategy version = a new live test
+    return st
+
+
+def live_update(best_params, P):
     """Paper trading from the go-live day on: the settings are frozen on the first day,
     every change of positions is logged, and performance is measured only on days
     that came AFTER the go-live day."""
+    o, c = P["o"], P["c"]
     path = C.DOCS_DIR / "live.json"
-    st = json.loads(path.read_text()) if path.exists() else None
-    if not st or st.get("symbols") != list(c.columns):   # new coin list = a new live test
-        st = {"start": str(c.index[-1].date()), "params": list(best_params),
+    st = live_state(c)
+    if not st:
+        st = {"version": LIVE_VERSION, "start": str(c.index[-1].date()), "params": list(best_params),
               "symbols": list(c.columns), "log": []}
     params = tuple(st["params"])
-    r, _, W = simulate(params, o, c)
+    r, _, W = simulate(params, P)
     day = c.index[-1]
     pos = [{"symbol": sym, "side": "long" if w > 0 else "short", "weight": round(abs(float(w)), 2),
             "price": round(float(c[sym].iloc[-1]), 6)}
@@ -260,7 +340,7 @@ def live_update(best_params, o, c):
     k = (R - t_last % R) % R or R
     next_signal = (day + pd.Timedelta(days=k + 1)).strftime("%Y-%m-%d")
     path.write_text(json.dumps(st, ensure_ascii=False, indent=1))
-    return {"start": st["start"], "symbols": st["symbols"], "params": dict(zip(["lookback", "longs", "short", "filter", "rebalance"], params)),
+    return {"start": st["start"], "symbols": st["symbols"], "params": dict(zip(KEYS, params)),
             "rules": describe(params), "positions": pos, "as_of": str(day.date()),
             "next_signal": next_signal, "perf": perf, "log": st["log"][-15:][::-1]}
 
