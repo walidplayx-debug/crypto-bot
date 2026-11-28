@@ -1,13 +1,16 @@
 name: signals
 
 on:
-  schedule:
-    - cron: "7 * * * *"        # backup: every hour (GitHub often delays these)
-  workflow_dispatch:            # "Run workflow" button
+  schedule:                    # once a day after the daily close (00:00 UTC),
+    - cron: "7 0 * * *"        # with backup times because GitHub is often late
+    - cron: "37 1 * * *"
+    - cron: "7 4 * * *"
+    - cron: "7 9 * * *"
+    - cron: "7 15 * * *"
+  workflow_dispatch:
 
 permissions:
   contents: write
-  actions: write               # lets a finished run start the next one
 
 env:
   PYTHONUNBUFFERED: "1"
@@ -23,21 +26,41 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with: { ref: main }
+      - name: Already done today?
+        id: check
+        run: |
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import json, datetime
+          y = (datetime.datetime.now(datetime.timezone.utc).date() - datetime.timedelta(days=1)).isoformat()
+          try:
+              done = json.load(open("docs/data.json"))["rotation"]["live"]["as_of"] == y
+          except Exception:
+              done = False
+          manual = "${{ github.event_name }}" == "workflow_dispatch"
+          print("skip=" + ("true" if done and not manual else "false"))
+          PY
       - uses: actions/setup-python@v5
+        if: steps.check.outputs.skip != 'true'
         with: { python-version: "3.12", cache: pip }
-      - run: pip install -r requirements.txt
+      - if: steps.check.outputs.skip != 'true'
+        run: pip install -r requirements.txt
       - uses: actions/cache@v4
+        if: steps.check.outputs.skip != 'true'
         with:
           path: data
           key: data-${{ github.run_id }}
           restore-keys: data-
-      - name: Download / update candles
+      - name: Download / update daily candles
+        if: steps.check.outputs.skip != 'true'
         run: python -m bot.fetch
       - name: Compute the signal
+        if: steps.check.outputs.skip != 'true'
         run: python -m bot.signals
       - name: Write run summary
+        if: steps.check.outputs.skip != 'true'
         run: cat RESULTS.md >> "$GITHUB_STEP_SUMMARY"
       - name: Commit
+        if: steps.check.outputs.skip != 'true'
         run: |
           git config user.name "crypto-bot"
           git config user.email "crypto-bot@users.noreply.github.com"
@@ -46,22 +69,3 @@ jobs:
           git commit -m "signal: $(date -u '+%Y-%m-%d %H:%M') UTC"
           git pull --rebase
           git push
-
-  # Wait until 7 minutes past the next hour, then start the next run.
-  # This keeps the signal fresh every hour even when GitHub's schedule is late.
-  next:
-    needs: [update]
-    if: always()
-    runs-on: ubuntu-latest
-    timeout-minutes: 75
-    steps:
-      - name: Wait for the next hour
-        run: |
-          now=$(date +%s)
-          wait=$(( (3600 - now % 3600 + 420) % 3600 ))
-          [ "$wait" -lt 300 ] && wait=$(( wait + 3600 ))
-          echo "sleeping $wait s"; sleep "$wait"
-      - name: Queue the next run
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: gh workflow run evolve.yml --ref main --repo "${{ github.repository }}"
