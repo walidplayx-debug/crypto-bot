@@ -131,7 +131,7 @@ function showRotation(){
     <div class="sig">📡 إشارة اليوم (${R.today_date}): ${today}</div>
     <div style="margin-top:8px"><span class="pill ${lvl}">المخفي: ${txt}</span></div>
     <ul>${b.rules.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>
-    <div class="scroll"><table><tr><th></th><th>الربح</th><th>أقصى تراجع</th><th>صفقات</th><th>نجاح</th><th>متوسط ربح / خسارة</th><th>اشترِ واحتفظ</th></tr>
+    <div class="scroll"><table><tr><th></th><th>الربح</th><th>أقصى تراجع</th><th>صفقات</th><th>نجاح</th><th>ربح / خسارة (الوسيط)</th><th>اشترِ واحتفظ</th></tr>
       ${row("تدريب",b.train)}${row("تحقق",b.valid)}${row("مخفي",b.test)}</table></div>
     <img src="${R.chart}?v=${encodeURIComponent(DATA.updated)}" alt="منحنى التناوب">
     <details><summary>أفضل 5 إعدادات (${R.positive_test_in_top5} منها رابحة بالمخفي)</summary>

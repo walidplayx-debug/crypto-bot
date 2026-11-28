@@ -128,8 +128,9 @@ def trade_stats(tr, which):
         return {"trades": 0, "win_rate": 0.0, "avg_win": 0.0, "avg_loss": 0.0, "avg_days": 0.0}
     w, l = x["ret"][x["ret"] > 0], x["ret"][x["ret"] <= 0]
     return {"trades": int(len(x)), "win_rate": round(float((x["ret"] > 0).mean()), 3),
-            "avg_win": round(float(w.mean()), 4) if len(w) else 0.0,
-            "avg_loss": round(float(l.mean()), 4) if len(l) else 0.0,
+            # medians, so a few huge winners (e.g. a meme-coin rally) don't distort the picture
+            "avg_win": round(float(w.median()), 4) if len(w) else 0.0,
+            "avg_loss": round(float(l.median()), 4) if len(l) else 0.0,
             "avg_days": round(float(x["days"].mean()), 1)}
 
 
