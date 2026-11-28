@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-28 12:50 UTC",
+ "updated": "2026-11-28 13:08 UTC",
  "split": {
   "train_end": "2023-01-01",
   "valid_end": "2024-07-01"
@@ -7,391 +7,424 @@
  "rotation": {
   "best": {
    "params": {
-    "lookback": 30,
-    "longs": 2,
-    "short": 1,
-    "filter": "none",
+    "lookback": 14,
+    "longs": 3,
+    "short": 2,
+    "filter": "breadth",
     "rebalance": 3
    },
    "rules": [
-    "كل 3 أيام: رتّب العملات حسب صعودها آخر 30 يوم",
-    "اشترِ أقوى عملتين (بس إذا زخمها إيجابي)",
-    "وبيع (Short) أضعف عملة (بس إذا زخمها سلبي)"
+    "كل 3 أيام: رتّب العملات حسب صعودها آخر 14 يوم",
+    "اشترِ أقوى 3 عملات (بس إذا زخمها إيجابي)",
+    "وبيع (Short) أضعف عملتين (بس إذا زخمها سلبي)",
+    "الشراء بس إذا متوسط زخم السوق إيجابي، وإلا كاش"
    ],
-   "robust": 0.0181,
-   "train_score": 0.0181,
-   "valid_score": 0.2376,
+   "robust": -0.1376,
+   "train_score": -0.0657,
+   "valid_score": -0.1376,
    "train": {
-    "total": 70.484,
-    "cagr": 1.2969,
-    "max_dd": 0.6096,
-    "days": 1874,
-    "changes_per_year": 57.3,
-    "in_market": 0.972,
-    "trades": 277,
-    "win_rate": 0.466,
-    "avg_win": 0.4143,
-    "avg_loss": -0.2594,
-    "avg_days": 13.0,
-    "bench": 60.4763
+    "total": 6.6034,
+    "cagr": 0.4759,
+    "max_dd": 0.6741,
+    "days": 1902,
+    "changes_per_year": 97.7,
+    "in_market": 0.973,
+    "trades": 833,
+    "win_rate": 0.459,
+    "avg_win": 1.5317,
+    "avg_loss": -0.6011,
+    "avg_days": 6.9,
+    "bench": 24.7571
    },
    "valid": {
-    "total": 1.03,
-    "cagr": 0.6053,
-    "max_dd": 0.3759,
-    "days": 546,
-    "changes_per_year": 61.5,
+    "total": 0.2608,
+    "cagr": 0.1672,
+    "max_dd": 0.4426,
+    "days": 547,
+    "changes_per_year": 100.8,
     "in_market": 1.0,
-    "trades": 89,
-    "win_rate": 0.506,
-    "avg_win": 0.4304,
-    "avg_loss": -0.2226,
-    "avg_days": 13.1,
-    "bench": 3.1534
+    "trades": 284,
+    "win_rate": 0.468,
+    "avg_win": 1.2183,
+    "avg_loss": -0.5472,
+    "avg_days": 6.4,
+    "bench": 1.6411
    },
    "test": {
-    "total": 1.3617,
-    "cagr": 0.4288,
-    "max_dd": 0.4017,
+    "total": -0.603,
+    "cagr": -0.3186,
+    "max_dd": 0.817,
     "days": 879,
-    "changes_per_year": 60.2,
+    "changes_per_year": 100.9,
     "in_market": 1.0,
-    "trades": 144,
-    "win_rate": 0.451,
-    "avg_win": 0.3425,
-    "avg_loss": -0.2061,
-    "avg_days": 12.2,
-    "bench": -0.2896
+    "trades": 446,
+    "win_rate": 0.419,
+    "avg_win": 1.0449,
+    "avg_loss": -0.6199,
+    "avg_days": 6.2,
+    "bench": -0.2856
    }
   },
   "top": [
    {
     "params": {
-     "lookback": 30,
-     "longs": 2,
-     "short": 1,
+     "lookback": 14,
+     "longs": 3,
+     "short": 2,
+     "filter": "breadth",
+     "rebalance": 3
+    },
+    "rules": [
+     "كل 3 أيام: رتّب العملات حسب صعودها آخر 14 يوم",
+     "اشترِ أقوى 3 عملات (بس إذا زخمها إيجابي)",
+     "وبيع (Short) أضعف عملتين (بس إذا زخمها سلبي)",
+     "الشراء بس إذا متوسط زخم السوق إيجابي، وإلا كاش"
+    ],
+    "robust": -0.1376,
+    "train_score": -0.0657,
+    "valid_score": -0.1376,
+    "train": {
+     "total": 6.6034,
+     "cagr": 0.4759,
+     "max_dd": 0.6741,
+     "days": 1902,
+     "changes_per_year": 97.7,
+     "in_market": 0.973,
+     "trades": 833,
+     "win_rate": 0.459,
+     "avg_win": 1.5317,
+     "avg_loss": -0.6011,
+     "avg_days": 6.9,
+     "bench": 24.7571
+    },
+    "valid": {
+     "total": 0.2608,
+     "cagr": 0.1672,
+     "max_dd": 0.4426,
+     "days": 547,
+     "changes_per_year": 100.8,
+     "in_market": 1.0,
+     "trades": 284,
+     "win_rate": 0.468,
+     "avg_win": 1.2183,
+     "avg_loss": -0.5472,
+     "avg_days": 6.4,
+     "bench": 1.6411
+    },
+    "test": {
+     "total": -0.603,
+     "cagr": -0.3186,
+     "max_dd": 0.817,
+     "days": 879,
+     "changes_per_year": 100.9,
+     "in_market": 1.0,
+     "trades": 446,
+     "win_rate": 0.419,
+     "avg_win": 1.0449,
+     "avg_loss": -0.6199,
+     "avg_days": 6.2,
+     "bench": -0.2856
+    }
+   },
+   {
+    "params": {
+     "lookback": 14,
+     "longs": 3,
+     "short": 2,
      "filter": "none",
      "rebalance": 3
     },
     "rules": [
-     "كل 3 أيام: رتّب العملات حسب صعودها آخر 30 يوم",
-     "اشترِ أقوى عملتين (بس إذا زخمها إيجابي)",
-     "وبيع (Short) أضعف عملة (بس إذا زخمها سلبي)"
+     "كل 3 أيام: رتّب العملات حسب صعودها آخر 14 يوم",
+     "اشترِ أقوى 3 عملات (بس إذا زخمها إيجابي)",
+     "وبيع (Short) أضعف عملتين (بس إذا زخمها سلبي)"
     ],
-    "robust": 0.0181,
-    "train_score": 0.0181,
-    "valid_score": 0.2376,
+    "robust": -0.224,
+    "train_score": -0.224,
+    "valid_score": 0.2014,
     "train": {
-     "total": 70.484,
-     "cagr": 1.2969,
-     "max_dd": 0.6096,
-     "days": 1874,
-     "changes_per_year": 57.3,
-     "in_market": 0.972,
-     "trades": 277,
+     "total": 3.808,
+     "cagr": 0.3517,
+     "max_dd": 0.7096,
+     "days": 1902,
+     "changes_per_year": 105.0,
+     "in_market": 0.973,
+     "trades": 920,
      "win_rate": 0.466,
-     "avg_win": 0.4143,
-     "avg_loss": -0.2594,
-     "avg_days": 13.0,
-     "bench": 60.4763
+     "avg_win": 1.412,
+     "avg_loss": -0.6126,
+     "avg_days": 7.6,
+     "bench": 24.7571
     },
     "valid": {
-     "total": 1.03,
-     "cagr": 0.6053,
-     "max_dd": 0.3759,
-     "days": 546,
-     "changes_per_year": 61.5,
+     "total": 0.9071,
+     "cagr": 0.5385,
+     "max_dd": 0.3679,
+     "days": 547,
+     "changes_per_year": 109.4,
      "in_market": 1.0,
-     "trades": 89,
-     "win_rate": 0.506,
-     "avg_win": 0.4304,
-     "avg_loss": -0.2226,
-     "avg_days": 13.1,
-     "bench": 3.1534
+     "trades": 318,
+     "win_rate": 0.472,
+     "avg_win": 1.5133,
+     "avg_loss": -0.5419,
+     "avg_days": 7.2,
+     "bench": 1.6411
     },
     "test": {
-     "total": 1.3617,
-     "cagr": 0.4288,
-     "max_dd": 0.4017,
+     "total": -0.4826,
+     "cagr": -0.2394,
+     "max_dd": 0.7136,
      "days": 879,
-     "changes_per_year": 60.2,
+     "changes_per_year": 108.8,
      "in_market": 1.0,
-     "trades": 144,
+     "trades": 519,
+     "win_rate": 0.439,
+     "avg_win": 1.2828,
+     "avg_loss": -0.6428,
+     "avg_days": 7.1,
+     "bench": -0.2856
+    }
+   },
+   {
+    "params": {
+     "lookback": 14,
+     "longs": 2,
+     "short": 2,
+     "filter": "none",
+     "rebalance": 3
+    },
+    "rules": [
+     "كل 3 أيام: رتّب العملات حسب صعودها آخر 14 يوم",
+     "اشترِ أقوى عملتين (بس إذا زخمها إيجابي)",
+     "وبيع (Short) أضعف عملتين (بس إذا زخمها سلبي)"
+    ],
+    "robust": -0.236,
+    "train_score": -0.236,
+    "valid_score": 0.1041,
+    "train": {
+     "total": 4.0574,
+     "cagr": 0.3649,
+     "max_dd": 0.708,
+     "days": 1902,
+     "changes_per_year": 101.7,
+     "in_market": 0.973,
+     "trades": 796,
      "win_rate": 0.451,
-     "avg_win": 0.3425,
-     "avg_loss": -0.2061,
-     "avg_days": 12.2,
-     "bench": -0.2896
-    }
-   },
-   {
-    "params": {
-     "lookback": 30,
-     "longs": 1,
-     "short": 1,
-     "filter": "none",
-     "rebalance": 1
-    },
-    "rules": [
-     "كل يوم: رتّب العملات حسب صعودها آخر 30 يوم",
-     "اشترِ أقوى عملة (بس إذا زخمها إيجابي)",
-     "وبيع (Short) أضعف عملة (بس إذا زخمها سلبي)"
-    ],
-    "robust": 0.017,
-    "train_score": 0.017,
-    "valid_score": 0.4154,
-    "train": {
-     "total": 11.5924,
-     "cagr": 0.6378,
-     "max_dd": 0.7444,
-     "days": 1874,
-     "changes_per_year": 95.8,
-     "in_market": 0.973,
-     "trades": 402,
-     "win_rate": 0.443,
-     "avg_win": 0.1923,
-     "avg_loss": -0.1532,
-     "avg_days": 6.3,
-     "bench": 60.4763
+     "avg_win": 1.3516,
+     "avg_loss": -0.6011,
+     "avg_days": 7.3,
+     "bench": 24.7571
     },
     "valid": {
-     "total": 1.8275,
-     "cagr": 1.0034,
-     "max_dd": 0.4281,
-     "days": 546,
-     "changes_per_year": 113.0,
+     "total": 0.6581,
+     "cagr": 0.4013,
+     "max_dd": 0.3729,
+     "days": 547,
+     "changes_per_year": 110.8,
      "in_market": 1.0,
-     "trades": 148,
-     "win_rate": 0.466,
-     "avg_win": 0.146,
-     "avg_loss": -0.1169,
-     "avg_days": 5.3,
-     "bench": 3.1534
+     "trades": 284,
+     "win_rate": 0.486,
+     "avg_win": 1.1826,
+     "avg_loss": -0.553,
+     "avg_days": 6.5,
+     "bench": 1.6411
     },
     "test": {
-     "total": 1.5093,
-     "cagr": 0.4652,
-     "max_dd": 0.4714,
+     "total": -0.2292,
+     "cagr": -0.1025,
+     "max_dd": 0.6085,
      "days": 879,
-     "changes_per_year": 98.0,
+     "changes_per_year": 107.1,
      "in_market": 1.0,
-     "trades": 211,
-     "win_rate": 0.479,
-     "avg_win": 0.1703,
-     "avg_loss": -0.1226,
-     "avg_days": 5.9,
-     "bench": -0.2896
+     "trades": 453,
+     "win_rate": 0.453,
+     "avg_win": 1.1801,
+     "avg_loss": -0.6034,
+     "avg_days": 6.7,
+     "bench": -0.2856
     }
    },
    {
     "params": {
-     "lookback": 30,
+     "lookback": 14,
      "longs": 2,
      "short": 1,
      "filter": "breadth",
      "rebalance": 3
     },
     "rules": [
-     "كل 3 أيام: رتّب العملات حسب صعودها آخر 30 يوم",
+     "كل 3 أيام: رتّب العملات حسب صعودها آخر 14 يوم",
      "اشترِ أقوى عملتين (بس إذا زخمها إيجابي)",
      "وبيع (Short) أضعف عملة (بس إذا زخمها سلبي)",
      "الشراء بس إذا متوسط زخم السوق إيجابي، وإلا كاش"
     ],
-    "robust": -0.0501,
-    "train_score": -0.0501,
-    "valid_score": 0.3278,
+    "robust": -0.2372,
+    "train_score": -0.216,
+    "valid_score": -0.2372,
     "train": {
-     "total": 29.8765,
-     "cagr": 0.9505,
-     "max_dd": 0.5634,
-     "days": 1874,
-     "changes_per_year": 47.7,
-     "in_market": 0.972,
-     "trades": 252,
-     "win_rate": 0.46,
-     "avg_win": 0.4737,
-     "avg_loss": -0.2183,
-     "avg_days": 12.3,
-     "bench": 60.4763
-    },
-    "valid": {
-     "total": 1.1232,
-     "cagr": 0.6542,
-     "max_dd": 0.2961,
-     "days": 546,
-     "changes_per_year": 54.8,
-     "in_market": 1.0,
-     "trades": 89,
-     "win_rate": 0.562,
-     "avg_win": 0.3352,
-     "avg_loss": -0.2455,
-     "avg_days": 11.7,
-     "bench": 3.1534
-    },
-    "test": {
-     "total": 0.5195,
-     "cagr": 0.1897,
-     "max_dd": 0.4435,
-     "days": 879,
-     "changes_per_year": 55.2,
-     "in_market": 1.0,
-     "trades": 146,
-     "win_rate": 0.438,
-     "avg_win": 0.2507,
-     "avg_loss": -0.1971,
-     "avg_days": 10.4,
-     "bench": -0.2896
-    }
-   },
-   {
-    "params": {
-     "lookback": 30,
-     "longs": 1,
-     "short": 1,
-     "filter": "none",
-     "rebalance": 3
-    },
-    "rules": [
-     "كل 3 أيام: رتّب العملات حسب صعودها آخر 30 يوم",
-     "اشترِ أقوى عملة (بس إذا زخمها إيجابي)",
-     "وبيع (Short) أضعف عملة (بس إذا زخمها سلبي)"
-    ],
-    "robust": -0.0933,
-    "train_score": -0.0933,
-    "valid_score": 0.3112,
-    "train": {
-     "total": 31.2241,
-     "cagr": 0.9667,
-     "max_dd": 0.6294,
-     "days": 1874,
-     "changes_per_year": 49.9,
-     "in_market": 0.972,
-     "trades": 228,
-     "win_rate": 0.469,
-     "avg_win": 0.4045,
-     "avg_loss": -0.2315,
-     "avg_days": 11.2,
-     "bench": 60.4763
-    },
-    "valid": {
-     "total": 1.3589,
-     "cagr": 0.7748,
-     "max_dd": 0.4084,
-     "days": 546,
-     "changes_per_year": 50.1,
-     "in_market": 1.0,
-     "trades": 74,
-     "win_rate": 0.5,
-     "avg_win": 0.3188,
-     "avg_loss": -0.2137,
-     "avg_days": 10.7,
-     "bench": 3.1534
-    },
-    "test": {
-     "total": 1.7775,
-     "cagr": 0.5284,
-     "max_dd": 0.4582,
-     "days": 879,
-     "changes_per_year": 52.3,
-     "in_market": 1.0,
-     "trades": 116,
-     "win_rate": 0.474,
-     "avg_win": 0.2649,
-     "avg_loss": -0.2178,
-     "avg_days": 10.8,
-     "bench": -0.2896
-    }
-   },
-   {
-    "params": {
-     "lookback": 30,
-     "longs": 1,
-     "short": 1,
-     "filter": "breadth",
-     "rebalance": 1
-    },
-    "rules": [
-     "كل يوم: رتّب العملات حسب صعودها آخر 30 يوم",
-     "اشترِ أقوى عملة (بس إذا زخمها إيجابي)",
-     "وبيع (Short) أضعف عملة (بس إذا زخمها سلبي)",
-     "الشراء بس إذا متوسط زخم السوق إيجابي، وإلا كاش"
-    ],
-    "robust": -0.1413,
-    "train_score": -0.1413,
-    "valid_score": 0.2017,
-    "train": {
-     "total": 7.6487,
-     "cagr": 0.5223,
-     "max_dd": 0.702,
-     "days": 1874,
-     "changes_per_year": 83.0,
+     "total": 2.9592,
+     "cagr": 0.3022,
+     "max_dd": 0.809,
+     "days": 1902,
+     "changes_per_year": 85.0,
      "in_market": 0.973,
-     "trades": 350,
-     "win_rate": 0.44,
-     "avg_win": 0.193,
-     "avg_loss": -0.158,
-     "avg_days": 6.3,
-     "bench": 60.4763
+     "trades": 557,
+     "win_rate": 0.476,
+     "avg_win": 1.5265,
+     "avg_loss": -0.5607,
+     "avg_days": 6.2,
+     "bench": 24.7571
     },
     "valid": {
-     "total": 1.3393,
-     "cagr": 0.7649,
-     "max_dd": 0.5194,
-     "days": 546,
-     "changes_per_year": 103.6,
+     "total": 0.1707,
+     "cagr": 0.1109,
+     "max_dd": 0.4958,
+     "days": 547,
+     "changes_per_year": 91.4,
      "in_market": 1.0,
-     "trades": 133,
-     "win_rate": 0.466,
-     "avg_win": 0.1338,
-     "avg_loss": -0.1194,
-     "avg_days": 5.2,
-     "bench": 3.1534
+     "trades": 190,
+     "win_rate": 0.489,
+     "avg_win": 1.1454,
+     "avg_loss": -0.5587,
+     "avg_days": 5.8,
+     "bench": 1.6411
     },
     "test": {
-     "total": -0.0739,
-     "cagr": -0.0314,
-     "max_dd": 0.6679,
+     "total": -0.4455,
+     "cagr": -0.2172,
+     "max_dd": 0.7687,
      "days": 879,
-     "changes_per_year": 99.7,
+     "changes_per_year": 90.5,
      "in_market": 1.0,
-     "trades": 199,
-     "win_rate": 0.417,
-     "avg_win": 0.1424,
-     "avg_loss": -0.1285,
-     "avg_days": 5.4,
-     "bench": -0.2896
+     "trades": 287,
+     "win_rate": 0.418,
+     "avg_win": 1.0286,
+     "avg_loss": -0.5752,
+     "avg_days": 5.6,
+     "bench": -0.2856
+    }
+   },
+   {
+    "params": {
+     "lookback": 14,
+     "longs": 3,
+     "short": 2,
+     "filter": "none",
+     "rebalance": 7
+    },
+    "rules": [
+     "كل 7 أيام: رتّب العملات حسب صعودها آخر 14 يوم",
+     "اشترِ أقوى 3 عملات (بس إذا زخمها إيجابي)",
+     "وبيع (Short) أضعف عملتين (بس إذا زخمها سلبي)"
+    ],
+    "robust": -0.2536,
+    "train_score": -0.192,
+    "valid_score": -0.2536,
+    "train": {
+     "total": 23.0354,
+     "cagr": 0.8407,
+     "max_dd": 0.614,
+     "days": 1902,
+     "changes_per_year": 48.7,
+     "in_market": 0.973,
+     "trades": 577,
+     "win_rate": 0.466,
+     "avg_win": 2.4852,
+     "avg_loss": -0.7491,
+     "avg_days": 12.3,
+     "bench": 24.7571
+    },
+    "valid": {
+     "total": 0.1939,
+     "cagr": 0.1255,
+     "max_dd": 0.5247,
+     "days": 547,
+     "changes_per_year": 51.4,
+     "in_market": 1.0,
+     "trades": 198,
+     "win_rate": 0.465,
+     "avg_win": 2.14,
+     "avg_loss": -0.7054,
+     "avg_days": 11.6,
+     "bench": 1.6411
+    },
+    "test": {
+     "total": 0.0372,
+     "cagr": 0.0153,
+     "max_dd": 0.5702,
+     "days": 879,
+     "changes_per_year": 50.7,
+     "in_market": 1.0,
+     "trades": 328,
+     "win_rate": 0.454,
+     "avg_win": 1.7193,
+     "avg_loss": -0.724,
+     "avg_days": 11.0,
+     "bench": -0.2856
     }
    }
   ],
   "today": [
    {
-    "symbol": "SOLUSDT",
+    "symbol": "AVAXUSDT",
     "side": "بيع (Short)",
-    "weight": 1.0
+    "weight": 0.5
+   },
+   {
+    "symbol": "UNIUSDT",
+    "side": "بيع (Short)",
+    "weight": 0.5
    }
   ],
   "today_date": "2026-11-27",
-  "positive_test_in_top5": 4,
+  "positive_test_in_top5": 1,
   "live": {
    "start": "2026-11-27",
+   "symbols": [
+    "BTCUSDT",
+    "ETHUSDT",
+    "BNBUSDT",
+    "SOLUSDT",
+    "XRPUSDT",
+    "ADAUSDT",
+    "DOGEUSDT",
+    "TRXUSDT",
+    "LINKUSDT",
+    "AVAXUSDT",
+    "DOTUSDT",
+    "LTCUSDT",
+    "BCHUSDT",
+    "ATOMUSDT",
+    "ETCUSDT",
+    "XLMUSDT",
+    "UNIUSDT",
+    "NEARUSDT"
+   ],
    "params": {
-    "lookback": 30,
-    "longs": 2,
-    "short": 1,
-    "filter": "none",
+    "lookback": 14,
+    "longs": 3,
+    "short": 2,
+    "filter": "breadth",
     "rebalance": 3
    },
    "rules": [
-    "كل 3 أيام: رتّب العملات حسب صعودها آخر 30 يوم",
-    "اشترِ أقوى عملتين (بس إذا زخمها إيجابي)",
-    "وبيع (Short) أضعف عملة (بس إذا زخمها سلبي)"
+    "كل 3 أيام: رتّب العملات حسب صعودها آخر 14 يوم",
+    "اشترِ أقوى 3 عملات (بس إذا زخمها إيجابي)",
+    "وبيع (Short) أضعف عملتين (بس إذا زخمها سلبي)",
+    "الشراء بس إذا متوسط زخم السوق إيجابي، وإلا كاش"
    ],
    "positions": [
     {
-     "symbol": "SOLUSDT",
+     "symbol": "AVAXUSDT",
      "side": "short",
-     "weight": 1.0,
-     "price": 71.66
+     "weight": 0.5,
+     "price": 6.614
+    },
+    {
+     "symbol": "UNIUSDT",
+     "side": "short",
+     "weight": 0.5,
+     "price": 4.827
     }
    ],
    "as_of": "2026-11-27",
@@ -406,17 +439,28 @@
      "date": "2026-11-27",
      "positions": [
       {
-       "symbol": "SOLUSDT",
+       "symbol": "AVAXUSDT",
        "side": "short",
-       "weight": 1.0,
-       "price": 71.66
+       "weight": 0.5,
+       "price": 6.614
+      },
+      {
+       "symbol": "UNIUSDT",
+       "side": "short",
+       "weight": 0.5,
+       "price": 4.827
       }
      ],
      "key": [
       [
-       "SOLUSDT",
+       "AVAXUSDT",
        "short",
-       1.0
+       0.5
+      ],
+      [
+       "UNIUSDT",
+       "short",
+       0.5
       ]
      ]
     }

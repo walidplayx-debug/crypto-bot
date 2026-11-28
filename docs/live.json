@@ -1,0 +1,61 @@
+{
+ "start": "2026-11-27",
+ "params": [
+  14,
+  3,
+  2,
+  "breadth",
+  3
+ ],
+ "symbols": [
+  "BTCUSDT",
+  "ETHUSDT",
+  "BNBUSDT",
+  "SOLUSDT",
+  "XRPUSDT",
+  "ADAUSDT",
+  "DOGEUSDT",
+  "TRXUSDT",
+  "LINKUSDT",
+  "AVAXUSDT",
+  "DOTUSDT",
+  "LTCUSDT",
+  "BCHUSDT",
+  "ATOMUSDT",
+  "ETCUSDT",
+  "XLMUSDT",
+  "UNIUSDT",
+  "NEARUSDT"
+ ],
+ "log": [
+  {
+   "date": "2026-11-27",
+   "positions": [
+    {
+     "symbol": "AVAXUSDT",
+     "side": "short",
+     "weight": 0.5,
+     "price": 6.614
+    },
+    {
+     "symbol": "UNIUSDT",
+     "side": "short",
+     "weight": 0.5,
+     "price": 4.827
+    }
+   ],
+   "key": [
+    [
+     "AVAXUSDT",
+     "short",
+     0.5
+    ],
+    [
+     "UNIUSDT",
+     "short",
+     0.5
+    ]
+   ]
+  }
+ ]
+}
