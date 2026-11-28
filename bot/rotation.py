@@ -12,6 +12,7 @@ The parameter grid is small on purpose (240 combinations), the winner is picked 
 training + validation only, and the hidden test is just reported.
 """
 import itertools
+import json
 
 import numpy as np
 import pandas as pd
@@ -215,7 +216,42 @@ def run():
     res = {"best": block(best), "top": [block(x) for x in rows[:5]],
            "today": today, "today_date": str(c.index[-1].date()),
            "positive_test_in_top5": sum(1 for x in rows[:5] if part(x["r"], "test").add(1).prod() > 1)}
+    res["live"] = live_update(best["params"], o, c)
     return res, best["r"], bench
+
+
+def live_update(best_params, o, c):
+    """Paper trading from the go-live day on: the settings are frozen on the first day,
+    every change of positions is logged, and performance is measured only on days
+    that came AFTER the go-live day."""
+    path = C.DOCS_DIR / "live.json"
+    st = json.loads(path.read_text()) if path.exists() else None
+    if not st:
+        st = {"start": str(c.index[-1].date()), "params": list(best_params), "log": []}
+    params = tuple(st["params"])
+    r, _, W = simulate(params, o, c)
+    day = c.index[-1]
+    pos = [{"symbol": sym, "side": "long" if w > 0 else "short", "weight": round(abs(float(w)), 2),
+            "price": round(float(c[sym].iloc[-1]), 6)}
+           for sym, w in zip(c.columns, W[-1]) if abs(w) > 1e-9]
+    key = sorted([p_["symbol"], p_["side"], p_["weight"]] for p_ in pos)
+    last = st["log"][-1] if st["log"] else None
+    if last is None or (last["key"] != key and str(day.date()) > last["date"]):
+        st["log"].append({"date": str(day.date()), "positions": pos, "key": key})
+    start = pd.Timestamp(st["start"], tz="UTC")
+    done = r.iloc[:-2]                                   # last two days have no full return yet
+    rl = done[done.index >= start + pd.Timedelta(days=1)]
+    eq = (1 + rl).cumprod()
+    perf = {"days": int(len(rl)), "total": round(float(eq.iloc[-1] - 1), 4) if len(rl) else 0.0,
+            "max_dd": round(float(1 - (eq / eq.cummax()).min()), 4) if len(rl) else 0.0}
+    R = params[4]
+    t_last = len(c) - 1
+    k = (R - t_last % R) % R or R
+    next_signal = (day + pd.Timedelta(days=k + 1)).strftime("%Y-%m-%d")
+    path.write_text(json.dumps(st, ensure_ascii=False, indent=1))
+    return {"start": st["start"], "params": dict(zip(["lookback", "longs", "short", "filter", "rebalance"], params)),
+            "rules": describe(params), "positions": pos, "as_of": str(day.date()),
+            "next_signal": next_signal, "perf": perf, "log": st["log"][-15:][::-1]}
 
 
 def plot(r, bench, path):

@@ -57,6 +57,10 @@ Instead of "when do I buy?", it asks "which coin is strongest right now?". Every
 
 For every champion the page shows a loss analysis on **training + validation trades only**: results by trend, volatility, direction, time of day and how trades ended, plus how many stopped-out trades were in profit first. The hidden test is never analysed, so improvements made from it cannot leak the test.
 
+## Live signal 📡
+
+The top of the results page shows the rotation strategy's current positions, the date of the next review and a log of every change. Its settings are frozen on the go-live day ([`docs/live.json`](docs/live.json)), and the live performance only counts days after that day: a true paper-trading test.
+
 ## Suggested leverage
 
 Leverage is sized so that hitting the stop loses **only 2%** of the account:

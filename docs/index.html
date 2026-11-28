@@ -39,6 +39,7 @@
 </header>
 <main>
   <div class="note">الأرقام المهمة هي أرقام <b>الاختبار المخفي</b>: فترة ما شافها البوت أبداً وقت التطوير. هذا اختبار على بيانات تاريخية، مو ضمان للمستقبل، وما هو نصيحة مالية.</div>
+  <div id="live"></div>
   <div class="tabs" id="tabs"></div>
   <div id="content"></div>
 </main>
@@ -115,6 +116,24 @@ function card(e){
   </div>`;
 }
 
+function liveCard(L){
+  if(!L) return "";
+  const side = x => x.side==="long" ? "🟢 شراء" : "🔴 بيع";
+  const pos = L.positions.length
+    ? L.positions.map(x=>`<tr><td>${side(x)}</td><td><b>${x.symbol.replace("USDT","")}</b></td><td class="num">${Math.round(x.weight*100)}%</td><td class="num">${x.price}</td></tr>`).join("")
+    : `<tr><td colspan="4">💤 كاش، ما في صفقات مفتوحة</td></tr>`;
+  const log = L.log.map(e=>`<tr><td class="num">${e.date}</td><td>${e.positions.length ? e.positions.map(x=>`${x.side==="long"?"🟢":"🔴"} ${x.symbol.replace("USDT","")}`).join(" · ") : "💤 كاش"}</td></tr>`).join("");
+  const p = L.perf;
+  return `<div class="card" style="border-color:var(--blue)">
+    <h2>📡 الإشارة الحية · التناوب</h2>
+    <div class="muted">محسوبة على إغلاق ${L.as_of} · المراجعة الجاية: <b>${L.next_signal}</b> (بعد إغلاق اليوم اللي قبله، 00:00 UTC)</div>
+    <div class="scroll"><table><tr><th></th><th>العملة</th><th>الحجم</th><th>السعر وقت الإشارة</th></tr>${pos}</table></div>
+    <div class="muted">بدون رافعة · بدون وقف خسارة · الخروج بيصير لما يتغيّر الترتيب</div>
+    <div class="sig">🧪 الاختبار الحي من ${L.start}: ${p.days ? `<b class="num">${pct(p.total)}</b> خلال ${p.days} يوم · أقصى تراجع ${(p.max_dd*100).toFixed(0)}%` : "لسا بلّش، أول نتيجة بعد يومين"}</div>
+    <details><summary>سجل الإشارات</summary><div class="scroll"><table><tr><th>التاريخ</th><th>المراكز</th></tr>${log}</table></div></details>
+  </div>`;
+}
+
 function showRotation(){
   document.querySelectorAll(".tabs button").forEach(b=>b.classList.toggle("on", b.dataset.rot==="1"));
   const R = DATA.rotation, b = R.best;
@@ -155,7 +174,9 @@ fetch("data.json?" + Date.now()).then(r=>r.json()).then(d=>{
   const labels = {"1h":"ساعة","4h":"4 ساعات","1h+4h":"ساعة + ترند 4 ساعات"};
   document.getElementById("tabs").innerHTML = d.variants.map((v,i)=>`<button onclick="show(${i})">${labels[v.variant]||v.variant}</button>`).join("")
     + (d.rotation ? `<button data-rot="1" onclick="showRotation()">🔄 التناوب</button>` : "");
+  document.getElementById("live").innerHTML = liveCard(d.rotation && d.rotation.live);
   if(d.variants.length) show(0); else document.getElementById("content").innerHTML = `<div class="card">لسا ما فيه نتائج. أول تشغيل شغّال…</div>`;
+  setTimeout(()=>location.reload(), 10*60*1000);   // refresh every 10 minutes
 }).catch(()=>{document.getElementById("meta").textContent="لسا ما فيه نتائج. أول تشغيل شغّال…";});
 </script>
 </body>
