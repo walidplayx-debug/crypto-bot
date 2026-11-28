@@ -6,8 +6,16 @@ DATA_DIR = ROOT / "data"
 STATE_DIR = ROOT / "state"
 DOCS_DIR = ROOT / "docs"
 
-# Five coins of different kinds
+# Five coins used by the archived genetic-algorithm research (research/)
 SYMBOLS = ["BTCUSDT", "ETHUSDT", "SOLUSDT", "BNBUSDT", "DOGEUSDT"]
+
+# Coins the rotation signal bot ranks: large, liquid, long history on Binance.
+# (Renamed coins such as MATIC->POL or FTM->S are left out: their history is broken.)
+ROTATION_SYMBOLS = [
+    "BTCUSDT", "ETHUSDT", "BNBUSDT", "SOLUSDT", "XRPUSDT", "ADAUSDT",
+    "DOGEUSDT", "TRXUSDT", "LINKUSDT", "AVAXUSDT", "DOTUSDT", "LTCUSDT",
+    "BCHUSDT", "ATOMUSDT", "ETCUSDT", "XLMUSDT", "UNIUSDT", "NEARUSDT",
+]
 
 # First month to download (coins listed later simply start later)
 START_MONTH = "2017-08"

@@ -2,7 +2,7 @@
 
 **English** · [العربية](README.ar.md)
 
-A signal bot for five coins (**BTC · ETH · SOL · BNB · DOGE**) that runs a **coin-rotation (momentum)** strategy and publishes its live signal on a web page, updated every hour.
+A signal bot that ranks **18 large coins** (BTC, ETH, BNB, SOL, XRP, ADA, DOGE, TRX, LINK, AVAX, DOT, LTC, BCH, ATOM, ETC, XLM, UNI, NEAR) with a **coin-rotation (momentum)** strategy and publishes its signal on a web page once a day, after the daily candle closes.
 
 📊 **Live signal:** https://walidplayx-debug.github.io/crypto-bot/ · summary in [`RESULTS.md`](RESULTS.md)
 
@@ -16,7 +16,7 @@ Every few days the coins are ranked by how much they rose over the last N days:
 
 The idea: coins that are rising tend to keep rising for a while, and falling coins keep falling (momentum).
 
-The settings were chosen from 240 combinations using **training (until 2023-01-01) and validation (until 2024-07-01) data only**. The hidden test after that was never used for any decision. On the go-live day the settings are **frozen** in [`docs/live.json`](docs/live.json), and the live result only counts days after that day: a true paper-trading test.
+The settings were chosen from 540 combinations using **training (until 2023-01-01) and validation (until 2024-07-01) data only**. The hidden test after that was never used for any decision. On the go-live day the settings are **frozen** in [`docs/live.json`](docs/live.json), and the live result only counts days after that day: a true paper-trading test.
 
 ## No cheating
 
@@ -26,16 +26,18 @@ The settings were chosen from 240 combinations using **training (until 2023-01-0
 
 ## How it runs
 
-GitHub Actions ([`.github/workflows/evolve.yml`](.github/workflows/evolve.yml)) runs every hour: it downloads new candles from Binance (free, no API key), computes the signal, and updates the page. Each run starts the next one, because GitHub's own schedule is often hours late.
+GitHub Actions ([`.github/workflows/evolve.yml`](.github/workflows/evolve.yml)) runs once a day after the daily close (00:00 UTC): it downloads the new daily candles from Binance (free, no API key), computes the signal, and updates the page. Because GitHub's schedule is often late, it has several backup times that day and skips itself once the day's signal is done.
+
+The coin list lives in [`bot/config.py`](bot/config.py) (`ROTATION_SYMBOLS`). Changing it starts a new live test. Note: the list holds coins that are big *today*, so the backtest has some survivorship bias (coins that died are missing); the live test does not.
 
 ```bash
 pip install -r requirements.txt
-python -m bot.fetch     # download / update candles
+python -m bot.fetch     # download / update daily candles
 python -m bot.signals   # compute the signal, write docs/ and RESULTS.md
 ```
 
 ## Research history
 
-Before the rotation strategy, a **genetic algorithm** searched indicator-rule strategies (26 indicators, 3 timeframes, limit orders, worst-year scoring, 3 independent searches per strategy, loss analysis). After about 80 runs it found nothing that held up on the hidden test, so it was stopped. Its code is kept in [`research/`](research/) (`python -m research.evolve`, `python -m research.report`; note that the report overwrites `docs/data.json`).
+Before the rotation strategy, a **genetic algorithm** searched indicator-rule strategies (26 indicators, 3 timeframes, limit orders, worst-year scoring, 3 independent searches per strategy, loss analysis). After about 80 runs it found nothing that held up on the hidden test, so it was stopped. Its code is kept in [`research/`](research/) (`python -m bot.fetch --hourly`, then `python -m research.evolve`, `python -m research.report`; note that the report overwrites `docs/data.json`).
 
 > ⚠️ This is a learning and experimentation project. Results on historical data and paper trading are no guarantee of future performance, and nothing here is financial advice.

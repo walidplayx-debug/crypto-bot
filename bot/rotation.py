@@ -18,11 +18,11 @@ import numpy as np
 import pandas as pd
 
 from . import config as C
-from .fetch import load
+from .fetch import path_for
 
 LOOKBACKS = [3, 7, 14, 30, 60]
-LONGS = [1, 2]
-SHORTS = [0, 1]
+LONGS = [1, 2, 3]
+SHORTS = [0, 1, 2]
 FILTERS = ["none", "btc_ema50", "btc_ema200", "breadth"]
 REBALANCE = [1, 3, 7]
 FILTER_AR = {"none": "بدون فلتر", "btc_ema50": "BTC فوق EMA 50 يوم",
@@ -30,17 +30,20 @@ FILTER_AR = {"none": "بدون فلتر", "btc_ema50": "BTC فوق EMA 50 يوم
 
 
 def daily_panel():
+    """Daily candles (00:00 UTC) for every rotation coin that has data."""
     opens, closes = {}, {}
-    for s in C.SYMBOLS:
-        df = load(s, "1h")
-        g = df.resample("1D")
-        full = g["close"].count() == 24
-        opens[s] = g["open"].first()[full]
-        closes[s] = g["close"].last()[full]
+    for s in C.ROTATION_SYMBOLS:
+        p = path_for(s, "1d")
+        if not p.exists():
+            continue
+        df = pd.read_csv(p)
+        if df.empty:
+            continue
+        idx = pd.to_datetime(df["time"], unit="ms", utc=True)
+        opens[s] = pd.Series(df["open"].to_numpy(float), index=idx)
+        closes[s] = pd.Series(df["close"].to_numpy(float), index=idx)
     o = pd.DataFrame(opens).sort_index()
     c = pd.DataFrame(closes).sort_index()
-    idx = o.index.union(c.index)
-    o, c = o.reindex(idx), c.reindex(idx)
     return o, c
 
 
@@ -71,7 +74,7 @@ def weights_for(params, c):
         if len(avail) >= 3:
             order = avail[np.argsort(row[avail])]          # weakest ... strongest
             longs = [i for i in order[::-1][:k] if row[i] > 0] if okv[t] else []
-            shorts = [i for i in order[:1] if row[i] < 0 and i not in longs] if short else []
+            shorts = [i for i in order[:short] if row[i] < 0 and i not in longs]
             n = len(longs) + len(shorts)
             for i in longs:
                 w[i] = 1 / n
@@ -177,10 +180,11 @@ def metrics(r, changes):
 def describe(params):
     L, k, short, filt, R = params
     every = "كل يوم" if R == 1 else f"كل {R} أيام"
+    n_ar = {1: "عملة", 2: "عملتين", 3: "3 عملات"}
     txt = [f"{every}: رتّب العملات حسب صعودها آخر {L} يوم",
-           f"اشترِ أقوى {'عملة' if k == 1 else 'عملتين'} (بس إذا زخمها إيجابي)"]
+           f"اشترِ أقوى {n_ar[k]} (بس إذا زخمها إيجابي)"]
     if short:
-        txt.append("وبيع (Short) أضعف عملة (بس إذا زخمها سلبي)")
+        txt.append(f"وبيع (Short) أضعف {n_ar[short]} (بس إذا زخمها سلبي)")
     if filt != "none":
         txt.append(f"الشراء بس إذا {FILTER_AR[filt]}، وإلا كاش")
     return txt
@@ -197,8 +201,10 @@ def run():
     best = rows[0]
     live_path = C.DOCS_DIR / "live.json"
     if live_path.exists():   # once live, always show the frozen live settings
-        frozen = tuple(json.loads(live_path.read_text())["params"])
-        best = next((x for x in rows if x["params"] == frozen), best)
+        lv = json.loads(live_path.read_text())
+        if lv.get("symbols") == list(c.columns):
+            frozen = tuple(lv["params"])
+            best = next((x for x in rows if x["params"] == frozen), best)
     ew = (o.shift(-2) / o.shift(-1) - 1)
     bench = pd.Series(ew.mean(axis=1).to_numpy(), index=c.index + pd.Timedelta(days=1)).fillna(0)
 
@@ -230,8 +236,9 @@ def live_update(best_params, o, c):
     that came AFTER the go-live day."""
     path = C.DOCS_DIR / "live.json"
     st = json.loads(path.read_text()) if path.exists() else None
-    if not st:
-        st = {"start": str(c.index[-1].date()), "params": list(best_params), "log": []}
+    if not st or st.get("symbols") != list(c.columns):   # new coin list = a new live test
+        st = {"start": str(c.index[-1].date()), "params": list(best_params),
+              "symbols": list(c.columns), "log": []}
     params = tuple(st["params"])
     r, _, W = simulate(params, o, c)
     day = c.index[-1]
@@ -253,7 +260,7 @@ def live_update(best_params, o, c):
     k = (R - t_last % R) % R or R
     next_signal = (day + pd.Timedelta(days=k + 1)).strftime("%Y-%m-%d")
     path.write_text(json.dumps(st, ensure_ascii=False, indent=1))
-    return {"start": st["start"], "params": dict(zip(["lookback", "longs", "short", "filter", "rebalance"], params)),
+    return {"start": st["start"], "symbols": st["symbols"], "params": dict(zip(["lookback", "longs", "short", "filter", "rebalance"], params)),
             "rules": describe(params), "positions": pos, "as_of": str(day.date()),
             "next_signal": next_signal, "perf": perf, "log": st["log"][-15:][::-1]}
 
